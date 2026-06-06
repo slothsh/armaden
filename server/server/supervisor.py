@@ -330,6 +330,9 @@ class Server:
         self._shutdown_requested.set()
         self._shutdown_signal = signum
 
+        # Wake the supervisor loop if it is blocked on _running.wait().
+        self._running.set()
+
         if self._proc is not None and self._proc.poll() is None:
             try:
                 self._proc.send_signal(signum)
@@ -488,6 +491,9 @@ class Server:
             if not self._running.is_set():
                 logger.info("Server is stopped — awaiting start command...")
                 self._running.wait()
+                if self._shutdown_requested.is_set():
+                    logger.info("Shutdown requested while stopped — exiting")
+                    return 0
                 logger.info("Start command received — resuming")
 
             # -- Build and start the server ---------------------------
