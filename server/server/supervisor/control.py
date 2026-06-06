@@ -64,7 +64,7 @@ from fastapi import Body, FastAPI, HTTPException, Request
 from pydantic import BaseModel
 import uvicorn
 
-from server.rcon import ArmaReforgerRcon, RconConnectionError, RconError
+from server.rcon import ArmaReforgerRcon, Player, RconConnectionError, RconError
 
 logger = logging.getLogger("server.control")
 
@@ -118,12 +118,12 @@ class _SayPayload(BaseModel):
 
 
 class _KickPayload(BaseModel):
-    player_id: str
+    player_id: str | int
     reason: str | None = None
 
 
 class _BanPayload(BaseModel):
-    player_id: str
+    player_id: str | int
     duration: str | None = None
     reason: str | None = None
 
@@ -238,7 +238,17 @@ def _make_app(
 
     @app.get("/rcon/players")
     async def rcon_players(request: Request) -> dict[str, Any]:
-        return await _rcon_response((await _ensure_rcon(request)).players())
+        rcon = await _ensure_rcon(request)
+        try:
+            players = await rcon.players()
+        except RconError as exc:
+            raise HTTPException(status_code=502, detail=str(exc))
+        return {
+            "status": "ok",
+            "response": [
+                {"slot": p.slot, "uid": p.uid, "name": p.name} for p in players
+            ],
+        }
 
     @app.get("/rcon/bans")
     async def rcon_bans(request: Request) -> dict[str, Any]:

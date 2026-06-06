@@ -13,7 +13,54 @@ https://community.bistudio.com/wiki/Arma_Reforger:Server_Management
 
 from __future__ import annotations
 
+from dataclasses import dataclass
+
 from server.rcon import Rcon
+
+
+@dataclass
+class Player:
+    """A connected player returned by the ``players`` command."""
+
+    slot: int
+    """BattlerEye slot number (used for ``kick`` / ``ban``)."""
+    uid: str
+    """In-game player UID."""
+    name: str
+    """Player display name."""
+
+    @classmethod
+    def from_line(cls, line: str) -> "Player | None":
+        """Parse a single data row from ``players`` output.
+
+        Returns ``None``  if the line is a header or otherwise
+        unparsable.
+        """
+        parts = [p.strip() for p in line.split(";")]
+        if len(parts) < 3:
+            return None
+        try:
+            slot = int(parts[0])
+        except ValueError:
+            # Header line (e.g. "Players on server: [Player#]")
+            return None
+        return cls(slot=slot, uid=parts[1], name=parts[2])
+
+
+def _parse_players(raw: str) -> list[Player]:
+    """Parse the raw ``players`` string into :class:`Player` objects.
+
+    Skips the ``Processing Command:`` line and the column header line.
+    """
+    players: list[Player] = []
+    for line in raw.strip().splitlines():
+        line = line.strip()
+        if not line or line.startswith("Processing Command:"):
+            continue
+        player = Player.from_line(line)
+        if player is not None:
+            players.append(player)
+    return players
 
 
 class ArmaReforgerRcon(Rcon):
@@ -35,9 +82,14 @@ class ArmaReforgerRcon(Rcon):
 
     # -- information --------------------------------------------------
 
-    async def players(self) -> str:
-        """List connected players."""
+    async def players_raw(self) -> str:
+        """List connected players — raw string response."""
         return await self.send_with_fallback("players")
+
+    async def players(self) -> list[Player]:
+        """List connected players as parsed DTOs."""
+        raw = await self.players_raw()
+        return _parse_players(raw)
 
     async def users(self) -> str:
         """List users (admin / player / etc.)."""
@@ -59,14 +111,15 @@ class ArmaReforgerRcon(Rcon):
 
     # -- player management --------------------------------------------
 
-    async def kick(self, player_id: str, reason: str | None = None) -> str:
-        """Kick a player by ID, name, or ping.
+    async def kick(self, player: str | int, reason: str | None = None) -> str:
+        """Kick a player by slot number, name, or UUID.
 
         Args:
-            player_id: The player's identifier (from ``players`` output).
+            player: The player's identifier (slot #, name, or in-game UID
+                from :meth:`players`).
             reason: Optional kick reason shown to the player.
         """
-        cmd = f"kick {player_id}"
+        cmd = f"kick {player}"
         if reason:
             cmd += f" {reason}"
         return await self.send(cmd)
@@ -75,19 +128,19 @@ class ArmaReforgerRcon(Rcon):
 
     async def ban(
         self,
-        player_id: str,
+        player: str | int,
         duration: str | None = None,
         reason: str | None = None,
     ) -> str:
-        """Ban a player by ID.
+        """Ban a player by slot number, name, or UUID.
 
         Args:
-            player_id: The player's identifier.
+            player: The player's identifier.
             duration: Ban duration.  ``"0"`` = permanent (default).
                 Other examples: ``"60"`` (minutes), ``"1h"``, ``"1d"``.
             reason: Optional ban reason.
         """
-        cmd = f"ban {player_id}"
+        cmd = f"ban {player}"
         if duration is not None:
             cmd += f" {duration}"
         if reason is not None:
