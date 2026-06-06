@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "server"
+version = "0.1.0"
+description = "Server tools for running Arma Reforger"
+authors = ["Stefan Olivier <s.olivier1194@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.scripts]
+server = "server.main:main"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

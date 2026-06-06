@@ -1,0 +1,49 @@
+FROM ubuntu:latest
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Create the steam user first
+RUN useradd -m steam
+
+# Install system dependencies
+RUN dpkg --add-architecture i386 && add-apt-repository multiverse
+
+RUN apt-get update                                                     \
+   && apt-get install -y --no-install-recommends --no-install-suggests \
+       lib32gcc-s1 software-properties-common                          \
+       curl wget ca-certificates                                       \
+       python3 python3-pip python3-venv                                \
+   && apt-get remove --purge -y                                        \
+   && apt-get clean autoclean                                          \
+   && apt-get autoremove -y                                            \
+   && rm -rf /var/lib/apt/lists/*
+
+# Install Poetry globally for all users
+RUN pip3 install --break-system-packages poetry
+
+# Copy server files and give ownership to steam
+COPY server /opt/server
+RUN chown -R steam:steam /opt/server
+
+# Install steamcmd directories
+RUN mkdir -p /steamcmd /arma               \
+   && chown -R steam:steam /steamcmd /arma
+
+# Switch to steam user for all remaining operations
+USER steam
+
+# Install the Python project as steam
+WORKDIR /opt/server
+RUN poetry install --no-interaction --no-ansi
+
+# Install steamcmd as steam
+WORKDIR /steamcmd
+RUN wget -qO- "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
+
+# Volumes
+VOLUME /steamcmd
+VOLUME /arma
+
+# Run server
+WORKDIR /opt/server
+CMD ["poetry", "run", "server"]
