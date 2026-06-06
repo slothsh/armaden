@@ -1,7 +1,59 @@
 """Server orchestration for the Arma Reforger dedicated server.
 
-Encapsulates provisioning, configuration, signal handling, and
-process supervision in a single :class:`Server` object.
+Encapsulates provisioning, configuration, signal handling, process
+supervision, and a lightweight HTTP control API in a single
+:class:`Server` object.
+
+Typical usage::
+
+    from server.supervisor import Server
+    sys.exit(Server.from_env().run())
+
+Environment variables
+~~~~~~~~~~~~~~~~~~~~~
+
+General
+    ``ARMA_INSTALL_DIR``      — Installation directory (default ``/arma``).
+    ``ARMA_EXECUTABLE``       — Full path to the server binary
+                                (default ``$ARMA_INSTALL_DIR/ArmaReforgerServer``).
+    ``STEAMCMD_EXECUTABLE``   — Path to the steamcmd binary (default: auto-discover).
+    ``ARMA_UPDATE_ON_START``  — Force a SteamCMD update before launching
+                                (``1`` / ``true`` / ``yes``).
+
+Paths
+    ``ARMA_CONFIG``           — Path to the server JSON config file.
+    ``ARMA_CONFIGS_DIR``      — Directory for stored configs
+                                (default ``/arma/configs``).
+    ``ARMA_PROFILE``          — Profile directory (default ``/arma/profile``).
+    ``ARMA_LOGS_DIR``         — Log directory (default ``/arma/logs``).
+
+Binding
+    ``ARMA_BIND_ADDRESS``     — IP address to bind.
+    ``ARMA_GAME_PORT``        — Game UDP port.
+    ``ARMA_STEAM_PORT``       — Steam UDP query port.
+
+A2S query
+    ``ARMA_A2S_ADDRESS``      — A2S query bind address.
+    ``ARMA_A2S_PORT``         — A2S query UDP port.
+
+RCON
+    ``ARMA_RCON_ADDRESS``     — RCON bind address.
+    ``ARMA_RCON_PORT``        — RCON TCP port.
+    ``ARMA_RCON_PASSWORD``    — RCON password.
+
+Gameplay
+    ``ARMA_SCENARIO``         — Scenario ID to host.
+    ``ARMA_ADDONS``           — Comma-separated list of mod IDs.
+    ``ARMA_LIMIT_FPS``        — Server FPS cap.
+    ``ARMA_AUTO_RELOAD``      — Auto-restart on crash (default ``true``).
+    ``ARMA_SERVER_ID``        — Unique server identifier.
+    ``ARMA_REGION``           — Server browser region tag.
+    ``ARMA_LOAD_SESSION_SAVE``— Path to a session save to load.
+    ``ARMA_FORCE_SESSION_LOAD``— Force loading mismatched save (default ``false``).
+
+Control API
+    ``CONTROL_BIND``          — HTTP control bind address (default ``0.0.0.0``).
+    ``CONTROL_PORT``          — HTTP control port (default ``8888``).
 """
 
 from __future__ import annotations
@@ -16,9 +68,15 @@ from pathlib import Path
 from typing import Any
 
 from server.arma import ArmaReforgerServer
+from server.control import ControlServer
 from server.steamcmd import SteamCmd, SteamCmdError
 
 logger = logging.getLogger("server")
+
+
+# ------------------------------------------------------------------
+# Helpers
+# ------------------------------------------------------------------
 
 
 def _int_env(name: str) -> int | None:
@@ -33,15 +91,13 @@ def _list_env(name: str) -> list[str] | None:
     return [item.strip() for item in val.split(",") if item.strip()]
 
 
+# ------------------------------------------------------------------
+# Server
+# ------------------------------------------------------------------
+
+
 class Server:
-    """Orchestrates the full lifecycle of an Arma Reforger dedicated server.
-
-    Typically instantiated via :meth:`from_env` and driven with :meth:`run`::
-
-        from server.supervisor import Server
-
-        sys.exit(Server.from_env().run())
-    """
+    """Orchestrates the full lifecycle of an Arma Reforger dedicated server."""
 
     def __init__(
         self,
@@ -70,6 +126,8 @@ class Server:
         region: str | None = None,
         load_session_save: str | Path | None = None,
         force_session_load: bool = False,
+        control_bind: str = "127.0.0.1",
+        control_port: int = 8888,
     ) -> None:
         self.arma_install_dir = Path(arma_install_dir)
         self.arma_executable = Path(
@@ -99,9 +157,14 @@ class Server:
             Path(load_session_save) if load_session_save else None
         )
         self.force_session_load = force_session_load
+        self.control_bind = control_bind
+        self.control_port = control_port
 
         self._proc: subprocess.Popen[Any] | None = None
+        self._running = threading.Event()
         self._shutdown_requested = threading.Event()
+        self._restart_requested = threading.Event()
+        self._new_config: str | None = None
         self._shutdown_signal: int | None = None
 
     # -- factories ----------------------------------------------------
@@ -139,6 +202,8 @@ class Server:
                 "ARMA_FORCE_SESSION_LOAD", "false"
             ).lower()
             in ("true", "1", "yes"),
+            control_bind=os.environ.get("CONTROL_BIND", "0.0.0.0"),
+            control_port=_int_env("CONTROL_PORT") or 8888,
         )
 
     # -- setup --------------------------------------------------------
@@ -253,6 +318,10 @@ class Server:
 
     def _on_shutdown(self, signum: int, _frame: Any) -> None:
         signame = signal.Signals(signum).name
+        if self._shutdown_requested.is_set():
+            logger.debug("Ignoring duplicate %s", signame)
+            return
+
         logger.info(
             "%s received — forwarding to server process (PID %s)",
             signame,
@@ -272,21 +341,76 @@ class Server:
         signal.signal(signal.SIGHUP, self._on_sighup)
         signal.signal(signal.SIGINT, self._on_shutdown)
         signal.signal(signal.SIGQUIT, self._on_shutdown)
+        signal.signal(signal.SIGTERM, self._on_shutdown)
+
+    # -- control API --------------------------------------------------
+
+    def _start_control_server(self) -> None:
+        self._control = ControlServer(
+            supervisor=self,
+            bind=self.control_bind,
+            port=self.control_port,
+        )
+        self._control.start()
+
+    def trigger_start(self) -> None:
+        """Queue a start command (unblocks the supervisor loop)."""
+        logger.info("Start command queued via API")
+        self._running.set()
+
+    def trigger_shutdown(self) -> None:
+        """Queue a shutdown — stops the Arma server but keeps the supervisor alive."""
+        if not self._running.is_set():
+            logger.info("Shutdown requested but server is not running")
+            return
+
+        logger.info("Shutdown command queued via API")
+        self._running.clear()
+        if self._proc is not None and self._proc.poll() is None:
+            self._proc.terminate()
+
+    def trigger_restart(self) -> None:
+        """Queue a restart — stops then re-starts the Arma server with the same config."""
+        logger.info("Restart command queued via API")
+        self._running.set()
+        self._restart_requested.set()
+        if self._proc is not None and self._proc.poll() is None:
+            self._proc.terminate()
+
+    def trigger_reload(self, config_path: str | Path) -> None:
+        """Queue a new config and request a server restart.
+
+        If the Arma server is currently running it is sent ``SIGTERM`` so
+        that the supervisor loop can restart it with the updated config.
+        """
+        path = str(config_path)
+        if self._new_config == path:
+            logger.info("Config already queued — ignoring duplicate reload")
+            return
+
+        self._new_config = path
+        logger.info("Reload command queued via API with config %s", path)
+        self._running.set()
+
+        if self._proc is not None and self._proc.poll() is None:
+            self._proc.terminate()
+        else:
+            logger.info("Config queued for next server start")
 
     # -- supervision --------------------------------------------------
 
-    def _start_output_pump(self) -> None:
+    def _start_output_pump(self, proc: subprocess.Popen[Any]) -> None:
         """Pump child stdout to our own stdout in a background daemon thread.
 
         This prevents full-buffering issues that occur when the child
         detects stdout is a pipe rather than a TTY.
         """
-        if self._proc is None or self._proc.stdout is None:
+        if proc.stdout is None:
             return
 
         def _pump() -> None:
             try:
-                for line in self._proc.stdout:
+                for line in proc.stdout:
                     sys.stdout.write(line)
                     sys.stdout.flush()
             except Exception as exc:
@@ -297,9 +421,12 @@ class Server:
     def _wait(self, grace_period: float = 30.0, poll_interval: float = 1.0) -> int:
         """Block until the server exits.
 
+        If a POSIX shutdown signal was received while the server is still
+        running, a graceful-exit wait is entered.
+
         Args:
-            grace_period: Seconds to wait after a shutdown signal before
-                escalating to SIGKILL.
+            grace_period: Seconds to wait after a shutdown signal
+                before escalating to SIGKILL.
             poll_interval: Seconds between liveness polls while running.
 
         Returns:
@@ -316,16 +443,14 @@ class Server:
                     return self._await_graceful_exit(grace_period)
 
     def _await_graceful_exit(self, grace_period: float) -> int:
-        """Wait for the server to exit after a shutdown signal.
+        """Wait for the server to exit after a forwarded POSIX signal.
 
         Falls back to SIGKILL if the grace period expires.
         """
-        signame = (
-            signal.Signals(self._shutdown_signal).name
-            if self._shutdown_signal
-            else "shutdown"
+        logger.info(
+            "Awaiting graceful exit (%.0fs grace period)...",
+            grace_period,
         )
-        logger.info("Awaiting graceful exit after %s...", signame)
         try:
             return self._proc.wait(timeout=grace_period)
         except subprocess.TimeoutExpired:
@@ -337,13 +462,18 @@ class Server:
             return self._proc.wait()
 
     def run(self) -> int:
-        """Execute the full server lifecycle.
+        """Execute the full server lifecycle (supervisord-style restart loop).
+
+        On initial entry the server auto-starts (``_running`` is set).
+        After an API-driven shutdown the loop blocks until
+        :meth:`trigger_start` or :meth:`trigger_restart` unblocks it.
 
         Returns:
             Process exit code (``0`` for clean exit).
         """
         self.setup_logging()
         self._install_signal_handlers()
+        self._start_control_server()
 
         try:
             self.install()
@@ -351,23 +481,57 @@ class Server:
             logger.error("Server installation failed: %s", exc)
             return 1
 
-        arma_server = self.build_arma_server()
-        argv = arma_server._build_argv()
-        logger.info("Launching server: %s", " ".join(argv))
+        self._running.set()  # auto-start on launch
 
-        self._proc = subprocess.Popen(
-            argv,
-            cwd=arma_server._cwd,
-            env=arma_server._env,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            text=True,
-            bufsize=1,
-        )
-        logger.info("Server process started (PID %d)", self._proc.pid)
-        self._start_output_pump()
+        while True:
+            # -- Block when explicitly stopped --------------------------
+            if not self._running.is_set():
+                logger.info("Server is stopped — awaiting start command...")
+                self._running.wait()
+                logger.info("Start command received — resuming")
 
-        try:
-            return self._wait()
-        except KeyboardInterrupt:
-            return 130
+            # -- Build and start the server ---------------------------
+            arma_server = self.build_arma_server()
+            argv = arma_server._build_argv()
+            logger.info("Launching server: %s", " ".join(argv))
+
+            self._proc = subprocess.Popen(
+                argv,
+                cwd=arma_server._cwd,
+                env=arma_server._env,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                text=True,
+                bufsize=1,
+            )
+            logger.info("Server process started (PID %d)", self._proc.pid)
+            self._start_output_pump(self._proc)
+
+            # -- Wait for the server to exit --------------------------
+            return_code = self._wait()
+
+            # -- POSIX shutdown signal --------------------------------
+            if self._shutdown_requested.is_set():
+                logger.info("Shutdown signal received — exiting")
+                return return_code
+
+            # -- API-driven shutdown ----------------------------------
+            if not self._running.is_set():
+                logger.info("Server stopped via API — supervisor still running")
+                continue
+
+            # -- API-driven restart -----------------------------------
+            if self._restart_requested.is_set():
+                self._restart_requested.clear()
+                logger.info("Server restart requested — restarting")
+                continue
+
+            # -- Config reload ----------------------------------------
+            if self._new_config:
+                self.config = self._new_config
+                self._new_config = None
+                logger.info("Restarting with new config: %s", self.config)
+                continue
+
+            # -- Unexpected exit --------------------------------------
+            return return_code
