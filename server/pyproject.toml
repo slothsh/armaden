@@ -12,6 +12,7 @@ server = "server.main:main"
 python = "^3.12"
 fastapi = "^0.115"
 uvicorn = {extras = ["standard"], version = "^0.32"}
+berconpy = "^3.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.0"

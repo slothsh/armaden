@@ -6,7 +6,7 @@ supervision, and a lightweight HTTP control API in a single
 
 Typical usage::
 
-    from server.supervisor import Server
+    from . import Server
     sys.exit(Server.from_env().run())
 
 Environment variables
@@ -40,6 +40,8 @@ RCON
     ``ARMA_RCON_ADDRESS``     — RCON bind address.
     ``ARMA_RCON_PORT``        — RCON TCP port.
     ``ARMA_RCON_PASSWORD``    — RCON password.
+    ``RCON_HOST``             — Host to connect to for RCON commands
+                                (default ``127.0.0.1``).
 
 Gameplay
     ``ARMA_SCENARIO``         — Scenario ID to host.
@@ -68,7 +70,7 @@ from pathlib import Path
 from typing import Any
 
 from server.arma import ArmaReforgerServer
-from server.control import ControlServer
+from .control import ControlServer
 from server.steamcmd import SteamCmd, SteamCmdError
 
 logger = logging.getLogger("server")
@@ -128,6 +130,7 @@ class Server:
         force_session_load: bool = False,
         control_bind: str = "127.0.0.1",
         control_port: int = 8888,
+        rcon_client_host: str = "127.0.0.1",
     ) -> None:
         self.arma_install_dir = Path(arma_install_dir)
         self.arma_executable = Path(
@@ -159,6 +162,7 @@ class Server:
         self.force_session_load = force_session_load
         self.control_bind = control_bind
         self.control_port = control_port
+        self.rcon_client_host = rcon_client_host
 
         self._proc: subprocess.Popen[Any] | None = None
         self._running = threading.Event()
@@ -204,6 +208,7 @@ class Server:
             in ("true", "1", "yes"),
             control_bind=os.environ.get("CONTROL_BIND", "0.0.0.0"),
             control_port=_int_env("CONTROL_PORT") or 8888,
+            rcon_client_host=os.environ.get("RCON_HOST", "127.0.0.1"),
         )
 
     # -- setup --------------------------------------------------------
@@ -353,6 +358,9 @@ class Server:
             supervisor=self,
             bind=self.control_bind,
             port=self.control_port,
+            rcon_host=self.rcon_client_host,
+            rcon_port=self.rcon_port or 0,
+            rcon_password=self.rcon_password or "",
         )
         self._control.start()
 
