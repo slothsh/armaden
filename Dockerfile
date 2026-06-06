@@ -6,8 +6,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN useradd -m steam
 
 # Install system dependencies
-RUN dpkg --add-architecture i386 && add-apt-repository multiverse
-
 RUN apt-get update                                                     \
    && apt-get install -y --no-install-recommends --no-install-suggests \
        lib32gcc-s1 software-properties-common                          \
@@ -17,6 +15,8 @@ RUN apt-get update                                                     \
    && apt-get clean autoclean                                          \
    && apt-get autoremove -y                                            \
    && rm -rf /var/lib/apt/lists/*
+
+RUN dpkg --add-architecture i386 && add-apt-repository multiverse && apt-get update
 
 # Install Poetry globally for all users
 RUN pip3 install --break-system-packages poetry
@@ -39,6 +39,13 @@ RUN poetry install --no-interaction --no-ansi
 # Install steamcmd as steam
 WORKDIR /steamcmd
 RUN wget -qO- "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
+
+ENV STEAMCMD_EXECUTABLE=/steamcmd/steamcmd.sh
+ENV ARMA_INSTALL_DIR=/arma
+ENV ARMA_PROFILE=/arma/Profile
+ENV ARMA_LOGS_DIR=/arma/Logs
+ENV ARMA_CONFIG=/arma/Configs/config.json
+ENV ARMA_CONFIGS_DIR=/arma/Configs
 
 # Volumes
 VOLUME /steamcmd

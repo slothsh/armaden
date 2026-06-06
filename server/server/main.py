@@ -18,13 +18,18 @@ Supported environment variables
 
 General
     ``ARMA_INSTALL_DIR``      — Installation directory (default: ``/arma``).
+    ``ARMA_EXECUTABLE``       — Full path to the server binary
+                                (default: ``$ARMA_INSTALL_DIR/ArmaReforgerServer``).
+    ``STEAMCMD_EXECUTABLE``   — Path to the steamcmd binary (default: auto-discover).
     ``ARMA_UPDATE_ON_START``  — Force a SteamCMD update before launching
                                 (``1``, ``true``, ``yes``).
 
 Paths
     ``ARMA_CONFIG``           — Path to the server JSON config file.
-    ``ARMA_PROFILE``          — Profile directory (saves / settings).
-    ``ARMA_LOGS_DIR``         — Dedicated log output directory.
+    ``ARMA_PROFILE``          — Profile directory for saves / settings
+                                (default: ``/arma/profile``).
+    ``ARMA_CONFIGS_DIR``      — Directory containing server config files
+                                (default: ``/arma/configs``; not a launch flag).
 
 Binding
     ``ARMA_BIND_ADDRESS``     — IP address to bind (``-bindIP``).
@@ -58,14 +63,18 @@ import os
 import signal
 import subprocess
 import sys
+import threading
 from pathlib import Path
 from typing import Any
 
 from server.arma import ArmaReforgerServer
-from server.steamcmd import SteamCmdError
+from server.steamcmd import SteamCmd, SteamCmdError
 
 ARMA_INSTALL_DIR = Path(os.environ.get("ARMA_INSTALL_DIR", "/arma"))
-ARMA_EXECUTABLE = ARMA_INSTALL_DIR / "ArmaReforgerServer"
+ARMA_EXECUTABLE = Path(
+    os.environ.get("ARMA_EXECUTABLE", ARMA_INSTALL_DIR / "ArmaReforgerServer")
+)
+STEAMCMD_EXECUTABLE = os.environ.get("STEAMCMD_EXECUTABLE")
 
 logger = logging.getLogger("server")
 
@@ -88,6 +97,12 @@ def _setup_logging() -> None:
 
 def _ensure_installed() -> None:
     """Ensure the server binary exists, installing via SteamCMD if necessary."""
+    steamcmd = (
+        SteamCmd(executable=STEAMCMD_EXECUTABLE)
+        if STEAMCMD_EXECUTABLE
+        else None
+    )
+
     if ARMA_EXECUTABLE.exists():
         logger.info("Server executable found at %s", ARMA_EXECUTABLE)
         if os.environ.get("ARMA_UPDATE_ON_START", "").lower() in (
@@ -97,7 +112,9 @@ def _ensure_installed() -> None:
         ):
             logger.info("ARMA_UPDATE_ON_START set — updating server via SteamCMD...")
             result = ArmaReforgerServer.update(
-                install_dir=ARMA_INSTALL_DIR, validate=True
+                install_dir=ARMA_INSTALL_DIR,
+                steamcmd=steamcmd,
+                validate=True,
             )
             result.raise_for_status()
             logger.info("Update complete.")
@@ -107,7 +124,11 @@ def _ensure_installed() -> None:
         "Server executable not found at %s. Installing via SteamCMD...",
         ARMA_EXECUTABLE,
     )
-    result = ArmaReforgerServer.install(install_dir=ARMA_INSTALL_DIR, validate=True)
+    result = ArmaReforgerServer.install(
+        install_dir=ARMA_INSTALL_DIR,
+        steamcmd=steamcmd,
+        validate=True,
+    )
     result.raise_for_status()
     logger.info("Installation complete.")
 
@@ -118,16 +139,21 @@ def _ensure_installed() -> None:
 
 def _build_server() -> ArmaReforgerServer:
     """Construct an :class:`ArmaReforgerServer` from environment variables."""
-    server = ArmaReforgerServer(executable=ARMA_EXECUTABLE)
+    server = ArmaReforgerServer(executable=ARMA_EXECUTABLE, cwd=ARMA_INSTALL_DIR)
 
+    # -- always-present paths ----------------------------------------
+    server.profile(os.environ.get("ARMA_PROFILE", "/arma/profile"))
+    server.logs_dir(os.environ.get("ARMA_LOGS_DIR", "/arma/logs"))
+
+    # -- config ------------------------------------------------------
     if config := os.environ.get("ARMA_CONFIG"):
-        server.config(config)
-
-    if profile := os.environ.get("ARMA_PROFILE"):
-        server.profile(profile)
-
-    if logs_dir := os.environ.get("ARMA_LOGS_DIR"):
-        server.logs_dir(logs_dir)
+        config_path = Path(config)
+        if not config_path.is_absolute():
+            configs_dir = Path(
+                os.environ.get("ARMA_CONFIGS_DIR", "/arma/configs")
+            )
+            config_path = configs_dir / config_path
+        server.config(str(config_path))
 
     # -- binding ------------------------------------------------------
     bind_kwargs: dict[str, Any] = {}
@@ -195,44 +221,93 @@ def _build_server() -> ArmaReforgerServer:
 
 
 # ------------------------------------------------------------------
+# Signal handling
+# ------------------------------------------------------------------
+
+class _ServerSupervisor:
+    """Encapsulates the running server process and signal-driven lifecycle."""
+
+    def __init__(self) -> None:
+        self.proc: subprocess.Popen[Any] | None = None
+        self._shutdown_requested = threading.Event()
+        self._shutdown_signal: int | None = None
+
+    # -- signal handlers ---------------------------------------------
+
+    def _on_sighup(self, _signum: int, _frame: Any) -> None:
+        logger.info("SIGHUP received — reload requested (stubbed, not yet implemented)")
+
+    def _on_shutdown(self, signum: int, _frame: Any) -> None:
+        signame = signal.Signals(signum).name
+        logger.info("%s received — forwarding to server process (PID %s)",
+                    signame, self.proc.pid if self.proc else "<none>")
+
+        self._shutdown_requested.set()
+        self._shutdown_signal = signum
+
+        if self.proc is not None and self.proc.poll() is None:
+            try:
+                self.proc.send_signal(signum)
+                logger.info("Forwarded %s to server", signame)
+            except (ProcessLookupError, OSError) as exc:
+                logger.warning("Failed to forward signal: %s", exc)
+
+    def install_handlers(self) -> None:
+        signal.signal(signal.SIGHUP, self._on_sighup)
+        signal.signal(signal.SIGINT, self._on_shutdown)
+        signal.signal(signal.SIGQUIT, self._on_shutdown)
+
+    # -- supervision -------------------------------------------------
+
+    def wait(self, grace_period: float = 30.0, poll_interval: float = 1.0) -> int:
+        """Block until the server exits, respecting shutdown requests.
+
+        Args:
+            grace_period: Seconds to wait for a graceful exit after a
+                shutdown signal before escalating to SIGKILL.
+            poll_interval: Seconds between ``poll()`` checks while the
+                server is running normally.
+
+        Returns:
+            The server process exit code.
+        """
+        if self.proc is None:
+            raise RuntimeError("No server process registered")
+
+        while True:
+            try:
+                return self.proc.wait(timeout=poll_interval)
+            except subprocess.TimeoutExpired:
+                if self._shutdown_requested.is_set():
+                    return self._await_graceful_exit(grace_period)
+
+    def _await_graceful_exit(self, grace_period: float) -> int:
+        """Wait for the server to exit after a shutdown signal.
+
+        Falls back to SIGKILL if the grace period expires.
+        """
+        signame = signal.Signals(self._shutdown_signal).name if self._shutdown_signal else "shutdown"
+        logger.info("Awaiting graceful exit after %s...", signame)
+
+        try:
+            return self.proc.wait(timeout=grace_period)
+        except subprocess.TimeoutExpired:
+            logger.warning(
+                "Server did not exit within %.0fs — escalating to SIGKILL",
+                grace_period,
+            )
+            self.proc.kill()
+            return self.proc.wait()
+
+
+# ------------------------------------------------------------------
 # Main
 # ------------------------------------------------------------------
 
 def main() -> int:
     _setup_logging()
-
-    # The child process handle — shared with signal handlers.
-    server_proc: subprocess.Popen[Any] | None = None
-
-    # -- signal handlers ----------------------------------------------
-
-    def _handle_sighup(_signum: int, _frame: Any) -> None:
-        logger.info("SIGHUP received — reload requested (stubbed, not yet implemented)")
-
-    def _handle_shutdown(signum: int, _frame: Any) -> None:
-        signame = signal.Signals(signum).name
-        logger.info("%s received — initiating graceful shutdown", signame)
-
-        if server_proc is not None and server_proc.poll() is None:
-            logger.info(
-                "Sending SIGTERM to server process (PID %d)", server_proc.pid
-            )
-            server_proc.terminate()
-            try:
-                server_proc.wait(timeout=30)
-                logger.info("Server process exited cleanly")
-            except subprocess.TimeoutExpired:
-                logger.warning(
-                    "Server did not exit within 30s — sending SIGKILL"
-                )
-                server_proc.kill()
-                server_proc.wait()
-
-        sys.exit(0)
-
-    signal.signal(signal.SIGHUP, _handle_sighup)
-    signal.signal(signal.SIGINT, _handle_shutdown)
-    signal.signal(signal.SIGQUIT, _handle_shutdown)
+    supervisor = _ServerSupervisor()
+    supervisor.install_handlers()
 
     # -- provision ----------------------------------------------------
 
@@ -248,18 +323,19 @@ def main() -> int:
     argv = server._build_argv()
     logger.info("Launching server: %s", " ".join(argv))
 
-    server_proc = subprocess.Popen(
+    supervisor.proc = subprocess.Popen(
         argv,
         cwd=server._cwd,
         env=server._env,
     )
+    logger.info("Server process started (PID %d)", supervisor.proc.pid)
 
     try:
-        return_code = server_proc.wait()
+        return_code = supervisor.wait()
     except KeyboardInterrupt:
-        # SIGINT is handled above; this catches the rare edge case where
-        # the signal arrives before the handler is fully wired.
-        return 0
+        # Should not normally reach here because SIGINT is handled by
+        # _on_shutdown, but defensively guard the edge case.
+        return_code = 130  # 128 + SIGINT
 
     logger.info("Server process exited with code %d", return_code)
     return return_code
