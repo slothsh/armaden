@@ -73,8 +73,7 @@ from server.arma import ArmaReforgerServer
 from .control import ControlServer
 from server.steamcmd import SteamCmd, SteamCmdError
 
-logger = logging.getLogger("server")
-
+logger = logging.getLogger("supervisor")
 
 # ------------------------------------------------------------------
 # Helpers

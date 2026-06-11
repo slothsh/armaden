@@ -1,33 +1,15 @@
-"""FastAPI-based HTTP control API for the Arma Reforger server supervisor.
+from __future__ import annotations
 
-Provides runtime endpoints for health checks, status, process control
-(start / shutdown / restart / load-config), and BattlEye RCON commands.
-
-Typical usage::
-
-    from . import ControlServer
-    ctrl = ControlServer(
-        supervisor=server,
-        bind="127.0.0.1",
-        port=8888,
-        rcon_host="127.0.0.1",
-        rcon_port=2302,
-        rcon_password="secret",
-    )
-    ctrl.start()
-"""
-
-import logging
 import threading
 import uvicorn
+import logging
+from .supervisor_like import SupervisorLike
+from ..arma import ArmaReforgerRcon
+from ..api import make_api_app
 
-from server.api import Api
-from server.supervisor.supervisor_like import SupervisorLike
-from server.rcon import ArmaReforgerRcon
+logger = logging.getLogger("server.controller")
 
-logger = logging.getLogger("supervisor.control")
-
-class ControlServer:
+class SupervisorController:
     """Runs a FastAPI application via uvicorn in a background daemon thread."""
 
     def __init__(
@@ -47,7 +29,7 @@ class ControlServer:
             port=rcon_port,
             password=rcon_password,
         )
-        self._app = Api.create_app(supervisor, self._rcon)
+        self._app = make_api_app(supervisor, self._rcon)
         self._server: uvicorn.Server | None = None
         self._thread: threading.Thread | None = None
 
@@ -80,3 +62,5 @@ class ControlServer:
             self._server.should_exit = True
         if self._thread is not None:
             self._thread.join(timeout=5.0)
+
+
