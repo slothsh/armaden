@@ -1,7 +1,6 @@
 import sys
 import logging
 from enum import StrEnum
-import threading
 from threading import Lock
 
 logger = logging.getLogger('server.application')
@@ -30,8 +29,7 @@ class Application:
         cls._initialize_logging()
         APPLICATION = Application()
         APPLICATION._status = ApplicationStatus.READY
-        logger.info('Application successfully bootstrapped: %s', APPLICATION._status)
-        logger.info(APPLICATION)
+        logger.info('Application successfully bootstrapped with status: %s', APPLICATION._status)
 
 
     @classmethod

@@ -1,21 +1,30 @@
+from dataclasses import dataclass
 from enum import StrEnum
+import logging
 from typing import Self, Union
 from pathlib import Path
 
+from returns.pipeline import is_successful
 from returns.result import Failure, Success
 from server.arma.reforger.arma_reforger_server_executable import ArmaReforgerServerExecutable
 from server.arma.reforger.arma_reforger_rcon_client import ArmaReforgerRconClient
 from server.lib import Result, Server, Error
-from server.steamcmd import SteamCmdExecutable, SteamCmdResult
+from server.lib.interfaces import QueueableSupervisor
+from server.steamcmd import SteamCmdExecutable
+
+logger = logging.getLogger('server.arma.reforger.server')
 
 class ArmaReforgerServer(Server):
     STEAM_APP_ID: int = 1874900
     STEAM_APP_ID_CLIENT: int = 1874880
 
     def __init__(self):
-        self._executable = ExecutableContainer()
-        setattr(self._executable, 'steamcmd', SteamCmdExecutable())
-        setattr(self._executable, 'reforger', ArmaReforgerServerExecutable())
+        self._supervisor: QueueableSupervisor | None = None
+
+        self._executable = ExecutableContainer(
+            steamcmd=SteamCmdExecutable(),
+            reforger=ArmaReforgerServerExecutable()
+        )
 
         self._rcon_client = ArmaReforgerRconClient('127.0.0.1', 2011, 'password')
 
@@ -28,6 +37,11 @@ class ArmaReforgerServer(Server):
 
     # --- Builder Methods -----------------------------------------------------
 
+    def with_supervisor(self, supervisor: QueueableSupervisor) -> Self:
+        self._supervisor = supervisor
+        return self
+
+
     def build(self) -> Self:
         return self
 
@@ -35,7 +49,15 @@ class ArmaReforgerServer(Server):
     # -- Server Interface -----------------------------------------------------
 
     async def initialize(self) -> Result[None]:
-        return Failure(Error(ArmaReforgerServerError.INITIALIZATION_FAILED))
+        if not is_successful(result := await self.install("path/to/installation", True)):
+            return result
+
+        try:
+            return Success(None)
+        except Exception as e:
+            return Failure(Error(ArmaReforgerServerError.INITIALIZATION_FAILED, {
+                'exception': e
+            }))
 
 
     async def run(self) -> Result[None]:
@@ -46,63 +68,61 @@ class ArmaReforgerServer(Server):
         return Success(None)
 
 
-    # -- SteamCmdExecutable helpers -------------------------------------------
+    # -- steamcmd helpers -------------------------------------------
 
-    @classmethod
-    def install(
-        cls,
+    async def install(
+        self,
         install_dir: str | Path,
-        *,
-        steamcmd: SteamCmdExecutable | None = None,
         validate: bool = False,
-    ) -> SteamCmdResult:
-        """Install the Arma Reforger dedicated server via SteamCMD.
+    ) -> Result[None]:
+        if not self._supervisor:
+            return Failure(Error(ArmaReforgerServerError.SUPERVISOR_UNAVAILABLE))
 
-        Args:
-            install_dir: Target installation directory.
-            steamcmd: Custom :class:`SteamCmdExecutable` instance.  A default one is
-                created if omitted.
-            validate: Verify file integrity after installation.
-
-        Returns:
-            The :class:`SteamCmdResult` from the install operation.
-        """
-        sc = steamcmd or SteamCmdExecutable()
-        return (
-            sc.login_anonymous()
+        cmd = (
+            self._executable.steamcmd
+            .login_anonymous()
             .force_install_dir(install_dir)
-            .app_update(cls.STEAM_APP_ID, validate=validate)
-            .run()
+            .app_update(self.STEAM_APP_ID, validate=validate)
+            .build_argv()
         )
 
-    @classmethod
-    def update(
-        cls,
-        install_dir: str | Path,
-        *,
-        steamcmd: SteamCmdExecutable | None = None,
-        validate: bool = True,
-    ) -> SteamCmdResult:
-        """Update the server installation via SteamCMD.
+        if not is_successful(result := await self._supervisor.dispatch_subprocess(cmd)):
+            logger.info('An error occurred trying to install the Arma Reforger Server Assets: %s', result.failure())
+            return result.map(lambda _: None)
 
-        Args:
-            install_dir: Existing server installation directory.
-            steamcmd: Custom :class:`SteamCmdExecutable` instance.
-            validate: Verify file integrity (recommended for updates).
+        return Success(None)
 
-        Returns:
-            The :class:`SteamCmdResult` from the update operation.
-        """
-        return cls.install(install_dir, steamcmd=steamcmd, validate=validate)
+    # @classmethod
+    # def update(
+    #     cls,
+    #     install_dir: str | Path,
+    #     *,
+    #     steamcmd: SteamCmdExecutable | None = None,
+    #     validate: bool = True,
+    # ) -> SteamCmdResult:
+    #     """Update the server installation via SteamCMD.
+    #
+    #     Args:
+    #         install_dir: Existing server installation directory.
+    #         steamcmd: Custom :class:`SteamCmdExecutable` instance.
+    #         validate: Verify file integrity (recommended for updates).
+    #
+    #     Returns:
+    #         The :class:`SteamCmdResult` from the update operation.
+    #     """
+    #     return cls.install(install_dir, steamcmd=steamcmd, validate=validate)
 
 
 # --- Internal Types ----------------------------------------------------------
 
 type ExecutableUnion = Union[SteamCmdExecutable, ArmaReforgerServerExecutable]
 
+@dataclass
 class ExecutableContainer:
-    def __getattr__(self, name: str) -> ExecutableUnion:
-        return self.__dict__[name]
+    steamcmd: SteamCmdExecutable
+    reforger: ArmaReforgerServerExecutable
+
 
 class ArmaReforgerServerError(StrEnum):
     INITIALIZATION_FAILED = "an error occurred while initializing the arma reforger server"
+    SUPERVISOR_UNAVAILABLE = "an arma reforger server's supervisor is unavailable"

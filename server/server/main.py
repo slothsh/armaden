@@ -41,6 +41,7 @@ async def entrypoint() -> Result[None]:
 
     arma_reforger = (
         ArmaReforgerServer()
+        .with_supervisor(supervisor)
         .build()
     )
 

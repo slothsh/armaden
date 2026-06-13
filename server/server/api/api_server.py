@@ -24,8 +24,8 @@ class ApiServer(Server):
             title="Arma Reforger Server public HTTP API"
         )
 
-        self.supervisor = None
-        self.rcon_clients = RconContainer()
+        self._supervisor: QueueableSupervisor | None = None
+        self._rcon_clients = RconContainer()
 
 
     # --- Builder Methods -----------------------------------------------------
@@ -50,7 +50,7 @@ class ApiServer(Server):
         @asynccontextmanager
         async def lifespan(_: FastAPI):
             yield
-            for client in vars(self.rcon_clients).values():
+            for client in vars(self._rcon_clients).values():
                 if client.is_connected():
                     await client.disconnect()
 
@@ -63,7 +63,6 @@ class ApiServer(Server):
 
     async def initialize(self) -> Result[None]:
         try:
-            # setup_loop=False forces Uvicorn to inherit the Supervisor's target thread loop
             config = uvicorn.Config(
                 app=self.app,
                 host="127.0.0.1",
@@ -71,7 +70,7 @@ class ApiServer(Server):
                 loop="none",
                 log_config=None,
             )
-            self._uvicorn_server = SignalBypassedUvicornServer(config=config)
+            self._uvicorn_server = uvicorn.Server(config=config)
             return Success(None)
         except Exception as e:
             return Failure(Error(ApiServerError.INITIALIZATION_FAILED, {
@@ -112,8 +111,3 @@ class RconContainer:
 class ApiServerError(StrEnum):
     INITIALIZATION_FAILED = "an error occurred while initializing the api server"
     RUN_FAILED = "an error occurred while trying to run the api server"
-
-
-class SignalBypassedUvicornServer(uvicorn.Server):
-    def install_signal_handlers(self) -> None:
-        pass

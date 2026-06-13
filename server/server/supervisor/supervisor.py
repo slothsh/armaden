@@ -8,11 +8,12 @@ from concurrent.futures import Future
 
 from dataclasses import dataclass
 from returns.pipeline import is_successful
-from returns.result import Success
+from returns.result import Failure, Success
 from pathlib import Path
 
 from server.lib import Result
 from server.lib.interfaces import Server
+from server.lib.types import Error
 
 logger = logging.getLogger("server.supervisor")
 
@@ -100,20 +101,39 @@ class Supervisor:
 
     # -- SupervisorLike Protocol Interface-------------------------------------
 
-    def queue_start(self) -> None:
+    async def queue_start(self) -> None:
         pass
 
 
-    def queue_shutdown(self) -> None:
+    async def queue_shutdown(self) -> None:
         pass
 
 
-    def queue_restart(self) -> None:
+    async def queue_restart(self) -> None:
         pass
 
 
-    def queue_reload(self, config_path: str | Path) -> None:
+    async def queue_reload(self, config_path: str | Path) -> None:
         pass
+
+
+    async def dispatch_subprocess(self, argv: List[str]) -> Result[str]:
+        logger.info('Executing command in subprocess: %s', ' '.join(argv))
+
+        process = await asyncio.create_subprocess_exec(
+            argv[0], *argv[1:],
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE
+        )
+
+        stdout, stderr = await process.communicate()
+
+        if process.returncode == 0:
+            return Success(stdout.decode().strip())
+        else:
+            return Failure(Error(SupervisorError.SUBPROCESS_ERROR, details={
+                'stderr': stderr.decode().strip()
+            }))
 
 
     # -- Signal Handling ------------------------------------------------------
@@ -137,10 +157,11 @@ class Supervisor:
         return Success(None)
 
 
-# -- Internal Types -----------------------------------------------------------
+    # -- steamcmd Flags -------------------------------------------------------
 
 class SupervisorError(StrEnum):
     INITIALIZATION_FAILED = "an error occurred while initializing the supervisor"
+    SUBPROCESS_ERROR = "a non-zero exit code occurred when running a subprocess"
 
 
 @dataclass
