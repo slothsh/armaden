@@ -80,7 +80,7 @@ class ArmaReforgerServer(Server):
         return Success(None)
 
 
-    # -- steamcmd helpers -------------------------------------------
+    # -- steamcmd Helpers -------------------------------------------
 
     async def install(
         self,
@@ -90,39 +90,22 @@ class ArmaReforgerServer(Server):
         if not self._supervisor:
             return Failure(Error(ArmaReforgerServerError.SUPERVISOR_UNAVAILABLE))
 
-        cmd = (
+        argv = (
             self._executable.steamcmd
+            .save_params()
             .login_anonymous()
             .force_install_dir(install_dir)
             .app_update(self.STEAM_APP_ID, validate=validate)
-            .build_argv()
+            .consume_argv()
         )
 
-        if not is_successful(result := await self._supervisor.dispatch_subprocess(cmd)):
+        self._executable.steamcmd.restore_params()
+
+        if not is_successful(result := await self._supervisor.dispatch_subprocess(argv)):
             logger.info('An error occurred trying to install the Arma Reforger Server Assets: %s', result.failure())
             return result.map(lambda _: None)
 
         return Success(None)
-
-    # @classmethod
-    # def update(
-    #     cls,
-    #     install_dir: str | Path,
-    #     *,
-    #     steamcmd: SteamCmdExecutable | None = None,
-    #     validate: bool = True,
-    # ) -> SteamCmdResult:
-    #     """Update the server installation via SteamCMD.
-    #
-    #     Args:
-    #         install_dir: Existing server installation directory.
-    #         steamcmd: Custom :class:`SteamCmdExecutable` instance.
-    #         validate: Verify file integrity (recommended for updates).
-    #
-    #     Returns:
-    #         The :class:`SteamCmdResult` from the update operation.
-    #     """
-    #     return cls.install(install_dir, steamcmd=steamcmd, validate=validate)
 
 
 # --- Internal Types ----------------------------------------------------------

@@ -168,3 +168,36 @@ class SupervisorError(StrEnum):
 class ServerStateData:
     server: Server
     initialized: bool
+
+# import asyncio
+#
+# async def pump_stream(stream, prefix):
+#     while True:
+#         line = await stream.readline()
+#         if not line:
+#             break
+#
+#         print(f"[{prefix}] {line.decode().rstrip()}")
+#
+# async def run_process():
+#     proc = await asyncio.create_subprocess_exec(
+#         "python",
+#         "-u",  # unbuffered output
+#         "long_running_script.py",
+#         stdout=asyncio.subprocess.PIPE,
+#         stderr=asyncio.subprocess.PIPE,
+#     )
+#
+#     stdout_task = asyncio.create_task(
+#         pump_stream(proc.stdout, "stdout")
+#     )
+#     stderr_task = asyncio.create_task(
+#         pump_stream(proc.stderr, "stderr")
+#     )
+#
+#     returncode = await proc.wait()
+#
+#     await stdout_task
+#     await stderr_task
+#
+#     print(f"Process exited with {returncode}")
