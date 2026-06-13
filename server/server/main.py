@@ -25,11 +25,11 @@ logger = logging.getLogger("server")
 async def entrypoint() -> Result[None]:
     # Bootstrap the application
     Application.bootstrap()
+    logger.info("Application version: %s", app().version())
 
     # Prepare the supervisor
     supervisor = Supervisor()
 
-    logger.info(app().version())
 
     api = (
         ApiServer()
