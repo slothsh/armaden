@@ -1,3 +1,4 @@
 .todos/
 data/
 __pycache__/
+dist/
