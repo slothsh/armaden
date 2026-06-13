@@ -1,7 +1,7 @@
 """Server API"""
 
-from .api import Api
+from .api_server import *
 
 __all__ = [
-    'Api',
+    'ApiServer',
 ]

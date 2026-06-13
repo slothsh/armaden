@@ -1,6 +1,7 @@
 import logging
 from typing import Any
-from server.rcon import ArmaReforgerRcon, RconConnectionError, RconError
+from server.arma import ArmaReforgerRconClient
+from server.rcon import RconClientConnectionError, RconClientError
 from fastapi import HTTPException, Request
 from server.api.dto.rcon_data import *
 
@@ -12,7 +13,7 @@ class RconController:
         rcon = await _ensure_rcon(request)
         try:
             players = await rcon.players()
-        except RconError as exc:
+        except RconClientError as exc:
             raise HTTPException(status_code=502, detail=str(exc))
         return {
             "status": "ok",
@@ -143,13 +144,13 @@ class RconController:
 # Helpers
 # ------------------------------------------------------------------
 
-async def _ensure_rcon(request: Request) -> ArmaReforgerRcon:
+async def _ensure_rcon(request: Request) -> ArmaReforgerRconClient:
     """Return the shared RCON client, connecting on first use."""
-    rcon: ArmaReforgerRcon = request.app.state.rcon
+    rcon: ArmaReforgerRconClient = request.app.state.rcon
     if not rcon.is_connected:
         try:
             await rcon.connect()
-        except RconConnectionError as exc:
+        except RconClientConnectionError as exc:
             raise HTTPException(status_code=503, detail=str(exc))
     return rcon
 
@@ -158,6 +159,6 @@ async def _rcon_response(cmd_coro: Any) -> dict[str, Any]:
     """Execute an RCON command and wrap the result."""
     try:
         response = await cmd_coro
-    except RconError as exc:
+    except RconClientError as exc:
         raise HTTPException(status_code=502, detail=str(exc))
     return {"status": "ok", "response": response}

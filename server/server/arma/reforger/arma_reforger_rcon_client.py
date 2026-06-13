@@ -11,59 +11,26 @@ Reference
 https://community.bistudio.com/wiki/Arma_Reforger:Server_Management
 """
 
-from __future__ import annotations
+from server.api.dto.rcon_data import PlayerResponseData
+from server.rcon import RconClient
 
-from dataclasses import dataclass
-
-from server.rcon import Rcon
-
-
-@dataclass
-class Player:
-    """A connected player returned by the ``players`` command."""
-
-    slot: int
-    """BattlerEye slot number (used for ``kick`` / ``ban``)."""
-    uid: str
-    """In-game player UID."""
-    name: str
-    """Player display name."""
-
-    @classmethod
-    def from_line(cls, line: str) -> "Player | None":
-        """Parse a single data row from ``players`` output.
-
-        Returns ``None``  if the line is a header or otherwise
-        unparsable.
-        """
-        parts = [p.strip() for p in line.split(";")]
-        if len(parts) < 3:
-            return None
-        try:
-            slot = int(parts[0])
-        except ValueError:
-            # Header line (e.g. "Players on server: [Player#]")
-            return None
-        return cls(slot=slot, uid=parts[1], name=parts[2])
-
-
-def _parse_players(raw: str) -> list[Player]:
+def _parse_players(raw: str) -> list[PlayerResponseData]:
     """Parse the raw ``players`` string into :class:`Player` objects.
 
     Skips the ``Processing Command:`` line and the column header line.
     """
-    players: list[Player] = []
+    players: list[PlayerResponseData] = []
     for line in raw.strip().splitlines():
         line = line.strip()
         if not line or line.startswith("Processing Command:"):
             continue
-        player = Player.from_line(line)
+        player = PlayerResponseData.from_line(line)
         if player is not None:
             players.append(player)
     return players
 
 
-class ArmaReforgerRcon(Rcon):
+class ArmaReforgerRconClient(RconClient):
     """Typed façade over the BattlEye RCON protocol for Arma Reforger.
 
     Each method maps to a single server command.  Responses are returned
@@ -86,7 +53,7 @@ class ArmaReforgerRcon(Rcon):
         """List connected players — raw string response."""
         return await self.send_with_fallback("players")
 
-    async def players(self) -> list[Player]:
+    async def players(self) -> list[PlayerResponseData]:
         """List connected players as parsed DTOs."""
         raw = await self.players_raw()
         return _parse_players(raw)

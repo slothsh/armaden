@@ -5,9 +5,9 @@ handling, output capture, and subprocess management.
 
 Example::
 
-    from server.steamcmd import SteamCmd
+    from server.steamcmd import SteamCmdExecutable
 
-    sc = SteamCmd()
+    sc = SteamCmdExecutable()
     result = (
         sc.login_anonymous()
         .force_install_dir("/arma/server")
@@ -31,6 +31,8 @@ import sys
 from collections.abc import Iterator
 from pathlib import Path
 from typing import Any
+
+from server.lib.interfaces import Executable
 
 logger = logging.getLogger(__name__)
 
@@ -114,7 +116,7 @@ class SteamCmdResult:
         return self
 
 
-class SteamCmd:
+class SteamCmdExecutable(Executable):
     """Fluent wrapper for the steamcmd command-line tool.
 
     Commands are accumulated via method calls until :meth:`run` is invoked.
@@ -131,7 +133,7 @@ class SteamCmd:
 
     Example::
 
-        sc = SteamCmd()
+        sc = SteamCmdExecutable()
         result = (
             sc.login_anonymous()
             .force_install_dir("/games/arma")
@@ -197,7 +199,7 @@ class SteamCmd:
             "Provide the full path via the `executable` argument."
         )
 
-    def _push(self, command: str, *args: str | int) -> SteamCmd:
+    def _push(self, command: str, *args: str | int) -> SteamCmdExecutable:
         """Append a steamcmd command and its arguments, returning self.
 
         steamcmd expects commands prefixed with ``+`` and arguments separated
@@ -208,13 +210,13 @@ class SteamCmd:
             self._commands.append(str(arg))
         return self
 
-    def _append(self, *tokens: str | int) -> SteamCmd:
+    def _append(self, *tokens: str | int) -> SteamCmdExecutable:
         """Append raw tokens to the command list (no ``+`` prefix)."""
         for token in tokens:
             self._commands.append(str(token))
         return self
 
-    def _build_argv(self) -> list[str]:
+    def build_argv(self) -> list[str]:
         """Return the full argument vector for :func:`subprocess.run`."""
         return [str(self._executable), *self._commands]
 
@@ -222,7 +224,7 @@ class SteamCmd:
     # Public fluent commands
     # ------------------------------------------------------------------
 
-    def login(self, username: str, password: str | None = None) -> SteamCmd:
+    def login(self, username: str, password: str | None = None) -> SteamCmdExecutable:
         """Authenticate with a specific Steam account.
 
         Args:
@@ -234,11 +236,11 @@ class SteamCmd:
             return self._push("login", username, password)
         return self._push("login", username)
 
-    def login_anonymous(self) -> SteamCmd:
+    def login_anonymous(self) -> SteamCmdExecutable:
         """Log in with an anonymous account (no credentials required)."""
         return self._push("login", "anonymous")
 
-    def force_install_dir(self, path: str | Path) -> SteamCmd:
+    def force_install_dir(self, path: str | Path) -> SteamCmdExecutable:
         """Set the installation directory for subsequent app operations.
 
         Args:
@@ -254,7 +256,7 @@ class SteamCmd:
         validate: bool = False,
         beta: str | None = None,
         beta_password: str | None = None,
-    ) -> SteamCmd:
+    ) -> SteamCmdExecutable:
         """Request an application update.
 
         Args:
@@ -272,7 +274,7 @@ class SteamCmd:
             self._append("validate")
         return self
 
-    def app_info_print(self, app_id: int) -> SteamCmd:
+    def app_info_print(self, app_id: int) -> SteamCmdExecutable:
         """Print application metadata (useful for resolving depots or branches).
 
         Args:
@@ -280,7 +282,7 @@ class SteamCmd:
         """
         return self._push("app_info_print", app_id)
 
-    def workshop_download_item(self, app_id: int, item_id: int) -> SteamCmd:
+    def workshop_download_item(self, app_id: int, item_id: int) -> SteamCmdExecutable:
         """Download a Steam Workshop item.
 
         Args:
@@ -289,7 +291,7 @@ class SteamCmd:
         """
         return self._push("workshop_download_item", app_id, item_id)
 
-    def quit(self) -> SteamCmd:
+    def quit(self) -> SteamCmdExecutable:
         """Insert an explicit ``quit`` command.
 
         steamcmd implicitly quits when input is exhausted, but an explicit
@@ -297,7 +299,7 @@ class SteamCmd:
         """
         return self._push("quit")
 
-    def raw(self, command: str, *args: str | int) -> SteamCmd:
+    def raw(self, command: str, *args: str | int) -> SteamCmdExecutable:
         """Send an arbitrary steamcmd command.
 
         Useful for commands not yet covered by dedicated methods.
@@ -342,7 +344,7 @@ class SteamCmd:
         if not self._commands or self._commands[-1] != "+quit":
             self.quit()
 
-        argv = self._build_argv()
+        argv = self.build_argv()
         logger.debug("Executing steamcmd: %s", " ".join(argv))
 
         kwargs: dict[str, Any] = {
@@ -446,7 +448,7 @@ class SteamCmd:
         if not self._commands or self._commands[-1] != "+quit":
             self.quit()
 
-        argv = self._build_argv()
+        argv = self.build_argv()
         logger.debug("Streaming steamcmd: %s", " ".join(argv))
 
         try:
@@ -529,22 +531,3 @@ class SteamCmd:
         result = self.run()
         result.raise_for_status()
         return result.stdout
-
-    def __enter__(self) -> SteamCmd:
-        """Support usage as a context manager.::
-
-            with SteamCmd() as sc:
-                sc.login_anonymous()...
-        """
-        return self
-
-    def __exit__(self, *exc: object) -> None:
-        """Ensure a clean exit — no resources need explicit cleanup."""
-        pass
-
-    def __repr__(self) -> str:
-        return (
-            f"{self.__class__.__qualname__}("
-            f"executable={self._executable!r}, "
-            f"commands={self._commands!r})"
-        )

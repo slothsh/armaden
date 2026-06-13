@@ -11,8 +11,6 @@ Typical usage::
     await rcon.disconnect()
 """
 
-from __future__ import annotations
-
 import asyncio
 import contextlib
 import logging
@@ -23,19 +21,7 @@ import berconpy
 logger = logging.getLogger("server.rcon")
 
 
-class RconError(Exception):
-    """Base exception for RCON errors."""
-
-    pass
-
-
-class RconConnectionError(RconError):
-    """Raised when the RCON connection cannot be established."""
-
-    pass
-
-
-class Rcon:
+class RconClient:
     """BattlEye RCON client wrapper.
 
     Args:
@@ -85,10 +71,10 @@ class Rcon:
                 await self._client.protocol.wait_for_login()
             except berconpy.LoginFailure as exc:
                 await self._cancel_task()
-                raise RconConnectionError(f"RCON login failed: {exc}") from exc
+                raise RconClientConnectionError(f"RCON login failed: {exc}") from exc
             except OSError as exc:
                 await self._cancel_task()
-                raise RconConnectionError(f"RCON connection error: {exc}") from exc
+                raise RconClientConnectionError(f"RCON connection error: {exc}") from exc
             except Exception:
                 await self._cancel_task()
                 raise
@@ -153,9 +139,9 @@ class Rcon:
         try:
             response = await self._client.send_command(command)
         except berconpy.RCONCommandError as exc:
-            raise RconError(f"Command failed: {exc}") from exc
+            raise RconClientError(f"Command failed: {exc}") from exc
         except RuntimeError as exc:
-            raise RconConnectionError(f"RCON not ready: {exc}") from exc
+            raise RconClientConnectionError(f"RCON not ready: {exc}") from exc
         logger.debug("RCON response: %r", response)
         return response
 
@@ -197,3 +183,16 @@ class Rcon:
             return response
         finally:
             self._client.remove_listener("on_message", _collect)
+
+
+class RconClientError(Exception):
+    """Base exception for RCON errors."""
+
+    pass
+
+
+class RconClientConnectionError(RconClientError):
+    """Raised when the RCON connection cannot be established."""
+
+    pass
+

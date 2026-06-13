@@ -1,20 +1,37 @@
-from __future__ import annotations
+"""FastAPI-based HTTP control API for the Arma Reforger server supervisor.
 
+Provides runtime endpoints for interacting with the Arma Reforger server and BattlEye RCON (remote console).
+
+Typical usage::
+
+    from . import SupervisorControl
+    ctrl = SupervisorControl(
+        supervisor=server,
+        bind="127.0.0.1",
+        port=8888,
+        rcon_host="127.0.0.1",
+        rcon_port=2302,
+        rcon_password="secret",
+    )
+    ctrl.start()
+"""
+
+import logging
 import threading
 import uvicorn
-import logging
-from .supervisor_like import SupervisorLike
-from ..arma import ArmaReforgerRcon
-from ..api import make_api_app
 
-logger = logging.getLogger("server.controller")
+from server.api import ApiServer
+from server.lib import QueueableSupervisor
+from server.arma import ArmaReforgerRconClient
 
-class SupervisorController:
+logger = logging.getLogger("supervisor.control")
+
+class SupervisorControl:
     """Runs a FastAPI application via uvicorn in a background daemon thread."""
 
     def __init__(
         self,
-        supervisor: SupervisorLike,
+        supervisor: QueueableSupervisor,
         bind: str,
         port: int,
         rcon_host: str,
@@ -24,19 +41,19 @@ class SupervisorController:
         self.supervisor = supervisor
         self.bind = bind
         self.port = port
-        self._rcon = ArmaReforgerRcon(
+        self._rcon = ArmaReforgerRconClient(
             host=rcon_host,
             port=rcon_port,
             password=rcon_password,
         )
-        self._app = make_api_app(supervisor, self._rcon)
+        self._app = ApiServer()
         self._server: uvicorn.Server | None = None
         self._thread: threading.Thread | None = None
 
     def start(self) -> None:
         """Start the uvicorn server in a background daemon thread."""
         config = uvicorn.Config(
-            self._app,
+            self._app.app,
             host=self.bind,
             port=self.port,
             log_level="warning",
@@ -62,5 +79,3 @@ class SupervisorController:
             self._server.should_exit = True
         if self._thread is not None:
             self._thread.join(timeout=5.0)
-
-

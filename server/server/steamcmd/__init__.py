@@ -1,15 +1,9 @@
 """SteamCmd — Python wrapper for the steamcmd CLI tool."""
 
-from .steamcmd import (
-    SteamCmd,
-    SteamCmdResult,
-    SteamCmdError,
-    SteamCmdExitError,
-    SteamCmdNotFoundError,
-)
+from .steamcmd_executable import *
 
 __all__ = [
-    "SteamCmd",
+    "SteamCmdExecutable",
     "SteamCmdResult",
     "SteamCmdError",
     "SteamCmdExitError",

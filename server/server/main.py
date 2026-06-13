@@ -4,16 +4,51 @@ This module simply delegates to :class:`server.supervisor.Server`.
 For available environment variables see :mod:`server.supervisor`.
 """
 
-from __future__ import annotations
+import asyncio
 
-import sys
+from returns.result import Failure, Success
+from returns.pipeline import is_successful
 
-from server.supervisor import Server
+from server.lib import Result
+from server.api import ApiServer
+from server.api.routes import api_routes
+from server.supervisor import Supervisor
+
+async def entrypoint() -> Result[None]:
+    supervisor = Supervisor()
+
+    api = (
+        ApiServer()
+        .with_supervisor(supervisor)
+        .with_routes(api_routes)
+        .build()
+    )
+
+    supervisor.with_servers([
+        api
+    ])
+
+    if not is_successful(result := await supervisor.initialize()):
+        return result
+        
+    if not is_successful(result := await supervisor.run()):
+        return result
+
+    if not is_successful(result := await supervisor.shutdown()):
+        return result
+
+    return Success(None)
 
 
-def main() -> int:
-    return Server.from_env().run()
+def main() -> Result[None]:
+    try:
+        return asyncio.run(entrypoint())
+    except (KeyboardInterrupt, SystemExit):
+        return Success(None)
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        asyncio.run(entrypoint())
+    except (KeyboardInterrupt, SystemExit):
+        Success(None)
