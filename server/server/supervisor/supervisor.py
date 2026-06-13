@@ -36,7 +36,6 @@ class Supervisor:
 
         self._worker_thread.start()
 
-        self._initialize_logging()
         self._initialize_signal_handlers()
 
 
@@ -116,16 +115,6 @@ class Supervisor:
 
     def queue_reload(self, config_path: str | Path) -> None:
         pass
-
-
-    # -- Logging --------------------------------------------------------------
-
-    def _initialize_logging(self) -> None:
-        logging.basicConfig(
-            level=logging.INFO,
-            format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
-            stream=sys.stdout,
-        )
 
 
     # -- Signal Handling ------------------------------------------------------

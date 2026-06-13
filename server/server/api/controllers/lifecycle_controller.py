@@ -4,18 +4,17 @@ from pathlib import Path
 from datetime import datetime
 from typing import Any
 from fastapi import Body, HTTPException, Request
+from server.lib import app
 from server.api.dto.rcon_data import *
 
 logger = logging.getLogger('api.controllers.lifecycle')
 
 class LifecycleController:
-    @classmethod
-    def health(cls) -> dict[str, str]:
-        return {"status": "ok"}
+    def health(self) -> dict[str, str]:
+        return {"status": "ok", "version": app().version()}
 
 
-    @classmethod
-    def status(cls, request: Request) -> dict[str, Any]:
+    def status(self, request: Request) -> dict[str, Any]:
         sv = request.app.state.supervisor
         proc = sv._proc
         running = proc is not None and proc.poll() is None
@@ -27,8 +26,7 @@ class LifecycleController:
         }
 
 
-    @classmethod
-    def start(cls, request: Request) -> dict[str, Any]:
+    def start(self, request: Request) -> dict[str, Any]:
         sv = request.app.state.supervisor
         if sv._running.is_set():
             raise HTTPException(status_code=409, detail="Server is already running")
@@ -36,8 +34,7 @@ class LifecycleController:
         return {"status": "accepted", "action": "start"}
 
 
-    @classmethod
-    def shutdown(cls, request: Request) -> dict[str, Any]:
+    def shutdown(self, request: Request) -> dict[str, Any]:
         sv = request.app.state.supervisor
         if not sv._running.is_set():
             raise HTTPException(status_code=409, detail="Server is not running")
@@ -45,15 +42,13 @@ class LifecycleController:
         return {"status": "accepted", "action": "shutdown"}
 
 
-    @classmethod
-    def restart(cls, request: Request) -> dict[str, Any]:
+    def restart(self, request: Request) -> dict[str, Any]:
         sv = request.app.state.supervisor
         sv.queue_restart()
         return {"status": "accepted", "action": "restart"}
 
 
-    @classmethod
-    def load_config(cls, request: Request, payload: Any = Body(...)) -> dict[str, Any]:
+    def load_config(self, request: Request, payload: Any = Body(...)) -> dict[str, Any]:
         if not isinstance(payload, dict) or not payload:
             raise HTTPException(
                 status_code=400, detail="config must be a non-empty JSON object"

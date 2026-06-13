@@ -1,5 +1,6 @@
 from .types import *
 from .interfaces import *
+from .facades import *
 
 __all__ = [
     'Executable',
@@ -7,4 +8,5 @@ __all__ = [
     'Result',
     'Error',
     'QueueableSupervisor',
+    'App'
 ]

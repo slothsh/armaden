@@ -4,17 +4,18 @@ from fastapi import FastAPI, APIRouter
 def api_routes(app: FastAPI):
     # -- Lifecycle --------------------------------------------------------
 
+    lifecycle_controller = LifecycleController()
     lifecyle_router = APIRouter(
         prefix='',
         dependencies=[]
     )
 
-    lifecyle_router.get("/health")(LifecycleController.health)
-    lifecyle_router.get("/status")(LifecycleController.status)
-    lifecyle_router.post("/start")(LifecycleController.start)
-    lifecyle_router.post("/shutdown")(LifecycleController.shutdown)
-    lifecyle_router.post("/restart")(LifecycleController.restart)
-    lifecyle_router.post("/load-config")(LifecycleController.load_config)
+    lifecyle_router.get("/health")(lifecycle_controller.health)
+    lifecyle_router.get("/status")(lifecycle_controller.status)
+    lifecyle_router.post("/start")(lifecycle_controller.start)
+    lifecyle_router.post("/shutdown")(lifecycle_controller.shutdown)
+    lifecyle_router.post("/restart")(lifecycle_controller.restart)
+    lifecyle_router.post("/load-config")(lifecycle_controller.load_config)
 
     app.include_router(lifecyle_router)
 
