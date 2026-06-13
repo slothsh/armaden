@@ -57,7 +57,7 @@ def main() -> Result[None]:
         return asyncio.run(entrypoint())
     except (KeyboardInterrupt, SystemExit):
         return Success(None)
-    except AppException as exception:
+    except ApplicationException as exception:
         return Failure(Error(GenericError.APP_NOT_BOOTSTRAPPED, details={
             'exception': exception
         }))
@@ -70,7 +70,7 @@ if __name__ == "__main__":
         asyncio.run(entrypoint())
     except (KeyboardInterrupt, SystemExit):
         logger.info(Success(None))
-    except AppException as exception:
+    except ApplicationException as exception:
         logger.error(Failure(Error(GenericError.APP_NOT_BOOTSTRAPPED, details={
             'exception': exception
         })))

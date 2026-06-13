@@ -2,10 +2,9 @@ import asyncio
 from enum import StrEnum
 import logging
 import signal
-import sys
 from typing import List, Self
 from threading import Thread
-from concurrent.futures import Future, wait
+from concurrent.futures import Future
 
 from dataclasses import dataclass
 from returns.pipeline import is_successful
@@ -14,7 +13,6 @@ from pathlib import Path
 
 from server.lib import Result
 from server.lib.interfaces import Server
-from server.lib.types import Error
 
 logger = logging.getLogger("server.supervisor")
 
@@ -29,6 +27,7 @@ class Supervisor:
 
         self._worker_event_loop = asyncio.new_event_loop()
         self._worker_thread = Thread(
+            name='WorkerThread',
             target=Supervisor._start_worker_event_loop,
             args=(self._worker_event_loop,),
             daemon=True
