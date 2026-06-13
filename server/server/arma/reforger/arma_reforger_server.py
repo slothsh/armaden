@@ -14,6 +14,7 @@ from server.steamcmd import SteamCmdExecutable
 
 logger = logging.getLogger('server.arma.reforger.server')
 
+
 class ArmaReforgerServer(Server):
     STEAM_APP_ID: int = 1874900
     STEAM_APP_ID_CLIENT: int = 1874880
