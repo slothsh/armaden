@@ -13,7 +13,7 @@ from server.lib import QueueableSupervisor
 from server.arma import ArmaReforgerRconClient
 from server.api.controllers import *
 
-logger = logging.getLogger("api_server")
+logger = logging.getLogger("server.api_server")
 
 class ApiServer(Server):
     supervisor: QueueableSupervisor | None

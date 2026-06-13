@@ -3,7 +3,7 @@ from typing import Any
 from server.arma import ArmaReforgerRconClient
 from server.rcon import RconClientConnectionError, RconClientError
 from fastapi import HTTPException, Request
-from server.api.dto.rcon_data import *
+from server.http.dto.rcon_data import *
 
 logger = logging.getLogger('api.controllers.rcon')
 

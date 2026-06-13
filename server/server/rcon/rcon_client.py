@@ -18,7 +18,7 @@ from typing import Any
 
 import berconpy
 
-logger = logging.getLogger("server.rcon")
+logger = logging.getLogger("server.arma.rcon")
 
 
 class RconClient:
@@ -49,6 +49,7 @@ class RconClient:
         @self._client.dispatch.on_message
         async def _on_message(message: str) -> None:
             logger.debug("RCON on_message event: %r", message)
+
 
     # -- connection ---------------------------------------------------
 

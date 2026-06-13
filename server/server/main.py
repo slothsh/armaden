@@ -10,6 +10,7 @@ import logging
 from returns.result import Failure, Success
 from returns.pipeline import is_successful
 
+from server.arma import ArmaReforgerServer
 from server.bootstrap import Application, ApplicationException
 from server.error import GenericError
 from server.lib import Result
@@ -30,7 +31,7 @@ async def entrypoint() -> Result[None]:
     # Prepare the supervisor
     supervisor = Supervisor()
 
-
+    # Prepare the servers
     api = (
         ApiServer()
         .with_supervisor(supervisor)
@@ -38,8 +39,14 @@ async def entrypoint() -> Result[None]:
         .build()
     )
 
+    arma_reforger = (
+        ArmaReforgerServer()
+        .build()
+    )
+
     supervisor.with_servers([
-        api
+        api,
+        arma_reforger,
     ])
 
     # Begin the supervisor lifecycle
@@ -61,6 +68,10 @@ def main() -> Result[None]:
         return Failure(Error(GenericError.APP_NOT_BOOTSTRAPPED, details={
             'exception': exception
         }))
+    except Exception as exception:
+        return Failure(Error(GenericError.EXCEPTION, details={
+            'exception': exception
+        }))
     except:
         return Failure(Error(GenericError.UNKNOWN))
 
@@ -74,5 +85,9 @@ if __name__ == "__main__":
         logger.error(Failure(Error(GenericError.APP_NOT_BOOTSTRAPPED, details={
             'exception': exception
         })))
+    except Exception as exception:
+        logger.error(Error(GenericError.EXCEPTION, details={
+            'exception': exception
+        }))
     except:
         logger.error(Failure(Error(GenericError.UNKNOWN)))

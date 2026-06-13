@@ -25,4 +25,14 @@ class Error:
 
 
     def __repr__(self):
-        return f"Error(type={self.type.__class__.__name__}.{self.type.name}, context='{self.context}')"
+        context_parts = []
+
+        context_parts.append(f"type={self.type.__class__.__name__}.{self.type.name}")
+        context_parts.append(f"context={self.context}")
+
+        if self.details:
+            context_parts.append(f"details={self.details}")
+
+        context = ', '.join(context_parts)
+
+        return f"Error({context})"

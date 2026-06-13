@@ -1,23 +1,35 @@
 from enum import StrEnum
-from typing import Union
+from typing import Self, Union
 from pathlib import Path
 
 from returns.result import Failure, Success
-from server.lib import Result
 from server.arma.reforger.arma_reforger_server_executable import ArmaReforgerServerExecutable
-from server.lib import Server
-from server.lib.types import Error
+from server.arma.reforger.arma_reforger_rcon_client import ArmaReforgerRconClient
+from server.lib import Result, Server, Error
 from server.steamcmd import SteamCmdExecutable, SteamCmdResult
 
 class ArmaReforgerServer(Server):
     STEAM_APP_ID: int = 1874900
     STEAM_APP_ID_CLIENT: int = 1874880
 
-    executable: ExecutableContainer
-
     def __init__(self):
-        setattr(self.executable, 'steamcmd', SteamCmdExecutable())
-        setattr(self.executable, 'reforger', ArmaReforgerServerExecutable())
+        self._executable = ExecutableContainer()
+        setattr(self._executable, 'steamcmd', SteamCmdExecutable())
+        setattr(self._executable, 'reforger', ArmaReforgerServerExecutable())
+
+        self._rcon_client = ArmaReforgerRconClient('127.0.0.1', 2011, 'password')
+
+
+    # --- Accessor Methods -----------------------------------------------------
+
+    def rcon_client(self) -> ArmaReforgerRconClient | None:
+        return self._rcon_client
+
+
+    # --- Builder Methods -----------------------------------------------------
+
+    def build(self) -> Self:
+        return self
 
 
     # -- Server Interface -----------------------------------------------------

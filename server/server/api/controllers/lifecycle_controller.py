@@ -5,7 +5,7 @@ from datetime import datetime
 from typing import Any
 from fastapi import Body, HTTPException, Request
 from server.lib import app
-from server.api.dto.rcon_data import *
+from server.http.dto.rcon_data import *
 
 logger = logging.getLogger('api.controllers.lifecycle')
 

@@ -11,7 +11,7 @@ Reference
 https://community.bistudio.com/wiki/Arma_Reforger:Server_Management
 """
 
-from server.api.dto.rcon_data import PlayerResponseData
+from server.http.dto.rcon_data import PlayerResponseData
 from server.rcon import RconClient
 
 def _parse_players(raw: str) -> list[PlayerResponseData]:
