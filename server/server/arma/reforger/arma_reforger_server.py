@@ -61,7 +61,19 @@ class ArmaReforgerServer(Server):
 
 
     async def run(self) -> Result[None]:
-        return Success(None)
+        if not self._supervisor:
+            return Failure(Error(ArmaReforgerServerError.SUPERVISOR_UNAVAILABLE))
+
+        argv = (
+            self._executable.reforger
+            .config('path/to/config')
+            .rcon(address='127.0.0.1', port=2011, password='password')
+            .build_argv()
+        )
+
+        await self._supervisor.dispatch_subprocess(argv)
+
+        return await self.shutdown()
 
 
     async def shutdown(self) -> Result[None]:
