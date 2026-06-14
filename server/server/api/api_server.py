@@ -9,7 +9,7 @@ from contextlib import asynccontextmanager
 from server.lib.interfaces import Server
 from server.lib.types import Error, Result
 from server.rcon.rcon_client import RconClient
-from server.lib import QueueableSupervisor
+from server.lib import QueueableSupervisor, config
 from server.arma import ArmaReforgerRconClient
 
 logger = logging.getLogger("server.api_server")
@@ -62,14 +62,14 @@ class ApiServer(Server):
 
     async def initialize(self) -> Result[None]:
         try:
-            config = uvicorn.Config(
+            server_config = uvicorn.Config(
                 app=self.app,
-                host="127.0.0.1",
-                port=8000,
+                host=config('api.address'),
+                port=config('api.port'),
                 loop="none",
                 log_config=None,
             )
-            self._uvicorn_server = uvicorn.Server(config=config)
+            self._uvicorn_server = uvicorn.Server(config=server_config)
             return Success(None)
         except Exception as e:
             return Failure(Error(ApiServerError.INITIALIZATION_FAILED, {

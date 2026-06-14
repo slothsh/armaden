@@ -47,7 +47,7 @@ class Application:
         APPLICATION = Application()
 
         # Set some essential application flags
-        if app_env := os.getenv(EnvVariableName.APP_ENV):
+        if app_env := os.getenv('APP_ENV'):
             APPLICATION._app_env = app_env
 
         # Initialize application facilities
@@ -153,10 +153,6 @@ class Application:
 class ApplicationStatus(StrEnum):
     NOT_READY = 'NOT_READY'
     READY = 'READY'
-
-
-class EnvVariableName(StrEnum):
-    APP_ENV = 'APP_ENV'
 
 
 class ApplicationException(Exception):

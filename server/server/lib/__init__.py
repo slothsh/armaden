@@ -10,5 +10,6 @@ __all__ = [
     'QueueableSupervisor',
     'app',
     'env',
-    'config'
+    'config',
+    'Env'
 ]

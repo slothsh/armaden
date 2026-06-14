@@ -1,3 +1,4 @@
+import json
 from typing import Any
 
 import logging
@@ -6,7 +7,7 @@ from server.bootstrap import Application
 logger = logging.getLogger('server.lib.facades')
 
 
-def env(name: str, default: str | None = None) -> str | None:
+def env(name: str, default: Any | None = None) -> str | None:
     return Application.instance().environment(name, default)
 
 
@@ -21,3 +22,52 @@ def config(key: str) -> Any:
         value = value[key]
 
     return value
+
+
+class Env:
+    """Facade for reading typed environment variables from the application."""
+
+    @classmethod
+    def string(cls, name: str, default: str | None = None) -> str | None:
+        return Application.instance().environment(name, default)
+
+
+    @classmethod
+    def bool(cls, name: str, default: bool = False) -> bool:
+        value = Application.instance().environment(name)
+        if value is None:
+            return default
+        return value.lower() in ('true', '1', 'yes', 'on')
+
+
+    @classmethod
+    def int(cls, name: str, default: int = 0) -> int:
+        value = Application.instance().environment(name)
+        if value is None:
+            return default
+        try:
+            return int(value)
+        except (ValueError, TypeError):
+            return default
+
+
+    @classmethod
+    def json(cls, name: str, default):
+        value = Application.instance().environment(name)
+        if value is None:
+            return default
+        try:
+            return json.loads(value)
+        except (json.JSONDecodeError, TypeError):
+            return default
+
+
+    @classmethod
+    def optional_json(cls, name: str):
+        value = Application.instance().environment(name)
+        if value is None or value.strip() == '':
+            return None
+        try:
+            return json.loads(value)
+        except (json.JSONDecodeError, TypeError):
+            return None
