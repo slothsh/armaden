@@ -3,5 +3,6 @@
 from .steamcmd_executable import *
 
 __all__ = [
+    "SteamCmdFlag",
     "SteamCmdExecutable",
 ]

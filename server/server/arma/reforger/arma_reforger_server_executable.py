@@ -182,8 +182,6 @@ class ArmaReforgerServerExecutable(Executable):
             self._params.append(ArmaReforgerExecutableFlag.FORCE_SESSION_LOAD)
         return self
 
-    # -- General --------------------------------------------------------------
-
     def addons_dir(self, *paths: str | Path) -> ArmaReforgerServerExecutable:
         """Additional directories to search for mods.
 
@@ -527,6 +525,8 @@ class ArmaReforgerServerExecutable(Executable):
         if enabled:
             self._params.append(ArmaReforgerExecutableFlag.CHECK_INSTANCE)
         return self
+
+    # -- Miscellaneous --------------------------------------------------------
 
     def custom(self, flag: str, *values: str | int) -> ArmaReforgerServerExecutable:
         """Append an arbitrary launch flag and values.
