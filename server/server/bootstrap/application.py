@@ -6,6 +6,7 @@ import logging
 import os
 import sys
 from glob import glob
+from importlib import metadata
 
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
@@ -23,6 +24,8 @@ APPLICATION: Application | None = None
 # -- Application --------------------------------------------------------------
 
 class Application:
+    PACKAGE_NAME = None if not __package__ else __package__.split(".")[0]
+
     def __init__(self) -> None:
         self._lock = Lock()
         self._status = ApplicationStatus.NOT_READY
@@ -30,7 +33,9 @@ class Application:
 
 
     def version(self) -> str:
-        return '0.1.0'
+        if not Application.PACKAGE_NAME:
+            return '0.0.0'
+        return metadata.version(Application.PACKAGE_NAME)
     
 
     @classmethod
