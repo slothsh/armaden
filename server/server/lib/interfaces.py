@@ -1,9 +1,11 @@
 from collections.abc import Callable
-
-from server.lib import Result
 from typing import List, Protocol, Self
 from pathlib import Path
 from abc import ABC, abstractmethod
+
+from server.lib import Result
+
+type PushValue = str | bool | int | float | Path | list[PushValue]
 
 
 class QueueableSupervisor(Protocol):
@@ -52,14 +54,38 @@ class Executable(ABC):
         self._scratch_params.clear()
 
 
-    def push(self, flag: str, *values: str | int) -> None:
+
+    def push(self, flag: str, *values: PushValue) -> None:
+        truthy_values: list[str] = []
+        for v in values:
+            serialized = self._serialize_value(v)
+            if serialized is not None:
+                truthy_values.append(serialized)
+        if values and not truthy_values:
+            return
         self._params.append(flag)
-        for value in values:
-            self._params.append(str(value))
+        self._params.extend(truthy_values)
 
 
     def reset_params(self) -> None:
         self._params.clear()
+
+
+    def _serialize_value(self, value: PushValue) -> str | None:
+        if value is None or value == "":
+            return None
+        if isinstance(value, bool):
+            return "true" if value else "false"
+        if isinstance(value, list):
+            parts: list[str] = []
+            for item in value:
+                serialized = self._serialize_value(item)
+                if serialized is not None:
+                    parts.append(serialized)
+            return ",".join(parts) if parts else None
+        if isinstance(value, Path):
+            return str(value)
+        return str(value)
 
 
 class Server(ABC):

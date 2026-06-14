@@ -5,7 +5,7 @@ from typing import List
 
 from returns.result import Success
 
-from server.lib.interfaces import Executable
+from server.lib.interfaces import Executable, PushValue
 from server.lib.types import Result
 from server.steamcmd.enums import SteamCmdExecutableFlag
 
@@ -55,13 +55,13 @@ class SteamCmdExecutable(Executable):
     def force_install_dir(self, path: str | Path) -> SteamCmdExecutable:
         target = Path(path)
         target.mkdir(parents=True, exist_ok=True)
-        self.push(SteamCmdExecutableFlag.FORCE_INSTALL_DIR, str(path))
-        # self.push(SteamCmdExecutableFlag.FORCE_INSTALL_DIR, str(target.resolve()))
+        self.push(SteamCmdExecutableFlag.FORCE_INSTALL_DIR, path)
+        # self.push(SteamCmdExecutableFlag.FORCE_INSTALL_DIR, target.resolve())
         return self
 
 
     def app_update( self, app_id: int, validate: bool = False) -> SteamCmdExecutable:
-        self.push(SteamCmdExecutableFlag.APP_UPDATE, str(app_id), str(validate))
+        self.push(SteamCmdExecutableFlag.APP_UPDATE, app_id, validate)
         return self
 
 
@@ -80,14 +80,14 @@ class SteamCmdExecutable(Executable):
         return self
 
 
-    def raw(self, command: str, *args: str | int) -> SteamCmdExecutable:
+    def raw(self, command: str, *args: PushValue) -> SteamCmdExecutable:
         self.push(command, *args)
         return self
 
 
     def script( self, script_path: str | Path) -> SteamCmdExecutable:
         self._commands = []
-        self.push(SteamCmdExecutableFlag.RUNSCRIPT, str(Path(script_path).resolve()))
+        self.push(SteamCmdExecutableFlag.RUNSCRIPT, Path(script_path).resolve())
         return self
 
 
