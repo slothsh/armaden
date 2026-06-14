@@ -8,6 +8,7 @@ from returns.pipeline import is_successful
 from returns.result import Failure, Success
 from server.arma.reforger.arma_reforger_server_executable import ArmaReforgerServerExecutable
 from server.arma.reforger.arma_reforger_rcon_client import ArmaReforgerRconClient
+from server.lib import config
 from server.lib import Result, Server, Error
 from server.lib.interfaces import QueueableSupervisor
 from server.steamcmd import SteamCmdExecutable
@@ -27,7 +28,11 @@ class ArmaReforgerServer(Server):
             reforger=ArmaReforgerServerExecutable()
         )
 
-        self._rcon_client = ArmaReforgerRconClient('127.0.0.1', 2011, 'password')
+        self._rcon_client = ArmaReforgerRconClient(
+            config('arma.reforger.rcon.address'),
+            config('arma.reforger.rcon.port'),
+            config('arma.reforger.rcon.password')
+        )
 
 
     # --- Accessor Methods -----------------------------------------------------
@@ -67,8 +72,12 @@ class ArmaReforgerServer(Server):
 
         argv = (
             self._executable.reforger
-            .config('path/to/config')
-            .rcon(address='127.0.0.1', port=2011, password='password')
+            .config('path/to/arma')
+            .rcon(
+                address=config('arma.reforger.rcon.address'),
+                port=config('arma.reforger.rcon.port'),
+                password=config('arma.reforger.rcon.password')
+            )
             .build_argv()
         )
 
