@@ -10,7 +10,7 @@ from server.arma.reforger.arma_reforger_server_executable import ArmaReforgerSer
 from server.arma.reforger.arma_reforger_rcon_client import ArmaReforgerRconClient
 from server.lib import config
 from server.lib import Result, Server, Error
-from server.lib.interfaces import QueueableSupervisor
+from server.lib.interfaces import AsyncStreamArg, QueueableSupervisor
 from server.steamcmd import SteamCmdExecutable
 
 logger = logging.getLogger('server.arma.reforger.server')
@@ -81,7 +81,7 @@ class ArmaReforgerServer(Server):
             .build_argv()
         )
 
-        await self._supervisor.dispatch_subprocess(argv)
+        await self._supervisor.dispatch_subprocess(argv, ArmaReforgerServer._log_subprocess)
 
         return await self.shutdown()
 
@@ -111,9 +111,36 @@ class ArmaReforgerServer(Server):
 
         self._executable.steamcmd.restore_params()
 
-        if not is_successful(result := await self._supervisor.dispatch_subprocess(argv)):
+        if not is_successful(result := await self._supervisor.dispatch_subprocess(argv, ArmaReforgerServer._log_subprocess)):
             logger.info('An error occurred trying to install the Arma Reforger Server Assets: %s', result.failure())
             return result.map(lambda _: None)
+
+        return Success(None)
+
+
+    # -- General Helpers -------------------------------------------
+
+    @classmethod
+    async def _log_subprocess(cls, stdout: AsyncStreamArg, stderr: AsyncStreamArg) -> Result[None]:
+        if stdout:
+            while True:
+                line_bytes = await stdout.readline()
+
+                if not line_bytes:
+                    break
+
+                line = line_bytes.decode(errors='replace').strip()
+                logger.info(line)
+
+        if stderr:
+            while True:
+                line_bytes = await stderr.readline()
+
+                if not line_bytes:
+                    break
+
+                line = line_bytes.decode(errors='replace').strip()
+                logger.error(line)
 
         return Success(None)
 

@@ -12,7 +12,7 @@ from returns.result import Failure, Success
 from pathlib import Path
 
 from server.lib import Result
-from server.lib.interfaces import Server
+from server.lib.interfaces import Server, AsyncStreamCallback
 from server.lib.types import Error
 
 logger = logging.getLogger("server.supervisor")
@@ -132,7 +132,11 @@ class Supervisor:
         pass
 
 
-    async def dispatch_subprocess(self, argv: List[str]) -> Result[str]:
+    async def dispatch_subprocess(
+        self,
+        argv: List[str],
+        handle_std_streams: AsyncStreamCallback | None = None,
+    ) -> Result[str]:
         logger.info('Executing command in subprocess: %s', ' '.join(argv))
 
         process = await asyncio.create_subprocess_exec(
@@ -141,13 +145,20 @@ class Supervisor:
             stderr=asyncio.subprocess.PIPE
         )
 
-        stdout, stderr = await process.communicate()
+        tasks: List[asyncio.Task[Result[None]]]  = []
+        if handle_std_streams:
+            tasks.append(asyncio.create_task(
+                handle_std_streams(process.stdout, process.stderr)
+            ))
 
-        if process.returncode == 0:
-            return Success(stdout.decode().strip())
+        returncode = await process.wait()
+        await asyncio.gather(*tasks)
+
+        if returncode == 0:
+            return Success("Subprocess executed successfully")
         else:
             return Failure(Error(SupervisorError.SUBPROCESS_ERROR, details={
-                'stderr': stderr.decode().strip()
+                'details': 'Subprocess failed. Check console for errors.'
             }))
 
 
@@ -164,23 +175,6 @@ class Supervisor:
 
 
     # -- Helpers --------------------------------------------------------------
-
-    # def _pre_run_checks(self) -> Result[None]:
-    #     errors: Dict[str, Error] = {}
-    #     for thread_name, future in futures.items():
-    #         if not is_successful(result := await asyncio.wrap_future(future)):
-    #             errors[thread_name] = result.failure()
-    #             continue
-    #
-    #         self._server_states[thread_name].initialized = True
-    #
-    #     if errors:
-    #         return Failure(Error(SupervisorError.INITIALIZATION_FAILED, details={
-    #             'errors': errors
-    #         }))
-    #
-    #     return Success(None)
-
 
     def _server_run(self, server_state: ServerStateData) -> Result[None]:
         async def run(server_state: ServerStateData) -> Result[None]:
@@ -232,37 +226,3 @@ class ServerStateData:
     initialized: bool
     event_loop: asyncio.AbstractEventLoop
     thread: Thread
-
-
-# import asyncio
-#
-# async def pump_stream(stream, prefix):
-#     while True:
-#         line = await stream.readline()
-#         if not line:
-#             break
-#
-#         print(f"[{prefix}] {line.decode().rstrip()}")
-#
-# async def run_process():
-#     proc = await asyncio.create_subprocess_exec(
-#         "python",
-#         "-u",  # unbuffered output
-#         "long_running_script.py",
-#         stdout=asyncio.subprocess.PIPE,
-#         stderr=asyncio.subprocess.PIPE,
-#     )
-#
-#     stdout_task = asyncio.create_task(
-#         pump_stream(proc.stdout, "stdout")
-#     )
-#     stderr_task = asyncio.create_task(
-#         pump_stream(proc.stderr, "stderr")
-#     )
-#
-#     returncode = await proc.wait()
-#
-#     await stdout_task
-#     await stderr_task
-#
-#     print(f"Process exited with {returncode}")

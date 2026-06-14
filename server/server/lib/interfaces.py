@@ -1,5 +1,6 @@
-from collections.abc import Callable
-from typing import List, Protocol, Self
+import asyncio
+from collections.abc import Callable, Coroutine
+from typing import List, Protocol, Self, Any
 from pathlib import Path
 from abc import ABC, abstractmethod
 
@@ -7,6 +8,8 @@ from server.lib import Result
 from server.lib.facades import env
 
 type PushValue = str | bool | int | float | Path | list[PushValue]
+type AsyncStreamArg = asyncio.StreamReader | None
+type AsyncStreamCallback = Callable[[AsyncStreamArg | None, AsyncStreamArg | None], Coroutine[Any, Any, Result[None]]]
 
 
 class QueueableSupervisor(Protocol):
@@ -14,7 +17,7 @@ class QueueableSupervisor(Protocol):
     async def queue_shutdown(self) -> None: ...
     async def queue_restart(self) -> None: ...
     async def queue_reload(self, config_path: str | Path) -> None: ...
-    async def dispatch_subprocess(self, argv: List[str]) -> Result[str]: ...
+    async def dispatch_subprocess(self, argv: List[str], handle_std_streams: AsyncStreamCallback | None = None) -> Result[str]: ...
 
 
 class Executable(ABC):
