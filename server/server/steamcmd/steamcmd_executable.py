@@ -5,6 +5,7 @@ from typing import List
 
 from returns.result import Failure, Success
 
+from server.lib import config
 from server.lib.interfaces import Executable, PushValue
 from server.lib.types import Error, Result
 from server.steamcmd.enums import SteamCmdExecutableFlag
@@ -28,6 +29,9 @@ class SteamCmdExecutable(Executable):
             Path("C:\\steamcmd\\steamcmd.exe"),
         ]
 
+        if executable := config('steamcmd.executable'):
+            common_paths.insert(0, Path(executable).absolute())
+
         for candidate in common_paths:
             if candidate.exists():
                 return Success(candidate.resolve())
@@ -46,8 +50,7 @@ class SteamCmdExecutable(Executable):
 
 
     def login_anonymous(self) -> SteamCmdExecutable:
-        self.push(SteamCmdExecutableFlag.LOGIN_ANONYMOUS)
-        # self.push(SteamCmdExecutableFlag.LOGIN, "anonymous")
+        self.push(SteamCmdExecutableFlag.LOGIN, 'anonymous')
         return self
 
 
@@ -55,7 +58,6 @@ class SteamCmdExecutable(Executable):
         target = Path(path)
         target.mkdir(parents=True, exist_ok=True)
         self.push(SteamCmdExecutableFlag.FORCE_INSTALL_DIR, path)
-        # self.push(SteamCmdExecutableFlag.FORCE_INSTALL_DIR, target.resolve())
         return self
 
 

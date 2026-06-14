@@ -15,11 +15,14 @@ def app() -> Application:
     return Application.instance()
 
 
-def config(key: str) -> Any:
+def config(key: str, default: Any | None = None) -> Any:
     value = Application.instance().config()
 
     for key in key.split("."):
         value = value[key]
+
+    if value is None:
+        return default
 
     return value
 
@@ -33,7 +36,7 @@ class Env:
 
 
     @classmethod
-    def bool(cls, name: str, default: bool = False) -> bool:
+    def bool(cls, name: str, default: bool | None = None) -> bool | None:
         value = Application.instance().environment(name)
         if value is None:
             return default
@@ -41,7 +44,7 @@ class Env:
 
 
     @classmethod
-    def int(cls, name: str, default: int = 0) -> int:
+    def int(cls, name: str, default: int | None = None) -> int | None:
         value = Application.instance().environment(name)
         if value is None:
             return default

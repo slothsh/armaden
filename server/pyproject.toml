@@ -15,6 +15,7 @@ uvicorn = {extras = ["standard"], version = "^0.32"}
 berconpy = "^3.0"
 returns = "^0.28.0"
 python-dotenv = "^1.2.2"
+wonderwords = "^3.0.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.0"

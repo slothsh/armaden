@@ -40,13 +40,6 @@ RUN poetry install --no-interaction --no-ansi
 WORKDIR /steamcmd
 RUN wget -qO- "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
 
-ENV STEAMCMD_EXECUTABLE=/steamcmd/steamcmd.sh
-ENV ARMA_INSTALL_DIR=/arma
-ENV ARMA_PROFILE=/arma/Profile
-ENV ARMA_LOGS_DIR=/arma/Logs
-ENV ARMA_CONFIG=/arma/Configs/config.json
-ENV ARMA_CONFIGS_DIR=/arma/Configs
-
 # Volumes
 VOLUME /steamcmd
 VOLUME /arma

@@ -13,6 +13,7 @@ import logging
 from pathlib import Path
 
 from returns.result import Failure, Success
+from server.lib.facades import config
 from server.lib.interfaces import Executable
 from server.lib.types import Error, Result
 from server.arma.reforger.enums import ArmaReforgerExecutableFlag
@@ -27,11 +28,13 @@ class ArmaReforgerServerExecutable(Executable):
     @classmethod
     def resolve_executable(cls) -> Result[Path]:
         common_paths = [
-            Path("/arma/ArmaReforgerServer"),
             Path.home() / "Steam" / "steamapps" / "common" / "Arma Reforger" / "ArmaReforgerServer",
             Path.home() / ".local" / "share" / "Steam" / "steamapps" / "common" / "Arma Reforger" / "ArmaReforgerServer",
             Path("C:\\Program Files (x86)\\Steam\\steamapps\\common\\Arma Reforger\\ArmaReforgerServer.exe"),
         ]
+
+        if directory := config('arma.reforger.executable'):
+            common_paths.insert(0, Path(directory).absolute())
 
         for candidate in common_paths:
             if candidate.exists():
@@ -40,6 +43,7 @@ class ArmaReforgerServerExecutable(Executable):
         return Failure(
             Error(ArmaReforgerExecutableError.EXECUTABLE_NOT_FOUND)
         )
+
 
     # -- Arma Reforger Server Flags -------------------------------------------
 

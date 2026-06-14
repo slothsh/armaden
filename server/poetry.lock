@@ -855,7 +855,23 @@ files = [
     {file = "websockets-16.0.tar.gz", hash = "sha256:5f6261a5e56e8d5c42a4497b364ea24d94d9563e8fbd44e78ac40879c60179b5"},
 ]
 
+[[package]]
+name = "wonderwords"
+version = "3.0.1"
+description = "Generate random english words and phrases."
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "wonderwords-3.0.1-py3-none-any.whl", hash = "sha256:4dd66deb6a76ca9e0b0422d1d3e111f9b910d7c16922d42de733ee8def98f8d0"},
+    {file = "wonderwords-3.0.1.tar.gz", hash = "sha256:5ee43ab6f13823a857a7c3d58c7b4db6a1350bd3aa5f914ed379ad49042a1c36"},
+]
+
+[package.extras]
+cli = ["rich"]
+dev = ["black", "flake8", "mypy", "pytest", "setuptools", "setuptools-scm", "sphinx", "sphinx-copybutton"]
+
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "9afe48430c87f1b9086d018ef41a63bcba27373a70997361d876c06d5bd5282e"
+content-hash = "3028551a1453a22525e8f4756bf2a396a46966f0618e3adf856d5cb3e0711ff8"

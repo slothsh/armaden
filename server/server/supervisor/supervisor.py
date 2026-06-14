@@ -93,7 +93,7 @@ class Supervisor:
             asyncio_tasks = [asyncio.wrap_future(future) for future in self._server_futures]
             
             try:
-                await asyncio.wait_for(asyncio.gather(*asyncio_tasks), timeout=10.0)
+                await asyncio.wait_for(asyncio.gather(*asyncio_tasks), timeout=30.0)
             except asyncio.TimeoutError:
                 logger.warning("Background servers timed out during exit phase.")
             except Exception as e:
@@ -105,7 +105,7 @@ class Supervisor:
             join_threads.append(server_state.thread)
 
         for thread in join_threads:
-            thread.join(timeout=10.0)
+            thread.join(timeout=30.0)
 
         self._server_futures.clear()
         
@@ -135,12 +135,14 @@ class Supervisor:
     async def dispatch_subprocess(
         self,
         argv: List[str],
+        cwd: Path | str | None = None,
         handle_std_streams: AsyncStreamCallback | None = None,
     ) -> Result[str]:
         logger.info('Executing command in subprocess: %s', ' '.join(argv))
 
         process = await asyncio.create_subprocess_exec(
             argv[0], *argv[1:],
+            cwd=cwd,
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE
         )

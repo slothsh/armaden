@@ -3,6 +3,6 @@ from server.lib.facades import Env
 
 def config():
     return {
-        'address': Env.string('API_ADDRESS', '127.0.0.1'),
+        'address': Env.string('API_ADDRESS', '0.0.0.0'),
         'port': Env.int('API_PORT', 8888),
     }
