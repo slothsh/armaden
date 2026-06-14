@@ -5,7 +5,7 @@ from server.rcon import RconClientConnectionError, RconClientError
 from fastapi import HTTPException, Request
 from server.http.dto.rcon_data import *
 
-logger = logging.getLogger('api.controllers.rcon')
+logger = logging.getLogger('http.controllers.rcon')
 
 class RconController:
     @classmethod

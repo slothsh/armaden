@@ -7,7 +7,7 @@ from fastapi import Body, HTTPException, Request
 from server.lib import app
 from server.http.dto.rcon_data import *
 
-logger = logging.getLogger('api.controllers.lifecycle')
+logger = logging.getLogger('http.controllers.lifecycle')
 
 class LifecycleController:
     def health(self) -> dict[str, str]:

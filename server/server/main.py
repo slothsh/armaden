@@ -10,12 +10,12 @@ import logging
 from returns.result import Failure, Success
 from returns.pipeline import is_successful
 
+from server.api import ApiServer
 from server.arma import ArmaReforgerServer
 from server.bootstrap import Application, ApplicationException
 from server.error import GenericError
+from server.http.routes import api_routes
 from server.lib import Result
-from server.api import ApiServer
-from server.api.routes import api_routes
 from server.lib.facades import app
 from server.lib.types import Error
 from server.supervisor import Supervisor

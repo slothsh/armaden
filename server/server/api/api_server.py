@@ -11,7 +11,6 @@ from server.lib.types import Error, Result
 from server.rcon.rcon_client import RconClient
 from server.lib import QueueableSupervisor
 from server.arma import ArmaReforgerRconClient
-from server.api.controllers import *
 
 logger = logging.getLogger("server.api_server")
 

@@ -1,4 +1,4 @@
-from server.api.controllers import LifecycleController, RconController
+from server.http.controllers import LifecycleController, RconController
 from fastapi import FastAPI, APIRouter
 
 def api_routes(app: FastAPI):
