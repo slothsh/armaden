@@ -4,6 +4,7 @@ from pathlib import Path
 from abc import ABC, abstractmethod
 
 from server.lib import Result
+from server.lib.facades import env
 
 type PushValue = str | bool | int | float | Path | list[PushValue]
 
@@ -29,6 +30,9 @@ class Executable(ABC):
 
 
     def build_argv(self) -> List[str]:
+        if env('APP_ENV') in ['testing', 'local']:
+            return [str(Path("scripts/loop_echo.sh").absolute()), "-n", "3"]
+
         return [str(self._executable), *self._params]
 
 

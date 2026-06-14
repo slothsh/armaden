@@ -3,10 +3,10 @@ import logging
 from pathlib import Path
 from typing import List
 
-from returns.result import Success
+from returns.result import Failure, Success
 
 from server.lib.interfaces import Executable, PushValue
-from server.lib.types import Result
+from server.lib.types import Error, Result
 from server.steamcmd.enums import SteamCmdExecutableFlag
 
 logger = logging.getLogger(__name__)
@@ -20,22 +20,21 @@ class SteamCmdExecutable(Executable):
 
     @classmethod
     def resolve_executable(cls) -> Result[Path]:
-        return Success(Path("/bin/echo"))
+        common_paths = [
+            Path.home() / ".steam" / "steamcmd" / "steamcmd.sh",
+            Path.home() / "Steam" / "steamcmd" / "steamcmd.sh",
+            Path("/usr/games/steamcmd"),
+            Path("/usr/local/bin/steamcmd"),
+            Path("C:\\steamcmd\\steamcmd.exe"),
+        ]
 
-        # common_paths = [
-        #     Path.home() / "Steam" / "steamcmd" / "steamcmd.sh",
-        #     Path("/usr/games/steamcmd"),
-        #     Path("/usr/local/bin/steamcmd"),
-        #     Path("C:\\steamcmd\\steamcmd.exe"),
-        # ]
-        #
-        # for candidate in common_paths:
-        #     if candidate.exists():
-        #         return Success(candidate.resolve())
-        #
-        # return Failure(
-        #     Error(SteamCmdExecutableError.EXECUTABLE_NOT_FOUND)
-        # )
+        for candidate in common_paths:
+            if candidate.exists():
+                return Success(candidate.resolve())
+
+        return Failure(
+            Error(SteamCmdExecutableError.EXECUTABLE_NOT_FOUND)
+        )
 
 
     # -- steamcmd Server Flags ------------------------------------------------

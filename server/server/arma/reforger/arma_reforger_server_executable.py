@@ -12,9 +12,9 @@ from enum import StrEnum
 import logging
 from pathlib import Path
 
-from returns.result import Success
+from returns.result import Failure, Success
 from server.lib.interfaces import Executable
-from server.lib.types import Result
+from server.lib.types import Error, Result
 from server.arma.reforger.enums import ArmaReforgerExecutableFlag
 
 logger = logging.getLogger('server.arma.reforger.executable')
@@ -26,21 +26,20 @@ class ArmaReforgerServerExecutable(Executable):
 
     @classmethod
     def resolve_executable(cls) -> Result[Path]:
-        return Success(Path("/bin/echo"))
-        # common_paths = [
-        #     Path("/arma/ArmaReforgerServer"),
-        #     Path.home() / "Steam" / "steamapps" / "common" / "Arma Reforger" / "ArmaReforgerServer",
-        #     Path.home() / ".local" / "share" / "Steam" / "steamapps" / "common" / "Arma Reforger" / "ArmaReforgerServer",
-        #     Path("C:\\Program Files (x86)\\Steam\\steamapps\\common\\Arma Reforger\\ArmaReforgerServer.exe"),
-        # ]
-        #
-        # for candidate in common_paths:
-        #     if candidate.exists():
-        #         return Success(candidate.resolve())
-        #
-        # return Failure(
-        #     Error(ArmaReforgerExecutableError.EXECUTABLE_NOT_FOUND)
-        # )
+        common_paths = [
+            Path("/arma/ArmaReforgerServer"),
+            Path.home() / "Steam" / "steamapps" / "common" / "Arma Reforger" / "ArmaReforgerServer",
+            Path.home() / ".local" / "share" / "Steam" / "steamapps" / "common" / "Arma Reforger" / "ArmaReforgerServer",
+            Path("C:\\Program Files (x86)\\Steam\\steamapps\\common\\Arma Reforger\\ArmaReforgerServer.exe"),
+        ]
+
+        for candidate in common_paths:
+            if candidate.exists():
+                return Success(candidate.resolve())
+
+        return Failure(
+            Error(ArmaReforgerExecutableError.EXECUTABLE_NOT_FOUND)
+        )
 
     # -- Arma Reforger Server Flags -------------------------------------------
 
