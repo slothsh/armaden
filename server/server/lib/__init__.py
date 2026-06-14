@@ -8,5 +8,6 @@ __all__ = [
     'Result',
     'Error',
     'QueueableSupervisor',
-    'App'
+    'app',
+    'env'
 ]
