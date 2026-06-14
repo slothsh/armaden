@@ -9,5 +9,6 @@ __all__ = [
     'Error',
     'QueueableSupervisor',
     'app',
-    'env'
+    'env',
+    'config'
 ]

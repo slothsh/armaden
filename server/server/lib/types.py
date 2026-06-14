@@ -28,7 +28,7 @@ class Error:
         context_parts = []
 
         context_parts.append(f"type={self.type.__class__.__name__}.{self.type.name}")
-        context_parts.append(f"context={self.context}")
+        context_parts.append(f"context=\"{self.context}\"")
 
         if self.details:
             context_parts.append(f"details={self.details}")

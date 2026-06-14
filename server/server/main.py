@@ -15,7 +15,7 @@ from server.arma import ArmaReforgerServer
 from server.bootstrap import Application, ApplicationException
 from server.error import GenericError
 from server.http.routes import api_routes
-from server.lib import Result, Error, app, env 
+from server.lib import Result, Error, app, env, config
 from server.supervisor import Supervisor
 
 logger = logging.getLogger("server")
@@ -24,8 +24,10 @@ logger = logging.getLogger("server")
 async def entrypoint() -> Result[None]:
     # Bootstrap the application
     Application.bootstrap()
-    logger.info("Application version: %s", app().version())
-    logger.info("Running in environment: %s", env('APP_ENV'))
+    logger.info("Application Name: %s", config('app.name'))
+    logger.info("version: %s", app().version())
+    logger.info("description: %s", config('app.description'))
+    logger.info("environment: %s", env('APP_ENV'))
 
     # Prepare the supervisor
     supervisor = Supervisor()
