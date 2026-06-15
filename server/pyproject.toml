@@ -4,9 +4,14 @@ version = "0.1.0"
 description = "Server tools for running Arma Reforger"
 authors = ["Stefan Olivier <s.olivier1194@gmail.com>"]
 readme = "README.md"
+packages = [
+    { include = "app" },
+    { include = "framework" },
+    { include = "games" },
+]
 
 [tool.poetry.scripts]
-server = "server.main:main"
+app = "app.main:main"
 
 [tool.poetry.dependencies]
 python = "^3.12"

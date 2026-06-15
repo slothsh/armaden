@@ -46,4 +46,4 @@ VOLUME /arma
 
 # Run server
 WORKDIR /opt/server
-CMD ["poetry", "run", "server"]
+CMD ["poetry", "run", "app"]

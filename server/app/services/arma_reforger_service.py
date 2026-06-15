@@ -1,0 +1,17 @@
+from returns.result import Success
+
+from framework.classes.service import Service
+from framework.utils.types import Result
+from framework.facades import app
+
+from games.arma_reforger import ArmaReforgerServer
+
+
+class ArmaReforgerService(Service):
+    def __call__(self) -> Result[None]:
+        app().supervisor.with_server(
+            ArmaReforgerServer()
+                .build()
+        )
+
+        return Success(None)
