@@ -9,35 +9,25 @@ from contextlib import asynccontextmanager
 from server.lib.server import Server
 from server.lib.types import Error, Result
 from server.rcon.rcon_client import RconClient
-from server.lib.queueable_supervisor import QueueableSupervisor
 from server.facades.config import config
 from server.arma.reforger import ArmaReforgerRconClient
 
 logger = logging.getLogger("server.api_server")
 
 class ApiServer(Server):
-    supervisor: QueueableSupervisor | None
-    rcon_clients: RconContainer
-
     def __init__(self) -> None:
         self.app = FastAPI(
             title="Arma Reforger Server public HTTP API"
         )
 
-        self._supervisor: QueueableSupervisor | None = None
         self._rcon_clients = RconContainer()
 
 
     # --- Builder Methods -----------------------------------------------------
 
-    def with_supervisor(self, supervisor: QueueableSupervisor) -> Self:
-        self.supervisor = supervisor
-        return self
-
-
     def with_rcon_clients(self, rcon_clients: List[Tuple[str, RconClientUnion]]) -> Self:
         for (name, client) in rcon_clients:
-            setattr(self.rcon_clients, name, client)
+            setattr(self._rcon_clients, name, client)
         return self
 
 

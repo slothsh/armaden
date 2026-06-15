@@ -16,7 +16,6 @@ class ApiService(Service):
     def __call__(self) -> Result[None]:
         self._server = (
             self._server
-            .with_supervisor(app().supervisor)
             .with_routes(api_routes)
             .build()
         )
