@@ -12,7 +12,7 @@ from server.arma.reforger.arma_reforger_rcon_client import ArmaReforgerRconClien
 from server.arma.reforger.enums.arma_reforger_executable_flag import ArmaReforgerExecutableFlag
 from server.lib import config
 from server.lib import Result, Server, Error
-from server.lib.interfaces import AsyncStreamArg, QueueableSupervisor
+from server.lib.interfaces import QueueableSupervisor
 from server.lib.helpers import Dictionary
 from server.steamcmd import SteamCmdExecutable
 
@@ -91,7 +91,7 @@ class ArmaReforgerServer(Server):
         await self._supervisor.dispatch_subprocess(
             argv.unwrap(),
             cwd=self._paths.install,
-            handle_std_streams=ArmaReforgerServer._log_subprocess
+            handle_std_stream=ArmaReforgerServer._log_subprocess
         )
 
         return await self.shutdown()
@@ -147,7 +147,7 @@ class ArmaReforgerServer(Server):
 
         future = self._supervisor.dispatch_subprocess(
             argv, cwd=self._paths.install,
-            handle_std_streams=ArmaReforgerServer._log_subprocess
+            handle_std_stream=ArmaReforgerServer._log_subprocess
         )
 
         if not is_successful(result := await future):
@@ -178,27 +178,8 @@ class ArmaReforgerServer(Server):
 
 
     @classmethod
-    async def _log_subprocess(cls, stdout: AsyncStreamArg, stderr: AsyncStreamArg) -> Result[None]:
-        if stdout:
-            while True:
-                line_bytes = await stdout.readline()
-
-                if not line_bytes:
-                    break
-
-                if line := line_bytes.decode(errors='replace').strip():
-                    logger.info(line)
-
-        if stderr:
-            while True:
-                line_bytes = await stderr.readline()
-
-                if not line_bytes:
-                    break
-
-                if line := line_bytes.decode(errors='replace').strip():
-                    logger.info(line)
-
+    async def _log_subprocess(cls, line: str) -> Result[None]:
+        logger.info(line)
         return Success(None)
 
 

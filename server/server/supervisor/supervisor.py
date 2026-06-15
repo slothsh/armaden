@@ -14,7 +14,7 @@ from returns.result import Failure, Success
 from pathlib import Path
 
 from server.lib import Result
-from server.lib.interfaces import Server, AsyncStreamCallback
+from server.lib.interfaces import AsyncStreamArg, Server, AsyncStreamCallback
 from server.lib.types import Error
 
 logger = logging.getLogger("server.supervisor")
@@ -157,7 +157,7 @@ class Supervisor:
         self,
         argv: List[str],
         cwd: Path | str | None = None,
-        handle_std_streams: AsyncStreamCallback | None = None,
+        handle_std_stream: AsyncStreamCallback | None = None,
     ) -> Result[str]:
         logger.info('Executing command in subprocess: %s', ' '.join(argv))
         
@@ -171,10 +171,28 @@ class Supervisor:
             stderr=asyncio.subprocess.PIPE
         )
 
-        tasks: List[asyncio.Task[Result[None]]]  = []
-        if handle_std_streams:
+        tasks: List[asyncio.Task[None]]  = []
+        if handle_std_stream:
+            async def drain(stream: AsyncStreamArg, callback: AsyncStreamCallback) -> None:
+                if not stream:
+                    return
+
+                try:
+                    while True:
+                        line_bytes = await stream.readline()
+                        if not line_bytes:
+                            break
+                        if line := line_bytes.decode(errors='replace').strip():
+                            await callback(line)
+                except asyncio.CancelledError:
+                    raise
+
             tasks.append(asyncio.create_task(
-                handle_std_streams(process.stdout, process.stderr)
+                drain(process.stdout, handle_std_stream)
+            ))
+
+            tasks.append(asyncio.create_task(
+                drain(process.stderr, handle_std_stream)
             ))
 
         process_info = ProcessInfoData(name=current_thread_name, process=process)
@@ -183,10 +201,10 @@ class Supervisor:
         else:
             self._processes.append(process_info)
 
-        returncode = await process.wait()
+        return_code = await process.wait()
         await asyncio.gather(*tasks)
 
-        if returncode == 0:
+        if return_code == 0:
             return Success("Subprocess executed successfully")
         else:
             return Failure(Error(SupervisorError.SUBPROCESS_ERROR, details={
