@@ -117,9 +117,9 @@ class Application:
 
         # Check env files in order
         env_file_patterns = [
+            '.env',
             f".env.{self._app_env}",
             f".env.*.{self._app_env}",
-            '.env',
         ]
 
         for pattern in env_file_patterns:
