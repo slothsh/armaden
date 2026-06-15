@@ -8,18 +8,11 @@ from server.lib.types import Result
 
 
 class ApiService(Service):
-    def __init__(self):
-        super().__init__()
-        self._server = ApiServer()
-
-
     def __call__(self) -> Result[None]:
-        self._server = (
-            self._server
-            .with_routes(api_routes)
-            .build()
+        app().supervisor.with_server(
+            ApiServer()
+                .with_routes(api_routes)
+                .build()
         )
-
-        app().supervisor.with_server(self._server)
 
         return Success(None)
