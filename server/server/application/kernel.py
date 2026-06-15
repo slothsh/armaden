@@ -3,13 +3,12 @@ from pathlib import Path
 from typing import Any, Dict, List, Protocol
 from dotenv import load_dotenv
 from enum import StrEnum
-from threading import Lock
 import logging
 import os
 import sys
 from glob import glob
 from importlib import metadata, import_module
-from abc import ABC, abstractmethod
+from abc import ABC
 
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
@@ -172,9 +171,7 @@ class Kernel(ABC):
 
 class KernelInterface(Protocol):
     supervisor: Supervisor
-
     def version(self) -> str: ...
-    def bootstrap(self) -> None: ...
     def environment(self, name: str, default: str | None = None) -> str | None: ...
     def config(self, key: str, default: Any | None = None) -> Any: ...
 

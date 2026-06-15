@@ -1,9 +1,6 @@
 import logging
 
-from returns.result import Success
-
 from server.application.kernel import Kernel
-from server.lib.types import Result
 from server.services.api_service import ApiService
 from server.services.arma_reforger_service import ArmaReforgerService
 
