@@ -14,7 +14,8 @@ from returns.result import Failure, Success
 from pathlib import Path
 
 from server.lib import Result
-from server.lib.interfaces import AsyncStreamArg, Server, AsyncStreamCallback
+from server.lib.server import Server
+from server.lib.queueable_supervisor import AsyncStreamCallback, AsyncStreamArg
 from server.lib.types import Error
 
 logger = logging.getLogger("server.supervisor")

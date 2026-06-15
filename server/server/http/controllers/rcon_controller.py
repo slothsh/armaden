@@ -1,6 +1,6 @@
 import logging
 from typing import Any
-from server.arma import ArmaReforgerRconClient
+from server.arma.reforger import ArmaReforgerRconClient
 from server.rcon import RconClientConnectionError, RconClientError
 from fastapi import HTTPException, Request
 from server.http.dto.rcon_data import *

@@ -22,7 +22,7 @@ import uvicorn
 
 from server.api import ApiServer
 from server.lib import QueueableSupervisor
-from server.arma import ArmaReforgerRconClient
+from server.arma.reforger import ArmaReforgerRconClient
 
 logger = logging.getLogger("supervisor.control")
 

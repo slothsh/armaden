@@ -13,8 +13,8 @@ import logging
 from pathlib import Path
 
 from returns.result import Failure, Success
-from server.lib.facades import config
-from server.lib.interfaces import Executable
+from server.lib.executable import Executable
+from server.facades.config import config
 from server.lib.types import Error, Result
 from server.arma.reforger.enums import ArmaReforgerExecutableFlag
 
@@ -133,7 +133,7 @@ class ArmaReforgerServerExecutable(Executable):
 
     def limit_fps(self, fps: int) -> ArmaReforgerServerExecutable:
         """Cap the server frame rate."""
-        self.push(ArmaReforgerExecutableFlag.LIMIT_FPS, fps)
+        self.push(ArmaReforgerExecutableFlag.MAX_FPS, fps)
         return self
 
     def addon(self, mod_id: str) -> ArmaReforgerServerExecutable:

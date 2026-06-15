@@ -1,23 +1,11 @@
-import asyncio
-from collections.abc import Callable, Coroutine
-from typing import List, Protocol, Self, Any
+from collections.abc import Callable
+from typing import List, Self
 from pathlib import Path
-from abc import ABC, abstractmethod
+from abc import ABC
 
-from server.lib import Result
-from server.lib.facades import env
+from server.lib.types import Result
 
 type PushValue = str | bool | int | float | Path | list[PushValue]
-type AsyncStreamArg = asyncio.StreamReader | None
-type AsyncStreamCallback = Callable[[str], Coroutine[Any, Any, Result[None]]]
-
-
-class QueueableSupervisor(Protocol):
-    async def queue_start(self) -> None: ...
-    async def queue_shutdown(self) -> None: ...
-    async def queue_restart(self) -> None: ...
-    async def queue_reload(self, config_path: str | Path) -> None: ...
-    async def dispatch_subprocess(self, argv: List[str], cwd: Path | str | None = None, handle_std_stream: AsyncStreamCallback | None = None) -> Result[str]: ...
 
 
 class Executable(ABC):
@@ -33,6 +21,7 @@ class Executable(ABC):
 
 
     def build_argv(self) -> List[str]:
+        from server.facades.env import env
         if env('APP_ENV') in ['testing', 'local']:
             real_cmdline = ' '.join([str(self._executable), *self._params])
             return [str(Path("scripts/loop_echo.sh").absolute()), "-n", "3", "-m", f"'{real_cmdline}'"]
@@ -41,6 +30,7 @@ class Executable(ABC):
 
 
     def consume_argv(self) -> List[str]:
+        from server.facades.env import env
         if env('APP_ENV') in ['testing', 'local']:
             real_cmdline = ' '.join([str(self._executable), *self._params])
             return [str(Path("scripts/loop_echo.sh").absolute()), "-n", "3", "-m", f"'{real_cmdline}'"]
@@ -98,19 +88,3 @@ class Executable(ABC):
         if isinstance(value, Path):
             return str(value)
         return str(value)
-
-
-class Server(ABC):
-    @abstractmethod
-    async def initialize(self) -> Result[None]:
-        pass
-
-
-    @abstractmethod
-    async def run(self) -> Result[None]:
-        pass
-
-
-    @abstractmethod
-    async def shutdown(self) -> Result[None]:
-        pass

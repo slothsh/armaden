@@ -1,30 +1,11 @@
 import json
 from typing import Any
 
-import logging
-from server.application import Application, ApplicationInterface
-
-logger = logging.getLogger('server.lib.facades')
+from server.application.application import Application
 
 
 def env(name: str, default: Any | None = None) -> str | None:
     return Application.instance().environment(name, default)
-
-
-def app() -> ApplicationInterface:
-    return Application.instance()
-
-
-def config(key: str, default: Any | None = None) -> Any:
-    value = Application.instance().config()
-
-    for key in key.split("."):
-        value = value[key]
-
-    if value is None:
-        return default
-
-    return value
 
 
 class Env:

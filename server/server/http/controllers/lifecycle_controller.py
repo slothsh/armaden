@@ -4,7 +4,7 @@ from pathlib import Path
 from datetime import datetime
 from typing import Any
 from fastapi import Body, HTTPException, Request
-from server.lib import app
+from server.facades.app import app
 from server.http.dto.rcon_data import *
 
 logger = logging.getLogger('http.controllers.lifecycle')

@@ -5,8 +5,8 @@ from typing import List
 
 from returns.result import Failure, Success
 
-from server.lib import config
-from server.lib.interfaces import Executable, PushValue
+from server.facades.config import config
+from server.lib.executable import Executable, PushValue
 from server.lib.types import Error, Result
 from server.steamcmd.enums import SteamCmdExecutableFlag
 

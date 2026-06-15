@@ -1,4 +1,4 @@
-from .error import *
+from .error import GenericError
 
 __all__ = [
     'GenericError'

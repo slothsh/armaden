@@ -1,4 +1,4 @@
-from server.lib import env
+from server.facades.env import env
 from importlib import metadata
 
 def config():

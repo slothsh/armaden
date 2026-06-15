@@ -6,11 +6,12 @@ import uvicorn
 from returns.result import Failure, Success
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from server.lib.interfaces import Server
+from server.lib.server import Server
 from server.lib.types import Error, Result
 from server.rcon.rcon_client import RconClient
-from server.lib import QueueableSupervisor, config
-from server.arma import ArmaReforgerRconClient
+from server.lib.queueable_supervisor import QueueableSupervisor
+from server.facades.config import config
+from server.arma.reforger import ArmaReforgerRconClient
 
 logger = logging.getLogger("server.api_server")
 
