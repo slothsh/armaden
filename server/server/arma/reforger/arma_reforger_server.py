@@ -158,10 +158,15 @@ class ArmaReforgerServer(Server):
 
 
     def install_config(self) -> Result[None]:
-        config_data: Dict[str, Any] = Dictionary.remove_none(config('arma.reforger.server'))
+        config_data: Dict[str, Any] = Dictionary.without(config('arma.reforger.server'), lambda _, value: value is None)
+
+        self._paths.config_directory.mkdir(exist_ok=True)
 
         with open(self._paths.config_file, 'w') as config_file:
+            logger.info('Writing Arma Reforger Server config file')
             json.dump(config_data, config_file, indent=4)
+
+        logger.info('Config file successfully written!')
 
         return Success(None)
 

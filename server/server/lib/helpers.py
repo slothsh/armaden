@@ -1,20 +1,21 @@
-from typing import Any, Dict
+from typing import Any
+from collections.abc import Callable
 
 
 class Dictionary:
     @classmethod
-    def remove_none(cls, data: Dict[Any, Any]) -> Dict[Any, Any]:
+    def without(cls, data: Any, predicate: Callable[[Any, Any], bool]) -> Any:
         if isinstance(data, dict):
             return {
-                k: Dictionary.remove_none(v) 
+                k: Dictionary.without(v, predicate) 
                 for k, v in data.items() 
-                if v is not None
+                if not predicate(k, v)
             }
         elif isinstance(data, list):
             return [
-                Dictionary.remove_none(item) 
+                Dictionary.without(item, predicate) 
                 for item in data 
-                if item is not None
+                if not predicate(None, item)
             ]
 
         return data

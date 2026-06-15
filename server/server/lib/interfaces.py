@@ -40,6 +40,9 @@ class Executable(ABC):
 
 
     def consume_argv(self) -> List[str]:
+        if env('APP_ENV') in ['testing', 'local']:
+            return [str(Path("scripts/loop_echo.sh").absolute()), "-n", "3"]
+
         argv = self.build_argv()
         self.reset_params()
         return argv
