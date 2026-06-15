@@ -2,8 +2,7 @@ import json
 from typing import Any
 
 import logging
-from server.bootstrap.application import Application
-from server.bootstrap.kernel import ApplicationInterface
+from server.application import Application, ApplicationInterface
 
 logger = logging.getLogger('server.lib.facades')
 

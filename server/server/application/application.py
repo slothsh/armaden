@@ -1,6 +1,6 @@
 import logging
 
-from server.bootstrap.kernel import Kernel
+from server.application.kernel import Kernel
 
 logger = logging.getLogger('server.application')
 

@@ -6,14 +6,13 @@ For available environment variables see :mod:`server.supervisor`.
 
 import asyncio
 import logging
-import traceback
 
 from returns.result import Failure, Success
 from returns.pipeline import is_successful
 
 from server.api import ApiServer
 from server.arma import ArmaReforgerServer
-from server.bootstrap.application import Application
+from server.application import Application
 from server.error import GenericError
 from server.http.routes import api_routes
 from server.lib import Result, Error, app, env, config
@@ -73,8 +72,6 @@ def main() -> Result[None]:
     except (KeyboardInterrupt, SystemExit):
         return Success(None)
     except Exception as exception:
-        traceback.print_exception(exception)
-        logger.error(exception.__traceback__)
         return Failure(Error(GenericError.EXCEPTION, details={
             'exception': exception
         }))
