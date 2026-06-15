@@ -1,6 +1,4 @@
-from server.application.application import Application
-from server.application.kernel import ApplicationInterface
 
-
-def app() -> ApplicationInterface:
+def app():
+    from server.application.application import Application
     return Application.instance()

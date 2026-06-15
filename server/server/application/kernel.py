@@ -1,5 +1,6 @@
+import asyncio
 from pathlib import Path
-from typing import Any, Dict, Protocol
+from typing import Any, Dict, List, Protocol
 from dotenv import load_dotenv
 from enum import StrEnum
 from threading import Lock
@@ -8,11 +9,14 @@ import os
 import sys
 from glob import glob
 from importlib import metadata, import_module
+from abc import ABC, abstractmethod
 
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
+from server.lib.service_interface import ServiceInterface
 from server.lib.types import Error, Result
+from server.supervisor.supervisor import Supervisor
 
 logger = logging.getLogger('server.kernel')
 
@@ -22,18 +26,34 @@ logger = logging.getLogger('server.kernel')
 HANDLE: ApplicationInterface | None = None
 
 
-class Kernel:
+class Kernel(ABC):
     def __init__(self, handle: ApplicationInterface | None = None) -> None:
         global HANDLE
         HANDLE = handle
 
-        self._lock = Lock()
         self._status = KernelStatus.NOT_READY
         self._app_env = 'production'
         self._config: Dict[str, Any] = {}
         self._package_name: str | None = None if not __package__ else __package__.split(".")[0]
 
-        self.bootstrap()
+        self.services: List[ServiceInterface] = []
+        self.supervisor = Supervisor(asyncio.new_event_loop())
+
+        self._bootstrap()
+
+
+    async def __call__(self) -> Result[None]:
+        if not is_successful(result := self._boot()):
+            logger.error("Could not boot service %s", result.failure())
+            return result
+
+        if not is_successful(result := await self.supervisor.initialize()):
+            return result
+
+        if not is_successful(result := await self.supervisor.run()):
+            return result
+
+        return Success(None)
 
 
     def version(self) -> str:
@@ -42,7 +62,35 @@ class Kernel:
         return metadata.version(self._package_name)
     
 
-    def bootstrap(self) -> None:
+    def environment(self, name: str, default: str | None = None) -> str | None:
+        if result := os.getenv(name):
+            return result
+        return default
+
+
+    def config(self, key: str, default: Any | None = None) -> Any:
+        value = self._config
+
+        for key in key.split("."):
+            value = value[key]
+
+        if value is None:
+            return default
+
+        return value
+
+
+    @classmethod
+    def instance(cls) -> ApplicationInterface:
+        global HANDLE
+        if not HANDLE:
+            raise KernelException("The global application handle is not available. Did you bootstrap the application?")
+        return HANDLE
+
+
+    # -- Initializers ---------------------------------------------------------
+
+    def _bootstrap(self) -> None:
         # Set some essential application flags
         if app_env := os.getenv('APP_ENV'):
             self._app_env = app_env
@@ -65,25 +113,13 @@ class Kernel:
         logger.info('Application successfully bootstrapped with status: %s', self._status)
 
 
-    def environment(self, name: str, default: str | None = None) -> str | None:
-        if result := os.getenv(name):
-            return result
-        return default
+    def _boot(self) -> Result[None]:
+        for service in self.services:
+            if not is_successful(result := service()):
+                return result
 
+        return Success(None)
 
-    def config(self) -> Dict[str, Any]:
-        return self._config
-
-
-    @classmethod
-    def instance(cls) -> ApplicationInterface:
-        global HANDLE
-        if not HANDLE:
-            raise KernelException("The global application handle is not available. Did you bootstrap the application?")
-        return HANDLE
-
-
-    # -- Initializers ---------------------------------------------------------
 
     def _initialize_logging(self) -> Result[None]:
         logging.basicConfig(
@@ -118,15 +154,12 @@ class Kernel:
 
 
     def _initialize_configs(self) -> Result[None]:
-        logger.info('One')
         if not self._package_name:
             return Failure(Error(KernelError.INVALID_PACKAGE_NAME))
 
-        logger.info('Two')
         config_directory = Path(self._package_name) / 'config'
         config_files = config_directory.glob('*.py')
 
-        logger.info('Three')
         for file in [file for file in config_files if file.is_file() and not file.name.startswith(('.', '_'))]:
             module = import_module(f"{self._package_name}.config.{file.stem}")
             config = getattr(module, 'config')
@@ -138,10 +171,12 @@ class Kernel:
 # -- Internal Types -----------------------------------------------------------
 
 class KernelInterface(Protocol):
+    supervisor: Supervisor
+
     def version(self) -> str: ...
     def bootstrap(self) -> None: ...
     def environment(self, name: str, default: str | None = None) -> str | None: ...
-    def config(self) -> Dict[str, Any]: ...
+    def config(self, key: str, default: Any | None = None) -> Any: ...
 
     @classmethod
     def instance(cls) -> ApplicationInterface: ...

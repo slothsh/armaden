@@ -22,10 +22,10 @@ logger = logging.getLogger("server.supervisor")
 
 
 class Supervisor:
-    def __init__(self) -> None:
+    def __init__(self, event_loop: asyncio.AbstractEventLoop) -> None:
         self._running = False
         self._shutdown_event = asyncio.Event()
-        self._main_loop = asyncio.get_event_loop()
+        self._main_loop = event_loop
 
         self._server_states: Dict[ThreadInfoData, ServerStateData] = {}
         self._server_futures: List[Future] = []
@@ -41,25 +41,30 @@ class Supervisor:
 
     # -- Builder Methods ------------------------------------------------------
     
+    def with_server(self, server: Server) -> Self:
+        worker_event_loop = asyncio.new_event_loop()
+
+        thread_info = self._generate_thread_info()
+
+        self._server_states[thread_info] = ServerStateData(
+            server=server,
+            initialized=False,
+            event_loop=worker_event_loop,
+            processes=[],
+            thread=Thread(
+                name=thread_info.name,
+                target=Supervisor._start_worker_event_loop,
+                args=(worker_event_loop,),
+                daemon=True
+            )
+        )
+
+        return self
+
+
     def with_servers(self, servers: List[Server]) -> Self:
         for server in servers:
-            worker_event_loop = asyncio.new_event_loop()
-
-            thread_info = self._generate_thread_info()
-
-            self._server_states[thread_info] = ServerStateData(
-                server=server,
-                initialized=False,
-                event_loop=worker_event_loop,
-                processes=[],
-                thread=Thread(
-                    name=thread_info.name,
-                    target=Supervisor._start_worker_event_loop,
-                    args=(worker_event_loop,),
-                    daemon=True
-                )
-            )
-
+            self.with_server(server)
         return self
 
 
