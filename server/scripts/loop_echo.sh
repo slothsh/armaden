@@ -2,15 +2,18 @@
 set -euo pipefail
 
 usage() {
-    echo "Usage: ${0##*/} [-n COUNT]"
-    echo "  -n COUNT  Iterate COUNT times (default: infinite)"
+    echo "Usage: ${0##*/} [-n COUNT] [-m MESSAGE]"
+    echo "  -n COUNT    Iterate COUNT times (default: infinite)"
+    echo "  -m MESSAGE  Print MESSAGE after the iteration number"
     exit 1
 }
 
 COUNT=""
-while getopts ":n:h" opt; do
+MESSAGE=""
+while getopts ":n:m:h" opt; do
     case $opt in
         n) COUNT="$OPTARG" ;;
+        m) MESSAGE="$OPTARG" ;;
         h) usage ;;
         \?) echo "Invalid option: -$OPTARG" >&2; usage ;;
         :)  echo "Option -$OPTARG requires an argument" >&2; usage ;;
@@ -24,13 +27,13 @@ if [[ -n "$COUNT" ]]; then
         exit 1
     fi
     for ((i = 0; i < COUNT; i++)); do
-        echo "Message $((i + 1))/${COUNT}: Foo bar baz"
+        echo "Loop Echo $((i + 1))/${COUNT}${MESSAGE:+: $MESSAGE}"
         sleep 2
     done
 else
     i=1
     while true; do
-        echo "Message ${i}: Foo bar baz"
+        echo "Loop Echo ${i}${MESSAGE:+: $MESSAGE}"
         sleep 2
         ((i++))
     done

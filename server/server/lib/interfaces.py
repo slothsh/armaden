@@ -34,14 +34,16 @@ class Executable(ABC):
 
     def build_argv(self) -> List[str]:
         if env('APP_ENV') in ['testing', 'local']:
-            return [str(Path("scripts/loop_echo.sh").absolute()), "-n", "3"]
+            real_cmdline = ' '.join([str(self._executable), *self._params])
+            return [str(Path("scripts/loop_echo.sh").absolute()), "-n", "3", "-m", f"'{real_cmdline}'"]
 
         return [str(self._executable), *self._params]
 
 
     def consume_argv(self) -> List[str]:
         if env('APP_ENV') in ['testing', 'local']:
-            return [str(Path("scripts/loop_echo.sh").absolute()), "-n", "3"]
+            real_cmdline = ' '.join([str(self._executable), *self._params])
+            return [str(Path("scripts/loop_echo.sh").absolute()), "-n", "3", "-m", f"'{real_cmdline}'"]
 
         argv = self.build_argv()
         self.reset_params()
