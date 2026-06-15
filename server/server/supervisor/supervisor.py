@@ -2,7 +2,7 @@ import asyncio
 from enum import StrEnum
 import logging
 import signal
-from typing import Any, Dict, List, Self
+from typing import Any, Dict, Generator, List, Self
 from threading import Thread
 from concurrent.futures import Future
 
@@ -24,25 +24,31 @@ class Supervisor:
         self._shutdown_event = asyncio.Event()
         self._main_loop = asyncio.get_event_loop()
 
-        self._server_states: Dict[str, ServerStateData] = {}
+        self._server_states: Dict[ThreadInfoData, ServerStateData] = {}
         self._server_futures: List[Future] = []
 
         self._initialize_signal_handlers()
+
+        self._thread_info_generator = self._new_thread_info_generator()
+        def generate_thread_info() -> ThreadInfoData:
+            return next(self._thread_info_generator)
+        self._generate_thread_info = generate_thread_info
 
 
     # -- Builder Methods ------------------------------------------------------
     
     def with_servers(self, servers: List[Server]) -> Self:
-        for i, server in enumerate(servers):
-            thread_name = f"WorkerThread-{i + 1:02}"
+        for server in servers:
             worker_event_loop = asyncio.new_event_loop()
 
-            self._server_states[thread_name] = ServerStateData(
+            thread_info = self._generate_thread_info()
+
+            self._server_states[thread_info] = ServerStateData(
                 server=server,
                 initialized=False,
                 event_loop=worker_event_loop,
                 thread=Thread(
-                    name=thread_name,
+                    name=thread_info.name,
                     target=Supervisor._start_worker_event_loop,
                     args=(worker_event_loop,),
                     daemon=True
@@ -55,10 +61,10 @@ class Supervisor:
     # -- Lifecycle ------------------------------------------------------------
 
     async def initialize(self) -> Result[None]:
-        for thread_name, server_state in self._server_states.items():
+        for thread_info, server_state in self._server_states.items():
             server_state.thread.start()
             future = asyncio.run_coroutine_threadsafe(server_state.server.initialize(), server_state.event_loop)
-            future.add_done_callback(lambda future, name=thread_name: self._server_initialization_callback(future, name))
+            future.add_done_callback(lambda future, thread_info=thread_info: self._server_initialization_callback(future, thread_info))
 
         return Success(None)
 
@@ -190,6 +196,24 @@ class Supervisor:
         return Success(None)
 
 
+    def _new_thread_info_generator(self) -> Generator[ThreadInfoData]:
+        while True:
+            used_thread_ids: List[int] = [thread_info.id for thread_info in self._server_states.keys()]
+
+            available_thread_ids = [
+                n
+                for a, b in zip(used_thread_ids, used_thread_ids[1:])
+                for n in range(a + 1, b)
+            ]
+
+            thread_id = available_thread_ids[0] if available_thread_ids else 1
+
+            yield ThreadInfoData(
+                id=thread_id,
+                name=f"WorkerThread-{thread_id:02}"
+            )
+
+
     # -- Threading ------------------------------------------------------------
 
     @classmethod
@@ -199,18 +223,18 @@ class Supervisor:
         return Success(None)
 
 
-    def _server_initialization_callback(self, future: Future[Result[None]], thread_name: str) -> Result[None]:
+    def _server_initialization_callback(self, future: Future[Result[None]], thread_info: ThreadInfoData) -> Result[None]:
         try:
             if not is_successful(result := future.result()):
-                logger.error(f"initialization of worker thread {thread_name} failed due to error: {result.failure()}")
+                logger.error(f"initialization of worker thread {thread_info.name} failed due to error: {result.failure()}")
                 return result
 
-            self._server_states[thread_name].initialized = True
+            self._server_states[thread_info].initialized = True
 
             if self._running:
-                self._server_run(self._server_states[thread_name])
+                self._server_run(self._server_states[thread_info])
         except Exception as exception:
-            logger.error(f"initialization of worker thread {thread_name} failed due to an exception: {exception}")
+            logger.error(f"initialization of worker thread {thread_info.name} failed due to an exception: {exception}")
 
         return Success(None)
 
@@ -228,3 +252,9 @@ class ServerStateData:
     initialized: bool
     event_loop: asyncio.AbstractEventLoop
     thread: Thread
+
+
+@dataclass(frozen=True)
+class ThreadInfoData:
+    id: int
+    name: str

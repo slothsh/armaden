@@ -71,9 +71,9 @@ class ApiServer(Server):
             )
             self._uvicorn_server = uvicorn.Server(config=server_config)
             return Success(None)
-        except Exception as e:
+        except Exception as exception:
             return Failure(Error(ApiServerError.INITIALIZATION_FAILED, {
-                'exception': e
+                'exception': exception
             }))
 
 
