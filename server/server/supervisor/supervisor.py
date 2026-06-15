@@ -1,7 +1,9 @@
 import asyncio
+from asyncio.subprocess import Process
 from enum import StrEnum
 import logging
 import signal
+import threading
 from typing import Any, Dict, Generator, List, Self
 from threading import Thread
 from concurrent.futures import Future
@@ -26,6 +28,7 @@ class Supervisor:
 
         self._server_states: Dict[ThreadInfoData, ServerStateData] = {}
         self._server_futures: List[Future] = []
+        self._processes: List[ProcessInfoData] = []
 
         self._initialize_signal_handlers()
 
@@ -47,6 +50,7 @@ class Supervisor:
                 server=server,
                 initialized=False,
                 event_loop=worker_event_loop,
+                processes=[],
                 thread=Thread(
                     name=thread_info.name,
                     target=Supervisor._start_worker_event_loop,
@@ -86,10 +90,20 @@ class Supervisor:
 
 
     async def shutdown(self) -> Result[None]:
-        for server_state in self._server_states.values():
-            if server_state.initialized:
-                await server_state.server.shutdown()
-                server_state.initialized = False
+        for thread_info, server_state in self._server_states.items():
+            try:
+                if server_state.initialized or server_state.started:
+                    await server_state.server.shutdown()
+                    server_state.initialized = False
+                    server_state.started = False
+
+                for process_info in server_state.processes:
+                    if process_info.process.returncode is None:
+                        logger.info("Sending interrupt to sub-process PID %s, running on server worker thread %s", process_info.process.pid, thread_info.name)
+                        process_info.process.send_signal(signal.SIGINT)
+            except Exception as exception:
+                logger.error("An error occurred trying to shutdown server on thread %s: %s", thread_info.name, exception)
+
 
         if self._server_futures:
             logger.warning("Shutting down supervisor servers")
@@ -101,6 +115,10 @@ class Supervisor:
                 logger.warning("Background servers timed out during exit phase.")
             except Exception as e:
                 logger.error(f"Error during background server cleanup: {e}")
+
+        for process_info in self._processes:
+            logger.info("Sending interrupt to sub-process PID %s, running on thread %s", process_info.process.pid, threading.current_thread().name)
+            process_info.process.send_signal(signal.SIGINT)
                 
         join_threads = []
         for server_state in self._server_states.values():
@@ -142,6 +160,9 @@ class Supervisor:
         handle_std_streams: AsyncStreamCallback | None = None,
     ) -> Result[str]:
         logger.info('Executing command in subprocess: %s', ' '.join(argv))
+        
+        current_thread_name = threading.current_thread().name
+        current_server = [server_state for server_state in self._server_states.values() if server_state.thread.name == current_thread_name]
 
         process = await asyncio.create_subprocess_exec(
             argv[0], *argv[1:],
@@ -155,6 +176,12 @@ class Supervisor:
             tasks.append(asyncio.create_task(
                 handle_std_streams(process.stdout, process.stderr)
             ))
+
+        process_info = ProcessInfoData(name=current_thread_name, process=process)
+        if len(current_server) == 1:
+            current_server[0].processes.append(process_info)
+        else:
+            self._processes.append(process_info)
 
         returncode = await process.wait()
         await asyncio.gather(*tasks)
@@ -254,6 +281,7 @@ class ServerStateData:
     server: Server
     initialized: bool
     event_loop: asyncio.AbstractEventLoop
+    processes: List[ProcessInfoData]
     thread: Thread
     started: bool = False
 
@@ -262,3 +290,9 @@ class ServerStateData:
 class ThreadInfoData:
     id: int
     name: str
+
+
+@dataclass(frozen=True)
+class ProcessInfoData:
+    name: str
+    process: Process
