@@ -6,13 +6,14 @@ For available environment variables see :mod:`server.supervisor`.
 
 import asyncio
 import logging
+import traceback
 
 from returns.result import Failure, Success
 from returns.pipeline import is_successful
 
 from server.api import ApiServer
 from server.arma import ArmaReforgerServer
-from server.bootstrap import Application, ApplicationException
+from server.bootstrap.application import Application
 from server.error import GenericError
 from server.http.routes import api_routes
 from server.lib import Result, Error, app, env, config
@@ -22,17 +23,18 @@ logger = logging.getLogger("server")
 
 
 async def entrypoint() -> Result[None]:
-    # Bootstrap the application
-    Application.bootstrap()
+    application = Application()
     logger.info("Application Name: %s", config('app.name'))
     logger.info("version: %s", app().version())
     logger.info("description: %s", config('app.description'))
     logger.info("environment: %s", env('APP_ENV'))
 
     # Prepare the supervisor
+    logger.info('supervisor')
     supervisor = Supervisor()
 
     # Prepare the servers
+    logger.info('api')
     api = (
         ApiServer()
         .with_supervisor(supervisor)
@@ -40,21 +42,25 @@ async def entrypoint() -> Result[None]:
         .build()
     )
 
+    logger.info('arma')
     arma_reforger = (
         ArmaReforgerServer()
         .with_supervisor(supervisor)
         .build()
     )
 
+    logger.info('with_servers')
     supervisor.with_servers([
         api,
         arma_reforger,
     ])
 
     # Begin the supervisor lifecycle
+    logger.info('init')
     if not is_successful(result := await supervisor.initialize()):
         return result
 
+    logger.info('run')
     if not is_successful(result := await supervisor.run()):
         return result
 
@@ -66,11 +72,9 @@ def main() -> Result[None]:
         return asyncio.run(entrypoint())
     except (KeyboardInterrupt, SystemExit):
         return Success(None)
-    except ApplicationException as exception:
-        return Failure(Error(GenericError.APP_NOT_BOOTSTRAPPED, details={
-            'exception': exception
-        }))
     except Exception as exception:
+        traceback.print_exception(exception)
+        logger.error(exception.__traceback__)
         return Failure(Error(GenericError.EXCEPTION, details={
             'exception': exception
         }))
@@ -83,10 +87,6 @@ if __name__ == "__main__":
         asyncio.run(entrypoint())
     except (KeyboardInterrupt, SystemExit):
         logger.info(Success(None))
-    except ApplicationException as exception:
-        logger.error(Failure(Error(GenericError.APP_NOT_BOOTSTRAPPED, details={
-            'exception': exception
-        })))
     except Exception as exception:
         logger.error(Error(GenericError.EXCEPTION, details={
             'exception': exception

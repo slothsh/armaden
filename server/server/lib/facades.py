@@ -2,7 +2,8 @@ import json
 from typing import Any
 
 import logging
-from server.bootstrap import Application
+from server.bootstrap.application import Application
+from server.bootstrap.kernel import ApplicationInterface
 
 logger = logging.getLogger('server.lib.facades')
 
@@ -11,7 +12,7 @@ def env(name: str, default: Any | None = None) -> str | None:
     return Application.instance().environment(name, default)
 
 
-def app() -> Application:
+def app() -> ApplicationInterface:
     return Application.instance()
 
 
