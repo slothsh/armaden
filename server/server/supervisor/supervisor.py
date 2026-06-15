@@ -70,21 +70,18 @@ class Supervisor:
 
 
     async def run(self) -> Result[None]:
-        ready_servers = [server for server in self._server_states.values() if server.initialized]
+        self._running = True
+        self._start_ready_servers()
 
-        running = False
-        for server_state in ready_servers:
-            if not is_successful(result := self._server_run(server_state)):
-                logger.error("Failed to run server on worker thread %s: %s", server_state.thread.name, result.failure())
-                continue
-            running = True
-
-        if not running:
+        if self._server_states and not any(s.started for s in self._server_states.values()):
             logger.warning("No servers are running, waiting until shutdown signal is received")
 
-        self._running = running
-        await self._shutdown_event.wait()
-        
+        while not self._shutdown_event.is_set():
+            try:
+                await asyncio.wait_for(self._shutdown_event.wait(), timeout=5.0)
+            except asyncio.TimeoutError:
+                self._start_ready_servers()
+
         return await self.shutdown()
 
 
@@ -184,6 +181,15 @@ class Supervisor:
 
     # -- Helpers --------------------------------------------------------------
 
+    def _start_ready_servers(self) -> None:
+        for server_state in self._server_states.values():
+            if server_state.initialized and not server_state.started:
+                if not is_successful(result := self._server_run(server_state)):
+                    logger.error("Failed to run server on worker thread %s: %s", server_state.thread.name, result.failure())
+                    continue
+                server_state.started = True
+
+
     def _server_run(self, server_state: ServerStateData) -> Result[None]:
         async def run(server_state: ServerStateData) -> Result[None]:
             return await server_state.server.run()
@@ -204,7 +210,7 @@ class Supervisor:
                 n
                 for a, b in zip(used_thread_ids, used_thread_ids[1:])
                 for n in range(a + 1, b)
-            ]
+            ] if len(used_thread_ids) != 1 else [n + 1 for n in used_thread_ids]
 
             thread_id = available_thread_ids[0] if available_thread_ids else 1
 
@@ -230,9 +236,6 @@ class Supervisor:
                 return result
 
             self._server_states[thread_info].initialized = True
-
-            if self._running:
-                self._server_run(self._server_states[thread_info])
         except Exception as exception:
             logger.error(f"initialization of worker thread {thread_info.name} failed due to an exception: {exception}")
 
@@ -252,6 +255,7 @@ class ServerStateData:
     initialized: bool
     event_loop: asyncio.AbstractEventLoop
     thread: Thread
+    started: bool = False
 
 
 @dataclass(frozen=True)
