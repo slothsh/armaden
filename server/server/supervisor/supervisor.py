@@ -92,6 +92,7 @@ class Supervisor:
             except asyncio.TimeoutError:
                 self._start_ready_servers()
 
+        logger.info('Supervisor event loop finished. Shutting down now...')
         return await self.shutdown()
 
 
@@ -227,7 +228,7 @@ class Supervisor:
 
     def _handle_os_signal(self, signum: int, frame: Any) -> None:
         logger.info("OS signal caught. Handling signal %s", signal.Signals(signum).name)
-        self._main_loop.call_soon_threadsafe(self._shutdown_event.set)
+        self._shutdown_event.set()
 
 
     # -- Helpers --------------------------------------------------------------
