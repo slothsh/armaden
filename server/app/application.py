@@ -6,7 +6,6 @@ from returns.result import Failure, Success
 from framework.kernel import Kernel
 from framework.utils.types import Result
 from framework.errors import Error, GenericError
-from framework.classes.supervisor import Supervisor
 
 from app.services.api_service import ApiService
 from app.services.arma_reforger_service import ArmaReforgerService
@@ -45,8 +44,8 @@ class Application(Kernel):
 
 
     def version(self) -> str:
+        from importlib import metadata
         try:
-            from importlib import metadata
             return metadata.version('server')
         except metadata.PackageNotFoundError:
             return '0.0.0'
