@@ -2,16 +2,21 @@ import json
 import logging
 from pathlib import Path
 from datetime import datetime
-from typing import Any, Dict
-from fastapi import Body, HTTPException, Request
+from typing import Any
+from fastapi import Body, Depends, HTTPException, Request
+from app.http.actions.get_app_status import GetAppStatus
+from app.http.dto.lifecycle_data import HealthResponseData
 from framework.facades.app import app
 
 logger = logging.getLogger('app.http.controllers.lifecycle')
 
 
 class LifecycleController:
-    async def health(self) -> Dict[str, Any]:
-        return await app().status()
+    async def health(
+            self,
+            status: GetAppStatus = Depends(GetAppStatus)
+    ) -> HealthResponseData:
+        return await status()
 
 
     def status(self, request: Request) -> dict[str, Any]:

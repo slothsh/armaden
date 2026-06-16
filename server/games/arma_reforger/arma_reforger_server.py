@@ -7,6 +7,7 @@ from pathlib import Path
 
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
+from framework.enums.health_status import HealthStatus
 from framework.facades import app
 from framework.facades import config
 from framework.classes.server import Server
@@ -95,7 +96,7 @@ class ArmaReforgerServer(Server):
 
     async def status(self) -> Result[Dict[str, Any]]:
         return Success({
-            'status': 'OK'
+            'status': HealthStatus.OK,
         })
 
 

@@ -13,6 +13,9 @@ from abc import ABC
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
+from framework.enums.health_status import HealthStatus
+from framework.utils.dictionary import Dictionary
+
 from .protocols import ServiceInterface, ApplicationInterface, SupervisorInterface
 from .utils.types import Result
 from .errors import Error
@@ -87,7 +90,7 @@ class Kernel(ABC):
             for name, result in results.items():
                 if not is_successful(result):
                     logger.warning(result.failure())
-                    status[name] = None
+                    status[name] = { 'status': HealthStatus.UNAVAILABLE }
                     continue
 
                 status[name] = result.unwrap()
@@ -95,7 +98,15 @@ class Kernel(ABC):
             return status
 
                 
-        return { service.name: handle_result(result) for service in self.services for result in await service.status()}
+        service_statuses = { service.name: handle_result(result) for service in self.services for result in await service.status() }
+        app_degraded = Dictionary.has('status', lambda value: value != HealthStatus.OK, [
+            *service_statuses.values()
+        ])
+
+        return {
+            'status': HealthStatus.DEGRADED if app_degraded else HealthStatus.OK,
+            'services': service_statuses,
+        }
 
 
     @classmethod

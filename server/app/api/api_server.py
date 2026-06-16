@@ -8,6 +8,7 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 
 from framework.classes.server import Server
+from framework.enums.health_status import HealthStatus
 from framework.utils.types import Result
 from framework.errors import Error
 from framework.classes.rcon_client import RconClient
@@ -94,7 +95,7 @@ class ApiServer(Server):
 
     async def status(self) -> Result[Dict[str, Any]]:
         return Success({
-            'status': 'OK'
+            'status': HealthStatus.OK,
         })
 
 
