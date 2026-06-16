@@ -1,5 +1,6 @@
 .todos/
 data/
+.data/
 __pycache__/
 dist/
 .env
