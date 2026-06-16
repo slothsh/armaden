@@ -1,0 +1,9 @@
+from returns.result import Result
+from typing import Protocol
+from .error import ErrorInterface
+
+
+class ServerInterface(Protocol):
+    async def initialize(self) -> Result[None, ErrorInterface]: ...
+    async def run(self) -> Result[None, ErrorInterface]: ...
+    async def shutdown(self) -> Result[None, ErrorInterface]: ...

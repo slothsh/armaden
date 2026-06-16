@@ -1,6 +1,6 @@
 import asyncio
 from pathlib import Path
-from typing import Any, Dict, List, Protocol
+from typing import Any, Dict, List
 from dotenv import load_dotenv
 from enum import StrEnum
 import logging
@@ -13,7 +13,7 @@ from abc import ABC
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
-from .protocols import ServiceInterface, KernelInterface, ApplicationInterface
+from .protocols import ServiceInterface, ApplicationInterface
 from .utils.types import Result
 from .errors import Error
 from .classes.supervisor import Supervisor

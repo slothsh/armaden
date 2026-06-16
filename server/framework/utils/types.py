@@ -1,5 +1,10 @@
+from ..protocols.error import ErrorInterface
+from collections.abc import Callable, Coroutine
 from returns.result import Result as ReturnsResult
+from typing import Any
+import asyncio
 
-from ..errors import Error
+type Result[S] = ReturnsResult[S, ErrorInterface]
 
-type Result[S] = ReturnsResult[S, Error]
+type AsyncStreamArg = asyncio.StreamReader | None
+type AsyncStreamCallback = Callable[[str], Coroutine[Any, Any, Result[None]]]

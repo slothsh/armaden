@@ -4,7 +4,6 @@ from enum import StrEnum
 import logging
 import signal
 import threading
-from collections.abc import Callable, Coroutine
 from typing import Any, Dict, Generator, List, Self
 from threading import Thread
 from concurrent.futures import Future
@@ -14,14 +13,11 @@ from returns.pipeline import is_successful
 from returns.result import Failure, Success
 from pathlib import Path
 
-from ..utils.types import Result
+from ..utils.types import Result, AsyncStreamArg,  AsyncStreamCallback
 from ..errors import Error
 from .server import Server
 
 logger = logging.getLogger("framework.supervisor")
-
-type AsyncStreamArg = asyncio.StreamReader | None
-type AsyncStreamCallback = Callable[[str], Coroutine[Any, Any, Result[None]]]
 
 
 class Supervisor:

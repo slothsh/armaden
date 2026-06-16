@@ -1,11 +1,13 @@
 from .error import ErrorInterface
-from .kernel import KernelInterface
-from .application import ApplicationInterface
+from .server import ServerInterface
 from .service import ServiceInterface
+from .supervisor import SupervisorInterface
+from .application import ApplicationInterface
 
 __all__ = [
-    'ApplicationInterface',
     'ErrorInterface',
-    'KernelInterface',
+    'ServerInterface',
     'ServiceInterface',
+    'SupervisorInterface',
+    'ApplicationInterface',
 ]

@@ -1,6 +1,13 @@
-from typing import Protocol
-from .kernel import KernelInterface
+from typing import Protocol, Any, Self
+from .supervisor import SupervisorInterface
 
 
-class ApplicationInterface(KernelInterface, Protocol):
-    pass
+class ApplicationInterface(Protocol):
+    supervisor: SupervisorInterface
+
+    def version(self) -> str: ...
+    def environment(self, name: str, default: str | None = None) -> str | None: ...
+    def config(self, key: str, default: Any | None = None) -> Any: ...
+
+    @classmethod
+    def instance(cls) -> Self: ...
