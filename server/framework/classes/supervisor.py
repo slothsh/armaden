@@ -15,7 +15,7 @@ from pathlib import Path
 
 from ..utils.types import Result, AsyncStreamArg,  AsyncStreamCallback
 from ..errors import Error
-from .server import Server
+from ..protocols import ServerInterface
 
 logger = logging.getLogger("framework.supervisor")
 
@@ -40,7 +40,7 @@ class Supervisor:
 
     # -- Builder Methods ------------------------------------------------------
 
-    def with_server(self, server: Server) -> Self:
+    def with_server(self, server: ServerInterface) -> Self:
         worker_event_loop = asyncio.new_event_loop()
 
         thread_info = self._generate_thread_info()
@@ -61,7 +61,7 @@ class Supervisor:
         return self
 
 
-    def with_servers(self, servers: List[Server]) -> Self:
+    def with_servers(self, servers: List[ServerInterface]) -> Self:
         for server in servers:
             self.with_server(server)
         return self
@@ -302,7 +302,7 @@ class SupervisorError(StrEnum):
 
 @dataclass
 class ServerStateData:
-    server: Server
+    server: ServerInterface
     initialized: bool
     event_loop: asyncio.AbstractEventLoop
     processes: List[ProcessInfoData]

@@ -1,5 +1,5 @@
 from enum import StrEnum
-from typing import List, Self, Tuple
+from typing import Any, Dict, List, Self, Tuple
 from collections.abc import Callable
 import logging
 import uvicorn
@@ -90,6 +90,12 @@ class ApiServer(Server):
             self._uvicorn_server.should_exit = True
 
         return Success(None)
+
+
+    async def status(self) -> Result[Dict[str, Any]]:
+        return Success({
+            'status': 'OK'
+        })
 
 
 # --- Internal Types ----------------------------------------------------------

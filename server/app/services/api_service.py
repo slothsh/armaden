@@ -9,11 +9,19 @@ from app.http.routes.api_routes import api_routes
 
 
 class ApiService(Service):
+    name = 'api'
+
     def __call__(self) -> Result[None]:
-        app().supervisor.with_server(
+        api_server = (
             ApiServer()
-                .with_routes(api_routes)
-                .build()
+            .with_routes(api_routes)
+            .build()
         )
+
+        self.status_callbacks.extend([
+            ('server', api_server.status)
+        ])
+
+        app().supervisor.with_server(api_server)
 
         return Success(None)

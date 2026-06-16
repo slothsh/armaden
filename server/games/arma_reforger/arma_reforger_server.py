@@ -93,6 +93,12 @@ class ArmaReforgerServer(Server):
         return Success(None)
 
 
+    async def status(self) -> Result[Dict[str, Any]]:
+        return Success({
+            'status': 'OK'
+        })
+
+
     # -- Executable Helpers -------------------------------------------
 
     def server_command(self) -> Result[List[str]]:

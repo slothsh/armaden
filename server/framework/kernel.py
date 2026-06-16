@@ -1,6 +1,6 @@
 import asyncio
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Self, cast
 from dotenv import load_dotenv
 from enum import StrEnum
 import logging
@@ -13,7 +13,7 @@ from abc import ABC
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
-from .protocols import ServiceInterface, ApplicationInterface
+from .protocols import ServiceInterface, ApplicationInterface, SupervisorInterface
 from .utils.types import Result
 from .errors import Error
 from .classes.supervisor import Supervisor
@@ -37,7 +37,7 @@ class Kernel(ABC):
         self._package_name: str | None = package_name or (None if not __package__ else __package__.split(".")[0])
 
         self.services: List[ServiceInterface] = []
-        self.supervisor = Supervisor(asyncio.new_event_loop())
+        self.supervisor: SupervisorInterface = Supervisor(asyncio.new_event_loop())
 
         self._bootstrap()
 
@@ -80,12 +80,30 @@ class Kernel(ABC):
         return value
 
 
+    async def status(self) -> Dict[str, Any]:
+        def handle_result(results: Dict[str, Result[Dict[str, Any]]]) -> Dict[str, Any]:
+            status: Dict[str, Any] = {}
+
+            for name, result in results.items():
+                if not is_successful(result):
+                    logger.warning(result.failure())
+                    status[name] = None
+                    continue
+
+                status[name] = result.unwrap()
+
+            return status
+
+                
+        return { service.name: handle_result(result) for service in self.services for result in await service.status()}
+
+
     @classmethod
-    def instance(cls) -> ApplicationInterface:
+    def instance(cls) -> Self:
         global HANDLE
         if not HANDLE:
             raise KernelException("The global application handle is not available. Did you bootstrap the application?")
-        return HANDLE
+        return cast(Self, HANDLE)
 
 
     # -- Initializers ---------------------------------------------------------

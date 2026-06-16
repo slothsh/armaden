@@ -2,7 +2,7 @@ import json
 import logging
 from pathlib import Path
 from datetime import datetime
-from typing import Any
+from typing import Any, Dict
 from fastapi import Body, HTTPException, Request
 from framework.facades.app import app
 
@@ -10,8 +10,8 @@ logger = logging.getLogger('app.http.controllers.lifecycle')
 
 
 class LifecycleController:
-    def health(self) -> dict[str, str]:
-        return {"status": "ok", "version": app().version()}
+    async def health(self) -> Dict[str, Any]:
+        return await app().status()
 
 
     def status(self, request: Request) -> dict[str, Any]:

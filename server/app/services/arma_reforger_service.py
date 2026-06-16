@@ -8,10 +8,18 @@ from games.arma_reforger import ArmaReforgerServer
 
 
 class ArmaReforgerService(Service):
+    name = 'arma_reforger'
+
     def __call__(self) -> Result[None]:
-        app().supervisor.with_server(
+        arma_reforger_server = (
             ArmaReforgerServer()
                 .build()
         )
+
+        self.status_callbacks.extend([
+            ('server', arma_reforger_server.status)
+        ])
+
+        app().supervisor.with_server(arma_reforger_server)
 
         return Success(None)
