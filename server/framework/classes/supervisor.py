@@ -4,6 +4,7 @@ from enum import StrEnum
 import logging
 import signal
 import threading
+from asyncio.queues import Queue
 from typing import Any, Dict, Generator, List, Self
 from threading import Thread
 from concurrent.futures import Future
@@ -26,8 +27,8 @@ class Supervisor:
         self._shutdown_event = asyncio.Event()
         self._main_loop = event_loop
 
+        self._restart_queue: Queue[int] = Queue()
         self._server_states: Dict[ThreadInfoData, ServerStateData] = {}
-        self._server_futures: List[Future] = []
         self._processes: List[ProcessInfoData] = []
 
         self._initialize_signal_handlers()
@@ -42,22 +43,8 @@ class Supervisor:
 
     def with_server(self, server: ServerInterface) -> Self:
         worker_event_loop = asyncio.new_event_loop()
-
         thread_info = self._generate_thread_info()
-
-        self._server_states[thread_info] = ServerStateData(
-            server=server,
-            initialized=False,
-            event_loop=worker_event_loop,
-            processes=[],
-            thread=Thread(
-                name=thread_info.name,
-                target=Supervisor._start_worker_event_loop,
-                args=(worker_event_loop,),
-                daemon=True
-            )
-        )
-
+        self._server_states[thread_info] = self._new_server_state(thread_info.name, server, worker_event_loop)
         return self
 
 
@@ -71,9 +58,7 @@ class Supervisor:
 
     async def initialize(self) -> Result[None]:
         for thread_info, server_state in self._server_states.items():
-            server_state.thread.start()
-            future = asyncio.run_coroutine_threadsafe(server_state.server.initialize(), server_state.event_loop)
-            future.add_done_callback(lambda future, thread_info=thread_info: self._server_initialization_callback(future, thread_info))
+            self._server_initialize(thread_info, server_state)
 
         return Success(None)
 
@@ -87,6 +72,7 @@ class Supervisor:
 
         while not self._shutdown_event.is_set():
             try:
+                await self._process_restart_queue()
                 await asyncio.wait_for(self._shutdown_event.wait(), timeout=5.0)
             except asyncio.TimeoutError:
                 self._start_ready_servers()
@@ -98,25 +84,15 @@ class Supervisor:
     async def shutdown(self) -> Result[None]:
         for thread_info, server_state in self._server_states.items():
             try:
-                if server_state.initialized or server_state.started:
-                    await server_state.server.shutdown()
-                    server_state.initialized = False
-                    server_state.started = False
-
-                for process_info in server_state.processes:
-                    if process_info.process.returncode is None:
-                        logger.info("Sending interrupt to sub-process PID %s, running on server worker thread %s", process_info.process.pid, thread_info.name)
-                        process_info.process.send_signal(signal.SIGINT)
+                await self._shutdown_server(thread_info, server_state)
             except Exception as exception:
                 logger.error("An error occurred trying to shutdown server on thread %s: %s", thread_info.name, exception)
 
-
-        if self._server_futures:
-            logger.warning("Shutting down supervisor servers")
-            asyncio_tasks = [asyncio.wrap_future(future) for future in self._server_futures]
-
+        logger.warning("Shutting down supervisor servers")
+        futures = [asyncio.wrap_future(server_state.future) for server_state in self._server_states.values() if server_state.future]
+        if futures:
             try:
-                await asyncio.wait_for(asyncio.gather(*asyncio_tasks), timeout=30.0)
+                await asyncio.wait_for(asyncio.gather(*futures), timeout=30.0)
             except asyncio.TimeoutError:
                 logger.warning("Background servers timed out during exit phase.")
             except Exception as e:
@@ -134,8 +110,6 @@ class Supervisor:
         for thread in join_threads:
             thread.join(timeout=30.0)
 
-        self._server_futures.clear()
-
         self._running = False
 
         return Success(None)
@@ -151,8 +125,18 @@ class Supervisor:
         pass
 
 
-    async def queue_restart(self) -> None:
-        pass
+    async def queue_restart(self, thread_id: int) -> Result[None]:
+        server_states = { thread_info.id for thread_info in self._server_states.keys() }
+
+        if not server_states:
+            logger.info('Thread ID %s not found. No restart will happen', thread_id)
+            return Failure(Error(SupervisorError.SERVER_ID_NOT_FOUND, details={ 'thread_id': thread_id }))
+
+        logger.info('Enqueuing restart for thread ID %s', thread_id)
+        await self._restart_queue.put(thread_id)
+
+        return Success(None)
+
 
 
     async def queue_reload(self, config_path: str | Path) -> None:
@@ -241,14 +225,52 @@ class Supervisor:
                 server_state.started = True
 
 
+    async def _process_restart_queue(self) -> None:
+        if self._restart_queue.empty():
+            return
+
+        server_states = { thread_info.id: (thread_info, server_state) for thread_info, server_state in self._server_states.items() }
+
+        while not self._restart_queue.empty():
+            thread_id = self._restart_queue.get_nowait()
+
+            if thread_id in server_states:
+                logger.info('Processing restart request for %s', server_states[thread_id][0].name)
+
+                if is_successful(await self._shutdown_server(*server_states[thread_id], cleanup=True)):
+                    (old_thread_info, old_server_state) = server_states[thread_id]
+                    del self._server_states[old_thread_info]
+
+                    new_thread_info = self._generate_thread_info()
+
+                    self._server_states[new_thread_info] = self._new_server_state(
+                        new_thread_info.name,
+                        old_server_state.server,
+                        old_server_state.event_loop
+                    )
+
+                    logger.info('Reinitializing new server state for restarted server on thread %s', new_thread_info.name)
+                    self._server_initialize(new_thread_info, self._server_states[new_thread_info])
+
+        logger.info('Running reinitialized servers')
+        self._start_ready_servers()
+
+
+    def _server_initialize(self, thread_info: ThreadInfoData, server_state: ServerStateData) -> Result[None]:
+        server_state.thread.start()
+        future = asyncio.run_coroutine_threadsafe(server_state.server.initialize(), server_state.event_loop)
+        future.add_done_callback(lambda future, thread_info=thread_info: self._server_initialization_callback(future, thread_info))
+        return Success(None)
+
+
     def _server_run(self, server_state: ServerStateData) -> Result[None]:
         async def run(server_state: ServerStateData) -> Result[None]:
             return await server_state.server.run()
 
-        self._server_futures.append(asyncio.run_coroutine_threadsafe(
+        server_state.future = asyncio.run_coroutine_threadsafe(
             run(server_state),
             server_state.event_loop
-        ))
+        )
 
         return Success(None)
 
@@ -268,6 +290,50 @@ class Supervisor:
             yield ThreadInfoData(
                 id=thread_id,
                 name=f"WorkerThread-{thread_id:02}"
+            )
+
+
+    async def _shutdown_server(self, thread_info: ThreadInfoData, server_state: ServerStateData, cleanup: bool = False) -> Result[None]:
+        if server_state.initialized or server_state.started:
+            await server_state.server.shutdown()
+            server_state.initialized = False
+            server_state.started = False
+
+        if not cleanup:
+            return Success(None)
+
+        if server_state.future:
+            try:
+                await asyncio.wait_for(asyncio.wrap_future(server_state.future), timeout=30.0)
+            except asyncio.TimeoutError:
+                logger.warning("Background server on thread ID %s timed out during exit phase.", thread_info.id)
+            except Exception as exception:
+                logger.error("Error during background server cleanup: %s", exception)
+
+        for process_info in server_state.processes:
+            if process_info.process.returncode is None:
+                logger.info("Sending interrupt to sub-process PID %s, running on server worker thread %s", process_info.process.pid, thread_info.name)
+                process_info.process.send_signal(signal.SIGINT)
+
+        server_state.event_loop.call_soon_threadsafe(server_state.event_loop.stop)
+        server_state.thread.join(timeout=30.0)
+
+        return Success(None)
+
+
+    def _new_server_state(self, name: str, server: ServerInterface, event_loop: asyncio.AbstractEventLoop) -> ServerStateData:
+        return ServerStateData(
+            server=server,
+            initialized=False,
+            future=None,
+            event_loop=event_loop,
+            processes=[],
+            thread=Thread(
+                name=name,
+                target=Supervisor._start_worker_event_loop,
+                args=(event_loop,),
+                daemon=True
+                )
             )
 
 
@@ -298,12 +364,14 @@ class Supervisor:
 class SupervisorError(StrEnum):
     INITIALIZATION_FAILED = "an error occurred while initializing the supervisor"
     SUBPROCESS_ERROR = "a non-zero exit code occurred when running a subprocess"
+    SERVER_ID_NOT_FOUND = "could not find the specified thread id"
 
 
 @dataclass
 class ServerStateData:
     server: ServerInterface
     initialized: bool
+    future: Future[Result[None]] | None
     event_loop: asyncio.AbstractEventLoop
     processes: List[ProcessInfoData]
     thread: Thread

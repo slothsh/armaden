@@ -1,8 +1,13 @@
 from typing import Dict
-from pydantic import Extra
 from pydantic.dataclasses import dataclass
 
 from framework.enums.health_status import HealthStatus
+# -- Request Data -------------------------------------------------------------
+
+@dataclass
+class RestartRequestData:
+    id: int
+
 
 # -- Response Data ------------------------------------------------------------
 
@@ -10,6 +15,11 @@ from framework.enums.health_status import HealthStatus
 class HealthResponseData:
     status: HealthStatus
     services: Dict[str, Dict[str, ServiceHealthData]]
+
+
+@dataclass(config={'extra': 'allow'})
+class RestartResponseData:
+    success: bool
 
 
 # -- Internal Data ------------------------------------------------------------

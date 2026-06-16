@@ -12,11 +12,7 @@ def api_routes(app: FastAPI):
     )
 
     lifecyle_router.get("/health")(lifecycle_controller.health)
-    lifecyle_router.get("/status")(lifecycle_controller.status)
-    lifecyle_router.post("/start")(lifecycle_controller.start)
-    lifecyle_router.post("/shutdown")(lifecycle_controller.shutdown)
     lifecyle_router.post("/restart")(lifecycle_controller.restart)
-    lifecyle_router.post("/load-config")(lifecycle_controller.load_config)
 
     app.include_router(lifecyle_router)
 
