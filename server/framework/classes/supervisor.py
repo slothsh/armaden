@@ -299,22 +299,24 @@ class Supervisor:
             server_state.initialized = False
             server_state.started = False
 
+        for process_info in server_state.processes:
+            if process_info.process.returncode is None:
+                logger.info("Sending interrupt to sub-process PID %s, running on server worker thread %s", process_info.process.pid, thread_info.name)
+                process_info.process.send_signal(signal.SIGINT)
+
         if not cleanup:
             return Success(None)
 
         if server_state.future:
             try:
+                logger.info("Awaiting server future for thread %s to complete", thread_info.name)
                 await asyncio.wait_for(asyncio.wrap_future(server_state.future), timeout=30.0)
             except asyncio.TimeoutError:
                 logger.warning("Background server on thread ID %s timed out during exit phase.", thread_info.id)
             except Exception as exception:
                 logger.error("Error during background server cleanup: %s", exception)
 
-        for process_info in server_state.processes:
-            if process_info.process.returncode is None:
-                logger.info("Sending interrupt to sub-process PID %s, running on server worker thread %s", process_info.process.pid, thread_info.name)
-                process_info.process.send_signal(signal.SIGINT)
-
+        logger.info("Joining thread %s", thread_info.name)
         server_state.event_loop.call_soon_threadsafe(server_state.event_loop.stop)
         server_state.thread.join(timeout=30.0)
 
