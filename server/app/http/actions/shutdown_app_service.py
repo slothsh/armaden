@@ -1,26 +1,26 @@
 import logging
 from returns.pipeline import is_successful
 
-from app.http.dto.lifecycle_data import RestartRequestData, RestartResponseData
+from app.http.dto.lifecycle_data import ShutdownRequestData, ShutdownResponseData
 from framework.dto.supervisor_request_data import SupervisorRequestData
 from framework.enums.supervisor_request_kind import SupervisorRequestKind
 from framework.facades.app import app
 
 logger = logging.getLogger(__name__)
 
-class RestartAppService:
-    async def __call__(self, service: RestartRequestData) -> RestartResponseData:
+class ShutdownAppService:
+    async def __call__(self, service: ShutdownRequestData) -> ShutdownResponseData:
         try:
             request = SupervisorRequestData(
-                kind=SupervisorRequestKind.RESTART,
+                kind=SupervisorRequestKind.SHUTDOWN,
                 thread_id=service.id
             )
 
             if not is_successful(await app().supervisor.enqueue_request(request)):
                 raise Exception(f"could queue restart for service ID: {service.id}")
 
-            return RestartResponseData(success=True)
+            return ShutdownResponseData(success=True)
         except Exception as exception:
             logger.error(exception)
-            return RestartResponseData(success=False)
+            return ShutdownResponseData(success=False)
 

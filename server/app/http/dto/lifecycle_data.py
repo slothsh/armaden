@@ -9,6 +9,11 @@ class RestartRequestData:
     id: int
 
 
+@dataclass
+class ShutdownRequestData:
+    id: int
+
+
 # -- Response Data ------------------------------------------------------------
 
 @dataclass(config={'extra': 'allow'})
@@ -19,6 +24,11 @@ class HealthResponseData:
 
 @dataclass(config={'extra': 'allow'})
 class RestartResponseData:
+    success: bool
+
+
+@dataclass(config={'extra': 'allow'})
+class ShutdownResponseData:
     success: bool
 
 

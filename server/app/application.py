@@ -32,7 +32,7 @@ class Application(Kernel):
     def main() -> Result[None]:
         try:
             application = Application()
-            return asyncio.run(application())
+            return asyncio.run(application(), loop_factory=application.event_loop)
         except (KeyboardInterrupt, SystemExit):
             return Success(None)
         except Exception as exception:

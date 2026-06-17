@@ -2,9 +2,10 @@ import logging
 from fastapi import Depends
 from app.http.actions.get_app_status import GetAppStatus
 from app.http.actions.restart_app_service import RestartAppService
+from app.http.actions.shutdown_app_service import ShutdownAppService
 from app.http.classes.api import Api
 from app.http.dto.api_data import ApiResponseData
-from app.http.dto.lifecycle_data import RestartRequestData
+from app.http.dto.lifecycle_data import RestartRequestData, ShutdownRequestData
 
 logger = logging.getLogger('app.http.controllers.lifecycle')
 
@@ -23,4 +24,12 @@ class LifecycleController:
         restart_service: RestartAppService = Depends(RestartAppService)
     ) -> ApiResponseData:
         return Api.success(data=await restart_service(service))
+
+
+    async def shutdown(
+        self,
+        service: ShutdownRequestData,
+        shutdown_service: ShutdownAppService = Depends(ShutdownAppService)
+    ) -> ApiResponseData:
+        return Api.success(data=await shutdown_service(service))
 

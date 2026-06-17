@@ -1,19 +1,24 @@
 import asyncio
 from asyncio.subprocess import Process
+from datetime import datetime
 from enum import StrEnum
 import logging
 import signal
 import threading
 from asyncio.queues import Queue
-from typing import Any, Dict, Generator, List, Self
+from typing import Any, Dict, Generator, List, Self, Set, cast
 from threading import Thread
 from concurrent.futures import Future
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 from pathlib import Path
 
+from framework.enums.supervisor_request_kind import SupervisorRequestKind
+from framework.protocols.supervisor_request_interface import SupervisorRequestInterface
+
+from ..dto.supervisor_request_data import SupervisorRequestData
 from ..utils.types import Result, AsyncStreamArg,  AsyncStreamCallback
 from ..errors import Error
 from ..protocols import ServerInterface
@@ -27,7 +32,9 @@ class Supervisor:
         self._shutdown_event = asyncio.Event()
         self._main_loop = event_loop
 
-        self._restart_queue: Queue[int] = Queue()
+        self._requests_unique: Set[RequestInfoData] = set()
+        self._requests_enqueued: Queue[RequestInfoData] = Queue()
+
         self._server_states: Dict[ThreadInfoData, ServerStateData] = {}
         self._processes: List[ProcessInfoData] = []
 
@@ -72,10 +79,12 @@ class Supervisor:
 
         while not self._shutdown_event.is_set():
             try:
-                await self._process_restart_queue()
+                await self._process_requests_queue()
                 await asyncio.wait_for(self._shutdown_event.wait(), timeout=5.0)
             except asyncio.TimeoutError:
                 self._start_ready_servers()
+            except Exception as exception:
+                logger.error(f"Error in in supervisor main event loop: {exception}")
 
         logger.info('Supervisor event loop finished. Shutting down now...')
         return await self.shutdown()
@@ -102,13 +111,15 @@ class Supervisor:
             logger.info("Sending interrupt to sub-process PID %s, running on thread %s", process_info.process.pid, threading.current_thread().name)
             process_info.process.send_signal(signal.SIGINT)
 
-        join_threads = []
-        for server_state in self._server_states.values():
-            server_state.event_loop.call_soon_threadsafe(server_state.event_loop.stop)
-            join_threads.append(server_state.thread)
-
-        for thread in join_threads:
-            thread.join(timeout=30.0)
+        try:
+            join_threads = []
+            for server_state in self._server_states.values():
+                server_state.event_loop.call_soon_threadsafe(server_state.event_loop.stop)
+                join_threads.append(server_state.thread)
+            for thread in join_threads:
+                thread.join(timeout=30.0)
+        except Exception as e:
+            logger.error(f"Error while waiting for servers threads to join: {e}")
 
         self._running = False
 
@@ -117,30 +128,16 @@ class Supervisor:
 
     # -- SupervisorLike Protocol Interface-------------------------------------
 
-    async def queue_start(self) -> None:
-        pass
+    async def enqueue_request(self, request: SupervisorRequestInterface) -> Result[None]:
+        if not isinstance(request, SupervisorRequestData):
+            return Failure(Error(SupervisorError.BAD_REQUEST_DATA, details={
+                'request': request
+            }))
 
-
-    async def queue_shutdown(self) -> None:
-        pass
-
-
-    async def queue_restart(self, thread_id: int) -> Result[None]:
-        server_states = { thread_info.id for thread_info in self._server_states.keys() }
-
-        if not server_states:
-            logger.info('Thread ID %s not found. No restart will happen', thread_id)
-            return Failure(Error(SupervisorError.SERVER_ID_NOT_FOUND, details={ 'thread_id': thread_id }))
-
-        logger.info('Enqueuing restart for thread ID %s', thread_id)
-        await self._restart_queue.put(thread_id)
+        # NOTE: should we do something with the future?
+        asyncio.run_coroutine_threadsafe(self._enqueue_request(cast(SupervisorRequestData, request)), self._main_loop)
 
         return Success(None)
-
-
-
-    async def queue_reload(self, config_path: str | Path) -> None:
-        pass
 
 
     async def dispatch_subprocess(
@@ -225,34 +222,55 @@ class Supervisor:
                 server_state.started = True
 
 
-    async def _process_restart_queue(self) -> None:
-        if self._restart_queue.empty():
+    async def _process_requests_queue(self) -> None:
+        if self._requests_enqueued.empty():
             return
+
+        async def shutdown_thread(thread_id: int) -> ThreadInfoData | None:
+            if not is_successful(result := await self._shutdown_server(*server_states[thread_id], cleanup=True)):
+                logger.error(result.failure())
+                return None
+
+            (old_thread_info, old_server_state) = server_states[thread_id]
+            del self._server_states[old_thread_info]
+
+            new_thread_info = self._generate_thread_info()
+
+            self._server_states[new_thread_info] = self._new_server_state(
+                new_thread_info.name,
+                old_server_state.server,
+                asyncio.new_event_loop()
+            )
+
+            return new_thread_info
 
         server_states = { thread_info.id: (thread_info, server_state) for thread_info, server_state in self._server_states.items() }
 
-        while not self._restart_queue.empty():
-            thread_id = self._restart_queue.get_nowait()
+        while not self._requests_enqueued.empty():
+            request_info = self._requests_enqueued.get_nowait()
+            self._requests_unique.remove(request_info)
 
-            if thread_id in server_states:
-                logger.info('Processing restart request for %s', server_states[thread_id][0].name)
+            thread_id = request_info.data.thread_id
 
-                if is_successful(await self._shutdown_server(*server_states[thread_id], cleanup=True)):
-                    (old_thread_info, old_server_state) = server_states[thread_id]
-                    del self._server_states[old_thread_info]
+            if thread_id not in server_states:
+                logger.warning("Queued request for thread ID %s is not in the current server state list. request: %s", thread_id, request_info)
+                continue
 
-                    new_thread_info = self._generate_thread_info()
+            logger.info('Processing request for %s', server_states[thread_id][0].name)
 
-                    self._server_states[new_thread_info] = self._new_server_state(
-                        new_thread_info.name,
-                        old_server_state.server,
-                        old_server_state.event_loop
-                    )
+            match request_info.data.kind:
+                case SupervisorRequestKind.SHUTDOWN:
+                    if new_thread_info := await shutdown_thread(thread_id):
+                        logger.info('Server on thread %s (%s) successfully shutdown', new_thread_info.name, new_thread_info.id)
+                case SupervisorRequestKind.RESTART:
+                    (current_thread_info, current_server_state) = server_states[thread_id]
 
-                    logger.info('Reinitializing new server state for restarted server on thread %s', new_thread_info.name)
-                    self._server_initialize(new_thread_info, self._server_states[new_thread_info])
+                    if current_server_state.started and (new_thread_info := await shutdown_thread(thread_id)):
+                        logger.info('Reinitializing new server state for restarted server on thread %s (%s)', new_thread_info.name, new_thread_info.id)
+                        self._server_initialize(new_thread_info, self._server_states[new_thread_info])
+                    elif not current_server_state.started and not current_server_state.initialized:
+                        self._server_initialize(current_thread_info, self._server_states[current_thread_info])
 
-        logger.info('Running reinitialized servers')
         self._start_ready_servers()
 
 
@@ -335,18 +353,68 @@ class Supervisor:
                 target=Supervisor._start_worker_event_loop,
                 args=(event_loop,),
                 daemon=True
-                )
             )
+        )
+
+    async def _enqueue_request(self, request: SupervisorRequestData) ->  Result[None]:
+        match request.kind:
+            case SupervisorRequestKind.SHUTDOWN:
+                started_server_states = {
+                    thread_info.id: server_state
+                    for (thread_info, server_state) in self._server_states.items()
+                    if server_state.started
+                }
+
+                if request.thread_id not in self._server_states and request.thread_id not in started_server_states:
+                    message = f"Cannot shutdown server because thread with ID {request.thread_id} was not found."
+                    logger.info(message)
+                    return Failure(Error(SupervisorError.REQUEST_NOT_FULFILLED, details={
+                        'message': message
+                    }))
+                elif request.thread_id in self._server_states and request.thread_id not in started_server_states:
+                    message = f"Server with thread ID {request.thread_id} cannot be shutdown because it is not running."
+                    logger.info(message)
+                    return Failure(Error(SupervisorError.REQUEST_NOT_FULFILLED, details={
+                        'message': message
+                    }))
+
+            case SupervisorRequestKind.RESTART:
+                server_states = {
+                    thread_info.id: server_state
+                    for (thread_info, server_state) in self._server_states.items()
+                }
+
+                if request.thread_id not in server_states:
+                    message = f"Cannot restart server because thread with ID {request.thread_id} was not found."
+                    logger.warning(message)
+                    return Failure(Error(SupervisorError.REQUEST_NOT_FULFILLED, details={
+                        'message': message
+                    }))
+
+        request_info = RequestInfoData(request)
+
+        if not request_info in self._requests_unique:
+            logger.info('Enqueuing request for thread ID %s', request)
+            self._requests_enqueued.put_nowait(request_info)
+            self._requests_unique.add(request_info)
+        else:
+            logger.warning('An existing request has already been queued. Ignoring: %s', request)
+            return Failure(Error(SupervisorError.REQUEST_IGNORED, details={ 'request': request }))
+
+        return Success(None)
 
 
     # -- Threading ------------------------------------------------------------
 
     @classmethod
     def _start_worker_event_loop(cls, event_loop: asyncio.AbstractEventLoop) -> Result[None]:
-        asyncio.set_event_loop(event_loop)
-        event_loop.run_forever()
-        return Success(None)
+        try:
+            asyncio.set_event_loop(event_loop)
+            event_loop.run_forever()
+        finally:
+            event_loop.close()
 
+        return Success(None)
 
     def _server_initialization_callback(self, future: Future[Result[None]], thread_info: ThreadInfoData) -> Result[None]:
         try:
@@ -366,8 +434,9 @@ class Supervisor:
 class SupervisorError(StrEnum):
     INITIALIZATION_FAILED = "an error occurred while initializing the supervisor"
     SUBPROCESS_ERROR = "a non-zero exit code occurred when running a subprocess"
-    SERVER_ID_NOT_FOUND = "could not find the specified thread id"
-
+    REQUEST_IGNORED = "the provided request has been ignored"
+    BAD_REQUEST_DATA = "the provided supervisor request data is invalid"
+    REQUEST_NOT_FULFILLED = "the specified request could not be fulfilled"
 
 @dataclass
 class ServerStateData:
@@ -390,3 +459,9 @@ class ThreadInfoData:
 class ProcessInfoData:
     name: str
     process: Process
+
+
+@dataclass(frozen=True)
+class RequestInfoData:
+    data: SupervisorRequestData
+    time_received: datetime = field(default=datetime.now(), compare=False)

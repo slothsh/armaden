@@ -27,12 +27,14 @@ logger = logging.getLogger('framework.kernel')
 # -- Global Handle ------------------------------------------------------------
 
 HANDLE: ApplicationInterface | None = None
+EVENT_LOOP: asyncio.AbstractEventLoop | None = None
 
 
 class Kernel(ABC):
     def __init__(self, handle: ApplicationInterface | None = None, package_name: str | None = None) -> None:
-        global HANDLE
+        global HANDLE, EVENT_LOOP
         HANDLE = handle
+        EVENT_LOOP = asyncio.new_event_loop()
 
         self._status = KernelStatus.NOT_READY
         self._app_env = 'production'
@@ -40,7 +42,7 @@ class Kernel(ABC):
         self._package_name: str | None = package_name or (None if not __package__ else __package__.split(".")[0])
 
         self.services: List[ServiceInterface] = []
-        self.supervisor: SupervisorInterface = Supervisor(asyncio.new_event_loop())
+        self.supervisor: SupervisorInterface = Supervisor(EVENT_LOOP)
 
         self._bootstrap()
 
@@ -115,6 +117,14 @@ class Kernel(ABC):
         if not HANDLE:
             raise KernelException("The global application handle is not available. Did you bootstrap the application?")
         return cast(Self, HANDLE)
+
+
+    @classmethod
+    def event_loop(cls) -> asyncio.AbstractEventLoop:
+        global EVENT_LOOP
+        if not EVENT_LOOP:
+            raise KernelException("The global application event loop is not available. Did you bootstrap the application?")
+        return EVENT_LOOP
 
 
     # -- Initializers ---------------------------------------------------------
