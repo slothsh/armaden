@@ -25,15 +25,15 @@ class DefaultApplication(Kernel):
             if not is_successful(user_application):
                 print(user_application.failure())
 
-            result = Kernel.bootstrap(
+            application = Kernel.bootstrap(
                 default_application=DefaultApplication,
                 user_application=user_application.value_or(None)
             )
             
-            if not is_successful(result):
-                return result.map(lambda _: None)
+            if not is_successful(application):
+                return application.map(lambda _: None)
 
-            application = result.unwrap()
+            application = application.unwrap()
 
             return asyncio.run(application(), loop_factory=application.event_loop)
         except (KeyboardInterrupt, SystemExit):
