@@ -16,6 +16,7 @@ from returns.result import Failure, Success
 from framework.enums.health_status import HealthStatus
 from framework.utils.dictionary import Dictionary
 
+from .module_loader import ModuleLoader
 from ..protocols import ServiceInterface, SupervisorInterface
 from ..utils.types import Result
 from ..errors import Error
@@ -46,7 +47,21 @@ class Kernel(ABC):
 
 
     @staticmethod
-    def bootstrap(default_application: Type[T], user_application: Type[U] | None = None) -> Result[T | U]:
+    def bootstrap(default_application: Type[T]) -> Result[T | U]:
+        try:
+            if not is_successful(Kernel._initialize_logging()):
+                raise KernelException('Could not successfully initialize logging during application bootstrap')
+        except KernelException as exception:
+            raise exception
+        except Exception as exception:
+            raise KernelException(exception)
+
+        user_application = ModuleLoader.try_load_user_application(cast(Type[U], default_application))
+        if not is_successful(user_application):
+            logger.warning(user_application.failure())
+            logger.warning("Using the default application as a fallback")
+
+        user_application = user_application.value_or(None)
         application = user_application if user_application else default_application
 
         app = cast(Kernel, application())
@@ -167,7 +182,8 @@ class Kernel(ABC):
 
     # -- Initializers ---------------------------------------------------------
 
-    def _initialize_logging(self) -> Result[None]:
+    @classmethod
+    def _initialize_logging(cls) -> Result[None]:
         logging.basicConfig(
             level=logging.INFO,
             format="%(asctime)s [%(levelname)s][%(name)s][%(threadName)s]: %(message)s",

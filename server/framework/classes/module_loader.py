@@ -14,12 +14,12 @@ T = TypeVar("T")
 
 class ModuleLoader:
     @classmethod
-    def try_load_user_application(cls, _: Type[T]) -> Result[T]:
+    def try_load_user_application(cls, _: Type[T]) -> Result[T | None]:
         try:
             app_directory = os.getenv('APP_DIR')
 
             if not app_directory:
-                return Failure(Error(ModuleLoaderError.USER_APP_APP_DIR_NOT_DEFINED))
+                return Success(None)
 
             module_directory = Path(app_directory).absolute()
             module_path = module_directory / 'application.py'

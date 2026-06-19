@@ -11,7 +11,7 @@ packages = [
 ]
 
 [tool.poetry.scripts]
-app = "app.main:main"
+app = "framework.classes.default_application:DefaultApplication.main"
 
 [tool.poetry.dependencies]
 python = "^3.12"

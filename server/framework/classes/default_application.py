@@ -1,12 +1,10 @@
 import traceback
 import asyncio
 import logging
-from typing import Type
 from returns.result import Success, Failure
 from returns.pipeline import is_successful
 
 from .kernel import Kernel
-from .module_loader import ModuleLoader
 from ..errors import GenericError, Error
 from ..utils.types import Result
 
@@ -21,14 +19,7 @@ class DefaultApplication(Kernel):
     @staticmethod
     def main() -> Result[None]:
         try:
-            user_application = ModuleLoader.try_load_user_application(Type[DefaultApplication])
-            if not is_successful(user_application):
-                print(user_application.failure())
-
-            application = Kernel.bootstrap(
-                default_application=DefaultApplication,
-                user_application=user_application.value_or(None)
-            )
+            application = Kernel.bootstrap(DefaultApplication)
             
             if not is_successful(application):
                 return application.map(lambda _: None)
