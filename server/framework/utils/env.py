@@ -1,11 +1,12 @@
+import os
 import json
 from typing import Any
 
-from framework.classes.kernel import Kernel
-
 
 def env(name: str, default: Any | None = None) -> str | None:
-    return Kernel.instance().environment(name, default)
+    if result := os.getenv(name):
+        return result
+    return default
 
 
 class Env:
@@ -13,12 +14,12 @@ class Env:
 
     @classmethod
     def string(cls, name: str, default: str | None = None) -> str | None:
-        return Kernel.instance().environment(name, default)
+        return env(name, default)
 
 
     @classmethod
     def bool(cls, name: str, default: bool | None = None) -> bool | None:
-        value = Kernel.instance().environment(name)
+        value = env(name)
         if value is None:
             return default
         return value.lower() in ('true', '1', 'yes', 'on')
@@ -26,7 +27,7 @@ class Env:
 
     @classmethod
     def int(cls, name: str, default: int | None = None) -> int | None:
-        value = Kernel.instance().environment(name)
+        value = env(name)
         if value is None:
             return default
         try:
@@ -37,7 +38,7 @@ class Env:
 
     @classmethod
     def json(cls, name: str, default):
-        value = Kernel.instance().environment(name)
+        value = env(name)
         if value is None:
             return default
         try:
@@ -48,7 +49,7 @@ class Env:
 
     @classmethod
     def optional_json(cls, name: str):
-        value = Kernel.instance().environment(name)
+        value = env(name)
         if value is None or value.strip() == '':
             return None
         try:

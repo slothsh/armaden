@@ -120,12 +120,6 @@ class Kernel(ABC):
             return '0.0.0'
 
 
-    def environment(self, name: str, default: str | None = None) -> str | None:
-        if result := os.getenv(name):
-            return result
-        return default
-
-
     def config(self, key: str, default: Any | None = None) -> Any:
         value = self._config
 
