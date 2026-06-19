@@ -3,7 +3,7 @@ from .server import ServerInterface
 from .service import ServiceInterface
 from .supervisor_request_interface import SupervisorRequestInterface
 from .supervisor import SupervisorInterface
-from .application import ApplicationInterface
+from .kernel import KernelInterface
 
 __all__ = [
     'ErrorInterface',
@@ -11,5 +11,5 @@ __all__ = [
     'ServiceInterface',
     'SupervisorRequestInterface',
     'SupervisorInterface',
-    'ApplicationInterface',
+    'KernelInterface',
 ]

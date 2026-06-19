@@ -1,4 +1,4 @@
-from framework.kernel import Kernel
+from framework.classes.kernel import Kernel
 
 
 def app():

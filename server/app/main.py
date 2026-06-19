@@ -1,14 +1,14 @@
 """Main entry point for the Arma Reforger dedicated server Docker image."""
 
 import logging
-from app.application import Application
+from framework.classes.default_application import DefaultApplication
 
 logger = logging.getLogger("app.main")
 
 
 def main():
-    return Application.main()
+    return DefaultApplication.main()
 
 
 if __name__ == "__main__":
-    Application.main()
+    DefaultApplication.main()

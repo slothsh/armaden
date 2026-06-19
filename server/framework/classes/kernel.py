@@ -1,13 +1,13 @@
 import asyncio
 from pathlib import Path
-from typing import Any, Dict, List, Self, cast
+from typing import Any, Dict, List, Self, Type, TypeVar, cast
 from dotenv import load_dotenv
 from enum import StrEnum
 import logging
 import os
 import sys
 from glob import glob
-from importlib import metadata, import_module
+from importlib import import_module
 from abc import ABC
 
 from returns.pipeline import is_successful
@@ -16,22 +16,22 @@ from returns.result import Failure, Success
 from framework.enums.health_status import HealthStatus
 from framework.utils.dictionary import Dictionary
 
-from .protocols import ServiceInterface, ApplicationInterface, SupervisorInterface
-from .utils.types import Result
-from .errors import Error
-from .classes.supervisor import Supervisor
+from ..protocols import ServiceInterface, SupervisorInterface
+from ..utils.types import Result
+from ..errors import Error
+from ..classes.supervisor import Supervisor
 
 logger = logging.getLogger('framework.kernel')
 
 
 # -- Global Handle ------------------------------------------------------------
 
-HANDLE: ApplicationInterface | None = None
+HANDLE: Kernel | None = None
 EVENT_LOOP: asyncio.AbstractEventLoop | None = None
 
 
 class Kernel(ABC):
-    def __init__(self, handle: ApplicationInterface | None = None, package_name: str | None = None) -> None:
+    def __init__(self, handle: Kernel | None = None, package_name: str | None = None) -> None:
         global HANDLE, EVENT_LOOP
         HANDLE = handle
         EVENT_LOOP = asyncio.new_event_loop()
@@ -44,7 +44,43 @@ class Kernel(ABC):
         self.services: List[ServiceInterface] = []
         self.supervisor: SupervisorInterface = Supervisor(EVENT_LOOP)
 
-        self._bootstrap()
+
+    @staticmethod
+    def bootstrap(default_application: Type[T], user_application: Type[U] | None = None) -> Result[T | U]:
+        application = user_application if user_application else default_application
+
+        app = cast(Kernel, application())
+
+        # Set some essential application flags
+        if app_env := os.getenv('APP_ENV'):
+            app._app_env = app_env
+
+        # Initialize application facilities
+        try:
+            if not is_successful(app._initialize_logging()):
+                raise KernelException('Could not successfully initialize logging during application bootstrap')
+            if not is_successful(app._initialize_environment()):
+                logger.warning("The application's environment was not successfully initialized, this is not an issue if you did not provide .env file for your application")
+            if not is_successful(app._initialize_configs()):
+                raise KernelException("The application's configuration files could not be successfully initialized")
+        except KernelException as exception:
+            raise exception
+        except Exception as exception:
+            raise KernelException(exception)
+
+        # Update application status
+        app._status = KernelStatus.READY
+        logger.info('Application successfully bootstrapped with status: %s', app._status)
+
+        return Success(cast(T | U, app))
+
+
+    def _boot(self) -> Result[None]:
+        for service in self.services:
+            if not is_successful(result := service()):
+                return result
+
+        return Success(None)
 
 
     async def __call__(self) -> Result[None]:
@@ -62,9 +98,11 @@ class Kernel(ABC):
 
 
     def version(self) -> str:
-        if not self._package_name:
+        from importlib import metadata
+        try:
+            return metadata.version('server')
+        except metadata.PackageNotFoundError:
             return '0.0.0'
-        return metadata.version(self._package_name)
 
 
     def environment(self, name: str, default: str | None = None) -> str | None:
@@ -129,37 +167,6 @@ class Kernel(ABC):
 
     # -- Initializers ---------------------------------------------------------
 
-    def _bootstrap(self) -> None:
-        # Set some essential application flags
-        if app_env := os.getenv('APP_ENV'):
-            self._app_env = app_env
-
-        # Initialize application facilities
-        try:
-            if not is_successful(self._initialize_logging()):
-                raise KernelException('Could not successfully initialize logging during application bootstrap')
-            if not is_successful(self._initialize_environment()):
-                logger.warning("The application's environment was not successfully initialized, this is not an issue if you did not provide .env file for your application")
-            if not is_successful(self._initialize_configs()):
-                raise KernelException("The application's configuration files could not be successfully initialized")
-        except KernelException as exception:
-            raise exception
-        except Exception as exception:
-            raise KernelException(exception)
-
-        # Update application status
-        self._status = KernelStatus.READY
-        logger.info('Application successfully bootstrapped with status: %s', self._status)
-
-
-    def _boot(self) -> Result[None]:
-        for service in self.services:
-            if not is_successful(result := service()):
-                return result
-
-        return Success(None)
-
-
     def _initialize_logging(self) -> Result[None]:
         logging.basicConfig(
             level=logging.INFO,
@@ -208,6 +215,10 @@ class Kernel(ABC):
 
 
 # -- Internal Types -----------------------------------------------------------
+
+T = TypeVar("T", bound=Kernel)
+U = TypeVar("U", bound=Kernel)
+
 
 class KernelStatus(StrEnum):
     NOT_READY = 'NOT_READY'

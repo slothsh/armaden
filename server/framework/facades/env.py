@@ -1,7 +1,7 @@
 import json
 from typing import Any
 
-from framework.kernel import Kernel
+from framework.classes.kernel import Kernel
 
 
 def env(name: str, default: Any | None = None) -> str | None:
