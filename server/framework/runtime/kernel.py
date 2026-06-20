@@ -7,7 +7,6 @@ import logging
 import os
 import sys
 from glob import glob
-from importlib import import_module
 from abc import ABC
 
 from returns.pipeline import is_successful
@@ -38,7 +37,7 @@ class Kernel(ABC):
         })
 
         self._status = KernelStatus.NOT_READY
-        self._app_env = 'production'
+        self._app_env = 'local'
         self._config: Dict[str, Any] = {}
 
         self._supervisor: SupervisorInterface = Supervisor(HANDLE_MANAGER.handle('event_loop').unwrap())
@@ -180,12 +179,18 @@ class Kernel(ABC):
             f".env.*.{self._app_env}",
         ]
 
+        found_explicit = False
         for pattern in env_file_patterns:
             paths = glob(pattern)
-            if len(paths) != 1:
-                continue
+            if len(paths) > 0:
+                found_explicit = True
 
             load_dotenv(Path(paths[0]).absolute())
+            return Success(None)
+
+        default_env = Path('.env').absolute()
+        if not found_explicit and default_env.is_file():
+            load_dotenv(default_env)
             return Success(None)
 
         return Failure(Error(KernelError.MISSING_DOTENV))
