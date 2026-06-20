@@ -172,9 +172,10 @@ class Kernel(ABC):
         if not self._app_env:
             return Failure(Error(KernelError.INVALID_DEFAULT_ENVIRONMENT))
 
+        logger.info("Loading environment configuration for `%s`", self._app_env)
+
         # Check env files in order
         env_file_patterns = [
-            '.env',
             f".env.{self._app_env}",
             f".env.*.{self._app_env}",
         ]
@@ -185,11 +186,16 @@ class Kernel(ABC):
             if len(paths) > 0:
                 found_explicit = True
 
-            load_dotenv(Path(paths[0]).absolute())
+            for path in paths:
+                logger.info("Overlaying environment file: %s", path)
+                load_dotenv(Path(path).absolute())
+
+        if found_explicit:
             return Success(None)
 
         default_env = Path('.env').absolute()
-        if not found_explicit and default_env.is_file():
+        if default_env.is_file():
+            logger.info("Loading environment file: %s", default_env)
             load_dotenv(default_env)
             return Success(None)
 
@@ -229,8 +235,6 @@ class Kernel(ABC):
                 self._config[key].update(config())
                 continue
             self._config[key] = config()
-
-        logger.info(self._config)
 
         return Success(None)
 

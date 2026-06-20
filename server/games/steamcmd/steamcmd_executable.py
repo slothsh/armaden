@@ -5,7 +5,7 @@ from typing import List
 
 from returns.result import Failure, Success
 
-from framework.facades import config
+from framework.runtime.facades import config
 from framework.classes.executable import Executable, PushValue
 from framework.utils.types import Result
 from framework.errors import Error

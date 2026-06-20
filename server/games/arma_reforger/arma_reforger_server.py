@@ -8,8 +8,8 @@ from pathlib import Path
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 from framework.enums.health_status import HealthStatus
-from framework.facades import app
-from framework.facades import config
+from framework.runtime.facades import app
+from framework.runtime.facades import config
 from framework.classes.server import Server
 from framework.utils.types import Result
 from framework.errors import Error
@@ -33,12 +33,12 @@ class ArmaReforgerServer(Server):
         )
 
         self._rcon_client = ArmaReforgerRconClient(
-            config('arma_reforger.reforger.server.rcon.address'),
-            config('arma_reforger.reforger.server.rcon.port'),
-            config('arma_reforger.reforger.server.rcon.password')
+            config('arma_reforger.server.rcon.address'),
+            config('arma_reforger.server.rcon.port'),
+            config('arma_reforger.server.rcon.password')
         )
 
-        install_directory = Path(config('arma_reforger.reforger.installDirectory', '/arma')).absolute()
+        install_directory = Path(config('arma_reforger.installDirectory', '/arma')).absolute()
 
         self._paths = PathContainer(
             install=install_directory,
@@ -106,7 +106,7 @@ class ArmaReforgerServer(Server):
         reforger = self._executable.reforger.save_params()
 
         startup_parameters: dict[str, str]
-        if startup_parameters := config('arma_reforger.reforger.startup'):
+        if startup_parameters := config('arma_reforger.startup'):
             for parameter, value in startup_parameters.items():
                 if is_successful(flag := ArmaReforgerExecutableFlag.from_config(parameter)):
                     # Skip config override for now
@@ -154,7 +154,7 @@ class ArmaReforgerServer(Server):
 
 
     def install_config(self) -> Result[None]:
-        config_data: Dict[str, Any] = Dictionary.without(config('arma_reforger.reforger.server'), lambda _, value: value is None)
+        config_data: Dict[str, Any] = Dictionary.without(config('arma_reforger.server'), lambda _, value: value is None)
 
         self._paths.config_directory.mkdir(exist_ok=True)
 

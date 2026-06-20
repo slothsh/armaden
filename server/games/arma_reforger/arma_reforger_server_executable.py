@@ -13,7 +13,7 @@ import logging
 from pathlib import Path
 
 from returns.result import Failure, Success
-from framework.facades import config
+from framework.runtime.facades import config
 from framework.classes.executable import Executable
 from framework.utils.types import Result
 from framework.errors import Error
@@ -34,7 +34,7 @@ class ArmaReforgerServerExecutable(Executable):
             Path("C:\\Program Files (x86)\\Steam\\steamapps\\common\\Arma Reforger\\ArmaReforgerServer.exe"),
         ]
 
-        if directory := config('arma_reforger.reforger.executable'):
+        if directory := config('arma_reforger.executable'):
             common_paths.insert(0, Path(directory).absolute())
 
         for candidate in common_paths:
