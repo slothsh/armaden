@@ -1,5 +1,5 @@
-from framework.classes.kernel import Kernel
+from framework.runtime.kernel import Kernel
 
 
-def app():
+def app() -> Kernel:
     return Kernel.instance()

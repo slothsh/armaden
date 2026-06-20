@@ -1,11 +1,10 @@
 from enum import StrEnum
-from typing import Any, Dict, List, Self, Tuple
+from typing import Any, Dict, Self
 from collections.abc import Callable
 import logging
 import uvicorn
 from returns.result import Failure, Success
 from fastapi import FastAPI
-from contextlib import asynccontextmanager
 
 from framework.classes.server import Server
 from framework.enums.health_status import HealthStatus
@@ -23,16 +22,8 @@ class ApiServer(Server):
             title="Arma Reforger Server public HTTP API"
         )
 
-        self._rcon_clients = RconContainer()
-
 
     # --- Builder Methods -----------------------------------------------------
-
-    def with_rcon_clients(self, rcon_clients: List[Tuple[str, RconClient]]) -> Self:
-        for (name, client) in rcon_clients:
-            setattr(self._rcon_clients, name, client)
-        return self
-
 
     def with_routes(self, routes: Callable[[FastAPI], None]) -> Self:
         routes(self.app)
@@ -40,15 +31,6 @@ class ApiServer(Server):
 
 
     def build(self) -> Self:
-        @asynccontextmanager
-        async def lifespan(_: FastAPI):
-            yield
-            for client in vars(self._rcon_clients).values():
-                if client.is_connected:
-                    await client.disconnect()
-
-        self.app.router.lifespan_context = lifespan
-
         return self
 
 

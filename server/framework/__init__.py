@@ -2,7 +2,7 @@ from .utils.types import Result
 from .utils.dictionary import Dictionary
 from .errors import Error, GenericError
 from .classes.server import Server
-from .protocols import ServiceInterface, KernelInterface
+from .protocols import ServiceInterface
 from .classes.executable import Executable
 
 __all__ = [
@@ -12,6 +12,5 @@ __all__ = [
     'GenericError',
     'Server',
     'ServiceInterface',
-    'KernelInterface',
     'Executable',
 ]

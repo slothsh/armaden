@@ -1,6 +1,6 @@
 import asyncio
 from pathlib import Path
-from typing import Any, Dict, List, Self, Type, TypeVar, cast
+from typing import Any, Dict, List, Self, TypeVar, cast
 from dotenv import load_dotenv
 from enum import StrEnum
 import logging
@@ -13,100 +13,93 @@ from abc import ABC
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
-from framework.enums.health_status import HealthStatus
-from framework.utils.dictionary import Dictionary
+from framework.protocols.service import ServiceInterface
 
-from .module_loader import ModuleLoader
-from ..protocols import ServiceInterface, SupervisorInterface
+from ..protocols import SupervisorInterface
 from ..utils.types import Result
-from ..errors import Error
+from ..errors import Error, GenericError
+from ..classes.module_loader import ModuleLoader
 from ..classes.supervisor import Supervisor
 
 logger = logging.getLogger('framework.kernel')
 
 
-# -- Global Handle ------------------------------------------------------------
+# -- Global Handles -----------------------------------------------------------
 
-HANDLE: Kernel | None = None
-EVENT_LOOP: asyncio.AbstractEventLoop | None = None
+APP_HANDLE: Kernel | None = None
+EVENT_LOOP_HANDLE: asyncio.AbstractEventLoop | None = None
+SERVICES_HANDLE: List[ServiceInterface] = []
 
 
 class Kernel(ABC):
     def __init__(self, handle: Kernel | None = None, package_name: str | None = None) -> None:
-        global HANDLE, EVENT_LOOP
-        HANDLE = handle
-        EVENT_LOOP = asyncio.new_event_loop()
+        global APP_HANDLE, EVENT_LOOP_HANDLE, SERVICES_HANDLE
+        APP_HANDLE = handle
+        EVENT_LOOP_HANDLE = asyncio.new_event_loop()
 
         self._status = KernelStatus.NOT_READY
         self._app_env = 'production'
         self._config: Dict[str, Any] = {}
         self._package_name: str | None = package_name or (None if not __package__ else __package__.split(".")[0])
 
-        self.services: List[ServiceInterface] = []
-        self.supervisor: SupervisorInterface = Supervisor(EVENT_LOOP)
+        self._supervisor: SupervisorInterface = Supervisor(EVENT_LOOP_HANDLE)
+        self._services: List[ServiceInterface] = SERVICES_HANDLE
 
 
     @staticmethod
-    def bootstrap(default_application: Type[T]) -> Result[T | U]:
+    def bootstrap() -> Result[None]:
         try:
+            # Initialize essentials
             if not is_successful(Kernel._initialize_logging()):
                 raise KernelException('Could not successfully initialize logging during application bootstrap')
-        except KernelException as exception:
-            raise exception
-        except Exception as exception:
-            raise KernelException(exception)
 
-        user_application = ModuleLoader.try_load_user_application(cast(Type[U], default_application))
-        if not is_successful(user_application):
-            logger.warning(user_application.failure())
-            logger.warning("Using the default application as a fallback")
+            # Load the runtime application
+            from .default_application import DefaultApplication
 
-        user_application = user_application.value_or(None)
-        application = user_application if user_application else default_application
+            user_application = ModuleLoader.try_load_user_application(DefaultApplication)
+            if not is_successful(user_application):
+                logger.warning(user_application.failure())
+                logger.warning("Using the default application as a fallback")
 
-        app = cast(Kernel, application())
+            user_application = user_application.value_or(None)
+            application = user_application if user_application else DefaultApplication
+            application = cast(Kernel, application())
 
-        # Set some essential application flags
-        if app_env := os.getenv('APP_ENV'):
-            app._app_env = app_env
-
-        # Initialize application facilities
-        try:
-            if not is_successful(app._initialize_logging()):
-                raise KernelException('Could not successfully initialize logging during application bootstrap')
-            if not is_successful(app._initialize_environment()):
+            # Initialize everything else
+            if not is_successful(application._initialize_environment()):
                 logger.warning("The application's environment was not successfully initialized, this is not an issue if you did not provide .env file for your application")
-            if not is_successful(app._initialize_configs()):
+            if not is_successful(application._initialize_configs()):
                 raise KernelException("The application's configuration files could not be successfully initialized")
-        except KernelException as exception:
-            raise exception
+
+            # Update application status
+            application._status = KernelStatus.READY
+            logger.info('Application successfully bootstrapped with status: %s', application._status)
+
+            return asyncio.run(application(), loop_factory=application.event_loop)
+        except (KeyboardInterrupt, SystemExit):
+            return Success(None)
         except Exception as exception:
-            raise KernelException(exception)
-
-        # Update application status
-        app._status = KernelStatus.READY
-        logger.info('Application successfully bootstrapped with status: %s', app._status)
-
-        return Success(cast(T | U, app))
+            return Failure(Error(GenericError.EXCEPTION, details={ 'exception': exception }))
+        except:
+            return Failure(Error(GenericError.UNKNOWN))
 
 
-    def _boot(self) -> Result[None]:
-        for service in self.services:
-            if not is_successful(result := service()):
-                return result
+    def boot(self) -> Result[None]:
+        if not is_successful(result := self._initialize_services()):
+            return result
 
         return Success(None)
 
 
     async def __call__(self) -> Result[None]:
-        if not is_successful(result := self._boot()):
-            logger.error("Could not boot service %s", result.failure())
+        if not is_successful(result := self.boot()):
+            logger.error("Could not boot kernel: %s", result.failure())
             return result
 
-        if not is_successful(result := await self.supervisor.initialize()):
+        if not is_successful(result := await self._supervisor.initialize()):
             return result
 
-        if not is_successful(result := await self.supervisor.run()):
+        if not is_successful(result := await self._supervisor.run()):
             return result
 
         return Success(None)
@@ -132,46 +125,34 @@ class Kernel(ABC):
         return value
 
 
-    async def status(self) -> Dict[str, Any]:
-        def handle_result(results: Dict[str, Result[Dict[str, Any]]]) -> Dict[str, Any]:
-            status: Dict[str, Any] = {}
-
-            for name, result in results.items():
-                if not is_successful(result):
-                    logger.warning(result.failure())
-                    status[name] = { 'status': HealthStatus.UNAVAILABLE }
-                    continue
-
-                status[name] = result.unwrap()
-
-            return status
-
-                
-        service_statuses = { service.name: handle_result(result) for service in self.services for result in await service.status() }
-        app_degraded = Dictionary.has('status', lambda value: value != HealthStatus.OK, [
-            *service_statuses.values()
-        ])
-
-        return {
-            'status': HealthStatus.DEGRADED if app_degraded else HealthStatus.OK,
-            'services': service_statuses,
-        }
-
-
     @classmethod
     def instance(cls) -> Self:
-        global HANDLE
-        if not HANDLE:
+        global APP_HANDLE
+        if not APP_HANDLE:
             raise KernelException("The global application handle is not available. Did you bootstrap the application?")
-        return cast(Self, HANDLE)
+        return cast(Self, APP_HANDLE)
 
 
     @classmethod
     def event_loop(cls) -> asyncio.AbstractEventLoop:
-        global EVENT_LOOP
-        if not EVENT_LOOP:
+        global EVENT_LOOP_HANDLE
+        if not EVENT_LOOP_HANDLE:
             raise KernelException("The global application event loop is not available. Did you bootstrap the application?")
-        return EVENT_LOOP
+        return EVENT_LOOP_HANDLE
+
+
+    @classmethod
+    def services(cls) -> List[ServiceInterface]:
+        global SERVICES_HANDLE
+        if not SERVICES_HANDLE:
+            raise KernelException("The global services handle is not available. Did you bootstrap the application?")
+
+        return SERVICES_HANDLE
+
+
+    @property
+    def supervisor(self) -> SupervisorInterface:
+        return self.supervisor
 
 
     # -- Initializers ---------------------------------------------------------
@@ -188,6 +169,9 @@ class Kernel(ABC):
 
 
     def _initialize_environment(self) -> Result[None]:
+        if app_env := os.getenv('APP_ENV'):
+            self._app_env = app_env
+
         if not self._app_env:
             return Failure(Error(KernelError.INVALID_DEFAULT_ENVIRONMENT))
 
@@ -221,6 +205,13 @@ class Kernel(ABC):
             config = getattr(module, 'config')
             self._config[file.stem] = config()
 
+        return Success(None)
+
+
+    def _initialize_services(self) -> Result[None]:
+        for service in self._services:
+            if not is_successful(result := service()):
+                return result
         return Success(None)
 
 

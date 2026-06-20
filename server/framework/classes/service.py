@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod
 from typing import Any, Dict, List, Tuple
 from collections.abc import Callable, Coroutine
 
-from returns.pipeline import is_successful
 from returns.result import Success
 
 from ..utils.types import Result
