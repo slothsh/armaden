@@ -31,7 +31,7 @@ class DefaultApplication(Kernel):
             return status
 
 
-        service_statuses = { service.name: handle_result(result) for service in self.services() for result in await service.status() }
+        service_statuses = { service.name: handle_result(result) for service in self.service_manager.services for result in await service.status() }
         app_degraded = Dictionary.has('status', lambda value: value != HealthStatus.OK, [
             *service_statuses.values()
         ])

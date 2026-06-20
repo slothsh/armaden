@@ -1,6 +1,6 @@
 import asyncio
 from pathlib import Path
-from typing import Any, Dict, List, Self, TypeVar, cast
+from typing import Any, Dict, Self, TypeVar, cast
 from dotenv import load_dotenv
 from enum import StrEnum
 import logging
@@ -13,13 +13,13 @@ from abc import ABC
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
-from framework.protocols.service import ServiceInterface
 
-from ..protocols import SupervisorInterface
+from ..protocols import SupervisorInterface, ServiceManagerInterface
 from ..utils.types import Result
 from ..errors import Error, GenericError
-from ..classes.module_loader import ModuleLoader
-from ..classes.supervisor import Supervisor
+from .module_loader import ModuleLoader
+from .supervisor import Supervisor
+from .service_manager import ServiceManager
 
 logger = logging.getLogger('framework.kernel')
 
@@ -28,14 +28,14 @@ logger = logging.getLogger('framework.kernel')
 
 APP_HANDLE: Kernel | None = None
 EVENT_LOOP_HANDLE: asyncio.AbstractEventLoop | None = None
-SERVICES_HANDLE: List[ServiceInterface] = []
 
 
 class Kernel(ABC):
     def __init__(self, handle: Kernel | None = None, package_name: str | None = None) -> None:
-        global APP_HANDLE, EVENT_LOOP_HANDLE, SERVICES_HANDLE
+        global APP_HANDLE, EVENT_LOOP_HANDLE, SERVICE_MANAGER_HANDLE
         APP_HANDLE = handle
         EVENT_LOOP_HANDLE = asyncio.new_event_loop()
+
 
         self._status = KernelStatus.NOT_READY
         self._app_env = 'production'
@@ -43,7 +43,7 @@ class Kernel(ABC):
         self._package_name: str | None = package_name or (None if not __package__ else __package__.split(".")[0])
 
         self._supervisor: SupervisorInterface = Supervisor(EVENT_LOOP_HANDLE)
-        self._services: List[ServiceInterface] = SERVICES_HANDLE
+        self._service_manager: ServiceManagerInterface = ServiceManager()
 
 
     @staticmethod
@@ -85,15 +85,15 @@ class Kernel(ABC):
 
 
     def boot(self) -> Result[None]:
-        if not is_successful(result := self._initialize_services()):
-            return result
-
         return Success(None)
 
 
     async def __call__(self) -> Result[None]:
         if not is_successful(result := self.boot()):
             logger.error("Could not boot kernel: %s", result.failure())
+            return result
+
+        if not is_successful(result := await self._service_manager.initialize()):
             return result
 
         if not is_successful(result := await self._supervisor.initialize()):
@@ -141,18 +141,14 @@ class Kernel(ABC):
         return EVENT_LOOP_HANDLE
 
 
-    @classmethod
-    def services(cls) -> List[ServiceInterface]:
-        global SERVICES_HANDLE
-        if not SERVICES_HANDLE:
-            raise KernelException("The global services handle is not available. Did you bootstrap the application?")
-
-        return SERVICES_HANDLE
+    @property
+    def service_manager(self) -> ServiceManagerInterface:
+        return self._service_manager
 
 
     @property
     def supervisor(self) -> SupervisorInterface:
-        return self.supervisor
+        return self._supervisor
 
 
     # -- Initializers ---------------------------------------------------------
@@ -205,13 +201,6 @@ class Kernel(ABC):
             config = getattr(module, 'config')
             self._config[file.stem] = config()
 
-        return Success(None)
-
-
-    def _initialize_services(self) -> Result[None]:
-        for service in self._services:
-            if not is_successful(result := service()):
-                return result
         return Success(None)
 
 

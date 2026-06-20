@@ -23,7 +23,7 @@ from ..utils.types import Result, AsyncStreamArg,  AsyncStreamCallback
 from ..errors import Error
 from ..protocols import ServerInterface
 
-logger = logging.getLogger("framework.supervisor")
+logger = logging.getLogger(__name__)
 
 
 class Supervisor:
@@ -429,7 +429,7 @@ class Supervisor:
         return Success(None)
 
 
-    # -- steamcmd Flags -------------------------------------------------------
+# -- Internal Types -----------------------------------------------------------
 
 class SupervisorError(StrEnum):
     INITIALIZATION_FAILED = "an error occurred while initializing the supervisor"
