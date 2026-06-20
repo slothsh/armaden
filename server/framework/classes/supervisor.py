@@ -97,7 +97,7 @@ class Supervisor:
             except Exception as exception:
                 logger.error("An error occurred trying to shutdown server on thread %s: %s", thread_info.name, exception)
 
-        logger.warning("Shutting down supervisor servers")
+        logger.info("Shutting down supervisor servers")
         futures = [asyncio.wrap_future(server_state.future) for server_state in self._server_states.values() if server_state.future]
         if futures:
             try:
