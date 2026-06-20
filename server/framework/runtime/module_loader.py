@@ -1,7 +1,9 @@
 import os
 from enum import StrEnum
+from importlib import import_module
 from importlib.util import spec_from_file_location, module_from_spec
 from pathlib import Path
+from types import ModuleType
 from typing import Type, TypeVar
 
 from returns.result import Failure, Success
@@ -46,9 +48,23 @@ class ModuleLoader:
             }))
 
 
+    @classmethod
+    def try_import_module(cls, name: str, package: str | None = None) -> Result[ModuleType]:
+        try:
+            return Success(import_module(name, package))
+        except Exception as exception:
+            return Failure(Error(ModuleLoaderError.LOAD_MODULE_FAILED, details={
+                'name': name,
+                'package': package,
+                'exception': exception
+            }))
+
+
 # -- Internal Types -----------------------------------------------------------
 
 class ModuleLoaderError(StrEnum):
     USER_APP_APP_DIR_NOT_DEFINED = "the user app environment variable is not defined"
     USER_APP_LOAD_EXCEPTION = "an exception occurred while trying to load the user app from the host system"
-    USER_APP_INVALID_PATH = "the provided path to the  is invalid"
+    USER_APP_INVALID_PATH = "the provided path to the is invalid"
+    LOAD_MODULE_FAILED = "failed to load module from specified path"
+    LOAD_INVALID_PATH = "the provided path to the is invalid"

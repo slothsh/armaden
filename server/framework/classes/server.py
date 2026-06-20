@@ -6,20 +6,16 @@ from ..utils.types import Result
 
 class Server(ABC):
     @abstractmethod
-    async def initialize(self) -> Result[None]:
-        pass
+    async def initialize(self) -> Result[None]: ...
 
 
     @abstractmethod
-    async def run(self) -> Result[None]:
-        pass
+    async def run(self) -> Result[None]: ...
 
 
     @abstractmethod
-    async def shutdown(self) -> Result[None]:
-        pass
+    async def shutdown(self) -> Result[None]: ...
 
 
     @abstractmethod
-    async def status(self) -> Result[Dict[str, Any]]:
-        pass
+    async def status(self) -> Result[Dict[str, Any]]: ...

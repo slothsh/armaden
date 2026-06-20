@@ -1,26 +1,19 @@
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List, Tuple
-from collections.abc import Callable, Coroutine
+from typing import Any, Generic, Mapping, TypeVar
 
 from returns.result import Success
 
+from framework.enums.health_status import HealthStatus
 from ..utils.types import Result
 
-class Service(ABC):
-    def __init__(self):
-        self.status_callbacks: List[Tuple[str, StatusCallback]] = []
+H = TypeVar("H", bound=Mapping[str, Any])
 
+class Service(ABC, Generic[H]):
+    name: str
 
     @abstractmethod
-    def __call__(self, *args: Any, **kwargs: Any) -> Result[None]:
-        pass
+    def __call__(self, *args: Any, **kwargs: Any) -> Result[None]: ...
 
 
-    async def status(self) -> Result[Dict[str, Result[StatusReturnValue]]]:
-        return Success({ name: await status() for (name, status) in self.status_callbacks })
-
-
-# -- Internal Types -----------------------------------------------------------
-
-type StatusReturnValue = Dict[str, Any]
-type StatusCallback = Callable[[], Coroutine[None, None, Result[StatusReturnValue]]]
+    async def status(self) -> Result[Mapping[str, Any]]:
+        return Success({ self.name: HealthStatus.OK })

@@ -23,7 +23,7 @@ class ServiceManager:
 
     async def initialize(self) -> Result[None]:
         for service in self._declared_services:
-            if not is_successful(result := service()):
+            if is_successful(result := service()):
                 self._successul_services.append(service)
             else:
                 self._failed_services.append((result.failure(), service))
@@ -41,12 +41,12 @@ class ServiceManager:
         return Success(None)
 
 
-    def add_service(self, service: ServiceInterface) -> Result[None]:
+    def register_service(self, service: ServiceInterface) -> Result[None]:
         self._declared_services.append(service)
         return Success(None)
 
 
-    def add_services(self, services: List[ServiceInterface]) -> Result[None]:
+    def register_services(self, services: List[ServiceInterface]) -> Result[None]:
         self._declared_services.extend(services)
         return Success(None)
 

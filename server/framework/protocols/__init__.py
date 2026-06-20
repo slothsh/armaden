@@ -4,6 +4,8 @@ from .service import ServiceInterface
 from .supervisor_request_interface import SupervisorRequestInterface
 from .supervisor import SupervisorInterface
 from .service_manager import ServiceManagerInterface
+from .handle_manager import HandleManagerInterface
+from .kernel import KernelInterface
 
 __all__ = [
     'ErrorInterface',
@@ -11,5 +13,7 @@ __all__ = [
     'ServiceInterface',
     'SupervisorRequestInterface',
     'SupervisorInterface',
-    'ServiceManagerInterface'
+    'ServiceManagerInterface',
+    'HandleManagerInterface',
+    'KernelInterface',
 ]

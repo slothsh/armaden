@@ -13,36 +13,37 @@ from abc import ABC
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
-
-from ..protocols import SupervisorInterface, ServiceManagerInterface
+from ..protocols import HandleManagerInterface, SupervisorInterface, ServiceManagerInterface
 from ..utils.types import Result
 from ..errors import Error, GenericError
 from .module_loader import ModuleLoader
 from .supervisor import Supervisor
 from .service_manager import ServiceManager
+from .handle_manager import HandleManager
 
 logger = logging.getLogger('framework.kernel')
 
 
-# -- Global Handles -----------------------------------------------------------
-
-APP_HANDLE: Kernel | None = None
-EVENT_LOOP_HANDLE: asyncio.AbstractEventLoop | None = None
-
-
 class Kernel(ABC):
-    def __init__(self, handle: Kernel | None = None, package_name: str | None = None) -> None:
-        global APP_HANDLE, EVENT_LOOP_HANDLE, SERVICE_MANAGER_HANDLE
-        APP_HANDLE = handle
-        EVENT_LOOP_HANDLE = asyncio.new_event_loop()
+    def __init__(
+        self,
+        app_handle: Kernel | None = None,
+        package_name: str | None = None
+    ) -> None:
+        global HANDLE_MANAGER
+        HANDLE_MANAGER = HandleManager()
 
+        HANDLE_MANAGER.register_handles({
+            'app': app_handle,
+            'event_loop': asyncio.new_event_loop()
+        })
 
         self._status = KernelStatus.NOT_READY
         self._app_env = 'production'
         self._config: Dict[str, Any] = {}
         self._package_name: str | None = package_name or (None if not __package__ else __package__.split(".")[0])
 
-        self._supervisor: SupervisorInterface = Supervisor(EVENT_LOOP_HANDLE)
+        self._supervisor: SupervisorInterface = Supervisor(HANDLE_MANAGER.handle('event_loop').unwrap())
         self._service_manager: ServiceManagerInterface = ServiceManager()
 
 
@@ -126,19 +127,21 @@ class Kernel(ABC):
 
 
     @classmethod
+    def handle_manager(cls) -> HandleManagerInterface:
+        global HANDLE_MANAGER
+        if not HANDLE_MANAGER:
+            raise KernelException("The global handle manager is not available. Did you bootstrap the application?")
+        return HANDLE_MANAGER
+
+
+    @classmethod
     def instance(cls) -> Self:
-        global APP_HANDLE
-        if not APP_HANDLE:
-            raise KernelException("The global application handle is not available. Did you bootstrap the application?")
-        return cast(Self, APP_HANDLE)
+        return cast(Self, cls.handle_manager().handle('app').unwrap())
 
 
     @classmethod
     def event_loop(cls) -> asyncio.AbstractEventLoop:
-        global EVENT_LOOP_HANDLE
-        if not EVENT_LOOP_HANDLE:
-            raise KernelException("The global application event loop is not available. Did you bootstrap the application?")
-        return EVENT_LOOP_HANDLE
+        return cast(asyncio.AbstractEventLoop, cls.handle_manager().handle('event_loop').unwrap())
 
 
     @property
@@ -149,6 +152,7 @@ class Kernel(ABC):
     @property
     def supervisor(self) -> SupervisorInterface:
         return self._supervisor
+
 
 
     # -- Initializers ---------------------------------------------------------

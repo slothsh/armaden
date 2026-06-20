@@ -1,19 +1,34 @@
 import logging
 from typing import Any, Dict, Mapping
 from returns.pipeline import is_successful
-
-from framework.enums.health_status import HealthStatus
-from framework.utils.dictionary import Dictionary
+from returns.result import Success
 
 from .kernel import Kernel
+from .services.default_api_service import DefaultApiService
+from ..enums.health_status import HealthStatus
+from ..utils.dictionary import Dictionary
 from ..utils.types import Result
 
 logger = logging.getLogger(__name__)
 
 
 class DefaultApplication(Kernel):
-    def __init__(self, handle: DefaultApplication | None = None):
-        super().__init__(handle if handle else self, package_name='app')
+    def __init__(self, app_handle: DefaultApplication | None = None):
+        super().__init__(
+            app_handle if app_handle else self,
+            package_name='app',
+        )
+
+
+    def boot(self) -> Result[None]:
+        if not is_successful(result := super().boot()):
+            return result
+
+        self.service_manager.register_services([
+            DefaultApiService()
+        ])
+
+        return Success(None)
 
 
     async def status(self) -> Mapping[str, Any]:

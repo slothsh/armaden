@@ -1,9 +1,9 @@
 from .app import app
 from .config import config
-from .service import service
+from .route import Route
 
 __all__ = [
     'app',
     'config',
-    'service',
+    'Route'
 ]
