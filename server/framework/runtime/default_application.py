@@ -14,10 +14,7 @@ logger = logging.getLogger(__name__)
 
 class DefaultApplication(Kernel):
     def __init__(self, app_handle: DefaultApplication | None = None):
-        super().__init__(
-            app_handle if app_handle else self,
-            package_name='app',
-        )
+        super().__init__(app_handle if app_handle else self)
 
 
     def boot(self) -> Result[None]:

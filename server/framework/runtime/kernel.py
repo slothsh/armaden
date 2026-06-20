@@ -27,8 +27,7 @@ logger = logging.getLogger('framework.kernel')
 class Kernel(ABC):
     def __init__(
         self,
-        app_handle: Kernel | None = None,
-        package_name: str | None = None
+        app_handle: Kernel | None = None
     ) -> None:
         global HANDLE_MANAGER
         HANDLE_MANAGER = HandleManager()
@@ -41,7 +40,6 @@ class Kernel(ABC):
         self._status = KernelStatus.NOT_READY
         self._app_env = 'production'
         self._config: Dict[str, Any] = {}
-        self._package_name: str | None = package_name or (None if not __package__ else __package__.split(".")[0])
 
         self._supervisor: SupervisorInterface = Supervisor(HANDLE_MANAGER.handle('event_loop').unwrap())
         self._service_manager: ServiceManagerInterface = ServiceManager()
@@ -194,14 +192,14 @@ class Kernel(ABC):
 
 
     def _initialize_configs(self) -> Result[None]:
-        if not self._package_name:
+        if not __package__:
             return Failure(Error(KernelError.INVALID_PACKAGE_NAME))
 
-        config_directory = Path(self._package_name) / 'config'
+        config_directory = Path(__file__).absolute().parent / 'config'
         config_files = config_directory.glob('*.py')
 
         for file in [file for file in config_files if file.is_file() and not file.name.startswith(('.', '_'))]:
-            module = import_module(f"{self._package_name}.config.{file.stem}")
+            module = import_module(f"{__package__}.config.{file.stem}")
             config = getattr(module, 'config')
             self._config[file.stem] = config()
 

@@ -1,4 +1,4 @@
-from ..utils.env import env
+from ...utils.env import env
 from importlib import metadata
 
 

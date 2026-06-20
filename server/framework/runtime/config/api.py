@@ -1,4 +1,4 @@
-from ..utils.env import Env
+from ...utils.env import Env
 
 
 def config():
