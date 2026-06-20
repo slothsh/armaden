@@ -56,7 +56,7 @@ class Kernel(ABC):
             # Load the runtime application
             from .default_application import DefaultApplication
 
-            user_application = ModuleLoader.try_load_user_application(DefaultApplication)
+            user_application = ModuleLoader.try_load_user_application(inherits=DefaultApplication)
             if not is_successful(user_application):
                 logger.warning(user_application.failure())
                 logger.warning("Using the default application as a fallback")

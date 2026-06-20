@@ -14,8 +14,9 @@ T = TypeVar("T")
 
 class ModuleLoader:
     @classmethod
-    def try_load_user_application(cls, _: Type[T]) -> Result[T | None]:
+    def try_load_user_application(cls, *, inherits: Type[T]) -> Result[T | None]:
         try:
+            _ = inherits
             app_directory = os.getenv('APP_DIR')
 
             if not app_directory:
