@@ -195,13 +195,37 @@ class Kernel(ABC):
         if not __package__:
             return Failure(Error(KernelError.INVALID_PACKAGE_NAME))
 
+        # Load default configuration first
         config_directory = Path(__file__).absolute().parent / 'config'
         config_files = config_directory.glob('*.py')
 
         for file in [file for file in config_files if file.is_file() and not file.name.startswith(('.', '_'))]:
-            module = import_module(f"{__package__}.config.{file.stem}")
-            config = getattr(module, 'config')
-            self._config[file.stem] = config()
+            if not is_successful(result := ModuleLoader.try_import_module(f"{__package__}.config.{file.stem}")):
+                return result.map(lambda _: None)
+
+            config = getattr(result.unwrap(), 'config')
+            if callable(config):
+                self._config[file.stem] = config()
+            else:
+                return Failure(Error(KernelError.CONFIG_MODULE_NOT_CALLABLE, details={
+                    'directory': config_directory,
+                    'file': file,
+                }))
+
+        # Load user configuration
+        if not is_successful(result := ModuleLoader.try_load_user_config()):
+            return result.map(lambda _: None)
+
+        if not (result := result.unwrap()):
+            return Success(None)
+
+        for (key, config) in result:
+            if key in self._config:
+                self._config[key].update(config())
+                continue
+            self._config[key] = config()
+
+        logger.info(self._config)
 
         return Success(None)
 
@@ -225,3 +249,4 @@ class KernelError(StrEnum):
     MISSING_DOTENV = 'no .env file was found in the working directory of the application'
     INVALID_DEFAULT_ENVIRONMENT = 'the application has no default environment configured'
     INVALID_PACKAGE_NAME = "the application's package name is not defined"
+    CONFIG_MODULE_NOT_CALLABLE = "the imported configuration factory method is not callable"
