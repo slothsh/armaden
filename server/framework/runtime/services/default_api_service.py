@@ -32,7 +32,7 @@ class DefaultApiService(Service):
         route_files = routes_directory.glob('*.py')
 
         for file in [file for file in route_files if file.is_file() and not file.name.startswith(('.', '_'))]:
-            if not is_successful(result := ModuleLoader.try_import_module(f"..http.routes.{file.stem}", __package__)):
+            if not is_successful(result := ModuleLoader.try_import_module(f"framework.runtime.http.routes.{file.stem}")):
                 logger.error(result.failure)
 
         return Success(None)
