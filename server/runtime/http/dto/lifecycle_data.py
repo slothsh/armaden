@@ -1,7 +1,7 @@
 from typing import Dict
 from pydantic.dataclasses import dataclass
 
-from ....enums.health_status import HealthStatus
+from framework.enums.health_status import HealthStatus
 
 # -- Request Data -------------------------------------------------------------
 

@@ -7,9 +7,9 @@ from enum import StrEnum
 
 from framework.protocols.error import ErrorInterface
 
-from ..errors.error import Error
-from ..protocols.service import ServiceInterface
-from ..utils.types import Result
+from framework.errors.error import Error
+from framework.protocols.service import ServiceInterface
+from framework.utils.types import Result
 
 logger = logging.getLogger(__name__)
 

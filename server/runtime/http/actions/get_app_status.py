@@ -1,8 +1,8 @@
 import logging
 
 from ..dto.lifecycle_data import HealthResponseData
-from ...facades.app import app
-from ....enums.health_status import HealthStatus
+from framework.facades import app
+from framework.enums.health_status import HealthStatus
 
 logger = logging.getLogger(__name__)
 

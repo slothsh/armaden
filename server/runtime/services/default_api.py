@@ -5,11 +5,11 @@ import uvicorn
 from returns.result import Failure, Success
 from fastapi import FastAPI
 
-from ..facades import config
-from ...classes.server import Server
-from ...enums.health_status import HealthStatus
-from ...utils.types import Result
-from ...errors import Error
+from framework.facades import config
+from framework.classes.server import Server
+from framework.enums.health_status import HealthStatus
+from framework.utils.types import Result
+from framework.errors import Error
 
 logger = logging.getLogger(__name__)
 

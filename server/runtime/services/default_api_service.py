@@ -4,13 +4,13 @@ from pathlib import Path
 from returns.pipeline import is_successful
 from returns.result import Success
 
-from framework.runtime.module_loader import ModuleLoader
+from runtime.module_loader import ModuleLoader
 
 from .default_api import DefaultApi
 
-from ..facades import app
-from ...classes.service import Service
-from ...utils.types import Result
+from framework.facades import app
+from framework.classes.service import Service
+from framework.utils.types import Result
 
 logger = logging.getLogger(__name__)
 
@@ -32,7 +32,7 @@ class DefaultApiService(Service):
         route_files = routes_directory.glob('*.py')
 
         for file in [file for file in route_files if file.is_file() and not file.name.startswith(('.', '_'))]:
-            if not is_successful(result := ModuleLoader.try_import_module(f"framework.runtime.http.routes.{file.stem}")):
+            if not is_successful(result := ModuleLoader.try_import_module(f"runtime.http.routes.{file.stem}")):
                 logger.error(result.failure)
 
         return Success(None)

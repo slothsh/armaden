@@ -5,5 +5,5 @@ from .route import Route
 __all__ = [
     'app',
     'config',
-    'Route'
+    'Route',
 ]

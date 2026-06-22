@@ -7,32 +7,32 @@ import logging
 import os
 import sys
 from glob import glob
-from abc import ABC
 
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
-from ..protocols import HandleManagerInterface, SupervisorInterface, ServiceManagerInterface
-from ..utils.types import Result
-from ..errors import Error, GenericError
+from framework.protocols import HandleManagerInterface, SupervisorInterface, ServiceManagerInterface
+from framework.protocols.application import ApplicationInterface
+from framework.enums.health_status import HealthStatus
+from framework.utils.dictionary import Dictionary
+from framework.utils.types import Result
+from framework.errors import Error, GenericError
+from .default_application import DefaultApplication
 from .module_loader import ModuleLoader
 from .supervisor import Supervisor
 from .service_manager import ServiceManager
 from .handle_manager import HandleManager
 
-logger = logging.getLogger('framework.kernel')
+logger = logging.getLogger('runtime.kernel')
 
 
-class Kernel(ABC):
-    def __init__(
-        self,
-        app_handle: Kernel | None = None
-    ) -> None:
+class Kernel:
+    def __init__(self) -> None:
         global HANDLE_MANAGER
         HANDLE_MANAGER = HandleManager()
 
         HANDLE_MANAGER.register_handles({
-            'app': app_handle,
+            'app': self,
             'event_loop': asyncio.new_event_loop()
         })
 
@@ -42,6 +42,7 @@ class Kernel(ABC):
 
         self._supervisor: SupervisorInterface = Supervisor(HANDLE_MANAGER.handle('event_loop').unwrap())
         self._service_manager: ServiceManagerInterface = ServiceManager()
+        self._user_app: ApplicationInterface = DefaultApplication()
 
 
     @staticmethod
@@ -51,29 +52,34 @@ class Kernel(ABC):
             if not is_successful(Kernel._initialize_logging()):
                 raise KernelException('Could not successfully initialize logging during application bootstrap')
 
-            # Load the runtime application
-            from .default_application import DefaultApplication
+            # Create the runtime engine
+            kernel = Kernel()
+            from framework.facades._registry import set_kernel
+            set_kernel(kernel)
 
-            user_application = ModuleLoader.try_load_user_application(inherits=DefaultApplication)
-            if not is_successful(user_application):
-                logger.warning(user_application.failure())
+            # Load the user application
+            user_app_result = ModuleLoader.try_load_user_application()
+            if is_successful(user_app_result) and (cls := user_app_result.unwrap()):
+                if issubclass(cls, ApplicationInterface):
+                    logger.info("Successfully loaded user application: %s", cls.__name__)
+                    kernel._user_app = cls()
+                else:
+                    logger.warning("User Application class %s does not implement ApplicationInterface; using DefaultApplication", cls)
+            elif not is_successful(user_app_result):
+                logger.warning(user_app_result.failure())
                 logger.warning("Using the default application as a fallback")
 
-            user_application = user_application.value_or(None)
-            application = user_application if user_application else DefaultApplication
-            application = cast(Kernel, application())
-
             # Initialize everything else
-            if not is_successful(application._initialize_environment()):
+            if not is_successful(kernel._initialize_environment()):
                 logger.warning("The application's environment was not successfully initialized, this is not an issue if you did not provide .env file for your application")
-            if not is_successful(application._initialize_configs()):
+            if not is_successful(kernel._initialize_configs()):
                 raise KernelException("The application's configuration files could not be successfully initialized")
 
             # Update application status
-            application._status = KernelStatus.READY
-            logger.info('Application successfully bootstrapped with status: %s', application._status)
+            kernel._status = KernelStatus.READY
+            logger.info('Application successfully bootstrapped with status: %s', kernel._status)
 
-            return asyncio.run(application(), loop_factory=application.event_loop)
+            return asyncio.run(kernel(), loop_factory=kernel.event_loop)
         except (KeyboardInterrupt, SystemExit):
             return Success(None)
         except Exception as exception:
@@ -82,13 +88,11 @@ class Kernel(ABC):
             return Failure(Error(GenericError.UNKNOWN))
 
 
-    def boot(self) -> Result[None]:
-        return Success(None)
-
-
     async def __call__(self) -> Result[None]:
-        if not is_successful(result := self.boot()):
-            logger.error("Could not boot kernel: %s", result.failure())
+        self._user_app.configure(self._service_manager, self._supervisor)
+
+        if not is_successful(result := self._user_app.boot()):
+            logger.error("Could not boot user application: %s", result.failure())
             return result
 
         if not is_successful(result := await self._service_manager.initialize()):
@@ -121,6 +125,39 @@ class Kernel(ABC):
             return default
 
         return value
+
+
+    async def status(self) -> Result[Dict[str, Any]]:
+        def handle_result(results: Dict[str, Result[Dict[str, Any]]]) -> Dict[str, Any]:
+            status: Dict[str, Any] = {}
+
+            for name, result in results.items():
+                if not is_successful(result):
+                    logger.warning(result.failure())
+                    status[name] = { 'status': HealthStatus.UNAVAILABLE }
+                    continue
+
+                status[name] = result.unwrap()
+
+            return status
+
+        service_statuses = { service.name: handle_result(result) for service in self._service_manager.services for result in await service.status() }
+        app_degraded = Dictionary.has('status', lambda value: value != HealthStatus.OK, [
+            *service_statuses.values()
+        ])
+
+        user_status_result = await self._user_app.status()
+        if is_successful(user_status_result):
+            user_status = user_status_result.unwrap()
+        else:
+            user_status = {}
+            logger.warning(user_status_result.failure())
+
+        return Success({
+            'status': HealthStatus.DEGRADED if app_degraded else HealthStatus.OK,
+            'services': service_statuses,
+            **user_status,
+        })
 
 
     @classmethod

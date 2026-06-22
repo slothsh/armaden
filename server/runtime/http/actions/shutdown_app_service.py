@@ -2,9 +2,9 @@ import logging
 from returns.pipeline import is_successful
 
 from ..dto.lifecycle_data import ShutdownRequestData, ShutdownResponseData
-from ...facades.app import app
-from ....dto.supervisor_request_data import SupervisorRequestData
-from ....enums.supervisor_request_kind import SupervisorRequestKind
+from framework.facades import app
+from framework.dto.supervisor_request_data import SupervisorRequestData
+from framework.enums.supervisor_request_kind import SupervisorRequestKind
 
 logger = logging.getLogger(__name__)
 

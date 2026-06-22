@@ -18,10 +18,10 @@ from pathlib import Path
 from framework.enums.supervisor_request_kind import SupervisorRequestKind
 from framework.protocols.supervisor_request_interface import SupervisorRequestInterface
 
-from ..dto.supervisor_request_data import SupervisorRequestData
-from ..utils.types import Result, AsyncStreamArg,  AsyncStreamCallback
-from ..errors import Error
-from ..protocols import ServerInterface
+from framework.dto.supervisor_request_data import SupervisorRequestData
+from framework.utils.types import Result, AsyncStreamArg,  AsyncStreamCallback
+from framework.errors import Error
+from framework.protocols import ServerInterface
 
 logger = logging.getLogger(__name__)
 

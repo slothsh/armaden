@@ -8,10 +8,11 @@ packages = [
     { include = "app" },
     { include = "framework" },
     { include = "games" },
+    { include = "runtime" },
 ]
 
 [tool.poetry.scripts]
-app = "framework.runtime.kernel:Kernel.bootstrap"
+app = "runtime.kernel:Kernel.bootstrap"
 
 [tool.poetry.dependencies]
 python = "^3.12"

@@ -1,4 +1,4 @@
-from ...facades import Route
+from framework.facades import Route
 from ..controllers import LifecycleController
 
 # -- Lifecycle Routes ---------------------------------------------------------

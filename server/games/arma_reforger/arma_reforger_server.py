@@ -8,8 +8,8 @@ from pathlib import Path
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 from framework.enums.health_status import HealthStatus
-from framework.runtime.facades import app
-from framework.runtime.facades import config
+from framework.facades import app
+from framework.facades import config
 from framework.classes.server import Server
 from framework.utils.types import Result
 from framework.errors import Error

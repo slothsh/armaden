@@ -13,7 +13,7 @@ import logging
 from pathlib import Path
 
 from returns.result import Failure, Success
-from framework.runtime.facades import config
+from framework.facades import config
 from framework.classes.executable import Executable
 from framework.utils.types import Result
 from framework.errors import Error

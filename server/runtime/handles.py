@@ -1,8 +1,8 @@
 import asyncio
 from typing import TypedDict
 
-from ..utils.types import ApiType, RouterType
-from ..protocols.kernel import KernelInterface
+from framework.utils.types import ApiType, RouterType
+from framework.protocols.kernel import KernelInterface
 
 
 class DefaultApplicationHandles(TypedDict):

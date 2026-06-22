@@ -5,8 +5,8 @@ from returns.result import Failure, Success
 from enum import StrEnum
 from typing import Dict, Generic, TypeVar, Any, Mapping, cast
 
-from ..errors.error import Error
-from ..utils.types import Result
+from framework.errors.error import Error
+from framework.utils.types import Result
 
 
 logger = logging.getLogger(__name__)
