@@ -12,7 +12,7 @@ packages = [
 ]
 
 [tool.poetry.scripts]
-app = "runtime.kernel:Kernel.bootstrap"
+http = "runtime.kernel:bootstrap_http"
 
 [tool.poetry.dependencies]
 python = "^3.12"

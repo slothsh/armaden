@@ -1,22 +1,21 @@
-import logging
-
-from pathlib import Path
 from returns.pipeline import is_successful
 from returns.result import Success
 
 from framework.classes.service_provider import ServiceProvider
+from framework.facades import app
 from framework.utils.types import Result
 from runtime.module_loader import ModuleLoader
 
-from .default_api import DefaultApi
+from runtime.services.default_api import DefaultApi
 
-from framework.facades import app
+import logging
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
 
-class DefaultApiServiceProvider(ServiceProvider):
-    name = 'api'
+class HttpServiceProvider(ServiceProvider):
+    name = 'http'
 
     def register(self) -> Result[None]:
         return Success(None)
@@ -32,8 +31,15 @@ class DefaultApiServiceProvider(ServiceProvider):
         routes_directory = Path(__file__).absolute().parent.parent / 'http' / 'routes'
         route_files = routes_directory.glob('*.py')
 
-        for file in [file for file in route_files if file.is_file() and not file.name.startswith(('.', '_'))]:
-            if not is_successful(result := ModuleLoader.try_import_module(f"runtime.http.routes.{file.stem}")):
+        for file in [
+            file for file in route_files
+            if file.is_file() and not file.name.startswith(('.', '_'))
+        ]:
+            if not is_successful(
+                result := ModuleLoader.try_import_module(
+                    f"runtime.http.routes.{file.stem}"
+                )
+            ):
                 logger.error(result.failure)
 
         return Success(None)

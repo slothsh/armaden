@@ -1,9 +1,9 @@
 from typing import TYPE_CHECKING
-from ._registry import get_kernel
+from ._registry import get_application
 
 if TYPE_CHECKING:
-    from ..protocols.kernel import KernelInterface
+    from framework.protocols.kernel import CoreApplicationInterface
 
 
-def app() -> 'KernelInterface':
-    return get_kernel()
+def app() -> 'CoreApplicationInterface':
+    return get_application()
