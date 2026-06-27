@@ -13,28 +13,31 @@ import logging
 from pathlib import Path
 
 from returns.result import Failure, Success
-from armaden.framework.facades import config
 from armaden.framework.classes.executable import Executable
 from armaden.framework.utils.types import Result
+from armaden.framework.utils.dictionary import Dictionary
 from armaden.framework.errors import Error
 from .enums import ArmaReforgerExecutableFlag
+from .arma_reforger_config import Config, DEFAULT_CONFIG
 
 logger = logging.getLogger('games.arma_reforger.executable')
 
 
 class ArmaReforgerServerExecutable(Executable):
-    def __init__(self) -> None:
-        super().__init__(ArmaReforgerServerExecutable.resolve_executable)
+    def __init__(self, config: Config | None = None) -> None:
+        self._config = Dictionary.merge(DEFAULT_CONFIG, config or {})
+        self._params: list[str] = []
+        self._scratch_params: list[str] = []
+        self._executable: Path | None = self.resolve_executable().value_or(None)
 
-    @classmethod
-    def resolve_executable(cls) -> Result[Path]:
+    def resolve_executable(self) -> Result[Path]:
         common_paths = [
             Path.home() / "Steam" / "steamapps" / "common" / "Arma Reforger" / "ArmaReforgerServer",
             Path.home() / ".local" / "share" / "Steam" / "steamapps" / "common" / "Arma Reforger" / "ArmaReforgerServer",
             Path("C:\\Program Files (x86)\\Steam\\steamapps\\common\\Arma Reforger\\ArmaReforgerServer.exe"),
         ]
 
-        if directory := config('arma_reforger.executable'):
+        if directory := self._config.get('executable'):
             common_paths.insert(0, Path(directory).absolute())
 
         for candidate in common_paths:

@@ -16,6 +16,7 @@ from armaden.framework.utils.dictionary import Dictionary
 from armaden.games.steamcmd import SteamCmdExecutable
 from .arma_reforger_server_executable import ArmaReforgerServerExecutable
 from .arma_reforger_rcon_client import ArmaReforgerRconClient
+from .arma_reforger_config import Config, DEFAULT_CONFIG
 from .enums.arma_reforger_executable_flag import ArmaReforgerExecutableFlag
 
 logger = logging.getLogger('games.arma_reforger.server')
@@ -25,19 +26,21 @@ class ArmaReforgerServer:
     STEAM_APP_ID: int = 1874900
     STEAM_APP_ID_CLIENT: int = 1874880
 
-    def __init__(self):
+    def __init__(self, config: Config | None = None):
+        self._config = Dictionary.merge(DEFAULT_CONFIG, config or {})
+
         self._executable = ExecutableContainer(
-            steamcmd=SteamCmdExecutable(),
-            reforger=ArmaReforgerServerExecutable()
+            steamcmd=SteamCmdExecutable(config={'executable': self._config.get('steamExecutable')}),
+            reforger=ArmaReforgerServerExecutable(config=self._config)
         )
 
         self._rcon_client = ArmaReforgerRconClient(
-            config('arma_reforger.server.rcon.address'),
-            config('arma_reforger.server.rcon.port'),
-            config('arma_reforger.server.rcon.password')
+            self._config['server']['rcon']['address'],
+            self._config['server']['rcon']['port'],
+            self._config['server']['rcon']['password']
         )
 
-        install_directory = Path(config('arma_reforger.installDirectory', '/arma')).absolute()
+        install_directory = Path(self._config['installDirectory']).absolute()
 
         self._paths = PathContainer(
             install=install_directory,
@@ -104,8 +107,8 @@ class ArmaReforgerServer:
     def server_command(self) -> Result[List[str]]:
         reforger = self._executable.reforger.save_params()
 
-        startup_parameters: dict[str, str]
-        if startup_parameters := config('arma_reforger.startup'):
+        startup_parameters: dict[str, str] | None
+        if startup_parameters := self._config.get('startup'):
             for parameter, value in startup_parameters.items():
                 if is_successful(flag := ArmaReforgerExecutableFlag.from_config(parameter)):
                     # Skip config override for now
@@ -153,7 +156,7 @@ class ArmaReforgerServer:
 
 
     def install_config(self) -> Result[None]:
-        config_data: Dict[str, Any] = Dictionary.without(config('arma_reforger.server'), lambda _, value: value is None)
+        config_data: Dict[str, Any] = Dictionary.without(self._config['server'], lambda _, value: value is None)
 
         self._paths.config_directory.mkdir(exist_ok=True)
 

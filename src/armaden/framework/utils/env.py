@@ -37,7 +37,7 @@ class Env:
 
 
     @classmethod
-    def json(cls, name: str, default):
+    def json(cls, name: str, default: Any | None = None):
         value = env(name)
         if value is None:
             return default

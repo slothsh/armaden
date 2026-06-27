@@ -1,17 +1,22 @@
+from typing import cast
+
 from returns.result import Success
 
 from armaden.framework.classes.service_provider import ServiceProvider
 from armaden.framework.classes.task import TaskBuilder
-from armaden.framework.facades import app
+from armaden.framework.facades import app, config
 from armaden.framework.utils.types import Result
-from armaden.games.arma_reforger.arma_reforger_server import ArmaReforgerServer
+from armaden.games.arma_reforger import ArmaReforgerServer
+from armaden.games.arma_reforger.arma_reforger_config import Config
 
 
 class AppServiceProvider(ServiceProvider):
     name = 'arma_reforger'
 
     def register(self) -> Result[None]:
-        self._container.singleton(ArmaReforgerServer)
+        user_config = cast(Config, config('arma_reforger'))
+        server = ArmaReforgerServer(user_config)
+        self._container.singleton(ArmaReforgerServer, server)
         return Success(None)
 
     def boot(self) -> Result[None]:

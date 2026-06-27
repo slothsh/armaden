@@ -38,3 +38,16 @@ class Dictionary:
             ]
 
         return data
+
+    @classmethod
+    def merge(cls, base: dict, override: dict) -> dict:
+        result = {}
+        for key in base.keys() | override.keys():
+            if key in override and override[key] is not None:
+                if isinstance(base.get(key), dict) and isinstance(override[key], dict):
+                    result[key] = cls.merge(base[key], override[key])
+                else:
+                    result[key] = override[key]
+            elif key in base:
+                result[key] = base[key]
+        return result

@@ -8,20 +8,22 @@ from returns.result import Failure, Success
 from armaden.framework.facades import config
 from armaden.framework.classes.executable import Executable, PushValue
 from armaden.framework.utils.types import Result
+from armaden.framework.utils.dictionary import Dictionary
 from armaden.framework.errors import Error
 from .enums import SteamCmdExecutableFlag
+from .steamcmd_config import Config, DEFAULT_CONFIG
 
 logger = logging.getLogger(__name__)
 
 
 class SteamCmdExecutable(Executable):
-    def __init__(self) -> None:
+    def __init__(self, config: Config | None = None) -> None:
+        self._config = Dictionary.merge(DEFAULT_CONFIG, config or {})
         self._executable: Path | None = self.resolve_executable().value_or(None)
         self._params: List[str] = []
 
 
-    @classmethod
-    def resolve_executable(cls) -> Result[Path]:
+    def resolve_executable(self) -> Result[Path]:
         common_paths = [
             Path.home() / ".steam" / "steamcmd" / "steamcmd.sh",
             Path.home() / "Steam" / "steamcmd" / "steamcmd.sh",
@@ -30,7 +32,7 @@ class SteamCmdExecutable(Executable):
             Path("C:\\steamcmd\\steamcmd.exe"),
         ]
 
-        if executable := config('steamcmd.executable'):
+        if executable := self._config.get('executable'):
             common_paths.insert(0, Path(executable).absolute())
 
         for candidate in common_paths:
