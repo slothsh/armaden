@@ -10,7 +10,8 @@ requires-python = ">=3.12"
 dynamic = ["dependencies", "optional-dependencies"]
 
 [project.scripts]
-armaden = "armaden.framework.runtime.kernel:bootstrap_http"
+armaden-serve = "armaden.framework.runtime.kernel:bootstrap_http"
+armaden-scaffold = "armaden.framework.installer.scaffold:main"
 
 [tool.poetry]
 packages = [
