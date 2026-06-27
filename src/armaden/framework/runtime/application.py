@@ -269,23 +269,31 @@ class CoreApplication:
             logger.debug("Skipping user provider discovery")
             return
 
-        try:
-            from app.providers import AppServiceProvider
-            provider = AppServiceProvider(self._container)
-            result = provider.register()
-            if not is_successful(result):
-                logger.warning(
-                    "Provider registration failed for %s: %s",
-                    AppServiceProvider.__name__,
-                    result.failure(),
-                )
-                return
-            self._providers.append(provider)
-            logger.info("Registered provider: %s", AppServiceProvider.__name__)
-        except ModuleNotFoundError:
-            logger.debug("No user providers module found at app.providers")
-        except Exception as e:
-            logger.warning("Error during provider registration: %s", e)
+        result = ModuleLoader.try_load_user_app_provider()
+        if not is_successful(result):
+            logger.warning("Failed to load user providers: %s", result.failure())
+            return
+
+        provider_list = result.unwrap()
+        if not provider_list:
+            logger.debug("No user providers module found in APP_DIR")
+            return
+
+        for provider_class in provider_list:
+            try:
+                provider = provider_class(self._container)
+                result = provider.register()
+                if not is_successful(result):
+                    logger.warning(
+                        "Provider registration failed for %s: %s",
+                        provider_class.__name__,
+                        result.failure(),
+                    )
+                    continue
+                self._providers.append(provider)
+                logger.info("Registered provider: %s", provider_class.__name__)
+            except Exception as e:
+                logger.warning("Error during provider registration: %s", e)
 
     def _initialize_environment(self) -> Result[None]:
         if app_env := os.getenv('APP_ENV'):
