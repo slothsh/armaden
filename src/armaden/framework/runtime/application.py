@@ -77,22 +77,25 @@ class CoreApplication:
             )
 
         user_app_found = False
-        user_app_result = ModuleLoader.try_load_user_application()
-        if is_successful(user_app_result) and (cls := user_app_result.unwrap()):
-            if issubclass(cls, ApplicationInterface):
-                logger.info("Successfully loaded user application: %s", cls.__name__)
-                self._container.bind(ApplicationInterface, cls, shared=True)
-                user_app_found = True
-            else:
-                logger.warning(
-                    "User Application class %s does not implement ApplicationInterface; using DefaultApplication",
-                    cls,
-                )
+        if os.getenv('APP_DIR'):
+            user_app_result = ModuleLoader.try_load_user_application()
+            if is_successful(user_app_result) and (cls := user_app_result.unwrap()):
+                if issubclass(cls, ApplicationInterface):
+                    logger.info("Successfully loaded user application: %s", cls.__name__)
+                    self._container.bind(ApplicationInterface, cls, shared=True)
+                    user_app_found = True
+                else:
+                    logger.warning(
+                        "User Application class %s does not implement ApplicationInterface; using DefaultApplication",
+                        cls,
+                    )
+                    self._container.bind(ApplicationInterface, DefaultApplication, shared=True)
+            elif not is_successful(user_app_result):
+                logger.warning(user_app_result.failure())
+                logger.warning("Using the default application as a fallback")
                 self._container.bind(ApplicationInterface, DefaultApplication, shared=True)
-        elif not is_successful(user_app_result):
-            logger.warning(user_app_result.failure())
-            logger.warning("Using the default application as a fallback")
-            self._container.bind(ApplicationInterface, DefaultApplication, shared=True)
+            else:
+                self._container.bind(ApplicationInterface, DefaultApplication, shared=True)
         else:
             self._container.bind(ApplicationInterface, DefaultApplication, shared=True)
 
