@@ -2,6 +2,7 @@ from returns.pipeline import is_successful
 from returns.result import Success
 
 from framework.classes.service_provider import ServiceProvider
+from framework.classes.task import TaskBuilder
 from framework.facades import app
 from framework.utils.types import Result
 from runtime.module_loader import ModuleLoader
@@ -23,7 +24,17 @@ class HttpServiceProvider(ServiceProvider):
     def boot(self) -> Result[None]:
         default_api = DefaultApi()
 
-        app().supervisor.with_server(default_api)
+        task = (
+            TaskBuilder()
+            .name('http_api')
+            .on_initialize(default_api.initialize)
+            .on_run(default_api.run)
+            .on_shutdown(default_api.shutdown)
+            .on_status(default_api.status)
+            .exclusive_thread()
+            .build()
+        )
+        app().supervisor.add_task(task)
 
         app().container.instance('api', default_api.app)
         app().container.instance('router', default_api.app.router)

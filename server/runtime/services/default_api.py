@@ -6,24 +6,25 @@ from returns.result import Failure, Success
 from fastapi import FastAPI
 
 from framework.facades import config
-from framework.classes.server import Server
 from framework.enums.health_status import HealthStatus
 from framework.utils.types import Result
 from framework.errors import Error
+from framework.protocols.task_runtime import TaskRuntimeInterface
 
 logger = logging.getLogger(__name__)
 
 
-class DefaultApi(Server):
+class DefaultApi:
     def __init__(self) -> None:
         self._app = FastAPI(
             title="Public HTTP API"
         )
+        self._uvicorn_server: uvicorn.Server | None = None
 
 
-    # --- Server Interface ----------------------------------------------------
+    # --- Lifecycle Interface ----------------------------------------------------
 
-    async def initialize(self) -> Result[None]:
+    async def initialize(self, runtime: TaskRuntimeInterface) -> Result[None]:
         try:
             server_config = uvicorn.Config(
                 app=self._app,
@@ -40,7 +41,7 @@ class DefaultApi(Server):
             }))
 
 
-    async def run(self) -> Result[None]:
+    async def run(self, runtime: TaskRuntimeInterface) -> Result[None]:
         if not self._uvicorn_server:
             return Failure(Error(DefaultApiError.RUN_FAILED, details={
                 'message': 'uvicorn server must be initialized before running the api server'
@@ -55,14 +56,14 @@ class DefaultApi(Server):
             }))
 
 
-    async def shutdown(self) -> Result[None]:
+    async def shutdown(self, runtime: TaskRuntimeInterface) -> Result[None]:
         if self._uvicorn_server and self._uvicorn_server.started:
             self._uvicorn_server.should_exit = True
 
         return Success(None)
 
 
-    async def status(self) -> Result[Dict[str, Any]]:
+    async def status(self, runtime: TaskRuntimeInterface) -> Result[Dict[str, Any]]:
         return Success({
             'status': HealthStatus.OK,
         })

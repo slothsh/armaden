@@ -1,7 +1,7 @@
 from .utils.types import Result
 from .utils.dictionary import Dictionary
 from .errors import Error, GenericError
-from .classes.server import Server
+from .classes.task import Task, TaskBuilder
 from .classes.executable import Executable
 
 __all__ = [
@@ -9,6 +9,7 @@ __all__ = [
     'Dictionary',
     'Error',
     'GenericError',
-    'Server',
+    'Task',
+    'TaskBuilder',
     'Executable',
 ]

@@ -1,6 +1,7 @@
 from returns.result import Success
 
 from framework.classes.service_provider import ServiceProvider
+from framework.classes.task import TaskBuilder
 from framework.facades import app
 from framework.utils.types import Result
 from games.arma_reforger.arma_reforger_server import ArmaReforgerServer
@@ -15,5 +16,17 @@ class AppServiceProvider(ServiceProvider):
 
     def boot(self) -> Result[None]:
         server = self._container.make(ArmaReforgerServer)
-        app().supervisor.with_server(server)
+
+        task = (
+            TaskBuilder()
+            .name('arma_reforger_server')
+            .on_initialize(server.initialize)
+            .on_run(server.run)
+            .on_shutdown(server.shutdown)
+            .on_status(server.status)
+            .exclusive_thread()
+            .build()
+        )
+
+        app().supervisor.add_task(task)
         return Success(None)

@@ -8,11 +8,10 @@ from pathlib import Path
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 from framework.enums.health_status import HealthStatus
-from framework.facades import app
 from framework.facades import config
-from framework.classes.server import Server
 from framework.utils.types import Result
 from framework.errors import Error
+from framework.protocols.task_runtime import TaskRuntimeInterface
 from framework.utils.dictionary import Dictionary
 from games.steamcmd import SteamCmdExecutable
 from .arma_reforger_server_executable import ArmaReforgerServerExecutable
@@ -22,7 +21,7 @@ from .enums.arma_reforger_executable_flag import ArmaReforgerExecutableFlag
 logger = logging.getLogger('games.arma_reforger.server')
 
 
-class ArmaReforgerServer(Server):
+class ArmaReforgerServer:
     STEAM_APP_ID: int = 1874900
     STEAM_APP_ID_CLIENT: int = 1874880
 
@@ -61,9 +60,9 @@ class ArmaReforgerServer(Server):
 
     # -- Server Interface -----------------------------------------------------
 
-    async def initialize(self) -> Result[None]:
+    async def initialize(self, runtime: TaskRuntimeInterface) -> Result[None]:
         try:
-            if not is_successful(result := await self.install_game_assets(validate=True)):
+            if not is_successful(result := await self.install_game_assets(runtime, validate=True)):
                 return result
 
             if not is_successful(result := self.install_config()):
@@ -76,25 +75,25 @@ class ArmaReforgerServer(Server):
             }))
 
 
-    async def run(self) -> Result[None]:
+    async def run(self, runtime: TaskRuntimeInterface) -> Result[None]:
         argv = self.server_command()
         if not is_successful(argv):
             return argv.map(lambda _: None)
 
-        await app().supervisor.dispatch_subprocess(
+        await runtime.dispatch_subprocess(
             argv.unwrap(),
             cwd=self._paths.install,
             handle_std_stream=ArmaReforgerServer._log_subprocess
         )
 
-        return await self.shutdown()
+        return await self.shutdown(runtime)
 
 
-    async def shutdown(self) -> Result[None]:
+    async def shutdown(self, runtime: TaskRuntimeInterface) -> Result[None]:
         return Success(None)
 
 
-    async def status(self) -> Result[Dict[str, Any]]:
+    async def status(self, runtime: TaskRuntimeInterface) -> Result[Dict[str, Any]]:
         return Success({
             'status': HealthStatus.OK,
         })
@@ -128,7 +127,7 @@ class ArmaReforgerServer(Server):
 
     # -- steamcmd Helpers -------------------------------------------
 
-    async def install_game_assets(self, validate: bool = False) -> Result[None]:
+    async def install_game_assets(self, runtime: TaskRuntimeInterface, validate: bool = False) -> Result[None]:
         argv = (
             self._executable.steamcmd
             .save_params()
@@ -141,12 +140,12 @@ class ArmaReforgerServer(Server):
 
         self._executable.steamcmd.restore_params()
 
-        future = app().supervisor.dispatch_subprocess(
+        result = await runtime.dispatch_subprocess(
             argv, cwd=self._paths.install,
             handle_std_stream=ArmaReforgerServer._log_subprocess
         )
 
-        if not is_successful(result := await future):
+        if not is_successful(result):
             logger.info('An error occurred trying to install the Arma Reforger Server Assets: %s', result.failure())
             return result.map(lambda _: None)
 
