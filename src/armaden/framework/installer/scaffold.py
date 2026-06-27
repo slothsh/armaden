@@ -1,8 +1,45 @@
 import argparse
 import sys
+import tomllib
 from pathlib import Path
 
 from armaden.framework.installer.generator import Generator, GeneratorResult
+
+
+def _detect_poetry_package_path(cwd: Path) -> Path | None:
+    pyproject = cwd / "pyproject.toml"
+    if not pyproject.exists():
+        return None
+
+    with pyproject.open("rb") as fh:
+        try:
+            data = tomllib.load(fh)
+        except tomllib.TOMLDecodeError:
+            return None
+
+    name = None
+    if "project" in data and isinstance(data["project"], dict):
+        name = data["project"].get("name")
+    if not name and "tool" in data and isinstance(data["tool"], dict):
+        poetry = data["tool"].get("poetry")
+        if isinstance(poetry, dict):
+            name = poetry.get("name")
+
+    if not name or not isinstance(name, str):
+        return None
+
+    normalized = name.replace("-", "_")
+
+    for candidate in (
+        cwd / "src" / normalized,
+        cwd / "src" / name,
+        cwd / normalized,
+        cwd / name,
+    ):
+        if candidate.exists() and candidate.is_dir():
+            return candidate
+
+    return None
 
 
 def _fmt_list(items: list[Path]) -> str:
@@ -53,12 +90,16 @@ def main() -> int:
     )
     parser.add_argument(
         "--path",
-        default=".",
-        help="Target directory (default: current directory)",
+        default=None,
+        help="Target directory (default: auto-detect poetry package, else current directory)",
     )
     args = parser.parse_args()
 
-    root = Path(args.path).resolve()
+    if args.path is not None:
+        root = Path(args.path).resolve()
+    else:
+        detected = _detect_poetry_package_path(Path.cwd())
+        root = detected if detected else Path(".").resolve()
     if not root.exists():
         print(f"Error: path does not exist: {root}", file=sys.stderr)
         return 1
