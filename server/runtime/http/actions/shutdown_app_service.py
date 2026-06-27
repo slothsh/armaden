@@ -13,7 +13,7 @@ class ShutdownAppService:
         try:
             request = SupervisorRequestData(
                 kind=SupervisorRequestKind.SHUTDOWN,
-                thread_id=service.id
+                task_id=service.id
             )
 
             if not is_successful(await app().supervisor.enqueue_request(request)):

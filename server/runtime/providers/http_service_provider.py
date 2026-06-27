@@ -27,6 +27,7 @@ class HttpServiceProvider(ServiceProvider):
         task = (
             TaskBuilder()
             .name('http_api')
+            .description('HTTP API and FastAPI application runtime')
             .on_initialize(default_api.initialize)
             .on_run(default_api.run)
             .on_shutdown(default_api.shutdown)

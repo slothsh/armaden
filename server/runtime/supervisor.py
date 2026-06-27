@@ -35,23 +35,36 @@ class Supervisor:
         self._requests_unique: Set[RequestInfoData] = set()
         self._requests_enqueued: Queue[RequestInfoData] = Queue()
 
-        self._task_states: Dict[ThreadInfoData, TaskStateData] = {}
+        self._task_states: Dict[int, TaskStateData] = {}
+        self._task_records: Dict[int, TaskRecord] = {}
         self._processes: List[ProcessInfoData] = []
 
         self._initialize_signal_handlers()
 
         self._thread_info_generator = self._new_thread_info_generator()
+        self._task_id_generator = self._new_task_id_generator()
+
         def generate_thread_info() -> ThreadInfoData:
             return next(self._thread_info_generator)
         self._generate_thread_info = generate_thread_info
+
+        def generate_task_id() -> int:
+            return next(self._task_id_generator)
+        self._generate_task_id = generate_task_id
 
 
     # -- Builder Methods ------------------------------------------------------
 
     def add_task(self, task: TaskInterface) -> Self:
-        worker_event_loop = asyncio.new_event_loop()
+        task_id = self._generate_task_id()
         thread_info = self._generate_thread_info()
-        self._task_states[thread_info] = self._new_task_state(thread_info.name, task, worker_event_loop)
+        self._task_states[task_id] = self._new_task_state(task_id, thread_info, task, asyncio.new_event_loop())
+        self._task_records[task_id] = TaskRecord(
+            task_id=task_id,
+            name=task.name,
+            description=task.description,
+            status="pending",
+        )
         return self
 
 
@@ -64,8 +77,8 @@ class Supervisor:
     # -- Lifecycle ------------------------------------------------------------
 
     async def initialize(self) -> Result[None]:
-        for thread_info, task_state in self._task_states.items():
-            self._task_initialize(thread_info, task_state)
+        for task_state in self._task_states.values():
+            self._task_initialize(task_state)
 
         return Success(None)
 
@@ -91,11 +104,11 @@ class Supervisor:
 
 
     async def shutdown(self) -> Result[None]:
-        for thread_info, task_state in self._task_states.items():
+        for task_state in self._task_states.values():
             try:
-                await self._shutdown_task(thread_info, task_state)
+                await self._shutdown_task(task_state)
             except Exception as exception:
-                logger.error("An error occurred trying to shutdown task on thread %s: %s", thread_info.name, exception)
+                logger.error("An error occurred trying to shutdown task on thread %s: %s", task_state.thread_info.name, exception)
 
         logger.info("Shutting down supervisor tasks")
         futures = [asyncio.wrap_future(task_state.future) for task_state in self._task_states.values() if task_state.future]
@@ -139,6 +152,10 @@ class Supervisor:
         return Success(None)
 
 
+    async def list_tasks(self) -> Result[List[TaskRecord]]:
+        return Success(list(self._task_records.values()))
+
+
     # -- Signal Handling ------------------------------------------------------
 
     def _initialize_signal_handlers(self) -> None:
@@ -157,64 +174,66 @@ class Supervisor:
         for task_state in self._task_states.values():
             if task_state.initialized and not task_state.started:
                 if not is_successful(result := self._task_run(task_state)):
-                    logger.error("Failed to run task on worker thread %s: %s", task_state.thread.name, result.failure())
+                    logger.error("Failed to run task on worker thread %s: %s", task_state.thread_info.name, result.failure())
                     continue
                 task_state.started = True
+                self._update_task_status(task_state.task_id, "running")
 
 
     async def _process_requests_queue(self) -> None:
         if self._requests_enqueued.empty():
             return
 
-        async def shutdown_thread(thread_id: int) -> ThreadInfoData | None:
-            if not is_successful(result := await self._shutdown_task(*task_states[thread_id], cleanup=True)):
+        async def shutdown_task(task_id: int) -> TaskStateData | None:
+            task_state = self._task_states.get(task_id)
+            if not task_state:
+                return None
+
+            if not is_successful(result := await self._shutdown_task(task_state, cleanup=True)):
                 logger.error(result.failure())
                 return None
 
-            (old_thread_info, old_task_state) = task_states[thread_id]
-            del self._task_states[old_thread_info]
+            del self._task_states[task_id]
 
             new_thread_info = self._generate_thread_info()
-
-            self._task_states[new_thread_info] = self._new_task_state(
-                new_thread_info.name,
-                old_task_state.task,
+            new_task_state = self._new_task_state(
+                task_id,
+                new_thread_info,
+                task_state.task,
                 asyncio.new_event_loop()
             )
-
-            return new_thread_info
-
-        task_states = { thread_info.id: (thread_info, task_state) for thread_info, task_state in self._task_states.items() }
+            self._task_states[task_id] = new_task_state
+            self._update_task_status(task_id, "pending")
+            return new_task_state
 
         while not self._requests_enqueued.empty():
             request_info = self._requests_enqueued.get_nowait()
             self._requests_unique.remove(request_info)
 
-            thread_id = request_info.data.thread_id
+            task_id = request_info.data.task_id
 
-            if thread_id not in task_states:
-                logger.warning("Queued request for thread ID %s is not in the current task state list. request: %s", thread_id, request_info)
+            if task_id not in self._task_states:
+                logger.warning("Queued request for task ID %s is not in the current task state list. request: %s", task_id, request_info)
                 continue
 
-            logger.info('Processing request for %s', task_states[thread_id][0].name)
+            task_state = self._task_states[task_id]
+            logger.info('Processing request for %s', task_state.thread_info.name)
 
             match request_info.data.kind:
                 case SupervisorRequestKind.SHUTDOWN:
-                    if new_thread_info := await shutdown_thread(thread_id):
-                        logger.info('Task on thread %s (%s) successfully shutdown', new_thread_info.name, new_thread_info.id)
+                    if new_task_state := await shutdown_task(task_id):
+                        logger.info('Task %s on thread %s successfully shutdown', task_id, new_task_state.thread_info.name)
                 case SupervisorRequestKind.RESTART:
-                    (current_thread_info, current_task_state) = task_states[thread_id]
-
-                    if current_task_state.started and (new_thread_info := await shutdown_thread(thread_id)):
-                        logger.info('Reinitializing new task state for restarted task on thread %s (%s)', new_thread_info.name, new_thread_info.id)
-                        self._task_initialize(new_thread_info, self._task_states[new_thread_info])
-                    elif not current_task_state.started and not current_task_state.initialized:
-                        self._task_initialize(current_thread_info, self._task_states[current_thread_info])
+                    if task_state.started and (new_task_state := await shutdown_task(task_id)):
+                        logger.info('Reinitializing new task state for restarted task %s on thread %s', task_id, new_task_state.thread_info.name)
+                        self._task_initialize(new_task_state)
+                    elif not task_state.started and not task_state.initialized:
+                        self._task_initialize(task_state)
 
         self._start_ready_tasks()
 
 
-    def _task_initialize(self, thread_info: ThreadInfoData, task_state: TaskStateData) -> Result[None]:
+    def _task_initialize(self, task_state: TaskStateData) -> Result[None]:
         task_state.thread.start()
 
         runtime = TaskRuntime(task_state)
@@ -222,9 +241,10 @@ class Supervisor:
         init_callback = task_state.task.initialize
         if init_callback is not None:
             future = asyncio.run_coroutine_threadsafe(init_callback(runtime), task_state.event_loop)
-            future.add_done_callback(lambda future, thread_info=thread_info: self._task_initialization_callback(future, thread_info))
+            future.add_done_callback(lambda future, task_id=task_state.task_id: self._task_initialization_callback(future, task_id))
         else:
-            self._task_states[thread_info].initialized = True
+            task_state.initialized = True
+            self._update_task_status(task_state.task_id, "initialized")
 
         return Success(None)
 
@@ -243,9 +263,9 @@ class Supervisor:
         return Success(None)
 
 
-    def _new_thread_info_generator(self) -> Generator[ThreadInfoData]:
+    def _new_thread_info_generator(self) -> Generator[ThreadInfoData, None, None]:
         while True:
-            used_thread_ids: List[int] = [thread_info.id for thread_info in self._task_states.keys()]
+            used_thread_ids: List[int] = [s.thread_info.id for s in self._task_states.values()]
 
             available_thread_ids = [
                 n
@@ -261,7 +281,14 @@ class Supervisor:
             )
 
 
-    async def _shutdown_task(self, thread_info: ThreadInfoData, task_state: TaskStateData, cleanup: bool = False) -> Result[None]:
+    def _new_task_id_generator(self) -> Generator[int, None, None]:
+        task_id = 1
+        while True:
+            yield task_id
+            task_id += 1
+
+
+    async def _shutdown_task(self, task_state: TaskStateData, cleanup: bool = False) -> Result[None]:
         if task_state.initialized or task_state.started:
             shutdown_callback = task_state.task.shutdown
             if shutdown_callback is not None:
@@ -269,10 +296,11 @@ class Supervisor:
                 await shutdown_callback(runtime)
             task_state.initialized = False
             task_state.started = False
+            self._update_task_status(task_state.task_id, "stopped")
 
         for process_info in task_state.processes:
             if process_info.process.returncode is None:
-                logger.info("Sending interrupt to sub-process PID %s, running on task worker thread %s", process_info.process.pid, thread_info.name)
+                logger.info("Sending interrupt to sub-process PID %s, running on task worker thread %s", process_info.process.pid, task_state.thread_info.name)
                 process_info.process.send_signal(signal.SIGINT)
 
         if not cleanup:
@@ -280,65 +308,57 @@ class Supervisor:
 
         if task_state.future:
             try:
-                logger.info("Awaiting task future for thread %s to complete", thread_info.name)
+                logger.info("Awaiting task future for thread %s to complete", task_state.thread_info.name)
                 await asyncio.wait_for(asyncio.wrap_future(task_state.future), timeout=30.0)
             except asyncio.TimeoutError:
-                logger.warning("Background task on thread ID %s timed out during exit phase.", thread_info.id)
+                logger.warning("Background task on thread ID %s timed out during exit phase.", task_state.thread_info.id)
             except Exception as exception:
                 logger.error("Error during background task cleanup: %s", exception)
 
-        logger.info("Joining thread %s", thread_info.name)
+        logger.info("Joining thread %s", task_state.thread_info.name)
         task_state.event_loop.call_soon_threadsafe(task_state.event_loop.stop)
         task_state.thread.join(timeout=30.0)
 
         return Success(None)
 
 
-    def _new_task_state(self, name: str, task: TaskInterface, event_loop: asyncio.AbstractEventLoop) -> TaskStateData:
+    def _new_task_state(self, task_id: int, thread_info: ThreadInfoData, task: TaskInterface, event_loop: asyncio.AbstractEventLoop) -> TaskStateData:
         return TaskStateData(
+            task_id=task_id,
+            thread_info=thread_info,
             task=task,
             initialized=False,
             future=None,
             event_loop=event_loop,
             processes=[],
             thread=Thread(
-                name=name,
+                name=thread_info.name,
                 target=Supervisor._start_worker_event_loop,
                 args=(event_loop,),
                 daemon=True
             )
         )
 
+
     async def _enqueue_request(self, request: SupervisorRequestData) -> Result[None]:
         match request.kind:
             case SupervisorRequestKind.SHUTDOWN:
-                started_task_states = {
-                    thread_info.id: task_state
-                    for (thread_info, task_state) in self._task_states.items()
-                    if task_state.started
-                }
-
-                if request.thread_id not in self._task_states and request.thread_id not in started_task_states:
-                    message = f"Cannot shutdown task because thread with ID {request.thread_id} was not found."
+                if request.task_id not in self._task_states:
+                    message = f"Cannot shutdown task because task with ID {request.task_id} was not found."
                     logger.info(message)
                     return Failure(Error(SupervisorError.REQUEST_NOT_FULFILLED, details={
                         'message': message
                     }))
-                elif request.thread_id in self._task_states and request.thread_id not in started_task_states:
-                    message = f"Task with thread ID {request.thread_id} cannot be shutdown because it is not running."
+                elif not self._task_states[request.task_id].started:
+                    message = f"Task with task ID {request.task_id} cannot be shutdown because it is not running."
                     logger.info(message)
                     return Failure(Error(SupervisorError.REQUEST_NOT_FULFILLED, details={
                         'message': message
                     }))
 
             case SupervisorRequestKind.RESTART:
-                task_states = {
-                    thread_info.id: task_state
-                    for (thread_info, task_state) in self._task_states.items()
-                }
-
-                if request.thread_id not in task_states:
-                    message = f"Cannot restart task because thread with ID {request.thread_id} was not found."
+                if request.task_id not in self._task_states:
+                    message = f"Cannot restart task because task with ID {request.task_id} was not found."
                     logger.warning(message)
                     return Failure(Error(SupervisorError.REQUEST_NOT_FULFILLED, details={
                         'message': message
@@ -347,7 +367,7 @@ class Supervisor:
         request_info = RequestInfoData(request)
 
         if not request_info in self._requests_unique:
-            logger.info('Enqueuing request for thread ID %s', request)
+            logger.info('Enqueuing request for task ID %s', request.task_id)
             self._requests_enqueued.put_nowait(request_info)
             self._requests_unique.add(request_info)
         else:
@@ -355,6 +375,16 @@ class Supervisor:
             return Failure(Error(SupervisorError.REQUEST_IGNORED, details={ 'request': request }))
 
         return Success(None)
+
+
+    def _update_task_status(self, task_id: int, status: str) -> None:
+        if record := self._task_records.get(task_id):
+            self._task_records[task_id] = TaskRecord(
+                task_id=record.task_id,
+                name=record.name,
+                description=record.description,
+                status=status,
+            )
 
 
     # -- Threading ------------------------------------------------------------
@@ -369,15 +399,17 @@ class Supervisor:
 
         return Success(None)
 
-    def _task_initialization_callback(self, future: Future[Result[None]], thread_info: ThreadInfoData) -> Result[None]:
+    def _task_initialization_callback(self, future: Future[Result[None]], task_id: int) -> Result[None]:
         try:
             if not is_successful(result := future.result()):
-                logger.error(f"initialization of worker thread {thread_info.name} failed due to error: {result.failure()}")
+                logger.error(f"initialization of task {task_id} failed due to error: {result.failure()}")
                 return result
 
-            self._task_states[thread_info].initialized = True
+            if task_state := self._task_states.get(task_id):
+                task_state.initialized = True
+                self._update_task_status(task_id, "initialized")
         except Exception as exception:
-            logger.error(f"initialization of worker thread {thread_info.name} failed due to an exception: {exception}")
+            logger.error(f"initialization of task {task_id} failed due to an exception: {exception}")
 
         return Success(None)
 
@@ -431,7 +463,7 @@ class TaskRuntime:
                 drain(process.stderr, handle_std_stream)
             ))
 
-        process_info = ProcessInfoData(name=self._task_state.thread.name, process=process)
+        process_info = ProcessInfoData(name=self._task_state.thread_info.name, process=process)
         self._task_state.processes.append(process_info)
 
         return_code = await process.wait()
@@ -454,6 +486,8 @@ class SupervisorError(StrEnum):
 
 @dataclass
 class TaskStateData:
+    task_id: int
+    thread_info: ThreadInfoData
     task: TaskInterface
     initialized: bool
     future: Future[Result[None]] | None
@@ -461,6 +495,14 @@ class TaskStateData:
     processes: List[ProcessInfoData]
     thread: Thread
     started: bool = False
+
+
+@dataclass(frozen=True)
+class TaskRecord:
+    task_id: int
+    name: str | None
+    description: str | None
+    status: str
 
 
 @dataclass(frozen=True)

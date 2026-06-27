@@ -13,7 +13,7 @@ class RestartAppService:
         try:
             request = SupervisorRequestData(
                 kind=SupervisorRequestKind.RESTART,
-                thread_id=service.id
+                task_id=service.id
             )
 
             if not is_successful(await app().supervisor.enqueue_request(request)):

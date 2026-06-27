@@ -1,8 +1,5 @@
-from collections.abc import Callable, Coroutine
-from returns.result import Result
-from typing import Any, Dict, Self
+from typing import Self
 
-from framework.protocols.error import ErrorInterface
 from framework.protocols.task import TaskInterface, TaskCallback, StatusCallback
 from framework.enums.task_threading_policy import TaskThreadingPolicy
 
@@ -10,7 +7,8 @@ from framework.enums.task_threading_policy import TaskThreadingPolicy
 class Task(TaskInterface):
     def __init__(
         self,
-        name: str,
+        name: str | None,
+        description: str | None,
         initialize: TaskCallback | None,
         run: TaskCallback,
         shutdown: TaskCallback | None,
@@ -19,6 +17,7 @@ class Task(TaskInterface):
         auto_restart: bool,
     ) -> None:
         self._name = name
+        self._description = description
         self._initialize = initialize
         self._run = run
         self._shutdown = shutdown
@@ -27,8 +26,12 @@ class Task(TaskInterface):
         self._auto_restart = auto_restart
 
     @property
-    def name(self) -> str:
+    def name(self) -> str | None:
         return self._name
+
+    @property
+    def description(self) -> str | None:
+        return self._description
 
     @property
     def initialize(self) -> TaskCallback | None:
@@ -57,7 +60,8 @@ class Task(TaskInterface):
 
 class TaskBuilder:
     def __init__(self) -> None:
-        self._name = 'Task'
+        self._name = None
+        self._description = None
         self._initialize: TaskCallback | None = None
         self._run: TaskCallback | None = None
         self._shutdown: TaskCallback | None = None
@@ -65,8 +69,12 @@ class TaskBuilder:
         self._threading_policy = TaskThreadingPolicy.SHARED
         self._auto_restart = False
 
-    def name(self, value: str) -> Self:
+    def name(self, value: str | None) -> Self:
         self._name = value
+        return self
+
+    def description(self, value: str | None) -> Self:
+        self._description = value
         return self
 
     def on_initialize(self, callback: TaskCallback) -> Self:
@@ -103,6 +111,7 @@ class TaskBuilder:
 
         return Task(
             name=self._name,
+            description=self._description,
             initialize=self._initialize,
             run=self._run,
             shutdown=self._shutdown,

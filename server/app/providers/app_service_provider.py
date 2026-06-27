@@ -20,6 +20,7 @@ class AppServiceProvider(ServiceProvider):
         task = (
             TaskBuilder()
             .name('arma_reforger_server')
+            .description('Manages the Arma Reforger dedicated server lifecycle')
             .on_initialize(server.initialize)
             .on_run(server.run)
             .on_shutdown(server.shutdown)
