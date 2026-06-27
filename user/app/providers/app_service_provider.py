@@ -16,7 +16,7 @@ class AppServiceProvider(ServiceProvider):
     def register(self) -> Result[None]:
         user_config = cast(Config, config('arma_reforger'))
         server = ArmaReforgerServer(user_config)
-        self._container.singleton(ArmaReforgerServer, server)
+        self._container.instance(ArmaReforgerServer, server)
         return Success(None)
 
     def boot(self) -> Result[None]:
