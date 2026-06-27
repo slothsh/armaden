@@ -11,3 +11,7 @@ Use td usage -q after first read.
 ## MANDATORY: Code Comment Conventions
 
 Do NOT add documentation comments to ANY code. This will only be required on request from the user.
+
+## MANDATORY: Git Rules
+
+NEVER stage, commit, pull or push any changes EVER. This will only be required on request from the user.

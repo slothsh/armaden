@@ -1,0 +1,34 @@
+[project]
+name = "armaden"
+version = "0.1.0"
+description = "Framework and runtime for building dedicated game server applications"
+authors = [
+    { name = "Stefan Olivier", email = "s.olivier1194@gmail.com" },
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dynamic = ["dependencies", "optional-dependencies"]
+
+[project.scripts]
+armaden = "armaden.framework.runtime.kernel:bootstrap_http"
+
+[tool.poetry]
+packages = [
+    { include = "armaden", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115"
+uvicorn = {extras = ["standard"], version = "^0.32"}
+berconpy = "^3.0"
+returns = "^0.28.0"
+python-dotenv = "^1.2.2"
+wonderwords = "^3.0.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
