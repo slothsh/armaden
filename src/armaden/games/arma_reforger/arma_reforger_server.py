@@ -29,7 +29,7 @@ class ArmaReforgerServer:
         self._config: Config = Dictionary.merge(DEFAULT_CONFIG, config or {})
 
         self._executable = ExecutableContainer(
-            steamcmd=SteamCmdExecutable(config={'executable': self._config.get('steamExecutable')}),
+            steamcmd=SteamCmdExecutable(config={'executable': self._config.get('steamExecutable'), 'install_directory': self._config.get('steamInstallDirectory')}),
             reforger=ArmaReforgerServerExecutable(config=self._config)
         )
 

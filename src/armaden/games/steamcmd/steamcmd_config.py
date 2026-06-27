@@ -8,5 +8,5 @@ class Config(TypedDict):
 
 DEFAULT_CONFIG: Config = {
     'executable': None,
-    'install_directory': '/steamcmd',
+    'install_directory': None,
 }
