@@ -94,8 +94,9 @@ class ServerConfig(TypedDict):
 
 class Config(TypedDict):
     executable: str | None
-    steamExecutable: str | None
     installDirectory: str | None
+    steamExecutable: str | None
+    steamInstallDirectory: str | None
     startup: StartupConfig | None
     server: ServerConfig | None
 
@@ -103,7 +104,9 @@ class Config(TypedDict):
 DEFAULT_CONFIG: Config = {
     'executable': None,
     'steamExecutable': None,
-    'installDirectory': '/arma',
+    'installDirectory': None,
+    'steamExecutable': None,
+    'steamInstallDirectory': None,
     'startup': {
         'profileDirectory': None,
         'logsDirectory': None,
