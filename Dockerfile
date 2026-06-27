@@ -51,4 +51,4 @@ VOLUME /app
 
 # Run server
 WORKDIR /opt/armaden
-CMD ["poetry", "run", "armaden"]
+CMD ["poetry", "run", "armaden-serve"]
