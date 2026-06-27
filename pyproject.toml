@@ -19,7 +19,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.14"
 fastapi = "^0.115"
 uvicorn = {extras = ["standard"], version = "^0.32"}
 berconpy = "^3.0"
