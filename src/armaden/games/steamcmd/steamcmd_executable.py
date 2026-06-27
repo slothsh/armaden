@@ -1,7 +1,7 @@
 from enum import StrEnum
 import logging
 from pathlib import Path
-from typing import List
+from typing import List, cast
 
 from returns.result import Failure, Success
 
@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 class SteamCmdExecutable(Executable):
     def __init__(self, config: Config | None = None) -> None:
-        self._config = Dictionary.merge(DEFAULT_CONFIG, config or {})
+        self._config: Config = Dictionary.merge(DEFAULT_CONFIG, config or {})
         self._executable: Path | None = self.resolve_executable().value_or(None)
         self._params: List[str] = []
 

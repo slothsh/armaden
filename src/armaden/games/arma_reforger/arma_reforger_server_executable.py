@@ -25,7 +25,7 @@ logger = logging.getLogger('games.arma_reforger.executable')
 
 class ArmaReforgerServerExecutable(Executable):
     def __init__(self, config: Config | None = None) -> None:
-        self._config = Dictionary.merge(DEFAULT_CONFIG, config or {})
+        self._config: Config = Dictionary.merge(DEFAULT_CONFIG, config or {})
         self._params: list[str] = []
         self._scratch_params: list[str] = []
         self._executable: Path | None = self.resolve_executable().value_or(None)

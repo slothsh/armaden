@@ -8,7 +8,6 @@ from pathlib import Path
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 from armaden.framework.enums.health_status import HealthStatus
-from armaden.framework.facades import config
 from armaden.framework.utils.types import Result
 from armaden.framework.errors import Error
 from armaden.framework.protocols.task_runtime import TaskRuntimeInterface
@@ -27,7 +26,7 @@ class ArmaReforgerServer:
     STEAM_APP_ID_CLIENT: int = 1874880
 
     def __init__(self, config: Config | None = None):
-        self._config = Dictionary.merge(DEFAULT_CONFIG, config or {})
+        self._config: Config = Dictionary.merge(DEFAULT_CONFIG, config or {})
 
         self._executable = ExecutableContainer(
             steamcmd=SteamCmdExecutable(config={'executable': self._config.get('steamExecutable')}),
@@ -39,6 +38,9 @@ class ArmaReforgerServer:
             self._config['server']['rcon']['port'],
             self._config['server']['rcon']['password']
         )
+
+        if not self._config['installDirectory']:
+            raise ArmaReforgerServerException('The Arma Reforger installation directory must be provided with the configuration')
 
         install_directory = Path(self._config['installDirectory']).absolute()
 
@@ -196,6 +198,10 @@ class PathContainer:
     install: Path
     config_directory: Path
     config_file: Path
+
+
+class ArmaReforgerServerException(Exception):
+    pass
 
 
 class ArmaReforgerServerError(StrEnum):

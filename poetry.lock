@@ -26,7 +26,6 @@ files = [
 
 [package.dependencies]
 idna = ">=2.8"
-typing_extensions = {version = ">=4.5", markers = "python_version < \"3.13\""}
 
 [package.extras]
 trio = ["trio (>=0.32.0)"]
@@ -873,5 +872,5 @@ dev = ["black", "flake8", "mypy", "pytest", "setuptools", "setuptools-scm", "sph
 
 [metadata]
 lock-version = "2.1"
-python-versions = "^3.12"
-content-hash = "c558832de4054dc7a2e2626ddd458a6b74924358a6dedca4e40e268c33994ac6"
+python-versions = "^3.14"
+content-hash = "f4a175680773a0b872eb554be57789cd4e233854e3af680a188190b97f8ecc7a"

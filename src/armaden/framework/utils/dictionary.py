@@ -40,7 +40,7 @@ class Dictionary:
         return data
 
     @classmethod
-    def merge(cls, base: dict, override: dict) -> dict:
+    def merge(cls, base: Any, override: Any) -> Any:
         result = {}
         for key in base.keys() | override.keys():
             if key in override and override[key] is not None:
