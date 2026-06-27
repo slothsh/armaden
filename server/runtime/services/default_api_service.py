@@ -4,29 +4,30 @@ from pathlib import Path
 from returns.pipeline import is_successful
 from returns.result import Success
 
+from framework.classes.service_provider import ServiceProvider
+from framework.utils.types import Result
 from runtime.module_loader import ModuleLoader
 
 from .default_api import DefaultApi
 
 from framework.facades import app
-from framework.classes.service import Service
-from framework.utils.types import Result
 
 logger = logging.getLogger(__name__)
 
 
-class DefaultApiService(Service):
+class DefaultApiServiceProvider(ServiceProvider):
     name = 'api'
-    
-    def __call__(self) -> Result[None]:
-        self.default_api = DefaultApi()
 
-        app().supervisor.with_server(self.default_api)
+    def register(self) -> Result[None]:
+        return Success(None)
 
-        app().handle_manager().register_handles({
-            'api': self.default_api.app,
-            'router': self.default_api.app.router,
-        })
+    def boot(self) -> Result[None]:
+        default_api = DefaultApi()
+
+        app().supervisor.with_server(default_api)
+
+        app().container.instance('api', default_api.app)
+        app().container.instance('router', default_api.app.router)
 
         routes_directory = Path(__file__).absolute().parent.parent / 'http' / 'routes'
         route_files = routes_directory.glob('*.py')

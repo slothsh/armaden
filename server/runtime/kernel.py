@@ -1,6 +1,7 @@
 import asyncio
 from pathlib import Path
-from typing import Any, Dict, Self, TypeVar, cast
+from typing import Any, Dict, List, Self, TypeVar, cast
+from framework.classes.service_provider import ServiceProvider
 from dotenv import load_dotenv
 from enum import StrEnum
 import logging
@@ -11,7 +12,8 @@ from glob import glob
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
-from framework.protocols import HandleManagerInterface, SupervisorInterface, ServiceManagerInterface
+from framework.classes.instance_container import InstanceContainer
+from framework.protocols import SupervisorInterface
 from framework.protocols.application import ApplicationInterface
 from framework.enums.health_status import HealthStatus
 from framework.utils.dictionary import Dictionary
@@ -20,29 +22,29 @@ from framework.errors import Error, GenericError
 from .default_application import DefaultApplication
 from .module_loader import ModuleLoader
 from .supervisor import Supervisor
-from .service_manager import ServiceManager
-from .handle_manager import HandleManager
 
 logger = logging.getLogger('runtime.kernel')
 
 
 class Kernel:
-    def __init__(self) -> None:
-        global HANDLE_MANAGER
-        HANDLE_MANAGER = HandleManager()
+    _instance: 'Kernel | None' = None
 
-        HANDLE_MANAGER.register_handles({
-            'app': self,
-            'event_loop': asyncio.new_event_loop()
-        })
+    def __init__(self) -> None:
+        self._container = InstanceContainer()
+        self._container.instance(InstanceContainer, self._container)
+
+        event_loop = asyncio.new_event_loop()
+        self._container.instance('event_loop', event_loop)
+        self._container.instance(asyncio.AbstractEventLoop, event_loop)
+
+        self._container.instance('app', self)
+
+        self._container.singleton(SupervisorInterface, Supervisor)
 
         self._status = KernelStatus.NOT_READY
         self._app_env = 'local'
         self._config: Dict[str, Any] = {}
-
-        self._supervisor: SupervisorInterface = Supervisor(HANDLE_MANAGER.handle('event_loop').unwrap())
-        self._service_manager: ServiceManagerInterface = ServiceManager()
-        self._user_app: ApplicationInterface = DefaultApplication()
+        self._providers: List[ServiceProvider] = []
 
 
     @staticmethod
@@ -54,26 +56,35 @@ class Kernel:
 
             # Create the runtime engine
             kernel = Kernel()
+            Kernel._instance = kernel
             from framework.facades._registry import set_kernel
             set_kernel(kernel)
 
-            # Load the user application
+            # Load the user application and bind it into the container
+            user_app_found = False
             user_app_result = ModuleLoader.try_load_user_application()
             if is_successful(user_app_result) and (cls := user_app_result.unwrap()):
                 if issubclass(cls, ApplicationInterface):
                     logger.info("Successfully loaded user application: %s", cls.__name__)
-                    kernel._user_app = cls()
+                    kernel._container.bind(ApplicationInterface, cls, shared=True)
+                    user_app_found = True
                 else:
                     logger.warning("User Application class %s does not implement ApplicationInterface; using DefaultApplication", cls)
+                    kernel._container.bind(ApplicationInterface, DefaultApplication, shared=True)
             elif not is_successful(user_app_result):
                 logger.warning(user_app_result.failure())
                 logger.warning("Using the default application as a fallback")
+                kernel._container.bind(ApplicationInterface, DefaultApplication, shared=True)
+            else:
+                kernel._container.bind(ApplicationInterface, DefaultApplication, shared=True)
 
             # Initialize everything else
             if not is_successful(kernel._initialize_environment()):
                 logger.warning("The application's environment was not successfully initialized, this is not an issue if you did not provide .env file for your application")
             if not is_successful(kernel._initialize_configs()):
                 raise KernelException("The application's configuration files could not be successfully initialized")
+
+            kernel._register_providers(with_user_providers=user_app_found)
 
             # Update application status
             kernel._status = KernelStatus.READY
@@ -89,19 +100,20 @@ class Kernel:
 
 
     async def __call__(self) -> Result[None]:
-        self._user_app.configure(self._service_manager, self._supervisor)
+        user_app = self._container.make(ApplicationInterface)
 
-        if not is_successful(result := self._user_app.boot()):
+        if not is_successful(result := user_app.boot()):
             logger.error("Could not boot user application: %s", result.failure())
             return result
 
-        if not is_successful(result := await self._service_manager.initialize()):
+        if not is_successful(result := self._boot_providers()):
             return result
 
-        if not is_successful(result := await self._supervisor.initialize()):
+        supervisor = self._container.make(SupervisorInterface)
+        if not is_successful(result := await supervisor.initialize()):
             return result
 
-        if not is_successful(result := await self._supervisor.run()):
+        if not is_successful(result := await supervisor.run()):
             return result
 
         return Success(None)
@@ -141,12 +153,13 @@ class Kernel:
 
             return status
 
-        service_statuses = { service.name: handle_result(result) for service in self._service_manager.services for result in await service.status() }
+        provider_statuses = { provider.name: handle_result(result) for provider in self._providers for result in await provider.status() }
         app_degraded = Dictionary.has('status', lambda value: value != HealthStatus.OK, [
-            *service_statuses.values()
+            *provider_statuses.values()
         ])
 
-        user_status_result = await self._user_app.status()
+        user_app = self._container.make(ApplicationInterface)
+        user_status_result = await user_app.status()
         if is_successful(user_status_result):
             user_status = user_status_result.unwrap()
         else:
@@ -155,38 +168,41 @@ class Kernel:
 
         return Success({
             'status': HealthStatus.DEGRADED if app_degraded else HealthStatus.OK,
-            'services': service_statuses,
+            'providers': provider_statuses,
             **user_status,
         })
 
 
     @classmethod
-    def handle_manager(cls) -> HandleManagerInterface:
-        global HANDLE_MANAGER
-        if not HANDLE_MANAGER:
-            raise KernelException("The global handle manager is not available. Did you bootstrap the application?")
-        return HANDLE_MANAGER
-
-
-    @classmethod
     def instance(cls) -> Self:
-        return cast(Self, cls.handle_manager().handle('app').unwrap())
+        if cls._instance is None:
+            raise KernelException("No kernel registered. Did you bootstrap the application?")
+        return cast(Self, cls._instance)
 
 
     @classmethod
     def event_loop(cls) -> asyncio.AbstractEventLoop:
-        return cast(asyncio.AbstractEventLoop, cls.handle_manager().handle('event_loop').unwrap())
-
-
-    @property
-    def service_manager(self) -> ServiceManagerInterface:
-        return self._service_manager
+        return cls.instance()._container.make('event_loop')
 
 
     @property
     def supervisor(self) -> SupervisorInterface:
-        return self._supervisor
+        return self._container.make(SupervisorInterface)
 
+
+    @property
+    def container(self) -> InstanceContainer:
+        return self._container
+
+
+    def register_provider(self, provider: ServiceProvider) -> Result[None]:
+        result = provider.register()
+        if not is_successful(result):
+            logger.warning("Provider registration failed for %s: %s", type(provider).__name__, result.failure())
+            return result
+        self._providers.append(provider)
+        logger.info("Registered provider: %s", type(provider).__name__)
+        return Success(None)
 
 
     # -- Initializers ---------------------------------------------------------
@@ -199,6 +215,38 @@ class Kernel:
             stream=sys.stdout,
         )
 
+        return Success(None)
+
+
+    def _register_providers(self, with_user_providers: bool = False) -> None:
+        """Discover and register user-defined service providers."""
+        if not with_user_providers:
+            logger.debug("Skipping user provider discovery — no user application loaded")
+            return
+
+        try:
+            from app.providers import AppServiceProvider
+            provider = AppServiceProvider(self._container)
+            result = provider.register()
+            if not is_successful(result):
+                logger.warning("Provider registration failed for %s: %s", AppServiceProvider.__name__, result.failure())
+                return
+            self._providers.append(provider)
+            logger.info("Registered provider: %s", AppServiceProvider.__name__)
+        except ModuleNotFoundError:
+            logger.debug("No user providers module found at app.providers")
+        except Exception as e:
+            logger.warning("Error during provider registration: %s", e)
+
+
+    def _boot_providers(self) -> Result[None]:
+        """Boot all registered service providers after the container is fully configured."""
+        for provider in self._providers:
+            result = provider.boot()
+            if not is_successful(result):
+                logger.warning("Provider boot failed for %s: %s", type(provider).__name__, result.failure())
+                return result
+            logger.info("Booted provider: %s", type(provider).__name__)
         return Success(None)
 
 

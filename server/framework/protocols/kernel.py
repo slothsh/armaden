@@ -1,10 +1,10 @@
 import asyncio
-from typing import Any, Mapping, Protocol, Self
+from typing import TYPE_CHECKING, Any, Protocol, Self
 from returns.result import Result
 
-from framework.protocols.handle_manager import HandleManagerInterface
+if TYPE_CHECKING:
+    from framework.classes.instance_container import InstanceContainer
 
-from .service_manager import ServiceManagerInterface
 from .supervisor import SupervisorInterface
 from .error import ErrorInterface
 
@@ -17,18 +17,14 @@ class KernelInterface(Protocol):
     def version(self) -> str: ...
     def config(self, key: str, default: Any | None = None) -> Any: ...
 
-    @classmethod
-    def handle_manager(cls) -> HandleManagerInterface: ...
+    @property
+    def container(self) -> InstanceContainer: ...
 
     @classmethod
     def instance(cls) -> Self: ...
 
     @classmethod
     def event_loop(cls) -> asyncio.AbstractEventLoop: ...
-
-    @property
-    def service_manager(self) -> ServiceManagerInterface: ...
-
 
     @property
     def supervisor(self) -> SupervisorInterface: ...
