@@ -1,11 +1,14 @@
 from enum import StrEnum
 import logging
+import sys
 from pathlib import Path
-from typing import List, cast
+import tarfile
+from typing import List
+import urllib.request
 
+from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
-from armaden.framework.facades import config
 from armaden.framework.classes.executable import Executable, PushValue
 from armaden.framework.utils.types import Result
 from armaden.framework.utils.dictionary import Dictionary
@@ -35,13 +38,64 @@ class SteamCmdExecutable(Executable):
         if executable := self._config.get('executable'):
             common_paths.insert(0, Path(executable).absolute())
 
+        install_dir = Path(self._config.get('install_directory') or '/steamcmd')
+        common_paths.append(install_dir / 'steamcmd.sh')
+
         for candidate in common_paths:
             if candidate.exists():
                 return Success(candidate.resolve())
 
+        logger.info("steamcmd not found at any known path")
         return Failure(
             Error(SteamCmdExecutableError.EXECUTABLE_NOT_FOUND)
         )
+
+
+    def install(self) -> Result[Path]:
+        if not sys.platform.startswith('linux'):
+            return Failure(Error(SteamCmdExecutableError.EXECUTABLE_NOT_FOUND))
+
+        install_dir = Path(self._config.get('install_directory') or '/steamcmd')
+        install_dir.mkdir(parents=True, exist_ok=True)
+
+        tar_path = install_dir / 'steamcmd_linux.tar.gz'
+        url = 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz'
+
+        try:
+            logger.info("Downloading steamcmd to %s", install_dir)
+            urllib.request.urlretrieve(url, tar_path)
+
+            logger.info("Extracting steamcmd")
+            with tarfile.open(tar_path, 'r:gz') as tf:
+                tf.extractall(path=install_dir)
+
+            tar_path.unlink(missing_ok=True)
+        except Exception as e:
+            return Failure(
+                Error(SteamCmdExecutableError.INSTALL_FAILED, details={'exception': e})
+            )
+
+        executable = install_dir / 'steamcmd.sh'
+        if not executable.exists():
+            return Failure(
+                Error(SteamCmdExecutableError.INSTALL_FAILED, details={
+                    'reason': 'steamcmd.sh not found after extraction'
+                })
+            )
+
+        logger.info("steamcmd successfully installed at %s", executable)
+        return Success(executable)
+
+
+    def ensure_installed(self) -> Result[Path]:
+        if self._executable is not None and self._executable.exists():
+            return Success(self._executable)
+        result = self.resolve_executable()
+        if not is_successful(result):
+            result = self.install()
+        if is_successful(result):
+            self._executable = result.unwrap()
+        return result
 
 
     # -- steamcmd Server Flags ------------------------------------------------
@@ -99,3 +153,4 @@ class SteamCmdExecutable(Executable):
 
 class SteamCmdExecutableError(StrEnum):
     EXECUTABLE_NOT_FOUND = "the steam executable could not be found in the host system"
+    INSTALL_FAILED = "the steam executable could not be installed"

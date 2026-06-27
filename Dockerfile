@@ -37,10 +37,6 @@ USER steam
 WORKDIR /opt/armaden
 RUN poetry install --no-interaction --no-ansi
 
-# Install steamcmd as steam
-WORKDIR /steamcmd
-RUN wget -qO- "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
-
 # User application directory
 ENV APP_DIR=/app
 

@@ -67,6 +67,9 @@ class ArmaReforgerServer:
 
     async def initialize(self, runtime: TaskRuntimeInterface) -> Result[None]:
         try:
+            if not is_successful(result := self._executable.steamcmd.ensure_installed()):
+                return result.map(lambda _: None)
+
             if not is_successful(result := await self.install_game_assets(runtime, validate=True)):
                 return result
 
