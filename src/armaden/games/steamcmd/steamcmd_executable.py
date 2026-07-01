@@ -117,7 +117,9 @@ class SteamCmdExecutable(Executable):
 
 
     def app_update( self, app_id: int, validate: bool = False) -> SteamCmdExecutable:
-        self.push(SteamCmdExecutableFlag.APP_UPDATE, app_id, validate)
+        self.push(SteamCmdExecutableFlag.APP_UPDATE, app_id)
+        if validate:
+            self.push(SteamCmdExecutableFlag.VALIDATE)
         return self
 
 

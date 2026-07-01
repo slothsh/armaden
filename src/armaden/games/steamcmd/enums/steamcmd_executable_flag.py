@@ -8,5 +8,6 @@ class SteamCmdExecutableFlag(StrEnum):
     APP_UPDATE = "+app_update"
     APP_INFO_PRINT = "+app_info_print"
     WORKSHOP_DOWNLOAD_ITEM = "+workshop_download_item"
+    VALIDATE = "validate"
     QUIT = "+quit"
     RUNSCRIPT = "+runscript"
