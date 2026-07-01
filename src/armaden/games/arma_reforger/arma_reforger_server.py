@@ -40,14 +40,6 @@ class ArmaReforgerServer:
         if not self._config['installDirectory']:
             raise ArmaReforgerServerException('The Arma Reforger installation directory must be provided with the configuration')
 
-        if is_successful(result := self._executable.reforger.install_directory()):
-            install_directory = result.unwrap()
-            self._paths = PathContainer(
-                install=install_directory,
-                config_directory=install_directory / 'Configs',
-                config_file=install_directory / 'Configs' / 'config.json'
-            )
-
 
     # --- Accessor Methods -----------------------------------------------------
 
@@ -70,6 +62,18 @@ class ArmaReforgerServer:
 
             if not is_successful(result := await self._executable.reforger.ensure_installed(runtime, self._executable.steamcmd)):
                 return result.map(lambda _: None)
+
+            if not is_successful(result := self._executable.reforger.install_directory()):
+                return Failure(Error(ArmaReforgerServerError.INITIALIZATION_FAILED, details={
+                    'paths': self._paths,
+                }))
+
+            install_directory = result.unwrap()
+            self._paths = PathContainer(
+                install=install_directory,
+                config_directory=install_directory / 'Configs',
+                config_file=install_directory / 'Configs' / 'config.json'
+            )
 
             if not is_successful(result := await self.install_config()):
                 return result
