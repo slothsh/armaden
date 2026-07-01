@@ -147,6 +147,11 @@ class ArmaReforgerServer:
     async def install_config(self) -> Result[None]:
         config_data: Dict[str, Any] = Dictionary.without(self._config['server'], lambda _, value: value is None)
 
+        if not self._paths:
+            return Failure(Error(ArmaReforgerServerError.MISSING_PATHS, details={
+                'paths': self._paths
+            }))
+
         self._paths.config_directory.mkdir(exist_ok=True)
 
         with open(self._paths.config_file, 'w') as config_file:
