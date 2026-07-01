@@ -7,7 +7,7 @@ from armaden.framework.classes.task import TaskBuilder
 from armaden.framework.facades import app, config
 from armaden.framework.utils.types import Result
 from armaden.games.arma_reforger import ArmaReforgerServer
-from armaden.games.arma_reforger.arma_reforger_config import Config
+from armaden.games.arma_reforger.arma_reforger_server_config import Config
 
 
 class AppServiceProvider(ServiceProvider):
