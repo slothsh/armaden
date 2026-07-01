@@ -90,11 +90,9 @@ class SteamCmdExecutable(Executable):
     def ensure_installed(self) -> Result[Path]:
         if self._executable is not None and self._executable.exists():
             return Success(self._executable)
-        result = self.resolve_executable()
-        if not is_successful(result):
-            result = self.install()
-        if is_successful(result):
-            self._executable = result.unwrap()
+        if not is_successful(result := self.install()):
+            return Failure(Error(SteamCmdExecutableError.INSTALL_FAILED))
+        self._executable = result.unwrap()
         return result
 
 

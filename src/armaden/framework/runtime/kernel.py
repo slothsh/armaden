@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from typing import Any
 
 from returns.pipeline import is_successful
-from returns.result import Success, Result
+from returns.result import Success
 
 from armaden.framework.protocols.application import ApplicationInterface
 from armaden.framework.utils.types import Result as TypedResult
@@ -113,7 +113,7 @@ def bootstrap_console() -> TypedResult[int]:
     kernel = ConsoleKernel(application)
     result = kernel.bootstrap()
     if not is_successful(result):
-        return result
+        return result.map(lambda _: 0)
     return kernel.handle()
 
 
