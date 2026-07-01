@@ -50,6 +50,7 @@ class ArmaReforgerServerExecutable(Executable):
         if executable := self._config.get('executable'):
             common_paths.insert(0, Path(executable).absolute())
 
+        logger.info('Searching for ArmaReforgerServer executable in %s', common_paths)
         for candidate in common_paths:
             if candidate.exists():
                 self._executable = candidate.resolve()

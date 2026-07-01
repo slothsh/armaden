@@ -36,12 +36,13 @@ class SteamCmdExecutable(Executable):
             Path("C:\\steamcmd\\steamcmd.exe"),
         ]
 
+        if directory := self._config.get('installDirectory'):
+            common_paths.insert(0, Path(directory).absolute() / 'steamcmd.sh')
+
         if executable := self._config.get('executable'):
             common_paths.insert(0, Path(executable).absolute())
 
-        install_dir = Path(self._config.get('installDirectory') or '/steamcmd')
-        common_paths.append(install_dir / 'steamcmd.sh')
-
+        logger.info('Searching for steamcmd executable in %s', common_paths)
         for candidate in common_paths:
             if candidate.exists():
                 self._executable = candidate.resolve()
