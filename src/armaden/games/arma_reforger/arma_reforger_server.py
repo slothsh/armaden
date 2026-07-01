@@ -2,7 +2,7 @@ import json
 from dataclasses import dataclass
 from enum import StrEnum
 import logging
-from typing import Any, Dict, List, Self, Union
+from typing import Any, Dict, List, Self, Union, cast
 from pathlib import Path
 
 from returns.pipeline import is_successful
@@ -22,15 +22,13 @@ logger = logging.getLogger('games.arma_reforger.server')
 
 
 class ArmaReforgerServer:
-    STEAM_APP_ID: int = 1874900
-    STEAM_APP_ID_CLIENT: int = 1874880
-
     def __init__(self, config: Config | None = None):
         self._config: Config = Dictionary.merge(DEFAULT_CONFIG, config or {})
+        self._paths: PathContainer | None = None
 
         self._executable = ExecutableContainer(
-            steamcmd=SteamCmdExecutable(config={'executable': self._config.get('steamExecutable'), 'install_directory': self._config.get('steamInstallDirectory')}),
-            reforger=ArmaReforgerServerExecutable(config=self._config)
+            steamcmd=SteamCmdExecutable(config={'executable': self._config.get('steamExecutable'), 'installDirectory': self._config.get('steamInstallDirectory')}),
+            reforger=ArmaReforgerServerExecutable(config={ 'executable': self._config['executable'], 'installDirectory': self._config['installDirectory'] })
         )
 
         self._rcon_client = ArmaReforgerRconClient(
@@ -42,13 +40,13 @@ class ArmaReforgerServer:
         if not self._config['installDirectory']:
             raise ArmaReforgerServerException('The Arma Reforger installation directory must be provided with the configuration')
 
-        install_directory = Path(self._config['installDirectory']).absolute()
-
-        self._paths = PathContainer(
-            install=install_directory,
-            config_directory=install_directory / 'Configs',
-            config_file=install_directory / 'Configs' / 'config.json'
-        )
+        if is_successful(result := self._executable.reforger.install_directory()):
+            install_directory = result.unwrap()
+            self._paths = PathContainer(
+                install=install_directory,
+                config_directory=install_directory / 'Configs',
+                config_file=install_directory / 'Configs' / 'config.json'
+            )
 
 
     # --- Accessor Methods -----------------------------------------------------
@@ -67,13 +65,13 @@ class ArmaReforgerServer:
 
     async def initialize(self, runtime: TaskRuntimeInterface) -> Result[None]:
         try:
-            if not is_successful(result := self._executable.steamcmd.ensure_installed()):
+            if not is_successful(result := await self._executable.steamcmd.ensure_installed(runtime)):
                 return result.map(lambda _: None)
 
-            if not is_successful(result := await self.install_game_assets(runtime, validate=True)):
-                return result
+            if not is_successful(result := await self._executable.reforger.ensure_installed(runtime, self._executable.steamcmd)):
+                return result.map(lambda _: None)
 
-            if not is_successful(result := self.install_config()):
+            if not is_successful(result := await self.install_config()):
                 return result
 
             return Success(None)
@@ -87,6 +85,11 @@ class ArmaReforgerServer:
         argv = self.server_command()
         if not is_successful(argv):
             return argv.map(lambda _: None)
+
+        if not self._paths:
+            return Failure(Error(ArmaReforgerServerError.MISSING_PATHS, details={
+                'paths': self._paths
+            }))
 
         await runtime.dispatch_subprocess(
             argv.unwrap(),
@@ -112,17 +115,23 @@ class ArmaReforgerServer:
     def server_command(self) -> Result[List[str]]:
         reforger = self._executable.reforger.save_params()
 
-        startup_parameters: dict[str, str] | None
-        if startup_parameters := self._config.get('startup'):
+        startup_parameters = self._config.get('startup')
+        if startup_parameters:
             for parameter, value in startup_parameters.items():
                 if is_successful(flag := ArmaReforgerExecutableFlag.from_config(parameter)):
                     # Skip config override for now
                     if flag == ArmaReforgerExecutableFlag.CONFIG_FILE:
                         logger.warning("Skipping Arma Reforger %s startup flag specified from app config")
                         continue
-                    reforger.custom(flag.unwrap(), value)
+                    reforger.custom(flag.unwrap(), cast(str | int, value))
                 else:
                     logger.warning(flag.failure())
+
+
+        if not self._paths:
+            return Failure(Error(ArmaReforgerServerError.MISSING_PATHS, details={
+                'paths': self._paths
+            }))
 
         reforger.config(self._paths.config_file)
 
@@ -135,32 +144,7 @@ class ArmaReforgerServer:
 
     # -- steamcmd Helpers -------------------------------------------
 
-    async def install_game_assets(self, runtime: TaskRuntimeInterface, validate: bool = False) -> Result[None]:
-        argv = (
-            self._executable.steamcmd
-            .save_params()
-            .force_install_dir(self._paths.install)
-            .login_anonymous()
-            .app_update(self.STEAM_APP_ID, validate=validate)
-            .quit()
-            .consume_argv()
-        )
-
-        self._executable.steamcmd.restore_params()
-
-        result = await runtime.dispatch_subprocess(
-            argv, cwd=self._paths.install,
-            handle_std_stream=ArmaReforgerServer._log_subprocess
-        )
-
-        if not is_successful(result):
-            logger.info('An error occurred trying to install the Arma Reforger Server Assets: %s', result.failure())
-            return result.map(lambda _: None)
-
-        return Success(None)
-
-
-    def install_config(self) -> Result[None]:
+    async def install_config(self) -> Result[None]:
         config_data: Dict[str, Any] = Dictionary.without(self._config['server'], lambda _, value: value is None)
 
         self._paths.config_directory.mkdir(exist_ok=True)
@@ -209,3 +193,4 @@ class ArmaReforgerServerException(Exception):
 
 class ArmaReforgerServerError(StrEnum):
     INITIALIZATION_FAILED = "an error occurred while initializing the arma reforger server"
+    MISSING_PATHS = "the paths for the arma reforger server are not correctly configured"

@@ -12,23 +12,30 @@ from enum import StrEnum
 import logging
 from pathlib import Path
 
+from returns.pipeline import is_successful
 from returns.result import Failure, Success
 from armaden.framework.classes.executable import Executable
+from armaden.framework.protocols.task_runtime import TaskRuntimeInterface
 from armaden.framework.utils.types import Result
 from armaden.framework.utils.dictionary import Dictionary
 from armaden.framework.errors import Error
+from armaden.games.steamcmd.steamcmd_executable import SteamCmdExecutable
 from .enums import ArmaReforgerExecutableFlag
-from .arma_reforger_config import Config, DEFAULT_CONFIG
+from .arma_reforger_executable_config import Config, DEFAULT_CONFIG
 
 logger = logging.getLogger('games.arma_reforger.executable')
 
 
 class ArmaReforgerServerExecutable(Executable):
+    STEAM_APP_ID: int = 1874900
+    STEAM_APP_ID_CLIENT: int = 1874880
+
     def __init__(self, config: Config | None = None) -> None:
         self._config: Config = Dictionary.merge(DEFAULT_CONFIG, config or {})
         self._params: list[str] = []
         self._scratch_params: list[str] = []
-        self._executable: Path | None = self.resolve_executable().value_or(None)
+        self._executable: Path | None = None
+
 
     def resolve_executable(self) -> Result[Path]:
         common_paths = [
@@ -37,16 +44,76 @@ class ArmaReforgerServerExecutable(Executable):
             Path("C:\\Program Files (x86)\\Steam\\steamapps\\common\\Arma Reforger\\ArmaReforgerServer.exe"),
         ]
 
-        if directory := self._config.get('executable'):
-            common_paths.insert(0, Path(directory).absolute())
+        if directory := self._config.get('installDirectory'):
+            common_paths.insert(0, Path(directory).absolute() / 'ArmaReforgerServer')
+
+        if executable := self._config.get('executable'):
+            common_paths.insert(0, Path(executable).absolute())
 
         for candidate in common_paths:
             if candidate.exists():
-                return Success(candidate.resolve())
+                self._executable = candidate.resolve()
+                return Success(self._executable)
 
         return Failure(
             Error(ArmaReforgerExecutableError.EXECUTABLE_NOT_FOUND)
         )
+
+
+    async def ensure_installed(self, runtime: TaskRuntimeInterface, steamcmd: SteamCmdExecutable) -> Result[Path]:
+        if self._executable is not None and self._executable.exists():
+            return Success(self._executable)
+        if not is_successful(result := await self.install(runtime, steamcmd)):
+            return Failure(Error(ArmaReforgerExecutableError.INSTALL_FAILED, details={
+                'error': result.failure()
+            }))
+        if not is_successful(result := self.resolve_executable()):
+            return Failure(Error(ArmaReforgerExecutableError.INSTALL_FAILED, details={
+                'error': result.failure()
+            }))
+        return result
+
+
+    async def install(self, runtime: TaskRuntimeInterface, steamcmd: SteamCmdExecutable) -> Result[None]:
+        install_dir = self._config['installDirectory'] or '/arma_reforger'
+        argv = (
+            steamcmd
+            .save_params()
+            .force_install_dir(install_dir)
+            .login_anonymous()
+            .app_update(self.STEAM_APP_ID, validate=True)
+            .quit()
+            .consume_argv()
+        )
+
+        steamcmd.restore_params()
+
+        async def log_subprocess(line: str) -> Result[None]:
+            logger.info(line)
+            return Success(None)
+
+        result = await runtime.dispatch_subprocess(
+            argv, cwd=install_dir,
+            handle_std_stream=log_subprocess
+        )
+
+        if not is_successful(result):
+            logger.info('An error occurred trying to install the Arma Reforger Server Assets: %s', result.failure())
+            return result.map(lambda _: None)
+
+        return Success(None)
+
+
+    def install_directory(self) -> Result[Path]:
+        if not self._executable:
+            return Failure(Error(ArmaReforgerExecutableError.EXECUTABLE_NOT_FOUND))
+
+        path = Path(self._executable).parent
+
+        if not path:
+            return Failure(Error(ArmaReforgerExecutableError.EXECUTABLE_NOT_FOUND))
+
+        return Success(path.absolute())
 
 
     # -- Arma Reforger Server Flags -------------------------------------------
@@ -552,3 +619,4 @@ class ArmaReforgerServerExecutable(Executable):
 
 class ArmaReforgerExecutableError(StrEnum):
     EXECUTABLE_NOT_FOUND = "the arma reforger server executable could not be found in the host system"
+    INSTALL_FAILED = "the arma reforger executable could not be installed"

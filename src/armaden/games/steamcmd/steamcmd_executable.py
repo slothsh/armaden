@@ -10,6 +10,7 @@ from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
 from armaden.framework.classes.executable import Executable, PushValue
+from armaden.framework.protocols.task_runtime import TaskRuntimeInterface
 from armaden.framework.utils.types import Result
 from armaden.framework.utils.dictionary import Dictionary
 from armaden.framework.errors import Error
@@ -22,7 +23,7 @@ logger = logging.getLogger(__name__)
 class SteamCmdExecutable(Executable):
     def __init__(self, config: Config | None = None) -> None:
         self._config: Config = Dictionary.merge(DEFAULT_CONFIG, config or {})
-        self._executable: Path | None = self.resolve_executable().value_or(None)
+        self._executable: Path | None = None
         self._params: List[str] = []
 
 
@@ -38,12 +39,13 @@ class SteamCmdExecutable(Executable):
         if executable := self._config.get('executable'):
             common_paths.insert(0, Path(executable).absolute())
 
-        install_dir = Path(self._config.get('install_directory') or '/steamcmd')
+        install_dir = Path(self._config.get('installDirectory') or '/steamcmd')
         common_paths.append(install_dir / 'steamcmd.sh')
 
         for candidate in common_paths:
             if candidate.exists():
-                return Success(candidate.resolve())
+                self._executable = candidate.resolve()
+                return Success(self._executable)
 
         logger.info("steamcmd not found at any known path")
         return Failure(
@@ -51,11 +53,25 @@ class SteamCmdExecutable(Executable):
         )
 
 
-    def install(self) -> Result[Path]:
+    async def ensure_installed(self, runtime: TaskRuntimeInterface) -> Result[Path]:
+        if self._executable is not None and self._executable.exists():
+            return Success(self._executable)
+        if not is_successful(result := await self.install(runtime)):
+            return Failure(Error(SteamCmdExecutableError.INSTALL_FAILED, details={
+                'error': result.failure()
+            }))
+        if not is_successful(result := self.resolve_executable()):
+            return Failure(Error(SteamCmdExecutableError.INSTALL_FAILED, details={
+                'error': result.failure()
+            }))
+        return result
+
+
+    async def install(self, runtime: TaskRuntimeInterface) -> Result[Path]:
         if not sys.platform.startswith('linux'):
             return Failure(Error(SteamCmdExecutableError.EXECUTABLE_NOT_FOUND))
 
-        install_dir = Path(self._config.get('install_directory') or '/steamcmd')
+        install_dir = Path(self._config.get('installDirectory') or '/steamcmd')
         install_dir.mkdir(parents=True, exist_ok=True)
 
         tar_path = install_dir / 'steamcmd_linux.tar.gz'
@@ -85,15 +101,6 @@ class SteamCmdExecutable(Executable):
 
         logger.info("steamcmd successfully installed at %s", executable)
         return Success(executable)
-
-
-    def ensure_installed(self) -> Result[Path]:
-        if self._executable is not None and self._executable.exists():
-            return Success(self._executable)
-        if not is_successful(result := self.install()):
-            return Failure(Error(SteamCmdExecutableError.INSTALL_FAILED))
-        self._executable = result.unwrap()
-        return result
 
 
     # -- steamcmd Server Flags ------------------------------------------------
