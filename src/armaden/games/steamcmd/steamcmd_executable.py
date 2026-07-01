@@ -45,6 +45,7 @@ class SteamCmdExecutable(Executable):
         for candidate in common_paths:
             if candidate.exists():
                 self._executable = candidate.resolve()
+                logger.info("Found steamcmd executable in %s", self._executable)
                 return Success(self._executable)
 
         logger.info("steamcmd not found at any known path")

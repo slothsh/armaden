@@ -53,6 +53,7 @@ class ArmaReforgerServerExecutable(Executable):
         for candidate in common_paths:
             if candidate.exists():
                 self._executable = candidate.resolve()
+                logger.info("Found ArmaReforgerServer executable in %s", self._executable)
                 return Success(self._executable)
 
         return Failure(
