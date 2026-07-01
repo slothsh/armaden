@@ -15,7 +15,7 @@ from armaden.framework.utils.dictionary import Dictionary
 from armaden.games.steamcmd import SteamCmdExecutable
 from .arma_reforger_server_executable import ArmaReforgerServerExecutable
 from .arma_reforger_rcon_client import ArmaReforgerRconClient
-from .arma_reforger_config import Config, DEFAULT_CONFIG
+from .arma_reforger_server_config import Config, DEFAULT_CONFIG
 from .enums.arma_reforger_executable_flag import ArmaReforgerExecutableFlag
 
 logger = logging.getLogger('games.arma_reforger.server')

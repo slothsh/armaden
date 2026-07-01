@@ -21,7 +21,7 @@ from armaden.framework.utils.dictionary import Dictionary
 from armaden.framework.errors import Error
 from armaden.games.steamcmd.steamcmd_executable import SteamCmdExecutable
 from .enums import ArmaReforgerExecutableFlag
-from .arma_reforger_executable_config import Config, DEFAULT_CONFIG
+from .arma_reforger_server_executable_config import Config, DEFAULT_CONFIG
 
 logger = logging.getLogger('games.arma_reforger.executable')
 

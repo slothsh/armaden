@@ -15,7 +15,7 @@ from armaden.framework.utils.types import Result
 from armaden.framework.utils.dictionary import Dictionary
 from armaden.framework.errors import Error
 from .enums import SteamCmdExecutableFlag
-from .steamcmd_config import Config, DEFAULT_CONFIG
+from .steamcmd_executable_config import Config, DEFAULT_CONFIG
 
 logger = logging.getLogger(__name__)
 
