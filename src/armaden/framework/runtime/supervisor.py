@@ -266,15 +266,15 @@ class Supervisor:
 
     def _new_thread_info_generator(self) -> Generator[ThreadInfoData, None, None]:
         while True:
-            used_thread_ids: List[int] = [s.thread_info.id for s in self._task_states.values()]
+            used_thread_ids: List[int] = sorted([s.thread_info.id for s in self._task_states.values()])
 
             available_thread_ids = [
                 n
-                for a, b in zip(used_thread_ids, used_thread_ids[1:])
-                for n in range(a + 1, b)
-            ] if len(used_thread_ids) != 1 else [n + 1 for n in used_thread_ids]
+                for s, e in zip(used_thread_ids, used_thread_ids[1:])
+                for n in range(s + 1, e)
+            ]
 
-            thread_id = available_thread_ids[0] if available_thread_ids else 1
+            thread_id = available_thread_ids[0] if available_thread_ids else used_thread_ids[-1] + 1 if used_thread_ids and used_thread_ids[0] == 1 else 1
 
             yield ThreadInfoData(
                 id=thread_id,
