@@ -11,6 +11,11 @@ class Packet(ABC):
             self.validate_packet_data()
 
 
+    def __repr__(self) -> str:
+        fields = [f"{key}={str(value)}" for key, value in list(self.__dict__.items())]
+        return f"{type(self).__name__}({' '.join(fields)})"
+
+
     def validate_packet_header(self) -> None:
         if len(self._data) < 7:
             raise BattleEyePacketException(f"BattleEye rcon datagram must be at least length 7, but got length {len(self._data)}")

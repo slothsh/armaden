@@ -6,6 +6,8 @@ from dataclasses import dataclass
 from asyncio import AbstractEventLoop
 from typing import Generator
 
+from armaden.network.rcon.battle_eye.packets.command_request_packet import CommandRequestPacket
+from armaden.network.rcon.battle_eye.packets.command_response_packet import CommandResponsePacket
 from armaden.network.rcon.battle_eye.packets.keep_alive_packet import KeepAlivePacket
 from armaden.network.rcon.battle_eye.packets.login_request_packet import LoginRequestPacket
 from armaden.network.rcon.battle_eye.packets.login_response_packet import LoginResponsePacket
@@ -70,6 +72,7 @@ class BattleEyeRconClient:
                 else:
                     await self._try_login()
 
+                await self._process_events()
                 await self._handle_responses()
                 await self._handle_requests()
 
@@ -87,10 +90,12 @@ class BattleEyeRconClient:
             data,
             [
                 LoginResponsePacket,
+                CommandResponsePacket,
             ],
             UnknownPacket
         )
 
+        # TODO: handle stateful messages (responses to sequenced messages)
         self._response_queue.append(Message(
             packet_response=packet,
             time_response=datetime.now()
@@ -158,10 +163,21 @@ class BattleEyeRconClient:
             match message.packet_response:
                 case LoginResponsePacket():
                     self._authenticate(message.packet_response)
+                case CommandResponsePacket():
+                    await self._dispatch_command_response(message.packet_response)
                 case UnknownPacket():
                     logger.warning('Unknown response packet received %s', message)
                 case None:
                     logger.warning("Cannot handle response message with None type packet %s", message)
+
+
+    async def _process_events(self):
+        # TODO: implement event system
+        # TODO: handle stateful messages (responses to sequences)
+        sequence = self._generate_sequence()
+        packet = Packet.new(CommandRequestPacket, sequence, ['print', 'foo'])
+        message = Message(sequence=sequence, packet_request=packet)
+        self._request_queue.append(message)
 
 
     def _handle_transport_error(self, exception: Exception):
@@ -182,6 +198,10 @@ class BattleEyeRconClient:
         else:
             logger.info(f"Authentication with remote console {self._address}:{self._port} failed")
             self._client_status.authenticated = False
+
+
+    async def _dispatch_command_response(self, packet: CommandResponsePacket) -> None:
+        logger.info("Received command response %s", packet)
 
 
     def _new_sequence_generator(self) -> Generator[int]:

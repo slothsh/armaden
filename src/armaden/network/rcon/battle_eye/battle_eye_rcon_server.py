@@ -6,6 +6,8 @@ from asyncio import AbstractEventLoop
 from typing import Generator
 
 from armaden.network.rcon.battle_eye.enums.login_status import LoginStatus
+from armaden.network.rcon.battle_eye.packets.command_request_packet import CommandRequestPacket
+from armaden.network.rcon.battle_eye.packets.command_response_packet import CommandResponsePacket
 from armaden.network.rcon.battle_eye.packets.keep_alive_packet import KeepAlivePacket
 from armaden.network.rcon.battle_eye.packets.login_request_packet import LoginRequestPacket
 from armaden.network.rcon.battle_eye.packets.login_response_packet import LoginResponsePacket
@@ -80,6 +82,7 @@ class BattleEyeRconServer:
             [
                 KeepAlivePacket,
                 LoginRequestPacket,
+                CommandRequestPacket,
             ],
             UnknownPacket
         )
@@ -120,6 +123,8 @@ class BattleEyeRconServer:
                     self._authenticate_client(message.client, message.packet)
                 case KeepAlivePacket():
                     self._refresh_client(message.client, message.time_received)
+                case CommandRequestPacket():
+                    await self._dispatch_client_command(message.client, message.packet)
                 case UnknownPacket():
                     logger.warning('Unknown packet received from client %s', message.client)
 
@@ -181,6 +186,15 @@ class BattleEyeRconServer:
         for client in prune:
             logger.info('Pruning client %s', client)
             del(self._clients[client])
+
+
+    async def _dispatch_client_command(self, client: Client, packet: CommandRequestPacket) -> None:
+        logger.info("Received command request %s from client %s", repr(packet), client)
+        message = ResponseMessage(
+            client=client,
+            packet=Packet.new(CommandResponsePacket, packet.sequence, b"OK", (42, 0))
+        )
+        self._response_queue.append(message)
 
 
     def _new_sequence_generator(self) -> Generator[int]:
