@@ -18,20 +18,20 @@ class Packet(ABC):
 
     def validate_packet_header(self) -> None:
         if len(self._data) < 7:
-            raise BattleEyePacketException(f"BattleEye rcon datagram must be at least length 7, but got length {len(self._data)}")
+            raise BattleEyeInvalidPacketException(f"BattleEye rcon datagram must be at least length 7, but got length {len(self._data)}")
 
         magic_number = bytes(self._data[0:2])
         if magic_number != b"BE":
-            raise BattleEyePacketException(f"Invalid magic number in BattleEye Rcon client: {magic_number}")
+            raise BattleEyeInvalidPacketException(f"Invalid magic number in BattleEye Rcon client: {magic_number}")
 
         if self._data[6] != 0xff:
-            raise BattleEyePacketException(f"Invalid terminator at end of BattleEye Rcon client header: {self._data[6]:02x}")
+            raise BattleEyeInvalidPacketException(f"Invalid terminator at end of BattleEye Rcon client header: {self._data[6]}")
 
         client_checksum = int.from_bytes(self._data[2:6], byteorder='little')
-        data_checksum = zlib.crc32(self._data[7:])
+        data_checksum = zlib.crc32(self._data[7:]) & 0xffffffff
 
         if client_checksum != data_checksum:
-            raise BattleEyePacketException(f"The client's checksum does not match the checksum of the payload, client: {client_checksum:08x} data: {data_checksum:08x}")
+            raise BattleEyeInvalidPacketException(f"The client's checksum does not match the checksum of the payload, client: {client_checksum:08x} data: {data_checksum:08x}")
 
 
     def validate_packet_data(self) -> None:
@@ -41,7 +41,7 @@ class Packet(ABC):
     @classmethod
     def prepend_header(cls, data: bytes) -> bytearray:
         header = bytearray(7 + len(data))
-        checksum = zlib.crc32(data)
+        checksum = zlib.crc32(data) & 0xffffffff
         header[0:2] = b"BE"
         header[2:6] = int.to_bytes(checksum, length=4, byteorder='little')
         header[6] = 0xff
@@ -80,10 +80,6 @@ class Packet(ABC):
 
 
 # -- Internal Types ----------------------------------------------------------=
-
-class BattleEyePacketException(Exception):
-    pass
-
 
 class BattleEyeInvalidPacketException(Exception):
     pass

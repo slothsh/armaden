@@ -21,16 +21,6 @@ from .enums.arma_reforger_executable_flag import ArmaReforgerExecutableFlag
 logger = logging.getLogger('games.arma_reforger.server')
 
 
-class NoopRconClient:
-    def __getattr__(self, name):
-        _ = name
-        def noop(*args, **kwargs):
-            _ = args
-            _ = kwargs
-            pass
-        return noop
-
-
 class ArmaReforgerServer:
     def __init__(self, config: Config | None = None):
         self._config: Config = Dictionary.merge(DEFAULT_CONFIG, config or {})
@@ -41,7 +31,7 @@ class ArmaReforgerServer:
             reforger=ArmaReforgerServerExecutable(config={ 'executable': self._config['executable'], 'installDirectory': self._config['installDirectory'] })
         )
 
-        self._rcon_client = NoopRconClient()
+        self._rcon_client: ArmaReforgerRconClient | None = None
 
         if not self._config['installDirectory']:
             raise ArmaReforgerServerException('The Arma Reforger installation directory must be provided with the configuration')
@@ -118,13 +108,13 @@ class ArmaReforgerServer:
                         password=password
                     )
                 case _:
-                    logger.warning("Could not initialize the remote console for the Arma Reforger Server, using the noop client as fallback")
+                    logger.warning("Could not initialize the remote console for the Arma Reforger Server, incoming commands will no longer work")
 
         return Success(None)
 
 
     async def run_rcon_client(self, runtime: TaskRuntimeInterface) -> Result[None]:
-        if isinstance(self._rcon_client, NoopRconClient):
+        if not self._rcon_client:
             return Success(None)
 
         await self._rcon_client.connect()
