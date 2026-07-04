@@ -421,7 +421,7 @@ class TaskRuntime:
         self._task_state = task_state
 
     @property
-    def name(self) -> str:
+    def name(self) -> str | None:
         return self._task_state.task.name
 
     async def dispatch_subprocess(

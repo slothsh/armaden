@@ -1,3 +1,4 @@
+import asyncio
 from collections.abc import Callable, Coroutine
 from pathlib import Path
 from returns.result import Result as ReturnsResult
@@ -11,7 +12,7 @@ type AsyncStreamCallback = Callable[[str], Coroutine[Any, Any, Result[None]]]
 
 class TaskRuntimeInterface(Protocol):
     @property
-    def name(self) -> str: ...
+    def name(self) -> str | None: ...
 
     async def dispatch_subprocess(
         self,

@@ -41,17 +41,7 @@ class ArmaReforgerServer:
             reforger=ArmaReforgerServerExecutable(config={ 'executable': self._config['executable'], 'installDirectory': self._config['installDirectory'] })
         )
 
-        if rcon_config := self._config['server'] and self._config['server']['rcon']:
-            match (rcon_config['address'], rcon_config['port'], rcon_config['password']):
-                case str() | None as address, int() | None as port, str() as password:
-                    self._rcon_client = ArmaReforgerRconClient(
-                        address=address or '127.0.0.1',
-                        port=port or 2011,
-                        password=password
-                    )
-                case _:
-                    self._rcon_client = NoopRconClient()
-
+        self._rcon_client = NoopRconClient()
 
         if not self._config['installDirectory']:
             raise ArmaReforgerServerException('The Arma Reforger installation directory must be provided with the configuration')
@@ -114,8 +104,23 @@ class ArmaReforgerServer:
         return await self.shutdown(runtime)
 
 
+    async def initialize_rcon_client(self, runtime: TaskRuntimeInterface) -> Result[None]:
+        if rcon_config := self._config['server'] and self._config['server']['rcon']:
+            match (rcon_config['address'], rcon_config['port'], rcon_config['password']):
+                case str() | None as address, int() | None as port, str() as password:
+                    self._rcon_client = ArmaReforgerRconClient(
+                        address=address or '127.0.0.1',
+                        port=port or 2011,
+                        password=password
+                    )
+                case _:
+                    logger.warning("Could not initialize the remote console for the Arma Reforger Server, using the noop client as fallback")
+
+        return Success(None)
+
+
     async def run_rcon_client(self, runtime: TaskRuntimeInterface) -> Result[None]:
-        pass
+        return Success(None)
 
 
     async def shutdown(self, runtime: TaskRuntimeInterface) -> Result[None]:
