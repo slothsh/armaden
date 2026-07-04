@@ -12,6 +12,8 @@ dynamic = ["dependencies", "optional-dependencies"]
 [project.scripts]
 armaden-serve = "armaden.framework.runtime.kernel:bootstrap_http"
 armaden-scaffold = "armaden.framework.installer.scaffold:main"
+rcon_client = "armaden.network.client:main"
+rcon_server = "armaden.network.server:main"
 
 [tool.poetry]
 packages = [

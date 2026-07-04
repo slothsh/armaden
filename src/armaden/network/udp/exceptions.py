@@ -1,0 +1,2 @@
+class TransportNotConnectedException(Exception):
+    pass
