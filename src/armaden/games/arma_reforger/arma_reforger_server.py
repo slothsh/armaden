@@ -123,6 +123,11 @@ class ArmaReforgerServer:
 
 
     async def shutdown_rcon_client(self, runtime: TaskRuntimeInterface) -> Result[None]:
+        if not self._rcon_client:
+            return Success(None)
+
+        await self._rcon_client.shutdown()
+
         return Success(None)
 
 
