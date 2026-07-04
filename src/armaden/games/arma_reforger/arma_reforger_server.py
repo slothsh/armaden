@@ -21,6 +21,16 @@ from .enums.arma_reforger_executable_flag import ArmaReforgerExecutableFlag
 logger = logging.getLogger('games.arma_reforger.server')
 
 
+class NoopRconClient:
+    def __getattr__(self, name):
+        _ = name
+        def noop(*args, **kwargs):
+            _ = args
+            _ = kwargs
+            pass
+        return noop
+
+
 class ArmaReforgerServer:
     def __init__(self, config: Config | None = None):
         self._config: Config = Dictionary.merge(DEFAULT_CONFIG, config or {})
@@ -31,20 +41,20 @@ class ArmaReforgerServer:
             reforger=ArmaReforgerServerExecutable(config={ 'executable': self._config['executable'], 'installDirectory': self._config['installDirectory'] })
         )
 
-        self._rcon_client = ArmaReforgerRconClient(
-            self._config['server']['rcon']['address'],
-            self._config['server']['rcon']['port'],
-            self._config['server']['rcon']['password']
-        )
+        if rcon_config := self._config['server'] and self._config['server']['rcon']:
+            match (rcon_config['address'], rcon_config['port'], rcon_config['password']):
+                case str() | None as address, int() | None as port, str() as password:
+                    self._rcon_client = ArmaReforgerRconClient(
+                        address=address or '127.0.0.1',
+                        port=port or 2011,
+                        password=password
+                    )
+                case _:
+                    self._rcon_client = NoopRconClient()
+
 
         if not self._config['installDirectory']:
             raise ArmaReforgerServerException('The Arma Reforger installation directory must be provided with the configuration')
-
-
-    # --- Accessor Methods -----------------------------------------------------
-
-    def rcon_client(self) -> ArmaReforgerRconClient | None:
-        return self._rcon_client
 
 
     # --- Builder Methods -----------------------------------------------------
@@ -102,6 +112,10 @@ class ArmaReforgerServer:
         )
 
         return await self.shutdown(runtime)
+
+
+    async def run_rcon_client(self, runtime: TaskRuntimeInterface) -> Result[None]:
+        pass
 
 
     async def shutdown(self, runtime: TaskRuntimeInterface) -> Result[None]:
