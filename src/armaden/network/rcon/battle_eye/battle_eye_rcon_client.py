@@ -11,6 +11,8 @@ from armaden.network.rcon.battle_eye.packets.command_response_packet import Comm
 from armaden.network.rcon.battle_eye.packets.keep_alive_packet import KeepAlivePacket
 from armaden.network.rcon.battle_eye.packets.login_request_packet import LoginRequestPacket
 from armaden.network.rcon.battle_eye.packets.login_response_packet import LoginResponsePacket
+from armaden.network.rcon.battle_eye.packets.server_message_request_packet import ServerMessageRequestPacket
+from armaden.network.rcon.battle_eye.packets.server_message_response_packet import ServerMessageResponsePacket
 from armaden.network.rcon.battle_eye.packets.unknown_packet import UnknownPacket
 from armaden.network.udp.exceptions import TransportNotConnectedException
 
@@ -86,20 +88,21 @@ class BattleEyeRconClient:
 
 
     async def receive_datagram(self, data: bytes, address: str, port: int) -> None:
+        _ = address
+        _ = port
+
         packet = Packet.try_any_from_datagram(
             data,
             [
                 LoginResponsePacket,
                 CommandResponsePacket,
+                ServerMessageRequestPacket,
             ],
             UnknownPacket
         )
 
         # TODO: handle stateful messages (responses to sequenced messages)
-        self._response_queue.append(Message(
-            packet_response=packet,
-            time_response=datetime.now()
-        ))
+        self._handle_packet(packet, datetime.now())
 
 
     async def handle_new_connection(self, address: str, port: int) -> None:
@@ -145,6 +148,23 @@ class BattleEyeRconClient:
             self._request_queue.append(message)
 
 
+    def _handle_packet(self, packet: Packet, time_received: datetime) -> None:
+        match packet:
+            case ServerMessageRequestPacket():
+                response_packet = Packet.new(ServerMessageResponsePacket, packet.sequence)
+                self._response_queue.append(Message(
+                    sequence=packet.sequence,
+                    packet_request=packet,
+                    time_request=time_received,
+                    packet_response=response_packet,
+                ))
+            case _:
+                self._response_queue.append(Message(
+                    packet_response=packet,
+                    time_response=time_received
+                ))
+
+
     async def _handle_requests(self):
         while self._request_queue:
             message = self._request_queue.pop(0)
@@ -160,14 +180,16 @@ class BattleEyeRconClient:
     async def _handle_responses(self):
         while self._response_queue:
             message = self._response_queue.pop(0)
-            match message.packet_response:
-                case LoginResponsePacket():
+            match (message.packet_request, message.packet_response):
+                case None, LoginResponsePacket():
                     self._authenticate(message.packet_response)
-                case CommandResponsePacket():
+                case None, CommandResponsePacket():
                     await self._dispatch_command_response(message.packet_response)
-                case UnknownPacket():
+                case ServerMessageRequestPacket(), ServerMessageResponsePacket():
+                    await self._dispatch_server_message_response(message.packet_request, message.packet_response)
+                case None, UnknownPacket():
                     logger.warning('Unknown response packet received %s', message)
-                case None:
+                case None, None:
                     logger.warning("Cannot handle response message with None type packet %s", message)
 
 
@@ -202,6 +224,14 @@ class BattleEyeRconClient:
 
     async def _dispatch_command_response(self, packet: CommandResponsePacket) -> None:
         logger.info("Received command response %s", packet)
+
+
+    async def _dispatch_server_message_response(self, request_packet: ServerMessageRequestPacket, response_packet: ServerMessageResponsePacket) -> None:
+        logger.info("Received server message request %s", request_packet)
+        self._request_queue.append(Message(
+            sequence=response_packet.request_sequence,
+            packet_request=response_packet,
+        ))
 
 
     def _new_sequence_generator(self) -> Generator[int]:

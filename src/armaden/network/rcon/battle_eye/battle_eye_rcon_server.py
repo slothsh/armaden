@@ -8,6 +8,8 @@ from typing import Generator
 from armaden.network.rcon.battle_eye.enums.login_status import LoginStatus
 from armaden.network.rcon.battle_eye.packets.command_request_packet import CommandRequestPacket
 from armaden.network.rcon.battle_eye.packets.command_response_packet import CommandResponsePacket
+from armaden.network.rcon.battle_eye.packets.server_message_request_packet import ServerMessageRequestPacket
+from armaden.network.rcon.battle_eye.packets.server_message_response_packet import ServerMessageResponsePacket
 from armaden.network.rcon.battle_eye.packets.keep_alive_packet import KeepAlivePacket
 from armaden.network.rcon.battle_eye.packets.login_request_packet import LoginRequestPacket
 from armaden.network.rcon.battle_eye.packets.login_response_packet import LoginResponsePacket
@@ -65,6 +67,7 @@ class BattleEyeRconServer:
                     await self._try_connect()
                     logger.info(f"BattleEye RCON server listening on {self._address}:{self._port}")
 
+                await self._dispatch_server_messages()
                 await self._handle_requests()
                 await self._handle_responses()
                 await self._prune_clients()
@@ -83,6 +86,7 @@ class BattleEyeRconServer:
                 KeepAlivePacket,
                 LoginRequestPacket,
                 CommandRequestPacket,
+                ServerMessageResponsePacket,
             ],
             UnknownPacket
         )
@@ -125,6 +129,8 @@ class BattleEyeRconServer:
                     self._refresh_client(message.client, message.time_received)
                 case CommandRequestPacket():
                     await self._dispatch_client_command(message.client, message.packet)
+                case ServerMessageResponsePacket():
+                    logger.info("Received server message response from client %s, %s", message.client, message.packet)
                 case UnknownPacket():
                     logger.warning('Unknown packet received from client %s', message.client)
 
@@ -195,6 +201,15 @@ class BattleEyeRconServer:
             packet=Packet.new(CommandResponsePacket, packet.sequence, b"OK", (42, 0))
         )
         self._response_queue.append(message)
+
+
+    async def _dispatch_server_messages(self) -> None:
+        for client in self._clients.keys():
+            message = ResponseMessage(
+                client=client,
+                packet=Packet.new(ServerMessageRequestPacket, 42, b"Hello, from Server!")
+            )
+            self._response_queue.append(message)
 
 
     def _new_sequence_generator(self) -> Generator[int]:
