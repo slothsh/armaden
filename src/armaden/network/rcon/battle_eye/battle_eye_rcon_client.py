@@ -74,7 +74,7 @@ class BattleEyeRconClient:
                 else:
                     await self._try_login()
 
-                await self._process_events()
+                # await self._process_events()
                 await self._handle_responses()
                 await self._handle_requests()
 

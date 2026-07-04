@@ -11,7 +11,7 @@ async def entry():
         stream=sys.stdout,
     )
 
-    client = BattleEyeRconClient(transport=AsyncDatagramTransport, port=2011, password='password')
+    client = BattleEyeRconClient(transport=AsyncDatagramTransport, port=19999, password='password')
     await client.connect()
 
 
