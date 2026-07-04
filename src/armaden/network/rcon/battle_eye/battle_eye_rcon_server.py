@@ -73,7 +73,7 @@ class BattleEyeRconServer:
 
 
     async def receive_datagram(self, data: bytes, address: str, port: int) -> None:
-        logger.info(f"Received message {data} from {address}:{port}")
+        logger.info(f"Received message from {address}:{port}")
 
         packet = Packet.try_any_from_datagram(
             data,
