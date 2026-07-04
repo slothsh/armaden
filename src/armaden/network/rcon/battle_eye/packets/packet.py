@@ -28,7 +28,7 @@ class Packet(ABC):
             raise BattleEyeInvalidPacketException(f"Invalid terminator at end of BattleEye Rcon client header: {self._data[6]}")
 
         client_checksum = int.from_bytes(self._data[2:6], byteorder='little')
-        data_checksum = zlib.crc32(self._data[7:]) & 0xffffffff
+        data_checksum = zlib.crc32(self._data[6:]) & 0xffffffff
 
         if client_checksum != data_checksum:
             raise BattleEyeInvalidPacketException(f"The client's checksum does not match the checksum of the payload, client: {client_checksum:08x} data: {data_checksum:08x}")
@@ -41,11 +41,12 @@ class Packet(ABC):
     @classmethod
     def prepend_header(cls, data: bytes) -> bytearray:
         header = bytearray(7 + len(data))
-        checksum = zlib.crc32(data) & 0xffffffff
+        terminated_data = bytearray([0xff])
+        terminated_data.extend(data)
+        checksum = zlib.crc32(terminated_data) & 0xffffffff
         header[0:2] = b"BE"
         header[2:6] = int.to_bytes(checksum, length=4, byteorder='little')
-        header[6] = 0xff
-        header[7:] = data
+        header[6:] = terminated_data
         return header
 
 
