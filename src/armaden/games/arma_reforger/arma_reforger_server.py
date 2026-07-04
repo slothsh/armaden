@@ -104,6 +104,10 @@ class ArmaReforgerServer:
         return await self.shutdown(runtime)
 
 
+    async def shutdown(self, runtime: TaskRuntimeInterface) -> Result[None]:
+        return Success(None)
+
+
     async def initialize_rcon_client(self, runtime: TaskRuntimeInterface) -> Result[None]:
         if rcon_config := self._config['server'] and self._config['server']['rcon']:
             match (rcon_config['address'], rcon_config['port'], rcon_config['password']):
@@ -120,10 +124,15 @@ class ArmaReforgerServer:
 
 
     async def run_rcon_client(self, runtime: TaskRuntimeInterface) -> Result[None]:
+        if isinstance(self._rcon_client, NoopRconClient):
+            return Success(None)
+
+        await self._rcon_client.connect()
+
         return Success(None)
 
 
-    async def shutdown(self, runtime: TaskRuntimeInterface) -> Result[None]:
+    async def shutdown_rcon_client(self, runtime: TaskRuntimeInterface) -> Result[None]:
         return Success(None)
 
 
