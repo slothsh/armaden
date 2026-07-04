@@ -4,7 +4,8 @@ import errno
 from datetime import datetime
 from dataclasses import dataclass
 from asyncio import AbstractEventLoop
-from typing import Generator
+import signal
+from typing import Any, Generator
 
 from armaden.network.rcon.battle_eye.packets.command_request_packet import CommandRequestPacket
 from armaden.network.rcon.battle_eye.packets.command_response_packet import CommandResponsePacket
@@ -36,8 +37,10 @@ class BattleEyeRconClient:
         password: str = '',
         event_loop: AbstractEventLoop | None = None,
         transport: DatagramTransportFactory = AsyncDatagramTransport,
+        initialize_signal_handlers: bool = False
     ) -> None:
         self._transport = transport(self, event_loop)
+        self._shutdown_event = asyncio.Event()
         self._connected = False
         self._client_status = ClientStatus(authenticated=False, time_last_attempt=datetime.fromtimestamp(0))
         self._last_send_time: datetime = datetime.fromtimestamp(0)
@@ -52,6 +55,9 @@ class BattleEyeRconClient:
             return next(self._sequence_generator)
         self._generate_sequence = generate_sequence
 
+        if initialize_signal_handlers:
+            self._initialize_signal_handlers()
+
 
     @property
     def address(self) -> str:
@@ -64,7 +70,7 @@ class BattleEyeRconClient:
 
 
     async def connect(self) -> None:
-        while True:
+        while not self._shutdown_event.is_set():
             try:
                 if not self._connected:
                     await self._try_connect()
@@ -78,13 +84,29 @@ class BattleEyeRconClient:
                 await self._handle_responses()
                 await self._handle_requests()
 
-                await asyncio.sleep(1)
+                await asyncio.wait_for(self._shutdown_event.wait(), timeout=1.0)
+            except asyncio.TimeoutError:
+                pass
             except TransportNotConnectedException as exception:
                 logger.warning(exception)
                 await self._try_connect()
-
             except Exception as exception:
                 logger.error(exception)
+
+
+    async def shutdown(self) -> None:
+        self._shutdown_event.set()
+
+
+    def _initialize_signal_handlers(self) -> None:
+        for sig in (signal.SIGINT, signal.SIGTERM, signal.SIGQUIT):
+            signal.signal(sig, self._handle_os_signal)
+
+
+    def _handle_os_signal(self, signum: int, frame: Any) -> None:
+        _ = signum
+        _ = frame
+        self._shutdown_event.set()
 
 
     async def receive_datagram(self, data: bytes, address: str, port: int) -> None:

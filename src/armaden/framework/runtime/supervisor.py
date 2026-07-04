@@ -164,6 +164,7 @@ class Supervisor:
 
 
     def _handle_os_signal(self, signum: int, frame: Any) -> None:
+        _ = frame
         logger.info("OS signal caught. Handling signal %s", signal.Signals(signum).name)
         self._shutdown_event.set()
 
