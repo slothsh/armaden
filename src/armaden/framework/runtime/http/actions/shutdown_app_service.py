@@ -2,7 +2,7 @@ import logging
 from returns.pipeline import is_successful
 
 from ..dto.lifecycle_data import ShutdownRequestData, ShutdownResponseData
-from armaden.framework.facades import app
+from armaden.framework.facades import App
 from armaden.framework.dto.supervisor_request_data import SupervisorRequestData
 from armaden.framework.enums.supervisor_request_kind import SupervisorRequestKind
 
@@ -16,7 +16,7 @@ class ShutdownAppService:
                 task_id=service.id
             )
 
-            if not is_successful(await app().supervisor.enqueue_request(request)):
+            if not is_successful(await App.supervisor().enqueue_request(request)):
                 raise Exception(f"could queue restart for service ID: {service.id}")
 
             return ShutdownResponseData(success=True)

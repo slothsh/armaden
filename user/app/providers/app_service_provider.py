@@ -4,7 +4,7 @@ from returns.result import Success
 
 from armaden.framework.classes.service_provider import ServiceProvider
 from armaden.framework.classes.task import TaskBuilder
-from armaden.framework.facades import app, config
+from armaden.framework.facades import App, config
 from armaden.framework.utils.types import Result
 from armaden.games.arma_reforger import ArmaReforgerServer
 from armaden.games.arma_reforger.arma_reforger_server_config import Config
@@ -16,11 +16,11 @@ class AppServiceProvider(ServiceProvider):
     def register(self) -> Result[None]:
         user_config = cast(Config, config('arma_reforger'))
         server = ArmaReforgerServer(user_config)
-        self._container.instance(ArmaReforgerServer, server)
+        App.instance(ArmaReforgerServer, server)
         return Success(None)
 
     def boot(self) -> Result[None]:
-        server = self._container.make(ArmaReforgerServer)
+        server = App.make(ArmaReforgerServer)
 
         task = (
             TaskBuilder()
@@ -34,5 +34,5 @@ class AppServiceProvider(ServiceProvider):
             .build()
         )
 
-        app().supervisor.add_task(task)
+        App.supervisor().add_task(task)
         return Success(None)

@@ -2,7 +2,7 @@ import logging
 from typing import Callable, Self, Type, TypeVar, cast
 
 from armaden.framework.utils.types import RouterType
-from .app import app
+from .app import App
 
 logger = logging.getLogger(__name__)
 
@@ -12,7 +12,7 @@ class Route:
     @classmethod
     def get(cls, path: str, controller: Type[C], handler: str) -> Type[Self]:
         try:
-            container = app().container
+            container = App.container()
             if 'router' not in container:
                 logger.error("Router not bound in container")
                 return cls
@@ -30,7 +30,7 @@ class Route:
     @classmethod
     def post(cls, path: str, controller: Type[C], handler: str) -> Type[Self]:
         try:
-            container = app().container
+            container = App.container()
             if 'router' not in container:
                 logger.error("Router not bound in container")
                 return cls

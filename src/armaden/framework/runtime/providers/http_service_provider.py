@@ -3,7 +3,7 @@ from returns.result import Success
 
 from armaden.framework.classes.service_provider import ServiceProvider
 from armaden.framework.classes.task import TaskBuilder
-from armaden.framework.facades import app
+from armaden.framework.facades import App
 from armaden.framework.utils.types import Result
 from armaden.framework.runtime.module_loader import ModuleLoader
 
@@ -35,10 +35,10 @@ class HttpServiceProvider(ServiceProvider):
             .exclusive_thread()
             .build()
         )
-        app().supervisor.add_task(task)
+        App.supervisor().add_task(task)
 
-        app().container.instance('api', default_api.app)
-        app().container.instance('router', default_api.app.router)
+        App.instance('api', default_api.app)
+        App.instance('router', default_api.app.router)
 
         routes_directory = Path(__file__).absolute().parent.parent / 'http' / 'routes'
         route_files = routes_directory.glob('*.py')

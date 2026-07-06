@@ -23,7 +23,7 @@ def providers() -> List[ServiceProvider]:
 _APP_SERVICE_PROVIDER = """from returns.result import Success
 from armaden.framework.classes.service_provider import ServiceProvider
 from armaden.framework.classes.task import TaskBuilder
-from armaden.framework.facades import app
+from armaden.framework.facades import App
 from armaden.framework.utils.types import Result
 
 
@@ -45,7 +45,7 @@ class AppServiceProvider(ServiceProvider):
         #       .on_run(self.run)
         #       .build()
         #   )
-        #   app().supervisor.add_task(task)
+        #   App.supervisor().add_task(task)
         return Success(None)
 """
 
