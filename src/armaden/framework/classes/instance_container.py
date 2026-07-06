@@ -3,6 +3,7 @@ from __future__ import annotations
 from abc import ABC
 from typing import Any, Callable, Dict, List, Optional
 import inspect
+import logging
 
 from .bound_method import BoundMethod
 from ..utils.container import (
@@ -13,6 +14,23 @@ from ..utils.container import (
     resolve_string_to_class,
     unwrap_if_closure,
 )
+
+logger = logging.getLogger(__name__)
+
+_BUILTIN_DEFAULTS: Dict[type, Any] = {
+    int: 0,
+    float: 0.0,
+    complex: 0j,
+    str: '',
+    bool: False,
+    bytes: b'',
+    bytearray: bytearray(),
+    list: [],
+    dict: {},
+    tuple: (),
+    set: set(),
+    frozenset: frozenset(),
+}
 
 # -- Internal Types ------------------------------------------------------------
 
@@ -404,6 +422,9 @@ class InstanceContainer:
             constructor = inspect.signature(concrete.__init__)
             params = list(constructor.parameters.values())[1:]
 
+            if concrete.__init__ is object.__init__:
+                params = []
+
             if not params:
                 instance = concrete()
                 self.fire_after_resolving_attribute_callbacks([], instance)
@@ -484,7 +505,31 @@ class InstanceContainer:
         if parameter.kind == inspect.Parameter.VAR_KEYWORD:
             return {}
 
-        self.unresolvable_primitive(parameter)
+        return self.resolve_builtin_default(parameter)
+
+    def resolve_builtin_default(self, parameter: inspect.Parameter) -> Any:
+        annotation = parameter.annotation
+        building = self.currently_resolving()
+        building_name = getattr(building, '__name__', str(building)) if building is not None else '<unknown>'
+
+        if annotation is inspect.Parameter.empty or annotation not in _BUILTIN_DEFAULTS:
+            value = None
+        else:
+            default = _BUILTIN_DEFAULTS[annotation]
+            value = type(default)() if isinstance(default, (list, dict, set, bytearray)) else default
+
+        logger.warning(
+            "Resolving builtin dependency [%s] on [%s] to default value [%r]; "
+            "contextual binding is required. Provide a value via "
+            "container.when(%s).needs('$%s').give(<value>)",
+            parameter.name,
+            building_name,
+            value,
+            building_name,
+            parameter.name,
+        )
+
+        return value
 
     def resolve_class(self, parameter: inspect.Parameter) -> Any:
         cls_name = get_parameter_class_name(parameter)

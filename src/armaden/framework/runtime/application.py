@@ -106,6 +106,17 @@ class CoreApplication:
                 "The application's configuration files could not be successfully initialized"
             )
 
+        if user_app_found:
+            from armaden.framework.runtime.providers.type_discovery_service_provider import (
+                TypeDiscoveryServiceProvider,
+            )
+
+            discovery_result = self.register(TypeDiscoveryServiceProvider(self._container))
+            if not is_successful(discovery_result):
+                raise ApplicationException(
+                    f"Type discovery failed during application bootstrap: {discovery_result.failure()}"
+                )
+
         self._register_providers(with_user_providers=user_app_found)
 
         logger.info('Application successfully bootstrapped')

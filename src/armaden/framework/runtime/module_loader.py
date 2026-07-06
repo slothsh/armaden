@@ -128,6 +128,53 @@ class ModuleLoader:
 
 
     @classmethod
+    def try_discover_user_modules(cls, subdir: str) -> Result[List[ModuleType]]:
+        app_directory = os.getenv('APP_DIR')
+
+        if not app_directory:
+            return Success([])
+
+        module_directory = Path(app_directory).absolute()
+        scan_root = module_directory / subdir
+
+        if not scan_root.is_dir():
+            return Failure(Error(ModuleLoaderError.USER_DISCOVERY_INVALID_PATH, details={
+                'path': scan_root,
+                'subdir': subdir,
+                'directory': module_directory
+            }))
+
+        files = sorted(
+            (
+                file for file in scan_root.rglob('*.py')
+                if file.is_file() and not file.name.startswith(('.', '_'))
+            ),
+            key=lambda file: str(file),
+        )
+
+        module_dir_str = str(module_directory)
+        sys.path.insert(0, module_dir_str)
+
+        modules: List[ModuleType] = []
+        try:
+            for file in files:
+                relative = file.relative_to(module_directory).with_suffix('')
+                dotted_name = '.'.join(relative.parts)
+                try:
+                    modules.append(import_module(dotted_name))
+                except Exception as exception:
+                    return Failure(Error(ModuleLoaderError.USER_DISCOVERY_LOAD_EXCEPTION, details={
+                        'name': dotted_name,
+                        'file': file,
+                        'exception': exception
+                    }))
+        finally:
+            if module_dir_str in sys.path:
+                sys.path.remove(module_dir_str)
+
+        return Success(modules)
+
+    @classmethod
     def try_import_module(cls, name: str, package: str | None = None) -> Result[ModuleType]:
         try:
             return Success(import_module(name, package))
@@ -147,5 +194,7 @@ class ModuleLoaderError(StrEnum):
     USER_APP_INVALID_PATH = "the provided path to the user application is invalid"
     USER_PROVIDER_INVALID_PATH = "the provided path to the user provider is invalid"
     USER_CONFIG_INVALID_PATH = "the provided path to the user configuration is invalid"
+    USER_DISCOVERY_INVALID_PATH = "the discovery directory path is invalid"
+    USER_DISCOVERY_LOAD_EXCEPTION = "an exception occurred while importing a user module during type discovery"
     LOAD_MODULE_FAILED = "failed to load module from specified path"
     LOAD_INVALID_PATH = "the provided path to the is invalid"

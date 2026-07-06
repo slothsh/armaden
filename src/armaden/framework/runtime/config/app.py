@@ -16,5 +16,8 @@ def config():
         'version': {
             k: int(v) if v.isdigit() else v
             for k, v in list(zip(version_keys, version.replace("-", ".").split(".")))[:len(version_keys)]
-        }
+        },
+        'discovery': {
+            'paths': ['app'],
+        },
     }
