@@ -62,8 +62,11 @@ class CoreApplication:
         from armaden.framework.runtime.providers.http_service_provider import HttpServiceProvider
         from armaden.framework.runtime.providers.console_service_provider import ConsoleServiceProvider
 
-        self.register(HttpServiceProvider(self._container))
-        self.register(ConsoleServiceProvider(self._container))
+        self.register(self._make_provider(HttpServiceProvider))
+        self.register(self._make_provider(ConsoleServiceProvider))
+
+    def _make_provider(self, provider_class) -> ServiceProvider:
+        return self._container.make(provider_class, {'container': self._container})
 
     def register_core_container_aliases(self) -> None:
         pass
@@ -111,7 +114,7 @@ class CoreApplication:
                 TypeDiscoveryServiceProvider,
             )
 
-            discovery_result = self.register(TypeDiscoveryServiceProvider(self._container))
+            discovery_result = self.register(self._make_provider(TypeDiscoveryServiceProvider))
             if not is_successful(discovery_result):
                 raise ApplicationException(
                     f"Type discovery failed during application bootstrap: {discovery_result.failure()}"
@@ -292,7 +295,7 @@ class CoreApplication:
 
         for provider_class in provider_list:
             try:
-                provider = provider_class(self._container)
+                provider = self._make_provider(provider_class)
                 result = provider.register()
                 if not is_successful(result):
                     logger.warning(
