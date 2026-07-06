@@ -1,8 +1,8 @@
 from armaden.framework.utils.env import Env
-from armaden.games.arma_reforger import Config
+from armaden.games.arma_reforger import ArmaReforgerServerConfig
 
 
-def config() -> Config:
+def config() -> ArmaReforgerServerConfig:
     return {
         'executable': Env.string('ARMA_REFORGER_EXECUTABLE'),
         'steamExecutable': Env.string('STEAMCMD_EXECUTABLE'),
