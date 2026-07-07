@@ -102,16 +102,15 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig]):
 
     async def initialize_rcon_client(self, runtime: TaskRuntimeInterface) -> Result[None]:
         _ = runtime
+
         if rcon_config := self.config['server'] and self.config['server']['rcon']:
-            match (rcon_config['address'], rcon_config['port'], rcon_config['password']):
-                case str() | None as address, int() | None as port, str() as password:
+            match (rcon_config['port'], rcon_config['password']):
+                case int() | None as port, str() | None as password:
                     self._rcon_client = ArmaReforgerRconClient(
-                        address=address or '127.0.0.1',
+                        address='127.0.0.1',
                         port=port or 2011,
-                        password=password
+                        password=password or ''
                     )
-                case _:
-                    logger.warning("Could not initialize the remote console for the Arma Reforger Server, incoming commands will no longer work")
 
         return Success(None)
 
