@@ -16,14 +16,14 @@ from armaden.framework.utils.dictionary import Dictionary
 from armaden.games.steamcmd import SteamCmdExecutable
 from .arma_reforger_server_executable import ArmaReforgerServerExecutable
 from .arma_reforger_rcon_client import ArmaReforgerRconClient
-from .arma_reforger_server_config import Config as ArmaReforgerServerConfig
+from .arma_reforger_server_config import DEFAULT_CONFIG, Config as ArmaReforgerServerConfig
 from .enums.arma_reforger_executable_flag import ArmaReforgerExecutableFlag
 
 logger = logging.getLogger('games.arma_reforger.server')
 
 
 class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig]):
-    def __init__(self, *, config: ArmaReforgerServerConfig | None = None):
+    def __init__(self, *, config: ArmaReforgerServerConfig = DEFAULT_CONFIG):
         _ = config
         self._paths: PathContainer | None = None
 
