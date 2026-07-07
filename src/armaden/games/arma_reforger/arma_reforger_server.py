@@ -7,6 +7,7 @@ from pathlib import Path
 
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
+from armaden.framework.classes.configurable import Configurable
 from armaden.framework.enums.health_status import HealthStatus
 from armaden.framework.utils.types import Result
 from armaden.framework.errors import Error
@@ -15,25 +16,25 @@ from armaden.framework.utils.dictionary import Dictionary
 from armaden.games.steamcmd import SteamCmdExecutable
 from .arma_reforger_server_executable import ArmaReforgerServerExecutable
 from .arma_reforger_rcon_client import ArmaReforgerRconClient
-from .arma_reforger_server_config import Config, DEFAULT_CONFIG
+from .arma_reforger_server_config import Config as ArmaReforgerServerConfig
 from .enums.arma_reforger_executable_flag import ArmaReforgerExecutableFlag
 
 logger = logging.getLogger('games.arma_reforger.server')
 
 
-class ArmaReforgerServer:
-    def __init__(self, config: Config | None = None):
-        self._config: Config = Dictionary.merge(DEFAULT_CONFIG, config or {})
+class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig]):
+    def __init__(self, *, config: ArmaReforgerServerConfig | None = None):
+        _ = config
         self._paths: PathContainer | None = None
 
         self._executable = ExecutableContainer(
-            steamcmd=SteamCmdExecutable(config={'executable': self._config.get('steamExecutable'), 'installDirectory': self._config.get('steamInstallDirectory')}),
-            reforger=ArmaReforgerServerExecutable(config={ 'executable': self._config['executable'], 'installDirectory': self._config['installDirectory'] })
+            steamcmd=SteamCmdExecutable(config={'executable': self.config.get('steamExecutable'), 'installDirectory': self.config.get('steamInstallDirectory')}),
+            reforger=ArmaReforgerServerExecutable(config={ 'executable': self.config['executable'], 'installDirectory': self.config['installDirectory'] })
         )
 
         self._rcon_client: ArmaReforgerRconClient | None = None
 
-        if not self._config['installDirectory']:
+        if not self.config['installDirectory']:
             raise ArmaReforgerServerException('The Arma Reforger installation directory must be provided with the configuration')
 
 
@@ -95,11 +96,13 @@ class ArmaReforgerServer:
 
 
     async def shutdown(self, runtime: TaskRuntimeInterface) -> Result[None]:
+        _ = runtime
         return Success(None)
 
 
     async def initialize_rcon_client(self, runtime: TaskRuntimeInterface) -> Result[None]:
-        if rcon_config := self._config['server'] and self._config['server']['rcon']:
+        _ = runtime
+        if rcon_config := self.config['server'] and self.config['server']['rcon']:
             match (rcon_config['address'], rcon_config['port'], rcon_config['password']):
                 case str() | None as address, int() | None as port, str() as password:
                     self._rcon_client = ArmaReforgerRconClient(
@@ -114,6 +117,7 @@ class ArmaReforgerServer:
 
 
     async def run_rcon_client(self, runtime: TaskRuntimeInterface) -> Result[None]:
+        _ = runtime
         if not self._rcon_client:
             return Success(None)
 
@@ -123,6 +127,7 @@ class ArmaReforgerServer:
 
 
     async def shutdown_rcon_client(self, runtime: TaskRuntimeInterface) -> Result[None]:
+        _ = runtime
         if not self._rcon_client:
             return Success(None)
 
@@ -132,6 +137,7 @@ class ArmaReforgerServer:
 
 
     async def status(self, runtime: TaskRuntimeInterface) -> Result[Dict[str, Any]]:
+        _ = runtime
         return Success({
             'status': HealthStatus.OK,
         })
@@ -142,7 +148,7 @@ class ArmaReforgerServer:
     def server_command(self) -> Result[List[str]]:
         reforger = self._executable.reforger.save_params()
 
-        startup_parameters = self._config.get('startup')
+        startup_parameters = self.config.get('startup')
         if startup_parameters:
             for parameter, value in startup_parameters.items():
                 if is_successful(flag := ArmaReforgerExecutableFlag.from_config(parameter)):
@@ -172,7 +178,7 @@ class ArmaReforgerServer:
     # -- steamcmd Helpers -------------------------------------------
 
     async def install_config(self) -> Result[None]:
-        config_data: Dict[str, Any] = Dictionary.without(self._config['server'], lambda _, value: value is None)
+        config_data: Dict[str, Any] = Dictionary.without(self.config['server'], lambda _, value: value is None)
 
         if not self._paths:
             return Failure(Error(ArmaReforgerServerError.MISSING_PATHS, details={
