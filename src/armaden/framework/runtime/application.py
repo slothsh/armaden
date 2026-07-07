@@ -148,7 +148,7 @@ class CoreApplication:
         self._fire_app_callbacks(self._booting_callbacks)
 
         for provider in self._providers:
-            result = provider.boot()
+            result = self._container.call([provider, 'boot'])
             if not is_successful(result):
                 logger.warning(
                     "Provider boot failed for %s: %s",
