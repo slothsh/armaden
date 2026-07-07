@@ -126,6 +126,7 @@ class CoreApplication:
         return Success(None)
 
     def register(self, provider: ServiceProvider) -> Result[None]:
+        self._register_provider_bindings(provider)
         result = provider.register()
         if not is_successful(result):
             logger.warning(
@@ -296,6 +297,7 @@ class CoreApplication:
         for provider_class in provider_list:
             try:
                 provider = self._make_provider(provider_class)
+                self._register_provider_bindings(provider)
                 result = provider.register()
                 if not is_successful(result):
                     logger.warning(
@@ -387,6 +389,12 @@ class CoreApplication:
             self._config[key] = config()
 
         return Success(None)
+
+    def _register_provider_bindings(self, provider: ServiceProvider) -> None:
+        for abstract, concrete in provider.bindings.items():
+            self._container.bind(abstract, concrete)
+        for abstract, concrete in provider.singletons.items():
+            self._container.singleton(abstract, concrete)
 
     def _fire_app_callbacks(self, callbacks: list) -> None:
         index = 0

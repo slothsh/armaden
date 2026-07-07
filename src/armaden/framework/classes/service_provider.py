@@ -11,6 +11,9 @@ from armaden.framework.utils.types import Result
 class ServiceProvider(ABC):
     name: str = 'service_provider'
 
+    bindings: dict = {}
+    singletons: dict = {}
+
     def __init__(self, container: 'InstanceContainer') -> None:
         self._container = container
 
