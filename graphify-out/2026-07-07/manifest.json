@@ -1,9 +1,4 @@
 {
-  "package.json": {
-    "mtime": 1783445967.344307,
-    "ast_hash": "6b54750b488d7c1585c2721a20c86bb6",
-    "semantic_hash": "6b54750b488d7c1585c2721a20c86bb6"
-  },
   "pyproject.toml": {
     "mtime": 1783156224.6567137,
     "ast_hash": "dc37ef8ffbd82991611cf52b5f6a5633",
@@ -583,5 +578,20 @@
     "mtime": 1783356537.4915316,
     "ast_hash": "f50431878a129a484e84f71e13c1273e",
     "semantic_hash": "f50431878a129a484e84f71e13c1273e"
+  },
+  ".github/workflows/build.yml": {
+    "mtime": 1782572371.699482,
+    "ast_hash": "24a02b61251a6ff26f5dc703ed14302a",
+    "semantic_hash": ""
+  },
+  "AGENTS.md": {
+    "mtime": 1782570536.143653,
+    "ast_hash": "cebeef152e729494a50f51608043edb9",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1782574702.4981322,
+    "ast_hash": "06bb0aa4b7c2a5ae26f6a8103f0dc156",
+    "semantic_hash": ""
   }
 }
