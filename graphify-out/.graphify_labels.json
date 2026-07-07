@@ -105,5 +105,9 @@
   "103": ".vm_error_mode",
   "104": "Any",
   "105": "Config",
-  "106": "Self"
+  "106": "Self",
+  "107": "WrapperTransportInterface",
+  "108": "ModuleLoader",
+  "109": "TypeDiscoveryServiceProvider",
+  "110": "Result"
 }

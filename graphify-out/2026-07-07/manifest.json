@@ -30,7 +30,7 @@
     "semantic_hash": "2d639a3329837165e4ce3e2bbc82bd68"
   },
   "src/armaden/framework/classes/instance_container.py": {
-    "mtime": 1783443357.179974,
+    "mtime": 1783449847.2762194,
     "ast_hash": "3a96851894c28b208af68fd54a5c62e3",
     "semantic_hash": "3a96851894c28b208af68fd54a5c62e3"
   },
@@ -185,7 +185,7 @@
     "semantic_hash": "2e7ca7c080d5cfd653fe561411dbcef9"
   },
   "src/armaden/framework/runtime/application.py": {
-    "mtime": 1783445263.2582185,
+    "mtime": 1783449789.887458,
     "ast_hash": "285a091e40b36b52d4f496a03f2a3fdf",
     "semantic_hash": "285a091e40b36b52d4f496a03f2a3fdf"
   },
@@ -370,12 +370,12 @@
     "semantic_hash": "cd6d562c94f7eab535a126f723184c90"
   },
   "src/armaden/games/arma_reforger/arma_reforger_server.py": {
-    "mtime": 1783188539.5734806,
-    "ast_hash": "9219a83e8e13e6fb890761d560523bf9",
-    "semantic_hash": "9219a83e8e13e6fb890761d560523bf9"
+    "mtime": 1783452964.825128,
+    "ast_hash": "6927f7625305bc0a47f30a7f6d3d1bea",
+    "semantic_hash": ""
   },
   "src/armaden/games/arma_reforger/arma_reforger_server_config.py": {
-    "mtime": 1782934944.5305417,
+    "mtime": 1783451055.5136735,
     "ast_hash": "6235c547eaf5bae6f49bc14e15c2ae3c",
     "semantic_hash": "6235c547eaf5bae6f49bc14e15c2ae3c"
   },
@@ -555,9 +555,9 @@
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
   "user/app/providers/app_service_provider.py": {
-    "mtime": 1783360103.2672853,
-    "ast_hash": "0354f50a8674c14ea6150aeb2de2f2b4",
-    "semantic_hash": "0354f50a8674c14ea6150aeb2de2f2b4"
+    "mtime": 1783453322.7964752,
+    "ast_hash": "34a022cae4d7d683eade1552854f7b4e",
+    "semantic_hash": ""
   },
   "user/bootstrap/application.py": {
     "mtime": 1782571345.3249779,
@@ -592,6 +592,11 @@
   "README.md": {
     "mtime": 1782574702.4981322,
     "ast_hash": "06bb0aa4b7c2a5ae26f6a8103f0dc156",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/classes/configurable.py": {
+    "mtime": 1783452830.7472987,
+    "ast_hash": "178e4eae21dc217bb22840563a2ac000",
     "semantic_hash": ""
   }
 }
