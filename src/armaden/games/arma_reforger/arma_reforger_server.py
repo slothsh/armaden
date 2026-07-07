@@ -23,7 +23,9 @@ logger = logging.getLogger('games.arma_reforger.server')
 
 
 class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig]):
-    def __init__(self, *, config: ArmaReforgerServerConfig = DEFAULT_CONFIG):
+    config = DEFAULT_CONFIG
+
+    def __init__(self, *, config: ArmaReforgerServerConfig | None = None):
         _ = config
         self._paths: PathContainer | None = None
 
