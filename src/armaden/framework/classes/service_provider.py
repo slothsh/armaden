@@ -8,6 +8,12 @@ if TYPE_CHECKING:
 from armaden.framework.utils.types import Result
 
 
+class DeferrableProvider(ABC):
+    @abstractmethod
+    def provides(self) -> list[Any]:
+        raise NotImplementedError
+
+
 class ServiceProvider(ABC):
     name: str = 'service_provider'
 
@@ -16,6 +22,19 @@ class ServiceProvider(ABC):
 
     def __init__(self, container: 'InstanceContainer') -> None:
         self._container = container
+
+    @property
+    def app(self) -> 'InstanceContainer':
+        return self._container
+
+    def is_deferred(self) -> bool:
+        return isinstance(self, DeferrableProvider)
+
+    def register_bindings(self) -> None:
+        for abstract, concrete in self.bindings.items():
+            self._container.bind(abstract, concrete)
+        for abstract, concrete in self.singletons.items():
+            self._container.singleton(abstract, concrete)
 
     @abstractmethod
     def register(self) -> Result[None]:

@@ -102,6 +102,7 @@ class InstanceContainer:
         self._checked_for_attribute_bindings: Dict[Any, bool] = {}
         self._checked_for_singleton_or_scoped_attributes: Dict[Any, Any] = {}
         self._environment_resolver: Optional[Callable] = None
+        self._deferred_services: Dict[Any, type] = {}
 
     # -- Contextual -----------------------------------------------------------
 
@@ -318,6 +319,9 @@ class InstanceContainer:
 
         if abstract in self._instances and not needs_contextual_build:
             return self._instances[abstract]
+
+        if raiseEvents and abstract not in self._bindings and abstract not in self._instances:
+            self._try_resolve_deferred(abstract)
 
         self._with.append(parameters or {})
 
@@ -773,6 +777,21 @@ class InstanceContainer:
         if self._environment_resolver is None:
             return False
         return self._environment_resolver(environments)
+
+    # -- Deferred Providers --------------------------------------------------
+
+    def add_deferred_services(self, services: Dict[Any, type]) -> None:
+        self._deferred_services.update(services)
+
+    def _try_resolve_deferred(self, abstract: Any) -> None:
+        if abstract not in self._deferred_services:
+            return
+        provider_class = self._deferred_services.pop(abstract)
+        provider = provider_class(self)
+        provider.register_bindings()
+        provider.register()
+        if hasattr(provider, 'boot'):
+            provider.boot()
 
     # -- Singleton accessors --------------------------------------------------
 

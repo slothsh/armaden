@@ -126,6 +126,8 @@ class CoreApplication:
         return Success(None)
 
     def register(self, provider: ServiceProvider) -> Result[None]:
+        if provider.is_deferred():
+            return self._register_deferred_provider(provider)
         self._register_provider_bindings(provider)
         result = provider.register()
         if not is_successful(result):
@@ -137,6 +139,17 @@ class CoreApplication:
             return result
         self._providers.append(provider)
         logger.info("Registered provider: %s", type(provider).__name__)
+        return Success(None)
+
+    def _register_deferred_provider(self, provider: ServiceProvider) -> Result[None]:
+        provides = provider.provides()  # type: ignore[attr-defined]
+        manifest = {abstract: type(provider) for abstract in provides}
+        self._container.add_deferred_services(manifest)
+        logger.info(
+            "Deferred provider %s for bindings: %s",
+            type(provider).__name__,
+            provides,
+        )
         return Success(None)
 
     def register_provider(self, provider: ServiceProvider) -> Result[None]:
@@ -297,6 +310,9 @@ class CoreApplication:
         for provider_class in provider_list:
             try:
                 provider = self._make_provider(provider_class)
+                if provider.is_deferred():
+                    self._register_deferred_provider(provider)
+                    continue
                 self._register_provider_bindings(provider)
                 result = provider.register()
                 if not is_successful(result):
@@ -391,10 +407,7 @@ class CoreApplication:
         return Success(None)
 
     def _register_provider_bindings(self, provider: ServiceProvider) -> None:
-        for abstract, concrete in provider.bindings.items():
-            self._container.bind(abstract, concrete)
-        for abstract, concrete in provider.singletons.items():
-            self._container.singleton(abstract, concrete)
+        provider.register_bindings()
 
     def _fire_app_callbacks(self, callbacks: list) -> None:
         index = 0
