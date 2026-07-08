@@ -55,7 +55,15 @@ def is_parameter_required(parameter: inspect.Parameter) -> bool:
 
 
 def get_contextual_attribute_from_dependency(parameter: inspect.Parameter) -> Any:
-    # PHP 8 attributes are not directly available via inspect.Parameter.
+    annotation = parameter.annotation
+    if annotation is inspect.Parameter.empty:
+        return None
+    origin = typing.get_origin(annotation)
+    if origin is typing.Annotated:
+        args = typing.get_args(annotation)
+        for arg in args[1:]:
+            if hasattr(arg, 'resolve'):
+                return arg
     return None
 
 

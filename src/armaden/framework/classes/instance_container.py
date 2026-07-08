@@ -442,6 +442,9 @@ class InstanceContainer:
     # -- Building --------------------------------------------------------------
 
     def build(self, concrete: Any) -> Any:
+        if self._is_container_type(concrete):
+            return self
+
         if callable(concrete) and not inspect.isclass(concrete):
             self._build_stack.append(id(concrete))
             try:
@@ -503,7 +506,7 @@ class InstanceContainer:
             result = None
             attribute = get_contextual_attribute_from_dependency(dependency)
             if attribute is not None:
-                result = self.resolve_from_attribute(attribute)
+                result = self.resolve_from_attribute(attribute, dependency)
 
             if result is None:
                 cls_name = get_parameter_class_name(dependency)
@@ -572,8 +575,16 @@ class InstanceContainer:
 
         return value
 
+    def _is_container_type(self, cls_name: type) -> bool:
+        if cls_name is None or not isinstance(cls_name, type):
+            return False
+        return cls_name is InstanceContainer or issubclass(cls_name, InstanceContainer)
+
     def resolve_class(self, parameter: inspect.Parameter) -> Any:
         cls_name = get_parameter_class_name(parameter)
+
+        if cls_name is not None and self._is_container_type(cls_name):
+            return self
 
         if (parameter.default != inspect.Parameter.empty and
                 not self.bound(cls_name) and
@@ -846,6 +857,35 @@ class InstanceContainer:
     def set_instance(container: Optional[InstanceContainer] = None) -> Optional[InstanceContainer]:
         InstanceContainer._instance = container
         return container
+
+    # -- Attribute-based binding discovery -----------------------------------
+
+    def discover_attribute_bindings(self, classes: list[type]) -> None:
+        for cls in classes:
+            self._discover_bind_attributes(cls)
+            self._discover_singleton_attribute(cls)
+            self._discover_scoped_attribute(cls)
+
+    def _discover_bind_attributes(self, cls: type) -> None:
+        bindings = getattr(cls, '_armaden_bindings', [])
+        for bind in bindings:
+            if bind.environments:
+                if not self._environment_matches(bind.environments):
+                    continue
+            self.bind(cls, bind.concrete, shared=False)
+
+    def _discover_singleton_attribute(self, cls: type) -> None:
+        if getattr(cls, '_armaden_singleton', False):
+            self.singleton(cls, cls)
+
+    def _discover_scoped_attribute(self, cls: type) -> None:
+        if getattr(cls, '_armaden_scoped', False):
+            self.scoped(cls, cls)
+
+    def _environment_matches(self, environments: list[str]) -> bool:
+        if self._environment_resolver is None:
+            return False
+        return self._environment_resolver() in environments
 
     # -- ArrayAccess / magic --------------------------------------------------
 

@@ -54,6 +54,7 @@ class CoreApplication:
         self.register_base_bindings()
         self.register_base_service_providers()
         self.register_core_container_aliases()
+        self.register_contextual_attributes()
 
     def register_base_bindings(self) -> None:
         self._container.singleton(SupervisorInterface, Supervisor)
@@ -70,6 +71,10 @@ class CoreApplication:
 
     def register_core_container_aliases(self) -> None:
         pass
+
+    def register_contextual_attributes(self) -> None:
+        from armaden.framework.attributes.contextual import register_builtin_attributes
+        register_builtin_attributes(self._container)
 
     def bootstrap(self) -> Result[None]:
         self._has_been_bootstrapped = True
