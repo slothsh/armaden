@@ -30,8 +30,8 @@
     "semantic_hash": "2d639a3329837165e4ce3e2bbc82bd68"
   },
   "src/armaden/framework/classes/instance_container.py": {
-    "mtime": 1783526244.9160929,
-    "ast_hash": "f1614de50bf875fe9896b8ca85350a3b",
+    "mtime": 1783536174.2680244,
+    "ast_hash": "b76e206d692b432922c7b31f2e899316",
     "semantic_hash": ""
   },
   "src/armaden/framework/classes/service_provider.py": {

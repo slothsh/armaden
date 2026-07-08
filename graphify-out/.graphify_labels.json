@@ -114,5 +114,9 @@
   "112": ".dispatch_subprocess",
   "113": "InstanceContainer",
   "114": "Parameter",
-  "115": "Any"
+  "115": "Any",
+  "116": ".make",
+  "117": "Bind",
+  "118": "Parameter",
+  "119": "Result"
 }
