@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from abc import ABC
+from abc import ABC, abstractmethod
 from typing import Any, Callable, Dict, List, Optional
 import inspect
 import logging
@@ -38,6 +38,13 @@ class SelfBuilding(ABC):
     pass
 
 
+class ContextualAttribute(ABC):
+    @staticmethod
+    @abstractmethod
+    def resolve(attribute: Any, container: 'InstanceContainer', parameter: inspect.Parameter) -> Any:
+        raise NotImplementedError
+
+
 class BindingResolutionException(Exception):
     pass
 
@@ -69,6 +76,20 @@ class ContextualBindingBuilder:
     def give(self, implementation: Any) -> ContextualBindingBuilder:
         for concrete in self.concrete:
             self.container.add_contextual_binding(concrete, self.abstract, implementation)
+        return self
+
+    def giveTagged(self, tag: str) -> ContextualBindingBuilder:
+        for concrete in self.concrete:
+            self.container.add_contextual_binding(
+                concrete, self.abstract, {'__tagged__': tag}
+            )
+        return self
+
+    def giveConfig(self, key: str) -> ContextualBindingBuilder:
+        for concrete in self.concrete:
+            self.container.add_contextual_binding(
+                concrete, self.abstract, {'__config__': key}
+            )
         return self
 
 
@@ -328,6 +349,8 @@ class InstanceContainer:
         if concrete is None:
             concrete = self.get_concrete(abstract)
 
+        concrete = self._resolve_contextual_marker(concrete)
+
         if self.is_buildable(concrete, abstract):
             obj = self.build(concrete)
         else:
@@ -398,6 +421,20 @@ class InstanceContainer:
 
     def add_contextual_binding(self, concrete: Any, abstract: Any, implementation: Any) -> None:
         self._contextual.setdefault(concrete, {})[self.get_alias(abstract)] = implementation
+
+    def _resolve_contextual_marker(self, concrete: Any) -> Any:
+        if not isinstance(concrete, dict):
+            return concrete
+        if '__tagged__' in concrete:
+            return self.tagged(concrete['__tagged__'])
+        if '__config__' in concrete:
+            return self._resolve_config_value(concrete['__config__'])
+        return concrete
+
+    def _resolve_config_value(self, key: str) -> Any:
+        if self.resolved('config'):
+            return self.make('config').get(key)
+        return self.make('app').config(key)
 
     def is_buildable(self, concrete: Any, abstract: Any) -> bool:
         return concrete == abstract or callable(concrete)
@@ -560,11 +597,13 @@ class InstanceContainer:
         cls_name = get_parameter_class_name(parameter)
         abstract = self.get_alias(cls_name)
         concrete = self.get_contextual_concrete(abstract)
+        if isinstance(concrete, dict) and '__tagged__' in concrete:
+            return self.tagged(concrete['__tagged__'])
         if not isinstance(concrete, (list, tuple)):
             return [self.make(cls_name)]
         return [self.resolve(item) for item in concrete]
 
-    def resolve_from_attribute(self, attribute: Any) -> Any:
+    def resolve_from_attribute(self, attribute: Any, dependency: Optional[inspect.Parameter] = None) -> Any:
         handler = self._contextual_attributes.get(
             getattr(attribute, 'name', type(attribute).__name__)
         )
@@ -579,6 +618,8 @@ class InstanceContainer:
             )
 
         if callable(handler):
+            if dependency is not None and isinstance(instance, ContextualAttribute):
+                return handler(instance, self, dependency)
             return handler(instance, self)
 
         raise BindingResolutionException('Attribute handler must be callable.')
