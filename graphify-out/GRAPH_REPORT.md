@@ -1,16 +1,16 @@
 # Graph Report - armaden  (2026-07-08)
 
 ## Corpus Check
-- 119 files · ~19,220 words
+- 119 files · ~19,338 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1059 nodes · 2150 edges · 115 communities (46 shown, 69 thin omitted)
-- Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 245 edges (avg confidence: 0.54)
+- 1065 nodes · 2172 edges · 116 communities (45 shown, 71 thin omitted)
+- Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 246 edges (avg confidence: 0.54)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `4c4679db`
+- Built from commit: `8ac53aca`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -115,9 +115,10 @@
 - .dispatch_subprocess
 - InstanceContainer
 - Parameter
+- Any
 
 ## God Nodes (most connected - your core abstractions)
-1. `InstanceContainer` - 102 edges
+1. `InstanceContainer` - 104 edges
 2. `ArmaReforgerServerExecutable` - 87 edges
 3. `CoreApplication` - 40 edges
 4. `app()` - 39 edges
@@ -147,15 +148,15 @@
 - **Application Bootstrap Entry-Point Flow** — armaden_framework_runtime, bootstrap_application, bootstrap_providers, app_providers_app_service_provider [EXTRACTED 0.95]
 - **Task Registration Flow via ServiceProvider** — app_providers_app_service_provider, armaden_framework_classes_task, armaden_framework_facades, armaden_framework_classes_service_provider [EXTRACTED 0.90]
 
-## Communities (115 total, 69 thin omitted)
+## Communities (116 total, 71 thin omitted)
 
 ### Community 0 - "IoC Container Binding"
-Cohesion: 0.06
-Nodes (10): Exception, Parameter, BindingResolutionException, CircularDependencyException, ContextualBindingBuilder, EntryNotFoundException, InstanceContainer, LogicException (+2 more)
+Cohesion: 0.05
+Nodes (12): Any, Exception, Parameter, BindingResolutionException, CircularDependencyException, ContextualAttribute, ContextualBindingBuilder, EntryNotFoundException (+4 more)
 
 ### Community 1 - "Supervisor Request Handling"
-Cohesion: 0.09
-Nodes (22): Future, SupervisorRequestArgs, SupervisorRequestData, SupervisorRequestKind, Any, StrEnum, SupervisorRequestInterface, ShutdownAppService (+14 more)
+Cohesion: 0.11
+Nodes (18): Future, SupervisorRequestArgs, SupervisorRequestData, SupervisorRequestKind, ProcessInfoData, AbstractEventLoop, Any, AsyncStreamCallback (+10 more)
 
 ### Community 2 - "Arma Reforger Server Config"
 Cohesion: 0.07
@@ -163,39 +164,39 @@ Nodes (14): ArmaReforgerServerExecutable, Bind the server to specific addresses 
 
 ### Community 3 - "Application Kernel Interface"
 Cohesion: 0.06
-Nodes (16): Protocol, Application, ErrorInterface, CoreApplicationInterface, KernelInterface, Any, Result, Result (+8 more)
+Nodes (19): Protocol, Application, ErrorInterface, CoreApplicationInterface, KernelInterface, Any, Result, Result (+11 more)
 
 ### Community 4 - "App Facade Container"
 Cohesion: 0.10
 Nodes (9): C, app(), Any, config(), Any, get_application(), Self, Route (+1 more)
 
 ### Community 5 - "Executable Argument Builder"
-Cohesion: 0.16
-Nodes (5): Config, Path, PushValue, Result, SteamCmdExecutable
+Cohesion: 0.19
+Nodes (4): Path, PushValue, Result, SteamCmdExecutable
 
 ### Community 6 - "Task Lifecycle Management"
 Cohesion: 0.12
 Nodes (6): Self, StatusCallback, TaskCallback, Task, TaskBuilder, TaskThreadingPolicy
 
 ### Community 7 - "Async Datagram Transport"
-Cohesion: 0.07
-Nodes (14): DatagramProtocol, DatagramTransport, entry(), main(), entry(), main(), AsyncDatagramTransport, AbstractEventLoop (+6 more)
+Cohesion: 0.13
+Nodes (10): DatagramProtocol, DatagramTransport, entry(), main(), entry(), main(), AsyncDatagramTransport, Any (+2 more)
 
 ### Community 8 - "Bound Method Resolution"
-Cohesion: 0.18
-Nodes (12): BoundMethod, array_wrap(), get_class_for_callable(), get_contextual_attribute_from_dependency(), get_parameter_class_name(), is_parameter_required(), Any, Parameter (+4 more)
+Cohesion: 0.13
+Nodes (4): AbstractEventLoop, DatagramTransportInterface, Exception, WrapperTransportInterface
 
 ### Community 9 - "Application Health Status"
 Cohesion: 0.30
 Nodes (11): A2SConfig, Config, GameConfig, GamePropertiesConfig, GamePropertiesPersistence, JoinQueueConfig, OperatingConfig, RconConfig (+3 more)
 
 ### Community 10 - "Core Application Bootstrap"
-Cohesion: 0.12
-Nodes (5): AbstractEventLoop, callable, CoreApplication, Any, SupervisorInterface
+Cohesion: 0.11
+Nodes (6): AbstractEventLoop, callable, CoreApplication, Any, Result, SupervisorInterface
 
 ### Community 11 - "BattleEye RCON Server"
-Cohesion: 0.15
-Nodes (5): BattleEyeRconServer, AbstractEventLoop, DatagramTransportFactory, datetime, Exception
+Cohesion: 0.10
+Nodes (13): IntEnum, BattleEyeRconServer, Client, ClientState, AbstractEventLoop, DatagramTransportFactory, datetime, Exception (+5 more)
 
 ### Community 12 - "Console Kernel Bootstrap"
 Cohesion: 0.19
@@ -207,47 +208,43 @@ Nodes (12): Generator, GeneratorResult, Path, _detect_poetry_package_path(), _fm
 
 ### Community 14 - "BattleEye RCON Client"
 Cohesion: 0.11
-Nodes (7): BattleEyeRconClient, Message, Any, datetime, Exception, # TODO: handle stateful messages (responses to sequenced messages), # TODO: implement event system
+Nodes (8): BattleEyeRconClient, Message, Any, datetime, Exception, # TODO: handle stateful messages (responses to sequenced messages), # TODO: implement event system, Self
 
 ### Community 15 - "Arma Server Task Runtime"
 Cohesion: 0.09
-Nodes (15): Any, ArmaReforgerServerConfig, Result, Self, config(), env(), Any, Facade for reading typed environment variables from the application. (+7 more)
+Nodes (14): ArmaReforgerServerConfig, Result, Self, config(), env(), Any, Facade for reading typed environment variables from the application., ArmaReforgerServer (+6 more)
 
 ### Community 16 - "Server Path Configuration"
 Cohesion: 0.09
 Nodes (12): Path, Result, Path to a server configuration JSON file., Directory for profiles (saves, logs, settings).          The directory is create, Redirect log output to the given directory., Path to a session save to load on startup., Additional directories to search for mods.          Multiple directories can be, Directory where addons are downloaded. (+4 more)
 
 ### Community 17 - "BattleEye Packet Protocol"
-Cohesion: 0.16
+Cohesion: 0.15
 Nodes (4): CommandHeader, CommandResponsePacket, BattleEyeInvalidPacketException, Packet
 
 ### Community 18 - "Framework Service Providers"
-Cohesion: 0.06
-Nodes (32): AppServiceProvider, Application, ApplicationBase, armaden.framework, Application (ApplicationBase), ServiceProvider, TaskBuilder, app() facade (+24 more)
+Cohesion: 0.05
+Nodes (31): AppServiceProvider, Application, ApplicationBase, armaden.framework, Application (ApplicationBase), ServiceProvider, TaskBuilder, armaden.framework.runtime (+23 more)
 
 ### Community 19 - "Typed Environment Config"
-Cohesion: 0.08
-Nodes (14): Executable, Path, PushValue, Result, Self, Error, ErrorKindInterface, Enforces that any error type object has a code string and message string. (+6 more)
+Cohesion: 0.05
+Nodes (27): BoundMethod, Executable, Path, PushValue, Result, Self, Error, ErrorKindInterface (+19 more)
 
 ### Community 20 - "Login Packet Processing"
-Cohesion: 0.18
-Nodes (4): ClientStatus, AbstractEventLoop, DatagramTransportFactory, LoginRequestPacket
-
-### Community 21 - "Datagram Packet Parsing"
-Cohesion: 0.17
-Nodes (9): IntEnum, Client, ClientState, RequestMessage, ResponseMessage, LoginStatus, KeepAlivePacket, ServerMessageResponsePacket (+1 more)
+Cohesion: 0.20
+Nodes (4): ClientStatus, AbstractEventLoop, DatagramTransportFactory, KeepAlivePacket
 
 ### Community 22 - "FastAPI Default Application"
-Cohesion: 0.18
-Nodes (3): Result, ServiceProvider, Result
+Cohesion: 0.19
+Nodes (4): DeferrableProvider, Any, Result, ServiceProvider
 
 ### Community 23 - "Module Discovery Loader"
-Cohesion: 0.12
-Nodes (15): HealthStatus, GetAppStatus, RestartAppService, Api, Any, Controllers for API routes, LifecycleController, ApiResponseData (+7 more)
+Cohesion: 0.11
+Nodes (17): app() facade, HealthStatus, GetAppStatus, RestartAppService, ShutdownAppService, Api, Any, Controllers for API routes (+9 more)
 
 ### Community 24 - "Service Provider Registry"
-Cohesion: 0.14
-Nodes (9): ABC, Configurable, _resolve_config_type(), SelfBuilding, DeferrableProvider, Any, ApplicationInterface, Any (+1 more)
+Cohesion: 0.25
+Nodes (6): ABC, Configurable, _resolve_config_type(), ApplicationInterface, Any, Result
 
 ### Community 25 - "Console HTTP Providers"
 Cohesion: 0.23
@@ -276,16 +273,16 @@ Nodes (3): AsyncStreamCallback, Path, Result
 ## Knowledge Gaps
 - **8 isolated node(s):** `armaden`, `ArmaDen README`, `Build and Release Workflow`, `armaden.games`, `config/app.py` (+3 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **69 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **71 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `ArmaReforgerServerExecutable` connect `Arma Reforger Server Config` to `Executable Argument Builder`, `Server Path Configuration`, `Typed Environment Config`, `Console HTTP Providers`, `Command Response Packet`, `Config Value Management`, `Server Message Response`, `Type Discovery Provider`, `App Lifecycle Callbacks`, `Async Subprocess Dispatch`, `Frontend Dependencies`, `Steam Query Bind Address`, `Server Addon Loader`, `Addon Auto Repair Flag`, `Server Auto Restart Flag`, `Auto Shutdown Flag`, `Local Backend Storage Flag`, `Resource Database Regeneration`, `Debugger Port Setting`, `Force Session Load Flag`, `Freeze Detection Timeout`, `Freeze Behaviour Mode`, `Crash File Retention Flag`, `Log File Retention Limit`, `Game Language Setting`, `Server FPS Cap`, `List Scenarios Flag`, `Log Append Mode Flag`, `Filesystem Logging Flag`, `Log Verbosity Level`, `.autoshutdown`, `Error Dialog Suppression`, `.backend_disable_storage`, `.backend_local_storage`, `.custom`, `.debugger_port`, `.disable_ai`, `.disable_crash_reporter`, `Global Streaming Budget`, `.enable_night_grain`, `.freeze_check`, `.jobsys_long_worker_count`, `.keep_crash_files`, `.keep_session_save`, `.log_voting`, `.nds`, `.no_backend`, `.nwk_resolution`, `.rpl_encode_as_long_jobs`, `.rpl_timeout_ms`, `.server_id`, `.silent_crash_report`, `.single_threaded_update`, `.staggering_budget`, `.streams_delta`, `.vm_error_mode`, `TypeDiscoveryServiceProvider`?**
-  _High betweenness centrality (0.287) - this node is a cross-community bridge._
-- **Why does `InstanceContainer` connect `IoC Container Binding` to `Application Kernel Interface`, `Core Application Bootstrap`, `WrapperTransportInterface`, `FastAPI Default Application`, `Service Provider Registry`?**
-  _High betweenness centrality (0.159) - this node is a cross-community bridge._
-- **Why does `TaskRuntimeInterface` connect `Console HTTP Providers` to `Arma Reforger Server Config`, `Application Kernel Interface`, `Executable Argument Builder`, `ModuleLoader`, `TypeDiscoveryServiceProvider`, `.dispatch_subprocess`, `Server Path Configuration`?**
+  _High betweenness centrality (0.286) - this node is a cross-community bridge._
+- **Why does `InstanceContainer` connect `IoC Container Binding` to `WrapperTransportInterface`, `Core Application Bootstrap`, `Application Kernel Interface`, `FastAPI Default Application`?**
+  _High betweenness centrality (0.160) - this node is a cross-community bridge._
+- **Why does `ServiceProvider` connect `FastAPI Default Application` to `IoC Container Binding`, `Core Application Bootstrap`, `WrapperTransportInterface`, `Framework Service Providers`, `Service Provider Registry`?**
   _High betweenness centrality (0.154) - this node is a cross-community bridge._
 - **Are the 7 inferred relationships involving `InstanceContainer` (e.g. with `Application` and `DeferrableProvider`) actually correct?**
   _`InstanceContainer` has 7 INFERRED edges - model-reasoned connections that need verification._
