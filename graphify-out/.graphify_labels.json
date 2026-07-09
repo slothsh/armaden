@@ -130,13 +130,12 @@
   "128": "steamcmd_executable.py",
   "129": "ModuleLoader",
   "130": "CoreApplicationInterface",
-  "131": "TypedDict",
-  "132": "__init__.py",
-  "133": ".dispatch_subprocess",
   "134": "C",
   "135": "Self",
   "136": "__init__.py",
-  "137": "Application",
-  "138": "RconPacketInterface",
-  "139": "Result"
+  "139": "Result",
+  "140": "HealthStatus",
+  "148": "Protocol",
+  "150": "Any",
+  "151": "Result"
 }
