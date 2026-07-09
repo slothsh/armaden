@@ -35,14 +35,304 @@
   },
   "nodes": [
     {
+      "label": "application.py",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_armaden_framework_protocols_application",
+      "community": 10,
+      "norm_label": "application.py"
+    },
+    {
+      "label": "ApplicationInterface",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_armaden_framework_protocols_application_applicationinterface",
+      "community": 10,
+      "norm_label": "applicationinterface"
+    },
+    {
+      "label": "ABC",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "abc",
+      "community": 12,
+      "norm_label": "abc"
+    },
+    {
+      "label": ".boot()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "src_armaden_framework_protocols_application_applicationinterface_boot",
+      "community": 10,
+      "norm_label": ".boot()"
+    },
+    {
+      "label": "Result",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "src_armaden_framework_protocols_application_py_result",
+      "community": 10,
+      "norm_label": "result"
+    },
+    {
+      "label": ".middleware()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "src_armaden_framework_protocols_application_applicationinterface_middleware",
+      "community": 10,
+      "norm_label": ".middleware()"
+    },
+    {
+      "label": ".middleware_groups()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "src_armaden_framework_protocols_application_applicationinterface_middleware_groups",
+      "community": 10,
+      "norm_label": ".middleware_groups()"
+    },
+    {
+      "label": ".route_groups()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "src_armaden_framework_protocols_application_applicationinterface_route_groups",
+      "community": 10,
+      "norm_label": ".route_groups()"
+    },
+    {
+      "label": "Any",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "any",
+      "community": 10,
+      "norm_label": "any"
+    },
+    {
+      "label": ".status()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "src_armaden_framework_protocols_application_applicationinterface_status",
+      "community": 10,
+      "norm_label": ".status()"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_http_init",
+      "community": 18,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/middleware/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_http_middleware_init",
+      "community": 18,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "kernel.py",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_http_middleware_kernel",
+      "community": 18,
+      "norm_label": "kernel.py"
+    },
+    {
+      "label": "HttpKernel",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
+      "community": 18,
+      "norm_label": "httpkernel"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_init",
+      "community": 10,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": ".bootstrap()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_bootstrap",
+      "community": 18,
+      "norm_label": ".bootstrap()"
+    },
+    {
+      "label": ".get_middleware()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_get_middleware",
+      "community": 18,
+      "norm_label": ".get_middleware()"
+    },
+    {
+      "label": "Middleware",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "middleware",
+      "community": 18,
+      "norm_label": "middleware"
+    },
+    {
+      "label": ".get_middleware_groups()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_get_middleware_groups",
+      "community": 18,
+      "norm_label": ".get_middleware_groups()"
+    },
+    {
+      "label": ".get_route_middleware()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_get_route_middleware",
+      "community": 18,
+      "norm_label": ".get_route_middleware()"
+    },
+    {
+      "label": ".resolve_middleware()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_middleware",
+      "community": 18,
+      "norm_label": ".resolve_middleware()"
+    },
+    {
+      "label": ".resolve_middleware_list()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_middleware_list",
+      "community": 18,
+      "norm_label": ".resolve_middleware_list()"
+    },
+    {
+      "label": "._resolve_from_string()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L54",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_from_string",
+      "community": 18,
+      "norm_label": "._resolve_from_string()"
+    },
+    {
+      "label": "http_service_provider.py",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_providers_http_service_provider",
+      "community": 107,
+      "norm_label": "http_service_provider.py"
+    },
+    {
+      "label": "HttpServiceProvider",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider",
+      "community": 10,
+      "norm_label": "httpserviceprovider"
+    },
+    {
+      "label": "ServiceProvider",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "serviceprovider",
+      "community": 10,
+      "norm_label": "serviceprovider"
+    },
+    {
+      "label": ".register()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_register",
+      "community": 10,
+      "norm_label": ".register()"
+    },
+    {
+      "label": "Result",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_providers_http_service_provider_py_result",
+      "community": 10,
+      "norm_label": "result"
+    },
+    {
+      "label": ".boot()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_boot",
+      "community": 10,
+      "norm_label": ".boot()"
+    },
+    {
       "label": "AGENTS.md",
       "file_type": "document",
       "source_file": "AGENTS.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "agents",
       "community": 77,
-      "norm_label": "agents.md"
+      "norm_label": "agents.md",
+      "id": "agents"
     },
     {
       "label": "MANDATORY: Local Code Search/Traversal",
@@ -50,9 +340,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "agents_mandatory_local_code_search_traversal",
       "community": 77,
-      "norm_label": "mandatory: local code search/traversal"
+      "norm_label": "mandatory: local code search/traversal",
+      "id": "agents_mandatory_local_code_search_traversal"
     },
     {
       "label": "MANDATORY: Use td for Task Management",
@@ -60,9 +350,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "agents_mandatory_use_td_for_task_management",
       "community": 77,
-      "norm_label": "mandatory: use td for task management"
+      "norm_label": "mandatory: use td for task management",
+      "id": "agents_mandatory_use_td_for_task_management"
     },
     {
       "label": "MANDATORY: Code Comment Conventions",
@@ -70,9 +360,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L15",
       "_origin": "ast",
-      "id": "agents_mandatory_code_comment_conventions",
       "community": 77,
-      "norm_label": "mandatory: code comment conventions"
+      "norm_label": "mandatory: code comment conventions",
+      "id": "agents_mandatory_code_comment_conventions"
     },
     {
       "label": "MANDATORY: Git Rules",
@@ -80,9 +370,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L19",
       "_origin": "ast",
-      "id": "agents_mandatory_git_rules",
       "community": 77,
-      "norm_label": "mandatory: git rules"
+      "norm_label": "mandatory: git rules",
+      "id": "agents_mandatory_git_rules"
     },
     {
       "label": "route_discovery_service_provider.py",
@@ -103,16 +393,6 @@
       "community": 10,
       "norm_label": "routediscoveryserviceprovider",
       "id": "src_armaden_framework_runtime_providers_route_discovery_service_provider_routediscoveryserviceprovider"
-    },
-    {
-      "label": "ServiceProvider",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "community": 107,
-      "norm_label": "serviceprovider",
-      "id": "serviceprovider"
     },
     {
       "label": ".register()",
@@ -153,16 +433,6 @@
       "community": 10,
       "norm_label": "applicationinterface",
       "id": "applicationinterface"
-    },
-    {
-      "label": "Any",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "community": 10,
-      "norm_label": "any",
-      "id": "any"
     },
     {
       "label": "._find_group_for_file()",
@@ -660,7 +930,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 10,
+      "community": 123,
       "norm_label": "strenum",
       "id": "strenum"
     },
@@ -720,69 +990,9 @@
       "source_file": "user/routes/api.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 107,
+      "community": 79,
       "norm_label": "api.py",
       "id": "user_routes_api"
-    },
-    {
-      "label": "application.py",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/protocols/application.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 10,
-      "norm_label": "application.py",
-      "id": "src_armaden_framework_protocols_application"
-    },
-    {
-      "label": "ApplicationInterface",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/protocols/application.py",
-      "source_location": "L8",
-      "_origin": "ast",
-      "community": 10,
-      "norm_label": "applicationinterface",
-      "id": "src_armaden_framework_protocols_application_applicationinterface"
-    },
-    {
-      "label": "ABC",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "community": 19,
-      "norm_label": "abc",
-      "id": "abc"
-    },
-    {
-      "label": ".boot()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/protocols/application.py",
-      "source_location": "L10",
-      "_origin": "ast",
-      "community": 10,
-      "norm_label": ".boot()",
-      "id": "src_armaden_framework_protocols_application_applicationinterface_boot"
-    },
-    {
-      "label": "Result",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "community": 10,
-      "norm_label": "result",
-      "id": "src_armaden_framework_protocols_application_py_result"
-    },
-    {
-      "label": ".route_groups()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/protocols/application.py",
-      "source_location": "L12",
-      "_origin": "ast",
-      "community": 10,
-      "norm_label": ".route_groups()",
-      "id": "src_armaden_framework_protocols_application_applicationinterface_route_groups"
     },
     {
       "label": "Any",
@@ -790,19 +1000,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 10,
+      "community": 133,
       "norm_label": "any",
       "id": "src_armaden_framework_protocols_application_py_any"
-    },
-    {
-      "label": ".status()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/protocols/application.py",
-      "source_location": "L15",
-      "_origin": "ast",
-      "community": 10,
-      "norm_label": ".status()",
-      "id": "src_armaden_framework_protocols_application_applicationinterface_status"
     },
     {
       "label": "application.py",
@@ -1260,7 +1460,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "exception",
       "id": "exception"
     },
@@ -1273,56 +1473,6 @@
       "community": 10,
       "norm_label": "applicationerror",
       "id": "src_armaden_framework_runtime_application_applicationerror"
-    },
-    {
-      "label": "http_service_provider.py",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 107,
-      "norm_label": "http_service_provider.py",
-      "id": "src_armaden_framework_runtime_providers_http_service_provider"
-    },
-    {
-      "label": "HttpServiceProvider",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
-      "source_location": "L18",
-      "_origin": "ast",
-      "community": 10,
-      "norm_label": "httpserviceprovider",
-      "id": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider"
-    },
-    {
-      "label": ".register()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
-      "source_location": "L21",
-      "_origin": "ast",
-      "community": 10,
-      "norm_label": ".register()",
-      "id": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_register"
-    },
-    {
-      "label": "Result",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "community": 10,
-      "norm_label": "result",
-      "id": "src_armaden_framework_runtime_providers_http_service_provider_py_result"
-    },
-    {
-      "label": ".boot()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
-      "source_location": "L25",
-      "_origin": "ast",
-      "community": 10,
-      "norm_label": ".boot()",
-      "id": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_boot"
     },
     {
       "label": "Result",
@@ -1595,22 +1745,12 @@
       "id": "src_armaden_framework_facades_url_url_to"
     },
     {
-      "label": "__init__.py",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/__init__.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 78,
-      "norm_label": "__init__.py",
-      "id": "src_armaden_framework_runtime_http_init"
-    },
-    {
       "label": "controller.py",
       "file_type": "code",
       "source_file": "src/armaden/framework/runtime/http/controller.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 78,
+      "community": 12,
       "norm_label": "controller.py",
       "id": "src_armaden_framework_runtime_http_controller"
     },
@@ -1620,7 +1760,7 @@
       "source_file": "src/armaden/framework/runtime/http/controller.py",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 78,
+      "community": 12,
       "norm_label": "controller",
       "id": "src_armaden_framework_runtime_http_controller_controller"
     },
@@ -1630,7 +1770,7 @@
       "source_file": "src/armaden/framework/runtime/http/controller.py",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 78,
+      "community": 12,
       "norm_label": ".get_middleware()",
       "id": "src_armaden_framework_runtime_http_controller_controller_get_middleware"
     },
@@ -1640,7 +1780,7 @@
       "source_file": "src/armaden/framework/runtime/http/controller.py",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 78,
+      "community": 12,
       "norm_label": ".get_middleware_for_method()",
       "id": "src_armaden_framework_runtime_http_controller_controller_get_middleware_for_method"
     },
@@ -2615,16 +2755,6 @@
       "id": "src_armaden_framework_runtime_http_response_json_response"
     },
     {
-      "label": "__init__.py",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/middleware/__init__.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 18,
-      "norm_label": "__init__.py",
-      "id": "src_armaden_framework_runtime_http_middleware_init"
-    },
-    {
       "label": "asgi.py",
       "file_type": "code",
       "source_file": "src/armaden/framework/runtime/http/middleware/asgi.py",
@@ -2663,116 +2793,6 @@
       "community": 18,
       "norm_label": ".__call__()",
       "id": "src_armaden_framework_runtime_http_middleware_asgi_asgimiddlewareadapter_call"
-    },
-    {
-      "label": "kernel.py",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 18,
-      "norm_label": "kernel.py",
-      "id": "src_armaden_framework_runtime_http_middleware_kernel"
-    },
-    {
-      "label": "HttpKernel",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L7",
-      "_origin": "ast",
-      "community": 18,
-      "norm_label": "httpkernel",
-      "id": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel"
-    },
-    {
-      "label": ".__init__()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L12",
-      "_origin": "ast",
-      "community": 18,
-      "norm_label": ".__init__()",
-      "id": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_init"
-    },
-    {
-      "label": ".bootstrap()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L15",
-      "_origin": "ast",
-      "community": 18,
-      "norm_label": ".bootstrap()",
-      "id": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_bootstrap"
-    },
-    {
-      "label": ".get_middleware()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L20",
-      "_origin": "ast",
-      "community": 18,
-      "norm_label": ".get_middleware()",
-      "id": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_get_middleware"
-    },
-    {
-      "label": ".get_middleware_groups()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L23",
-      "_origin": "ast",
-      "community": 18,
-      "norm_label": ".get_middleware_groups()",
-      "id": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_get_middleware_groups"
-    },
-    {
-      "label": ".get_route_middleware()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L26",
-      "_origin": "ast",
-      "community": 18,
-      "norm_label": ".get_route_middleware()",
-      "id": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_get_route_middleware"
-    },
-    {
-      "label": ".resolve_middleware()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L29",
-      "_origin": "ast",
-      "community": 18,
-      "norm_label": ".resolve_middleware()",
-      "id": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_middleware"
-    },
-    {
-      "label": ".resolve_middleware_list()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L36",
-      "_origin": "ast",
-      "community": 18,
-      "norm_label": ".resolve_middleware_list()",
-      "id": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_middleware_list"
-    },
-    {
-      "label": "._resolve_from_string()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L47",
-      "_origin": "ast",
-      "community": 18,
-      "norm_label": "._resolve_from_string()",
-      "id": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_from_string"
-    },
-    {
-      "label": "DefaultKernel",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L56",
-      "_origin": "ast",
-      "community": 18,
-      "norm_label": "defaultkernel",
-      "id": "src_armaden_framework_runtime_http_middleware_kernel_defaultkernel"
     },
     {
       "label": "middleware.py",
@@ -3770,7 +3790,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "instance_container.py",
       "id": "src_armaden_framework_classes_instance_container"
     },
@@ -3780,7 +3800,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L37",
       "_origin": "ast",
-      "community": 19,
+      "community": 12,
       "norm_label": "selfbuilding",
       "id": "src_armaden_framework_classes_instance_container_selfbuilding"
     },
@@ -3840,7 +3860,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L52",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "circulardependencyexception",
       "id": "src_armaden_framework_classes_instance_container_circulardependencyexception"
     },
@@ -3850,7 +3870,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L56",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "entrynotfoundexception",
       "id": "src_armaden_framework_classes_instance_container_entrynotfoundexception"
     },
@@ -3860,7 +3880,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L60",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "logicexception",
       "id": "src_armaden_framework_classes_instance_container_logicexception"
     },
@@ -4920,7 +4940,7 @@
       "source_file": "src/armaden/framework/utils/container.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "container.py",
       "id": "src_armaden_framework_utils_container"
     },
@@ -4930,7 +4950,7 @@
       "source_file": "src/armaden/framework/utils/container.py",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "array_wrap()",
       "id": "src_armaden_framework_utils_container_array_wrap"
     },
@@ -4940,7 +4960,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "any",
       "id": "src_armaden_framework_utils_container_py_any"
     },
@@ -4950,7 +4970,7 @@
       "source_file": "src/armaden/framework/utils/container.py",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "unwrap_if_closure()",
       "id": "src_armaden_framework_utils_container_unwrap_if_closure"
     },
@@ -4960,7 +4980,7 @@
       "source_file": "src/armaden/framework/utils/container.py",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "get_parameter_class_name()",
       "id": "src_armaden_framework_utils_container_get_parameter_class_name"
     },
@@ -4970,7 +4990,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "parameter",
       "id": "src_armaden_framework_utils_container_py_parameter"
     },
@@ -4980,7 +5000,7 @@
       "source_file": "src/armaden/framework/utils/container.py",
       "source_location": "L50",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "is_parameter_required()",
       "id": "src_armaden_framework_utils_container_is_parameter_required"
     },
@@ -4990,7 +5010,7 @@
       "source_file": "src/armaden/framework/utils/container.py",
       "source_location": "L57",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "get_contextual_attribute_from_dependency()",
       "id": "src_armaden_framework_utils_container_get_contextual_attribute_from_dependency"
     },
@@ -5000,7 +5020,7 @@
       "source_file": "src/armaden/framework/utils/container.py",
       "source_location": "L70",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "resolve_string_to_class()",
       "id": "src_armaden_framework_utils_container_resolve_string_to_class"
     },
@@ -5010,7 +5030,7 @@
       "source_file": "src/armaden/framework/utils/container.py",
       "source_location": "L79",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "get_class_for_callable()",
       "id": "src_armaden_framework_utils_container_get_class_for_callable"
     },
@@ -5020,7 +5040,7 @@
       "source_file": "src/armaden/framework/utils/container.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "utility helpers shared between the container and bound-method resolution.",
       "id": "src_armaden_framework_utils_container_rationale_1"
     },
@@ -5030,7 +5050,7 @@
       "source_file": "src/armaden/framework/utils/container.py",
       "source_location": "L80",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "determine the class name associated with a callable for build-stack tracking.",
       "id": "src_armaden_framework_utils_container_rationale_80"
     },
@@ -5050,7 +5070,7 @@
       "source_file": "src/armaden/framework/classes/service_provider.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 19,
+      "community": 12,
       "norm_label": "service_provider.py",
       "id": "src_armaden_framework_classes_service_provider"
     },
@@ -5060,7 +5080,7 @@
       "source_file": "src/armaden/framework/classes/service_provider.py",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 19,
+      "community": 12,
       "norm_label": "deferrableprovider",
       "id": "src_armaden_framework_classes_service_provider_deferrableprovider"
     },
@@ -5070,7 +5090,7 @@
       "source_file": "src/armaden/framework/classes/service_provider.py",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 19,
+      "community": 12,
       "norm_label": ".provides()",
       "id": "src_armaden_framework_classes_service_provider_deferrableprovider_provides"
     },
@@ -5080,7 +5100,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 19,
+      "community": 12,
       "norm_label": "any",
       "id": "src_armaden_framework_classes_service_provider_py_any"
     },
@@ -5090,7 +5110,7 @@
       "source_file": "src/armaden/framework/classes/service_provider.py",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 19,
+      "community": 12,
       "norm_label": "serviceprovider",
       "id": "src_armaden_framework_classes_service_provider_serviceprovider"
     },
@@ -5100,7 +5120,7 @@
       "source_file": "src/armaden/framework/classes/service_provider.py",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 19,
+      "community": 12,
       "norm_label": ".__init__()",
       "id": "src_armaden_framework_classes_service_provider_serviceprovider_init"
     },
@@ -5110,7 +5130,7 @@
       "source_file": "src/armaden/framework/classes/service_provider.py",
       "source_location": "L27",
       "_origin": "ast",
-      "community": 19,
+      "community": 12,
       "norm_label": ".app()",
       "id": "src_armaden_framework_classes_service_provider_serviceprovider_app"
     },
@@ -5120,7 +5140,7 @@
       "source_file": "src/armaden/framework/classes/service_provider.py",
       "source_location": "L30",
       "_origin": "ast",
-      "community": 19,
+      "community": 12,
       "norm_label": ".is_deferred()",
       "id": "src_armaden_framework_classes_service_provider_serviceprovider_is_deferred"
     },
@@ -5130,7 +5150,7 @@
       "source_file": "src/armaden/framework/classes/service_provider.py",
       "source_location": "L33",
       "_origin": "ast",
-      "community": 19,
+      "community": 12,
       "norm_label": ".register_bindings()",
       "id": "src_armaden_framework_classes_service_provider_serviceprovider_register_bindings"
     },
@@ -5140,7 +5160,7 @@
       "source_file": "src/armaden/framework/classes/service_provider.py",
       "source_location": "L40",
       "_origin": "ast",
-      "community": 19,
+      "community": 12,
       "norm_label": ".register()",
       "id": "src_armaden_framework_classes_service_provider_serviceprovider_register"
     },
@@ -5150,7 +5170,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 19,
+      "community": 12,
       "norm_label": "result",
       "id": "src_armaden_framework_classes_service_provider_py_result"
     },
@@ -5160,7 +5180,7 @@
       "source_file": "src/armaden/framework/classes/service_provider.py",
       "source_location": "L43",
       "_origin": "ast",
-      "community": 19,
+      "community": 12,
       "norm_label": ".boot()",
       "id": "src_armaden_framework_classes_service_provider_serviceprovider_boot"
     },
@@ -5170,7 +5190,7 @@
       "source_file": "src/armaden/framework/classes/service_provider.py",
       "source_location": "L46",
       "_origin": "ast",
-      "community": 19,
+      "community": 12,
       "norm_label": ".status()",
       "id": "src_armaden_framework_classes_service_provider_serviceprovider_status"
     },
@@ -5310,7 +5330,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server.py",
       "source_location": "L140",
       "_origin": "ast",
-      "community": 23,
+      "community": 10,
       "norm_label": ".status()",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_armareforgerserver_status"
     },
@@ -5400,7 +5420,7 @@
       "source_file": "src/armaden/framework/classes/configurable.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 19,
+      "community": 12,
       "norm_label": "configurable.py",
       "id": "src_armaden_framework_classes_configurable"
     },
@@ -5410,7 +5430,7 @@
       "source_file": "src/armaden/framework/classes/configurable.py",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 19,
+      "community": 12,
       "norm_label": "_resolve_config_type()",
       "id": "src_armaden_framework_classes_configurable_resolve_config_type"
     },
@@ -5420,7 +5440,7 @@
       "source_file": "src/armaden/framework/classes/configurable.py",
       "source_location": "L18",
       "_origin": "ast",
-      "community": 19,
+      "community": 12,
       "norm_label": "configurable",
       "id": "src_armaden_framework_classes_configurable_configurable"
     },
@@ -5430,7 +5450,7 @@
       "source_file": "src/armaden/framework/classes/configurable.py",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 19,
+      "community": 12,
       "norm_label": ".__new__()",
       "id": "src_armaden_framework_classes_configurable_configurable_new"
     },
@@ -5590,7 +5610,7 @@
       "source_file": "src/armaden/framework/classes/bound_method.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "bound_method.py",
       "community_name": "Bound Method Resolution",
       "id": "src_armaden_framework_classes_bound_method"
@@ -5601,7 +5621,7 @@
       "source_file": "src/armaden/framework/classes/bound_method.py",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "boundmethod",
       "community_name": "Bound Method Resolution",
       "id": "src_armaden_framework_classes_bound_method_boundmethod"
@@ -5612,7 +5632,7 @@
       "source_file": "src/armaden/framework/classes/bound_method.py",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": ".call()",
       "community_name": "Bound Method Resolution",
       "id": "src_armaden_framework_classes_bound_method_boundmethod_call"
@@ -5623,7 +5643,7 @@
       "source_file": "src/armaden/framework/classes/bound_method.py",
       "source_location": "L47",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "._is_callable_with_at_sign()",
       "community_name": "Bound Method Resolution",
       "id": "src_armaden_framework_classes_bound_method_boundmethod_is_callable_with_at_sign"
@@ -5634,7 +5654,7 @@
       "source_file": "src/armaden/framework/classes/bound_method.py",
       "source_location": "L51",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "._call_class()",
       "community_name": "Bound Method Resolution",
       "id": "src_armaden_framework_classes_bound_method_boundmethod_call_class"
@@ -5645,7 +5665,7 @@
       "source_file": "src/armaden/framework/classes/bound_method.py",
       "source_location": "L71",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "._call_bound_method()",
       "community_name": "Bound Method Resolution",
       "id": "src_armaden_framework_classes_bound_method_boundmethod_call_bound_method"
@@ -5656,7 +5676,7 @@
       "source_file": "src/armaden/framework/classes/bound_method.py",
       "source_location": "L82",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "._normalize_method()",
       "community_name": "Bound Method Resolution",
       "id": "src_armaden_framework_classes_bound_method_boundmethod_normalize_method"
@@ -5667,7 +5687,7 @@
       "source_file": "src/armaden/framework/classes/bound_method.py",
       "source_location": "L89",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "._get_method_dependencies()",
       "community_name": "Bound Method Resolution",
       "id": "src_armaden_framework_classes_bound_method_boundmethod_get_method_dependencies"
@@ -5678,7 +5698,7 @@
       "source_file": "src/armaden/framework/classes/bound_method.py",
       "source_location": "L103",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "._get_call_reflector()",
       "community_name": "Bound Method Resolution",
       "id": "src_armaden_framework_classes_bound_method_boundmethod_get_call_reflector"
@@ -5689,7 +5709,7 @@
       "source_file": "src/armaden/framework/classes/bound_method.py",
       "source_location": "L135",
       "_origin": "ast",
-      "community": 19,
+      "community": 78,
       "norm_label": "._add_dependency_for_call_parameter()",
       "community_name": "Bound Method Resolution",
       "id": "src_armaden_framework_classes_bound_method_boundmethod_add_dependency_for_call_parameter"
@@ -5865,7 +5885,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 6,
+      "community": 109,
       "norm_label": "task.py",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task"
@@ -6008,7 +6028,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L61",
       "_origin": "ast",
-      "community": 6,
+      "community": 3,
       "norm_label": "taskbuilder",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder"
@@ -6019,7 +6039,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L62",
       "_origin": "ast",
-      "community": 6,
+      "community": 3,
       "norm_label": ".__init__()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_init"
@@ -6030,7 +6050,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L72",
       "_origin": "ast",
-      "community": 6,
+      "community": 3,
       "norm_label": ".name()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_name"
@@ -6041,7 +6061,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 6,
+      "community": 3,
       "norm_label": "self",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_py_self"
@@ -6052,7 +6072,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L76",
       "_origin": "ast",
-      "community": 6,
+      "community": 3,
       "norm_label": ".description()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_description"
@@ -6063,7 +6083,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L80",
       "_origin": "ast",
-      "community": 6,
+      "community": 3,
       "norm_label": ".on_initialize()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_on_initialize"
@@ -6074,7 +6094,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L84",
       "_origin": "ast",
-      "community": 6,
+      "community": 3,
       "norm_label": ".on_run()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_on_run"
@@ -6085,7 +6105,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L88",
       "_origin": "ast",
-      "community": 6,
+      "community": 3,
       "norm_label": ".on_shutdown()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_on_shutdown"
@@ -6096,7 +6116,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L92",
       "_origin": "ast",
-      "community": 6,
+      "community": 3,
       "norm_label": ".on_status()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_on_status"
@@ -6107,7 +6127,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L96",
       "_origin": "ast",
-      "community": 6,
+      "community": 3,
       "norm_label": ".exclusive_thread()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_exclusive_thread"
@@ -6118,7 +6138,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L100",
       "_origin": "ast",
-      "community": 6,
+      "community": 3,
       "norm_label": ".shared_thread()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_shared_thread"
@@ -6129,7 +6149,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L104",
       "_origin": "ast",
-      "community": 6,
+      "community": 3,
       "norm_label": ".with_auto_restart()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_with_auto_restart"
@@ -6195,7 +6215,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 23,
+      "community": 19,
       "norm_label": "typeddict",
       "community_name": "Executable Argument Builder",
       "id": "typeddict"
@@ -6206,7 +6226,7 @@
       "source_file": "src/armaden/framework/enums/__init__.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
+      "community": 131,
       "norm_label": "__init__.py",
       "community_name": "Supervisor Request Handling",
       "id": "src_armaden_framework_enums_init"
@@ -6217,7 +6237,7 @@
       "source_file": "src/armaden/framework/enums/health_status.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
+      "community": 131,
       "norm_label": "health_status.py",
       "community_name": "Supervisor Request Handling",
       "id": "src_armaden_framework_enums_health_status"
@@ -6228,7 +6248,7 @@
       "source_file": "src/armaden/framework/enums/health_status.py",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 1,
+      "community": 131,
       "norm_label": "healthstatus",
       "community_name": "Application Health Status",
       "id": "src_armaden_framework_enums_health_status_healthstatus"
@@ -6239,7 +6259,7 @@
       "source_file": "src/armaden/framework/enums/supervisor_request_kind.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
+      "community": 131,
       "norm_label": "supervisor_request_kind.py",
       "community_name": "Supervisor Request Handling",
       "id": "src_armaden_framework_enums_supervisor_request_kind"
@@ -6349,7 +6369,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 148,
+      "community": 15,
       "norm_label": "protocol",
       "community_name": "Application Kernel Interface",
       "id": "protocol"
@@ -7306,7 +7326,7 @@
       "source_file": "src/armaden/framework/protocols/kernel.py",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 3,
+      "community": 15,
       "norm_label": "kernelinterface",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_kernel_kernelinterface"
@@ -7317,7 +7337,7 @@
       "source_file": "src/armaden/framework/protocols/kernel.py",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 3,
+      "community": 15,
       "norm_label": ".bootstrap()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_kernel_kernelinterface_bootstrap"
@@ -7328,7 +7348,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 3,
+      "community": 15,
       "norm_label": "result",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_kernel_py_result"
@@ -7339,7 +7359,7 @@
       "source_file": "src/armaden/framework/protocols/kernel.py",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 3,
+      "community": 15,
       "norm_label": ".handle()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_kernel_kernelinterface_handle"
@@ -7350,7 +7370,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 3,
+      "community": 15,
       "norm_label": "any",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_kernel_py_any"
@@ -7361,7 +7381,7 @@
       "source_file": "src/armaden/framework/protocols/kernel.py",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 3,
+      "community": 15,
       "norm_label": ".terminate()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_kernel_kernelinterface_terminate"
@@ -7372,7 +7392,7 @@
       "source_file": "src/armaden/framework/protocols/kernel.py",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 3,
+      "community": 15,
       "norm_label": ".application()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_kernel_kernelinterface_application"
@@ -7383,7 +7403,7 @@
       "source_file": "src/armaden/framework/protocols/kernel.py",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 3,
+      "community": 15,
       "norm_label": "coreapplicationinterface",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_kernel_coreapplicationinterface"
@@ -7394,7 +7414,7 @@
       "source_file": "src/armaden/framework/protocols/kernel.py",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 3,
+      "community": 15,
       "norm_label": ".register()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_kernel_coreapplicationinterface_register"
@@ -7405,7 +7425,7 @@
       "source_file": "src/armaden/framework/protocols/kernel.py",
       "source_location": "L18",
       "_origin": "ast",
-      "community": 3,
+      "community": 15,
       "norm_label": ".boot()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_kernel_coreapplicationinterface_boot"
@@ -7416,7 +7436,7 @@
       "source_file": "src/armaden/framework/protocols/kernel.py",
       "source_location": "L19",
       "_origin": "ast",
-      "community": 3,
+      "community": 15,
       "norm_label": ".config()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_kernel_coreapplicationinterface_config"
@@ -7427,7 +7447,7 @@
       "source_file": "src/armaden/framework/protocols/kernel.py",
       "source_location": "L20",
       "_origin": "ast",
-      "community": 3,
+      "community": 15,
       "norm_label": ".version()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_kernel_coreapplicationinterface_version"
@@ -7438,7 +7458,7 @@
       "source_file": "src/armaden/framework/protocols/kernel.py",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 3,
+      "community": 15,
       "norm_label": ".make()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_kernel_coreapplicationinterface_make"
@@ -7449,7 +7469,7 @@
       "source_file": "src/armaden/framework/protocols/kernel.py",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 3,
+      "community": 15,
       "norm_label": ".container()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_kernel_coreapplicationinterface_container"
@@ -7460,7 +7480,7 @@
       "source_file": "src/armaden/framework/protocols/kernel.py",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 3,
+      "community": 15,
       "norm_label": ".supervisor()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_kernel_coreapplicationinterface_supervisor"
@@ -7471,7 +7491,7 @@
       "source_file": "src/armaden/framework/protocols/kernel.py",
       "source_location": "L26",
       "_origin": "ast",
-      "community": 3,
+      "community": 15,
       "norm_label": ".status()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_kernel_coreapplicationinterface_status"
@@ -7504,7 +7524,7 @@
       "source_file": "src/armaden/framework/protocols/supervisor.py",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 122,
+      "community": 15,
       "norm_label": ".add_task()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_supervisor_supervisorinterface_add_task"
@@ -7515,7 +7535,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 122,
+      "community": 15,
       "norm_label": "self",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_supervisor_py_self"
@@ -7526,7 +7546,7 @@
       "source_file": "src/armaden/framework/protocols/supervisor.py",
       "source_location": "L14",
       "_origin": "ast",
-      "community": 122,
+      "community": 15,
       "norm_label": ".add_tasks()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_supervisor_supervisorinterface_add_tasks"
@@ -7680,7 +7700,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L19",
       "_origin": "ast",
-      "community": 122,
+      "community": 15,
       "norm_label": "taskinterface",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskinterface"
@@ -7691,7 +7711,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 122,
+      "community": 15,
       "norm_label": ".name()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskinterface_name"
@@ -7702,7 +7722,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 122,
+      "community": 15,
       "norm_label": ".description()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskinterface_description"
@@ -7713,7 +7733,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L27",
       "_origin": "ast",
-      "community": 122,
+      "community": 15,
       "norm_label": ".initialize()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskinterface_initialize"
@@ -7724,7 +7744,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 122,
+      "community": 15,
       "norm_label": "taskcallback",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_py_taskcallback"
@@ -7735,7 +7755,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L30",
       "_origin": "ast",
-      "community": 122,
+      "community": 15,
       "norm_label": ".run()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskinterface_run"
@@ -7746,7 +7766,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L33",
       "_origin": "ast",
-      "community": 122,
+      "community": 15,
       "norm_label": ".shutdown()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskinterface_shutdown"
@@ -7757,7 +7777,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L36",
       "_origin": "ast",
-      "community": 122,
+      "community": 15,
       "norm_label": ".status()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskinterface_status"
@@ -7768,7 +7788,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 122,
+      "community": 15,
       "norm_label": "statuscallback",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_py_statuscallback"
@@ -7779,7 +7799,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L39",
       "_origin": "ast",
-      "community": 122,
+      "community": 15,
       "norm_label": ".threading_policy()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskinterface_threading_policy"
@@ -7790,7 +7810,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L42",
       "_origin": "ast",
-      "community": 122,
+      "community": 15,
       "norm_label": ".auto_restart()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskinterface_auto_restart"
@@ -7801,7 +7821,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L45",
       "_origin": "ast",
-      "community": 140,
+      "community": 15,
       "norm_label": "taskbuilderinterface",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskbuilderinterface"
@@ -7812,7 +7832,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L46",
       "_origin": "ast",
-      "community": 140,
+      "community": 15,
       "norm_label": ".name()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskbuilderinterface_name"
@@ -7823,7 +7843,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 140,
+      "community": 15,
       "norm_label": "self",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_py_self"
@@ -7834,7 +7854,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L48",
       "_origin": "ast",
-      "community": 140,
+      "community": 15,
       "norm_label": ".description()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskbuilderinterface_description"
@@ -7845,7 +7865,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L50",
       "_origin": "ast",
-      "community": 140,
+      "community": 15,
       "norm_label": ".on_initialize()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskbuilderinterface_on_initialize"
@@ -7856,7 +7876,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L52",
       "_origin": "ast",
-      "community": 140,
+      "community": 15,
       "norm_label": ".on_run()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskbuilderinterface_on_run"
@@ -7867,7 +7887,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L54",
       "_origin": "ast",
-      "community": 140,
+      "community": 15,
       "norm_label": ".on_shutdown()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskbuilderinterface_on_shutdown"
@@ -7878,7 +7898,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L56",
       "_origin": "ast",
-      "community": 140,
+      "community": 15,
       "norm_label": ".on_status()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskbuilderinterface_on_status"
@@ -7889,7 +7909,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L58",
       "_origin": "ast",
-      "community": 140,
+      "community": 15,
       "norm_label": ".exclusive_thread()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskbuilderinterface_exclusive_thread"
@@ -7900,7 +7920,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L60",
       "_origin": "ast",
-      "community": 140,
+      "community": 15,
       "norm_label": ".shared_thread()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskbuilderinterface_shared_thread"
@@ -7911,7 +7931,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L62",
       "_origin": "ast",
-      "community": 140,
+      "community": 15,
       "norm_label": ".with_auto_restart()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskbuilderinterface_with_auto_restart"
@@ -7922,7 +7942,7 @@
       "source_file": "src/armaden/framework/protocols/task.py",
       "source_location": "L64",
       "_origin": "ast",
-      "community": 122,
+      "community": 15,
       "norm_label": ".build()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_framework_protocols_task_taskbuilderinterface_build"
@@ -7966,7 +7986,7 @@
       "source_file": "src/armaden/framework/protocols/task_runtime.py",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 108,
+      "community": 132,
       "norm_label": ".dispatch_subprocess()",
       "community_name": "Async Subprocess Dispatch",
       "id": "src_armaden_framework_protocols_task_runtime_taskruntimeinterface_dispatch_subprocess"
@@ -7977,7 +7997,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 108,
+      "community": 132,
       "norm_label": "path",
       "community_name": "Async Subprocess Dispatch",
       "id": "src_armaden_framework_protocols_task_runtime_py_path"
@@ -7988,7 +8008,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 108,
+      "community": 132,
       "norm_label": "asyncstreamcallback",
       "community_name": "Async Subprocess Dispatch",
       "id": "src_armaden_framework_protocols_task_runtime_py_asyncstreamcallback"
@@ -7999,7 +8019,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 108,
+      "community": 132,
       "norm_label": "result",
       "community_name": "Async Subprocess Dispatch",
       "id": "src_armaden_framework_protocols_task_runtime_py_result"
@@ -9462,7 +9482,7 @@
       "source_file": "src/armaden/games/arma_reforger/__init__.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 23,
+      "community": 122,
       "norm_label": "__init__.py",
       "community_name": "Application Health Status",
       "id": "src_armaden_games_arma_reforger_init"
@@ -9473,7 +9493,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_rcon_client.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 23,
+      "community": 122,
       "norm_label": "arma_reforger_rcon_client.py",
       "community_name": "Application Health Status",
       "id": "src_armaden_games_arma_reforger_arma_reforger_rcon_client"
@@ -9484,7 +9504,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_rcon_client.py",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 23,
+      "community": 122,
       "norm_label": "armareforgerrconclient",
       "community_name": "Application Health Status",
       "id": "src_armaden_games_arma_reforger_arma_reforger_rcon_client_armareforgerrconclient"
@@ -9528,7 +9548,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 23,
+      "community": 19,
       "norm_label": "arma_reforger_server_config.py",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_config"
@@ -9539,7 +9559,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 23,
+      "community": 19,
       "norm_label": "startupconfig",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_startupconfig"
@@ -9550,7 +9570,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 23,
+      "community": 19,
       "norm_label": "a2sconfig",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_a2sconfig"
@@ -9561,7 +9581,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 23,
+      "community": 19,
       "norm_label": "rconconfig",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_rconconfig"
@@ -9572,7 +9592,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
       "source_location": "L26",
       "_origin": "ast",
-      "community": 23,
+      "community": 19,
       "norm_label": "gamepropertiespersistence",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_gamepropertiespersistence"
@@ -9583,7 +9603,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
       "source_location": "L36",
       "_origin": "ast",
-      "community": 23,
+      "community": 19,
       "norm_label": "gamepropertiesconfig",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_gamepropertiesconfig"
@@ -9594,7 +9614,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
       "source_location": "L50",
       "_origin": "ast",
-      "community": 23,
+      "community": 19,
       "norm_label": "gameconfig",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_gameconfig"
@@ -9605,7 +9625,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
       "source_location": "L65",
       "_origin": "ast",
-      "community": 23,
+      "community": 19,
       "norm_label": "joinqueueconfig",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_joinqueueconfig"
@@ -9616,7 +9636,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
       "source_location": "L69",
       "_origin": "ast",
-      "community": 23,
+      "community": 19,
       "norm_label": "operatingconfig",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_operatingconfig"
@@ -9627,7 +9647,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
       "source_location": "L81",
       "_origin": "ast",
-      "community": 23,
+      "community": 19,
       "norm_label": "serverconfig",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_serverconfig"
@@ -9638,7 +9658,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
       "source_location": "L92",
       "_origin": "ast",
-      "community": 23,
+      "community": 19,
       "norm_label": "config",
       "community_name": "Application Health Status",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_config"
@@ -9649,7 +9669,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_executable.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 23,
+      "community": 122,
       "norm_label": "arma_reforger_server_executable.py",
       "community_name": "Application Health Status",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_executable"
@@ -10584,7 +10604,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_executable.py",
       "source_location": "L622",
       "_origin": "ast",
-      "community": 23,
+      "community": 122,
       "norm_label": "armareforgerexecutableerror",
       "community_name": "Application Health Status",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_executable_armareforgerexecutableerror"
@@ -10595,7 +10615,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_executable.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 23,
+      "community": 122,
       "norm_label": "arma reforger dedicated server wrapper.  provides a typed, fluent interface for",
       "community_name": "Application Health Status",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_executable_rationale_1"
@@ -11431,7 +11451,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_executable_config.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 23,
+      "community": 122,
       "norm_label": "arma_reforger_server_executable_config.py",
       "community_name": "Application Health Status",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_executable_config"
@@ -11442,7 +11462,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_executable_config.py",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 23,
+      "community": 122,
       "norm_label": "config",
       "community_name": "Application Health Status",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_executable_config_config"
@@ -11530,7 +11550,7 @@
       "source_file": "src/armaden/games/arma_reforger/enums/__init__.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 10,
+      "community": 123,
       "norm_label": "__init__.py",
       "community_name": "Application Health Status",
       "id": "src_armaden_games_arma_reforger_enums_init"
@@ -11541,7 +11561,7 @@
       "source_file": "src/armaden/games/arma_reforger/enums/arma_reforger_executable_flag.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 10,
+      "community": 123,
       "norm_label": "arma_reforger_executable_flag.py",
       "community_name": "Application Health Status",
       "id": "src_armaden_games_arma_reforger_enums_arma_reforger_executable_flag"
@@ -11552,7 +11572,7 @@
       "source_file": "src/armaden/games/arma_reforger/enums/arma_reforger_executable_flag.py",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 10,
+      "community": 123,
       "norm_label": "armareforgerexecutableflag",
       "community_name": "Application Health Status",
       "id": "src_armaden_games_arma_reforger_enums_arma_reforger_executable_flag_armareforgerexecutableflag"
@@ -11563,7 +11583,7 @@
       "source_file": "src/armaden/games/arma_reforger/enums/arma_reforger_executable_flag.py",
       "source_location": "L105",
       "_origin": "ast",
-      "community": 10,
+      "community": 123,
       "norm_label": ".from_config()",
       "community_name": "Arma Server Task Runtime",
       "id": "src_armaden_games_arma_reforger_enums_arma_reforger_executable_flag_armareforgerexecutableflag_from_config"
@@ -11574,7 +11594,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 10,
+      "community": 123,
       "norm_label": "result",
       "community_name": "Arma Server Task Runtime",
       "id": "src_armaden_games_arma_reforger_enums_arma_reforger_executable_flag_py_result"
@@ -11585,7 +11605,7 @@
       "source_file": "src/armaden/games/arma_reforger/enums/arma_reforger_executable_flag.py",
       "source_location": "L197",
       "_origin": "ast",
-      "community": 10,
+      "community": 123,
       "norm_label": "armareforgerexecutableflagerror",
       "community_name": "Application Health Status",
       "id": "src_armaden_games_arma_reforger_enums_arma_reforger_executable_flag_armareforgerexecutableflagerror"
@@ -11596,7 +11616,7 @@
       "source_file": "src/armaden/games/arma_reforger/enums/arma_reforger_executable_flag.py",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 10,
+      "community": 123,
       "norm_label": "arma reforger cli startup flags.",
       "community_name": "Application Health Status",
       "id": "src_armaden_games_arma_reforger_enums_arma_reforger_executable_flag_rationale_8"
@@ -11695,7 +11715,7 @@
       "source_file": "src/armaden/games/steamcmd/steamcmd_executable.py",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 125,
+      "community": 5,
       "norm_label": ".__init__()",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_steamcmd_steamcmd_executable_steamcmdexecutable_init"
@@ -11706,7 +11726,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 125,
+      "community": 5,
       "norm_label": "config",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_steamcmd_steamcmd_executable_py_config"
@@ -13488,7 +13508,7 @@
       "source_file": "src/armaden/network/rcon/rcon_packet_interface.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 148,
+      "community": 15,
       "norm_label": "rcon_packet_interface.py",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_network_rcon_rcon_packet_interface"
@@ -13499,7 +13519,7 @@
       "source_file": "src/armaden/network/rcon/rcon_packet_interface.py",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 148,
+      "community": 15,
       "norm_label": "rconpacketinterface",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_network_rcon_rcon_packet_interface_rconpacketinterface"
@@ -13510,7 +13530,7 @@
       "source_file": "src/armaden/network/rcon/rcon_packet_interface.py",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 148,
+      "community": 15,
       "norm_label": ".to_bytes()",
       "community_name": "Application Kernel Interface",
       "id": "src_armaden_network_rcon_rcon_packet_interface_rconpacketinterface_to_bytes"
@@ -14120,7 +14140,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 107,
+      "community": 79,
       "norm_label": "app() facade",
       "community_name": "Framework Service Providers",
       "id": "armaden_framework_facades"
@@ -14226,14 +14246,981 @@
   ],
   "links": [
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_armaden_framework_protocols_application",
+      "target": "abc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_armaden_framework_protocols_application",
+      "target": "src_armaden_framework_protocols_application_applicationinterface",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/application.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_application_application",
+      "target": "src_armaden_framework_protocols_application_applicationinterface"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_armaden_framework_protocols_application_applicationinterface",
+      "target": "abc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_armaden_framework_protocols_application_applicationinterface",
+      "target": "src_armaden_framework_protocols_application_applicationinterface_boot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_armaden_framework_protocols_application_applicationinterface",
+      "target": "src_armaden_framework_protocols_application_applicationinterface_middleware",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_armaden_framework_protocols_application_applicationinterface",
+      "target": "src_armaden_framework_protocols_application_applicationinterface_middleware_groups",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_armaden_framework_protocols_application_applicationinterface",
+      "target": "src_armaden_framework_protocols_application_applicationinterface_route_groups",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "src_armaden_framework_protocols_application_applicationinterface",
+      "target": "src_armaden_framework_protocols_application_applicationinterface_status",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L16",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "src_armaden_framework_runtime_application_applicationerror",
+      "target": "src_armaden_framework_protocols_application_applicationinterface"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L16",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "src_armaden_framework_runtime_application_applicationexception",
+      "target": "src_armaden_framework_protocols_application_applicationinterface"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L16",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "src_armaden_framework_runtime_application_applicationstatus",
+      "target": "src_armaden_framework_protocols_application_applicationinterface"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L16",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "src_armaden_framework_runtime_application_coreapplication",
+      "target": "src_armaden_framework_protocols_application_applicationinterface"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_application_coreapplication_bootstrap",
+      "target": "src_armaden_framework_protocols_application_applicationinterface"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L286",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_application_coreapplication_status",
+      "target": "src_armaden_framework_protocols_application_applicationinterface"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L4",
+      "weight": 0.8,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
+      "target": "src_armaden_framework_protocols_application_applicationinterface",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_init",
+      "target": "src_armaden_framework_protocols_application_applicationinterface",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/armaden/framework/runtime/kernel.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_kernel_httpkernel_bootstrap",
+      "target": "src_armaden_framework_protocols_application_applicationinterface"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider",
+      "target": "src_armaden_framework_protocols_application_applicationinterface",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_register",
+      "target": "src_armaden_framework_protocols_application_applicationinterface"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/classes/configurable.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_classes_configurable",
+      "target": "abc"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/classes/configurable.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_classes_configurable_configurable",
+      "target": "abc"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/classes/executable.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_classes_executable",
+      "target": "abc"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/classes/executable.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_classes_executable_executable",
+      "target": "abc"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/classes/instance_container.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_classes_instance_container",
+      "target": "abc"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/classes/instance_container.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_classes_instance_container_contextualattribute",
+      "target": "abc"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/classes/instance_container.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_classes_instance_container_selfbuilding",
+      "target": "abc"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/classes/service_provider.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_classes_service_provider",
+      "target": "abc"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/classes/service_provider.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_classes_service_provider_deferrableprovider",
+      "target": "abc"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/classes/service_provider.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_classes_service_provider_serviceprovider",
+      "target": "abc"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/controller.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_controller",
+      "target": "abc"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/controller.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_controller_controller",
+      "target": "abc"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/middleware.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_middleware",
+      "target": "abc"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/middleware.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_middleware_middleware",
+      "target": "abc"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/kernel.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_kernel",
+      "target": "abc"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/kernel.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_kernel_kernel",
+      "target": "abc"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/type_discovery_service_provider.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_providers_type_discovery_service_provider",
+      "target": "abc"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/packets/packet.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_packets_packet",
+      "target": "abc"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/packets/packet.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_packets_packet_packet",
+      "target": "abc"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_armaden_framework_protocols_application_applicationinterface_boot",
+      "target": "src_armaden_framework_protocols_application_py_result",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "src_armaden_framework_protocols_application_applicationinterface_status",
+      "target": "src_armaden_framework_protocols_application_py_result",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_armaden_framework_protocols_application_applicationinterface_route_groups",
+      "target": "any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "src_armaden_framework_protocols_application_applicationinterface_status",
+      "target": "any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/route_discovery_service_provider.py",
+      "source_location": "L82",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_providers_route_discovery_service_provider_routediscoveryserviceprovider_find_group_for_file",
+      "target": "any"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/route_discovery_service_provider.py",
+      "source_location": "L73",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_providers_route_discovery_service_provider_routediscoveryserviceprovider_get_route_groups",
+      "target": "any"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server.py",
+      "source_location": "L140",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_armareforgerserver_status",
+      "target": "any"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "user/app/http/classes/api.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "user_app_http_classes_api_api_error",
+      "target": "any"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "user/app/http/classes/api.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "user_app_http_classes_api_api_success",
+      "target": "any"
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/__init__.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_init",
+      "target": "src_armaden_framework_runtime_http_middleware_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/__init__.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_init",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/__init__.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_init",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/__init__.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_init",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/asgi.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_asgi",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/asgi.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_asgi",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/asgi.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "src_armaden_framework_runtime_http_middleware_asgi_asgimiddlewareadapter",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_bootstrap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_get_middleware",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_get_middleware_groups",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_get_route_middleware",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_from_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_middleware",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_middleware_list",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_register",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_get_middleware",
+      "target": "middleware",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_get_middleware_groups",
+      "target": "middleware",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_get_route_middleware",
+      "target": "middleware",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_from_string",
+      "target": "middleware",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_middleware",
+      "target": "middleware",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_middleware_list",
+      "target": "middleware",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_middleware_list",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_get_middleware_groups",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_middleware",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_from_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_middleware_list",
+      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_middleware",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_http_service_provider",
+      "target": "armaden_framework_classes_service_provider",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_http_service_provider",
+      "target": "armaden_framework_classes_task",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_http_service_provider",
+      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_providers_init",
+      "target": "src_armaden_framework_runtime_providers_http_service_provider"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L63",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "src_armaden_framework_runtime_application_applicationerror",
+      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L63",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "src_armaden_framework_runtime_application_applicationexception",
+      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L63",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "src_armaden_framework_runtime_application_applicationstatus",
+      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L63",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "src_armaden_framework_runtime_application_coreapplication",
+      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_application_coreapplication_register_base_service_providers",
+      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider",
+      "target": "serviceprovider",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider",
+      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_boot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider",
+      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_register",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_providers_init",
+      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/route_discovery_service_provider.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_providers_route_discovery_service_provider_routediscoveryserviceprovider",
+      "target": "serviceprovider"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "user/app/providers/app_service_provider.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "user_app_providers_app_service_provider_appserviceprovider",
+      "target": "serviceprovider"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_register",
+      "target": "src_armaden_framework_runtime_providers_http_service_provider_py_result",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_boot",
+      "target": "src_armaden_framework_runtime_providers_http_service_provider_py_result",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "AGENTS.md",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "agents",
-      "target": "agents_mandatory_code_comment_conventions",
-      "confidence_score": 1.0
+      "target": "agents_mandatory_code_comment_conventions"
     },
     {
       "relation": "contains",
@@ -14241,9 +15228,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "agents",
-      "target": "agents_mandatory_git_rules",
-      "confidence_score": 1.0
+      "target": "agents_mandatory_git_rules"
     },
     {
       "relation": "contains",
@@ -14251,9 +15238,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "agents",
-      "target": "agents_mandatory_local_code_search_traversal",
-      "confidence_score": 1.0
+      "target": "agents_mandatory_local_code_search_traversal"
     },
     {
       "relation": "contains",
@@ -14261,9 +15248,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "agents",
-      "target": "agents_mandatory_use_td_for_task_management",
-      "confidence_score": 1.0
+      "target": "agents_mandatory_use_td_for_task_management"
     },
     {
       "relation": "imports_from",
@@ -14338,16 +15325,6 @@
       "target": "src_armaden_framework_runtime_providers_route_discovery_service_provider_routediscoveryserviceprovider"
     },
     {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/route_discovery_service_provider.py",
-      "source_location": "L18",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_route_discovery_service_provider_routediscoveryserviceprovider",
-      "target": "serviceprovider"
-    },
-    {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/framework/runtime/providers/route_discovery_service_provider.py",
@@ -14376,26 +15353,6 @@
       "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_providers_route_discovery_service_provider_routediscoveryserviceprovider",
       "target": "src_armaden_framework_runtime_providers_route_discovery_service_provider_routediscoveryserviceprovider_register"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
-      "source_location": "L18",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider",
-      "target": "serviceprovider"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "user/app/providers/app_service_provider.py",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "user_app_providers_app_service_provider_appserviceprovider",
-      "target": "serviceprovider"
     },
     {
       "relation": "calls",
@@ -14575,17 +15532,6 @@
     },
     {
       "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/route_discovery_service_provider.py",
-      "source_location": "L73",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_route_discovery_service_provider_routediscoveryserviceprovider_get_route_groups",
-      "target": "any"
-    },
-    {
-      "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/framework/runtime/providers/route_discovery_service_provider.py",
@@ -14594,50 +15540,6 @@
       "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_providers_route_discovery_service_provider_routediscoveryserviceprovider_get_route_groups",
       "target": "applicationinterface"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/route_discovery_service_provider.py",
-      "source_location": "L82",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_route_discovery_service_provider_routediscoveryserviceprovider_find_group_for_file",
-      "target": "any"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server.py",
-      "source_location": "L140",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_games_arma_reforger_arma_reforger_server_armareforgerserver_status",
-      "target": "any"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "user/app/http/classes/api.py",
-      "source_location": "L18",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "user_app_http_classes_api_api_error",
-      "target": "any"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "user/app/http/classes/api.py",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "user_app_http_classes_api_api_success",
-      "target": "any"
     },
     {
       "relation": "references",
@@ -16054,393 +16956,6 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/protocols/application.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_protocols_application",
-      "target": "abc"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/protocols/application.py",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_protocols_application",
-      "target": "src_armaden_framework_protocols_application_applicationinterface"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/application.py",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_application_application",
-      "target": "src_armaden_framework_protocols_application_applicationinterface"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/protocols/application.py",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_protocols_application_applicationinterface",
-      "target": "abc"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/protocols/application.py",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_protocols_application_applicationinterface",
-      "target": "src_armaden_framework_protocols_application_applicationinterface_boot"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/protocols/application.py",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_protocols_application_applicationinterface",
-      "target": "src_armaden_framework_protocols_application_applicationinterface_route_groups"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/protocols/application.py",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_protocols_application_applicationinterface",
-      "target": "src_armaden_framework_protocols_application_applicationinterface_status"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L16",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "src_armaden_framework_runtime_application_applicationerror",
-      "target": "src_armaden_framework_protocols_application_applicationinterface"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L16",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "src_armaden_framework_runtime_application_applicationexception",
-      "target": "src_armaden_framework_protocols_application_applicationinterface"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L16",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "src_armaden_framework_runtime_application_applicationstatus",
-      "target": "src_armaden_framework_protocols_application_applicationinterface"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L16",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_protocols_application_applicationinterface"
-    },
-    {
-      "relation": "indirect_call",
-      "context": "argument",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L91",
-      "weight": 1.0,
-      "source": "src_armaden_framework_runtime_application_coreapplication_bootstrap",
-      "target": "src_armaden_framework_protocols_application_applicationinterface"
-    },
-    {
-      "relation": "indirect_call",
-      "context": "argument",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L286",
-      "weight": 1.0,
-      "source": "src_armaden_framework_runtime_application_coreapplication_status",
-      "target": "src_armaden_framework_protocols_application_applicationinterface"
-    },
-    {
-      "relation": "indirect_call",
-      "context": "argument",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "src/armaden/framework/runtime/kernel.py",
-      "source_location": "L38",
-      "weight": 1.0,
-      "source": "src_armaden_framework_runtime_kernel_httpkernel_bootstrap",
-      "target": "src_armaden_framework_protocols_application_applicationinterface"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/classes/configurable.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_classes_configurable",
-      "target": "abc"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/classes/configurable.py",
-      "source_location": "L18",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_classes_configurable_configurable",
-      "target": "abc"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/classes/executable.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_classes_executable",
-      "target": "abc"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/classes/executable.py",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_classes_executable_executable",
-      "target": "abc"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/classes/instance_container.py",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_classes_instance_container",
-      "target": "abc"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/classes/instance_container.py",
-      "source_location": "L41",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_classes_instance_container_contextualattribute",
-      "target": "abc"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/classes/instance_container.py",
-      "source_location": "L37",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_classes_instance_container_selfbuilding",
-      "target": "abc"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/classes/service_provider.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_classes_service_provider",
-      "target": "abc"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/classes/service_provider.py",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_classes_service_provider_deferrableprovider",
-      "target": "abc"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/classes/service_provider.py",
-      "source_location": "L17",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_classes_service_provider_serviceprovider",
-      "target": "abc"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/controller.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_controller",
-      "target": "abc"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/controller.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_controller_controller",
-      "target": "abc"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/middleware.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_middleware",
-      "target": "abc"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/middleware.py",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_middleware_middleware",
-      "target": "abc"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/kernel.py",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_kernel",
-      "target": "abc"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/kernel.py",
-      "source_location": "L14",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_kernel_kernel",
-      "target": "abc"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/type_discovery_service_provider.py",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_type_discovery_service_provider",
-      "target": "abc"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/packets/packet.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_packets_packet",
-      "target": "abc"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/packets/packet.py",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_packets_packet_packet",
-      "target": "abc"
-    },
-    {
-      "relation": "references",
-      "context": "return_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/protocols/application.py",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_protocols_application_applicationinterface_boot",
-      "target": "src_armaden_framework_protocols_application_py_result"
-    },
-    {
-      "relation": "references",
-      "context": "return_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/protocols/application.py",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_protocols_application_applicationinterface_status",
-      "target": "src_armaden_framework_protocols_application_py_result"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/protocols/application.py",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_protocols_application_applicationinterface_route_groups",
-      "target": "src_armaden_framework_protocols_application_py_any"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/protocols/application.py",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_protocols_application_applicationinterface_status",
-      "target": "src_armaden_framework_protocols_application_py_any"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L15",
       "weight": 1.0,
@@ -16829,16 +17344,6 @@
       "target": "src_armaden_framework_runtime_application_coreapplication_version"
     },
     {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L63",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider"
-    },
-    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -16980,17 +17485,6 @@
       "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register_base_service_providers",
       "target": "src_armaden_framework_runtime_application_coreapplication_register"
-    },
-    {
-      "relation": "indirect_call",
-      "context": "argument",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L66",
-      "weight": 1.0,
-      "source": "src_armaden_framework_runtime_application_coreapplication_register_base_service_providers",
-      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider"
     },
     {
       "relation": "calls",
@@ -17554,16 +18048,6 @@
       "target": "src_armaden_framework_runtime_application_coreapplication_register_provider_bindings"
     },
     {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L63",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "src_armaden_framework_runtime_application_applicationstatus",
-      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider"
-    },
-    {
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/framework/runtime/application.py",
@@ -17572,16 +18056,6 @@
       "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_applicationexception",
       "target": "exception"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L63",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "src_armaden_framework_runtime_application_applicationexception",
-      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider"
     },
     {
       "relation": "inherits",
@@ -17672,123 +18146,6 @@
       "confidence_score": 1.0,
       "source": "src_armaden_network_udp_exceptions_transportnotconnectedexception",
       "target": "exception"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L63",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "src_armaden_framework_runtime_application_applicationerror",
-      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_http_service_provider",
-      "target": "armaden_framework_classes_service_provider"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_http_service_provider",
-      "target": "armaden_framework_classes_task"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_http_service_provider",
-      "target": "armaden_framework_facades"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
-      "source_location": "L18",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_http_service_provider",
-      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider"
-    },
-    {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/__init__.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_init",
-      "target": "src_armaden_framework_runtime_providers_http_service_provider"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
-      "source_location": "L25",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider",
-      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_boot"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
-      "source_location": "L21",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider",
-      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_register"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/__init__.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_init",
-      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider"
-    },
-    {
-      "relation": "references",
-      "context": "return_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
-      "source_location": "L21",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_register",
-      "target": "src_armaden_framework_runtime_providers_http_service_provider_py_result"
-    },
-    {
-      "relation": "references",
-      "context": "return_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
-      "source_location": "L25",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_boot",
-      "target": "src_armaden_framework_runtime_providers_http_service_provider_py_result"
     },
     {
       "relation": "re_exports",
@@ -18152,94 +18509,6 @@
       "confidence_score": 1.0,
       "source": "src_armaden_framework_facades_url_url_to",
       "target": "src_armaden_framework_facades_url_py_any"
-    },
-    {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/__init__.py",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_init",
-      "target": "src_armaden_framework_runtime_http_controller"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/__init__.py",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_init",
-      "target": "src_armaden_framework_runtime_http_controller_controller"
-    },
-    {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/__init__.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_init",
-      "target": "src_armaden_framework_runtime_http_helpers"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/__init__.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_init",
-      "target": "src_armaden_framework_runtime_http_helpers_request"
-    },
-    {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/__init__.py",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_init",
-      "target": "src_armaden_framework_runtime_http_request_context"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/__init__.py",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_init",
-      "target": "src_armaden_framework_runtime_http_request_context_requestcontext"
-    },
-    {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/__init__.py",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_init",
-      "target": "src_armaden_framework_runtime_http_url_generator"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/__init__.py",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_init",
-      "target": "src_armaden_framework_runtime_http_url_generator_urlgenerator"
     },
     {
       "relation": "contains",
@@ -19910,105 +20179,6 @@
       "target": "src_armaden_framework_runtime_http_response_py_any"
     },
     {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/__init__.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_init",
-      "target": "src_armaden_framework_runtime_http_middleware_asgi"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/__init__.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_init",
-      "target": "src_armaden_framework_runtime_http_middleware_asgi_asgimiddlewareadapter"
-    },
-    {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/__init__.py",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_init",
-      "target": "src_armaden_framework_runtime_http_middleware_kernel"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/__init__.py",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_init",
-      "target": "src_armaden_framework_runtime_http_middleware_kernel_defaultkernel"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/__init__.py",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_init",
-      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel"
-    },
-    {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/__init__.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_init",
-      "target": "src_armaden_framework_runtime_http_middleware_middleware"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/__init__.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_init",
-      "target": "src_armaden_framework_runtime_http_middleware_middleware_middleware"
-    },
-    {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/__init__.py",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_init",
-      "target": "src_armaden_framework_runtime_http_middleware_pipeline"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/__init__.py",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_init",
-      "target": "src_armaden_framework_runtime_http_middleware_pipeline_middlewarepipeline"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/framework/runtime/http/middleware/asgi.py",
@@ -20017,28 +20187,6 @@
       "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_http_middleware_asgi",
       "target": "src_armaden_framework_runtime_http_middleware_asgi_asgimiddlewareadapter"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/asgi.py",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_asgi",
-      "target": "src_armaden_framework_runtime_http_middleware_kernel"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/asgi.py",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_asgi",
-      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel"
     },
     {
       "relation": "imports_from",
@@ -20108,16 +20256,6 @@
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "src/armaden/framework/runtime/http/middleware/asgi.py",
-      "source_location": "L5",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "src_armaden_framework_runtime_http_middleware_asgi_asgimiddlewareadapter",
-      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/asgi.py",
       "source_location": "L6",
       "weight": 0.8,
       "confidence_score": 0.5,
@@ -20143,246 +20281,6 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_http_middleware_asgi_asgimiddlewareadapter_init",
-      "target": "src_armaden_framework_runtime_http_middleware_middleware_middleware"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L56",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel",
-      "target": "src_armaden_framework_runtime_http_middleware_kernel_defaultkernel"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel",
-      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel",
-      "target": "src_armaden_framework_runtime_http_middleware_middleware"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel",
-      "target": "src_armaden_framework_runtime_http_middleware_middleware_middleware"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L56",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel_defaultkernel",
-      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
-      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_bootstrap"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L20",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
-      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_get_middleware"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L23",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
-      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_get_middleware_groups"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L26",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
-      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_get_route_middleware"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
-      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_init"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L47",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
-      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_from_string"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L29",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
-      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_middleware"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L36",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
-      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_middleware_list"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L4",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel",
-      "target": "src_armaden_framework_runtime_http_middleware_middleware_middleware"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L20",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_get_middleware",
-      "target": "src_armaden_framework_runtime_http_middleware_middleware_middleware"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L23",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_get_middleware_groups",
-      "target": "src_armaden_framework_runtime_http_middleware_middleware_middleware"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L26",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_get_route_middleware",
-      "target": "src_armaden_framework_runtime_http_middleware_middleware_middleware"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L34",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_middleware",
-      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_from_string"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "confidence_score": 0.8,
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L29",
-      "weight": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_middleware",
-      "target": "src_armaden_framework_runtime_http_middleware_middleware_middleware"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L43",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_middleware_list",
-      "target": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_middleware"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L36",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_middleware_list",
-      "target": "src_armaden_framework_runtime_http_middleware_middleware_middleware"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L47",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel_httpkernel_resolve_from_string",
-      "target": "src_armaden_framework_runtime_http_middleware_middleware_middleware"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "src/armaden/framework/runtime/http/middleware/kernel.py",
-      "source_location": "L4",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "src_armaden_framework_runtime_http_middleware_kernel_defaultkernel",
       "target": "src_armaden_framework_runtime_http_middleware_middleware_middleware"
     },
     {
@@ -42320,5 +42218,5 @@
       "source_file": "README.md"
     }
   ],
-  "built_at_commit": "e42169df4bd5084f9e1fe2624260a642ecf7b5e0"
+  "built_at_commit": "948a97631b9114345887f059513d2955882313ef"
 }

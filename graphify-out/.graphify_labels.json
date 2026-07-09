@@ -130,12 +130,13 @@
   "128": "steamcmd_executable.py",
   "129": "ModuleLoader",
   "130": "CoreApplicationInterface",
+  "131": "HealthStatus",
+  "132": ".dispatch_subprocess",
+  "133": "Any",
   "134": "C",
   "135": "Self",
   "136": "__init__.py",
   "139": "Result",
-  "140": "HealthStatus",
-  "148": "Protocol",
   "150": "Any",
   "151": "Result"
 }
