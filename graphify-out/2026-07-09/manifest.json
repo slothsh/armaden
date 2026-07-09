@@ -110,9 +110,9 @@
     "semantic_hash": "f0a14bc6dfbc77a89fcbc2502ef66f95"
   },
   "src/armaden/framework/facades/route.py": {
-    "mtime": 1783617199.7057283,
-    "ast_hash": "1b08dec60623218bfe71522dcbaca70d",
-    "semantic_hash": ""
+    "mtime": 1783360078.1623383,
+    "ast_hash": "87ea1f85d4e9daaa819f92642e3fd9a3",
+    "semantic_hash": "87ea1f85d4e9daaa819f92642e3fd9a3"
   },
   "src/armaden/framework/installer/__init__.py": {
     "mtime": 1782574720.964106,
@@ -210,9 +210,9 @@
     "semantic_hash": "d66e8527c420ce28ecd7ba579aab89aa"
   },
   "src/armaden/framework/runtime/http/__init__.py": {
-    "mtime": 1783616924.6831098,
-    "ast_hash": "59b87d37bfe4913afeb9ce316a00f47c",
-    "semantic_hash": ""
+    "mtime": 1782570079.5516343,
+    "ast_hash": "c97aa54295d19167d67e3df890422b63",
+    "semantic_hash": "c97aa54295d19167d67e3df890422b63"
   },
   "src/armaden/framework/runtime/http/actions/__init__.py": {
     "mtime": 1782570079.5349517,
@@ -250,9 +250,9 @@
     "semantic_hash": "a68e5cb32740d29094095f3337dfe3f1"
   },
   "src/armaden/framework/runtime/http/controllers/lifecycle_controller.py": {
-    "mtime": 1783616944.544081,
-    "ast_hash": "d0e1b3bbd3e659f0c86eba8f58215587",
-    "semantic_hash": ""
+    "mtime": 1782570079.5217302,
+    "ast_hash": "36ff53c36b0e02e05e1ddfadbbfa6750",
+    "semantic_hash": "36ff53c36b0e02e05e1ddfadbbfa6750"
   },
   "src/armaden/framework/runtime/http/dto/__init__.py": {
     "mtime": 1782570079.5239468,
@@ -285,9 +285,9 @@
     "semantic_hash": "c97aa54295d19167d67e3df890422b63"
   },
   "src/armaden/framework/runtime/http/routes/api.py": {
-    "mtime": 1783618044.9281018,
-    "ast_hash": "dd9eace730b61d4edc122e2c7d92fdb1",
-    "semantic_hash": ""
+    "mtime": 1782570079.5329745,
+    "ast_hash": "446257d544cd9a983057aa6e5d7ef453",
+    "semantic_hash": "446257d544cd9a983057aa6e5d7ef453"
   },
   "src/armaden/framework/runtime/kernel.py": {
     "mtime": 1782923304.8916633,
@@ -310,9 +310,9 @@
     "semantic_hash": "94d1f66bcca7cfbb196e25fbf646c983"
   },
   "src/armaden/framework/runtime/providers/http_service_provider.py": {
-    "mtime": 1783617555.6327777,
-    "ast_hash": "70e65429d8dd129770c8064846d244ca",
-    "semantic_hash": ""
+    "mtime": 1783360052.371393,
+    "ast_hash": "17fe0e2e9d6ef19253fc8970ea170ee8",
+    "semantic_hash": "17fe0e2e9d6ef19253fc8970ea170ee8"
   },
   "src/armaden/framework/runtime/providers/type_discovery_service_provider.py": {
     "mtime": 1783356900.0488384,
@@ -607,111 +607,6 @@
   "src/armaden/framework/attributes/contextual.py": {
     "mtime": 1783537483.1957245,
     "ast_hash": "047459f3f7b964c343e1f22e569b8e40",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/facades/url.py": {
-    "mtime": 1783617078.7518919,
-    "ast_hash": "e30ba9151ad8c8ea96a233a882a7660c",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/controller.py": {
-    "mtime": 1783616886.259166,
-    "ast_hash": "c6756ffc861271264f0d4c62dd97011a",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/facades/__init__.py": {
-    "mtime": 1783616907.8491342,
-    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/facades/url.py": {
-    "mtime": 1783617086.8768806,
-    "ast_hash": "d5282f77521060e3404f2e4ce926abc7",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/helpers.py": {
-    "mtime": 1783616639.943751,
-    "ast_hash": "dadc2b925d2a0f71df10717c3c619741",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/middleware/__init__.py": {
-    "mtime": 1783616869.9441903,
-    "ast_hash": "7378e922f31e4b31c2ef224634263469",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/middleware/asgi.py": {
-    "mtime": 1783616869.9427483,
-    "ast_hash": "a896b5acfc1f57b553c8a245d6461142",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/middleware/kernel.py": {
-    "mtime": 1783616869.9411902,
-    "ast_hash": "368d674cacd524a9655c9b22eba213f5",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/middleware/middleware.py": {
-    "mtime": 1783616869.9371903,
-    "ast_hash": "0d533e951af561551a69b231baed496a",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/middleware/pipeline.py": {
-    "mtime": 1783617463.2433877,
-    "ast_hash": "7dd0d729314003324fe154b9e7c4367b",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/request.py": {
-    "mtime": 1783616800.4412951,
-    "ast_hash": "aaa88e1ce2d3b4752be7fe5b93d1744c",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/request_context.py": {
-    "mtime": 1783616639.9425526,
-    "ast_hash": "7afee3793f1bdab9bbbbe827cf4b5b59",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/response.py": {
-    "mtime": 1783616639.9425526,
-    "ast_hash": "7bfc303503a19b62e49780b3878d22c1",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/routing/__init__.py": {
-    "mtime": 1783616924.6831098,
-    "ast_hash": "3a6953d9ea063c8b90439f4d65cf2708",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/routing/route.py": {
-    "mtime": 1783616517.2997665,
-    "ast_hash": "cde82e87b634cc7099feed77622c0c1d",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/routing/route_compiler.py": {
-    "mtime": 1783617463.2433877,
-    "ast_hash": "34e8e865f0e13867366651547be710d8",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/routing/route_facade.py": {
-    "mtime": 1783616907.8531342,
-    "ast_hash": "21065ae92fbc623298912c3d81a8f6ba",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/routing/route_group.py": {
-    "mtime": 1783616544.3437178,
-    "ast_hash": "e80a6917e71f13f6731dc6c711bbee99",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/routing/route_parameter.py": {
-    "mtime": 1783616517.2977664,
-    "ast_hash": "2ace08e5a901714094612482e8568bf9",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/routing/route_registrar.py": {
-    "mtime": 1783616517.3007665,
-    "ast_hash": "81728772840693045f76608d261d7687",
-    "semantic_hash": ""
-  },
-  "src/armaden/framework/runtime/http/url_generator.py": {
-    "mtime": 1783616907.8531342,
-    "ast_hash": "c97aa0be5114358191b8d45e6acd7304",
     "semantic_hash": ""
   }
 }
