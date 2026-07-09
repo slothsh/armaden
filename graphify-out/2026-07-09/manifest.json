@@ -140,8 +140,8 @@
     "semantic_hash": "7bbbbb0c7b2643115c39841b3a84a17e"
   },
   "src/armaden/framework/protocols/application.py": {
-    "mtime": 1783619641.7194831,
-    "ast_hash": "df0e5a17b0203884063c2c8c262f43ff",
+    "mtime": 1783629632.1707423,
+    "ast_hash": "c2035068c3462bc4f793d54c9237cdcf",
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/error.py": {
@@ -210,8 +210,8 @@
     "semantic_hash": "d66e8527c420ce28ecd7ba579aab89aa"
   },
   "src/armaden/framework/runtime/http/__init__.py": {
-    "mtime": 1783616924.6831098,
-    "ast_hash": "59b87d37bfe4913afeb9ce316a00f47c",
+    "mtime": 1783629728.499534,
+    "ast_hash": "8d7ca566edfa45db6497cfa8702707db",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/kernel.py": {
@@ -235,8 +235,8 @@
     "semantic_hash": "94d1f66bcca7cfbb196e25fbf646c983"
   },
   "src/armaden/framework/runtime/providers/http_service_provider.py": {
-    "mtime": 1783619658.4464512,
-    "ast_hash": "d039cfb5b9e5459ab5838dccca615640",
+    "mtime": 1783629872.5972216,
+    "ast_hash": "32f243e8d7755d1c92e1f9cbbedf7fec",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/providers/type_discovery_service_provider.py": {
@@ -560,8 +560,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/http/middleware/__init__.py": {
-    "mtime": 1783616869.9441903,
-    "ast_hash": "7378e922f31e4b31c2ef224634263469",
+    "mtime": 1783629667.2236664,
+    "ast_hash": "ce154aa972e561a020ed3f11033cb4ce",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/http/middleware/asgi.py": {
@@ -570,8 +570,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/http/middleware/kernel.py": {
-    "mtime": 1783616869.9411902,
-    "ast_hash": "368d674cacd524a9655c9b22eba213f5",
+    "mtime": 1783629657.2136881,
+    "ast_hash": "413149ac2c1a9d0337f9fb954d3f7995",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/http/middleware/middleware.py": {

@@ -140,8 +140,8 @@
     "semantic_hash": "7bbbbb0c7b2643115c39841b3a84a17e"
   },
   "src/armaden/framework/protocols/application.py": {
-    "mtime": 1783629632.1707423,
-    "ast_hash": "c2035068c3462bc4f793d54c9237cdcf",
+    "mtime": 1783630025.60489,
+    "ast_hash": "c76855012457384bfc80c890fb31f65d",
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/error.py": {
