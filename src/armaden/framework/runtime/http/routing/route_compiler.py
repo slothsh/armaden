@@ -56,7 +56,6 @@ class RouteCompiler:
         if isinstance(handler, (list, tuple)):
             controller_cls, method_name = handler
             async def _controller_handler(request: StarletteRequest) -> Any:
-                from armaden.framework.facades import App
                 wrapped_request = Request(request)
                 await wrapped_request._load_body()
                 RequestContext.set_request(wrapped_request)
