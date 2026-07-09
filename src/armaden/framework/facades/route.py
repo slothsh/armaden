@@ -1,45 +1,58 @@
-import logging
-from typing import Callable, Self, Type, TypeVar, cast
+from typing import Any, Callable
 
-from armaden.framework.utils.types import RouterType
-from .app import App
+from armaden.framework.runtime.http.routing.route_facade import RouteFacade
+from armaden.framework.runtime.http.routing.route_group import RouteGroup
 
-logger = logging.getLogger(__name__)
-
-C = TypeVar("C")
 
 class Route:
     @classmethod
-    def get(cls, path: str, controller: Type[C], handler: str) -> Type[Self]:
-        try:
-            container = App.container()
-            if 'router' not in container:
-                logger.error("Router not bound in container")
-                return cls
-            router = container['router']
-        except Exception as e:
-            logger.error("Failed to resolve router from container: %s", e)
-            return cls
-
-        instance = controller()
-        callback = getattr(instance, handler)
-        cast(RouterType, router).get(path)(callback)
-        return cls
-
+    def get(cls, path: str, handler: tuple[type, str] | Callable, **options: Any) -> None:
+        RouteFacade.get(path, handler, **options)
 
     @classmethod
-    def post(cls, path: str, controller: Type[C], handler: str) -> Type[Self]:
-        try:
-            container = App.container()
-            if 'router' not in container:
-                logger.error("Router not bound in container")
-                return cls
-            router = container['router']
-        except Exception as e:
-            logger.error("Failed to resolve router from container: %s", e)
-            return cls
+    def post(cls, path: str, handler: tuple[type, str] | Callable, **options: Any) -> None:
+        RouteFacade.post(path, handler, **options)
 
-        instance = controller()
-        callback = getattr(instance, handler)
-        cast(RouterType, router).post(path)(callback)
-        return cls
+    @classmethod
+    def put(cls, path: str, handler: tuple[type, str] | Callable, **options: Any) -> None:
+        RouteFacade.put(path, handler, **options)
+
+    @classmethod
+    def patch(cls, path: str, handler: tuple[type, str] | Callable, **options: Any) -> None:
+        RouteFacade.patch(path, handler, **options)
+
+    @classmethod
+    def delete(cls, path: str, handler: tuple[type, str] | Callable, **options: Any) -> None:
+        RouteFacade.delete(path, handler, **options)
+
+    @classmethod
+    def options(cls, path: str, handler: tuple[type, str] | Callable, **options: Any) -> None:
+        RouteFacade.options(path, handler, **options)
+
+    @classmethod
+    def match(cls, methods: list[str], path: str, handler: tuple[type, str] | Callable, **options: Any) -> None:
+        RouteFacade.match(methods, path, handler, **options)
+
+    @classmethod
+    def any(cls, path: str, handler: tuple[type, str] | Callable, **options: Any) -> None:
+        RouteFacade.any(path, handler, **options)
+
+    @classmethod
+    def prefix(cls, prefix: str) -> 'RouteGroup':
+        return RouteFacade.prefix(prefix)
+
+    @classmethod
+    def middleware(cls, *mw: str) -> 'RouteGroup':
+        return RouteFacade.middleware(*mw)
+
+    @classmethod
+    def namespace(cls, ns: str) -> 'RouteGroup':
+        return RouteFacade.namespace(ns)
+
+    @classmethod
+    def group(cls, callback: Callable[[], None]) -> None:
+        RouteFacade.group(callback)
+
+    @classmethod
+    def resource(cls, name: str, controller: type | str, **options: Any) -> None:
+        RouteFacade.resource(name, controller, **options)
