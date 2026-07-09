@@ -9,5 +9,8 @@ class ApplicationInterface(ABC):
     @abstractmethod
     def boot(self) -> Result[None]: ...
 
+    def route_groups(self) -> dict[str, dict[str, Any]]:
+        return {}
+
     async def status(self) -> Result[Mapping[str, Any]]:
         return Success({})

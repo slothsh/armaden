@@ -125,6 +125,15 @@ class CoreApplication:
                     f"Type discovery failed during application bootstrap: {discovery_result.failure()}"
                 )
 
+            from armaden.framework.runtime.providers.route_discovery_service_provider import (
+                RouteDiscoveryServiceProvider,
+            )
+            route_result = self.register(self._make_provider(RouteDiscoveryServiceProvider))
+            if not is_successful(route_result):
+                raise ApplicationException(
+                    f"Route discovery failed during application bootstrap: {route_result.failure()}"
+                )
+
         self._register_providers(with_user_providers=user_app_found)
 
         logger.info('Application successfully bootstrapped')

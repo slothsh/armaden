@@ -1,11 +1,9 @@
-from returns.pipeline import is_successful
 from returns.result import Success
 
 from armaden.framework.classes.service_provider import ServiceProvider
 from armaden.framework.classes.task import TaskBuilder
 from armaden.framework.facades import App
 from armaden.framework.utils.types import Result
-from armaden.framework.runtime.module_loader import ModuleLoader
 
 from armaden.framework.runtime.http.middleware.kernel import DefaultKernel
 from armaden.framework.runtime.http.routing.route_registrar import RouteRegistrar
@@ -13,7 +11,6 @@ from armaden.framework.runtime.http.routing.route_compiler import RouteCompiler
 from armaden.framework.runtime.services.default_api import DefaultApi
 
 import logging
-from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
@@ -48,20 +45,6 @@ class HttpServiceProvider(ServiceProvider):
 
         App.instance('api', api_app)
         App.instance('router', api_app.router)
-
-        routes_directory = Path(__file__).absolute().parent.parent / 'http' / 'routes'
-        route_files = routes_directory.glob('*.py')
-
-        for file in [
-            file for file in route_files
-            if file.is_file() and not file.name.startswith(('.', '_'))
-        ]:
-            if not is_successful(
-                result := ModuleLoader.try_import_module(
-                    f'armaden.framework.runtime.http.routes.{file.stem}'
-                )
-            ):
-                logger.error(result.failure)
 
         registrar = RouteRegistrar.get_instance()
         routes = registrar.get_routes()
