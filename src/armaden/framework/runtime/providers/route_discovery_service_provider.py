@@ -8,14 +8,9 @@ from typing import Any
 from returns.result import Success
 
 from armaden.framework.classes.service_provider import ServiceProvider
-from armaden.framework.facades import App
 from armaden.framework.protocols.application import ApplicationInterface
 from armaden.framework.runtime.http.routing.route_group import RouteGroupStack
-from armaden.framework.runtime.module_loader import ModuleLoader, ModuleLoaderError
-from armaden.framework.errors.error import Error
 from armaden.framework.utils.types import Result
-from returns.pipeline import is_successful
-from returns.result import Failure
 
 logger = logging.getLogger(__name__)
 
@@ -46,6 +41,8 @@ class RouteDiscoveryServiceProvider(ServiceProvider):
         user_app = self._container.make(ApplicationInterface)
         route_groups = self._get_route_groups(user_app)
         base_dir = str(Path(app_dir).absolute())
+        parent_dir = str(Path(app_dir).absolute().parent)
+        sys.path.insert(0, parent_dir)
         sys.path.insert(0, base_dir)
 
         try:
@@ -58,13 +55,15 @@ class RouteDiscoveryServiceProvider(ServiceProvider):
                     relative = file.relative_to(base_dir).with_suffix('')
                     dotted = '.'.join(relative.parts)
                     import_module(dotted)
-                    logger.debug("Loaded route file: %s", dotted)
+                    logger.info("Loaded route file: %s", dotted)
                 except Exception as exc:
                     logger.error("Failed to load route file %s: %s", file, exc)
                 finally:
                     if group_config:
                         RouteGroupStack.get_instance().pop()
         finally:
+            if parent_dir in sys.path:
+                sys.path.remove(parent_dir)
             if base_dir in sys.path:
                 sys.path.remove(base_dir)
 
