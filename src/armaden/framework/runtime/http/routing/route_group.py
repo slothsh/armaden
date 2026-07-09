@@ -27,6 +27,8 @@ class RouteGroupStack:
 
     def push(self, prefix: str = '', middleware: list[str] | None = None, namespace: str | None = None) -> None:
         parent = self._stack[-1] if self._stack else None
+        if prefix and not prefix.startswith('/'):
+            prefix = '/' + prefix
         resolved_prefix = prefix
         if parent and parent.prefix:
             resolved_prefix = parent.prefix.rstrip('/') + '/' + prefix.lstrip('/')
@@ -51,8 +53,12 @@ class RouteGroupStack:
     def resolve_path(self, path: str) -> str:
         state = self.current()
         if state and state.prefix:
-            return state.prefix.rstrip('/') + '/' + path.lstrip('/')
-        return path
+            resolved = state.prefix.rstrip('/') + '/' + path.lstrip('/')
+        else:
+            resolved = path
+        if not resolved.startswith('/'):
+            resolved = '/' + resolved
+        return resolved
 
     def resolve_middleware(self, middleware: list[str]) -> list[str]:
         state = self.current()

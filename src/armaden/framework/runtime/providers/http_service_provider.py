@@ -30,7 +30,7 @@ class HttpServiceProvider(ServiceProvider):
 
         default_api = DefaultApi()
         api_app = default_api.app
-        compiler = RouteCompiler(api_app, kernel)
+        compiler = RouteCompiler(api_app, kernel, container=self._container)
 
         task = (
             TaskBuilder()

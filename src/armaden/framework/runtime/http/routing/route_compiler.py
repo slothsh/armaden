@@ -18,9 +18,10 @@ logger = logging.getLogger(__name__)
 
 
 class RouteCompiler:
-    def __init__(self, app: FastAPI, kernel: HttpKernel | None = None) -> None:
+    def __init__(self, app: FastAPI, kernel: HttpKernel | None = None, container: Any = None) -> None:
         self._app = app
         self._kernel = kernel
+        self._container = container
 
     def compile(
         self,
@@ -60,7 +61,7 @@ class RouteCompiler:
                 await wrapped_request._load_body()
                 RequestContext.set_request(wrapped_request)
                 try:
-                    controller_instance = App.make(controller_cls)
+                    controller_instance = self._container.make(controller_cls)
                     method = getattr(controller_instance, method_name)
                     kwargs: dict[str, Any] = dict(request.path_params)
                     try:
@@ -135,7 +136,7 @@ class RouteCompiler:
                 pipeline = MiddlewarePipeline(
                     middleware_classes,
                     lambda req: handler(request),
-                    container=App.container(),
+                    container=self._container,
                 )
                 response = await pipeline.send(wrapped_request)
                 await pipeline.terminate(wrapped_request, response)
