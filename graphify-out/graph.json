@@ -35,14 +35,334 @@
   },
   "nodes": [
     {
+      "label": "route_compiler.py",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_http_routing_route_compiler",
+      "community": 122,
+      "norm_label": "route_compiler.py"
+    },
+    {
+      "label": "RouteCompiler",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler",
+      "community": 123,
+      "norm_label": "routecompiler"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_init",
+      "community": 123,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": "FastAPI",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "fastapi",
+      "community": 122,
+      "norm_label": "fastapi"
+    },
+    {
+      "label": "HttpKernel",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "httpkernel",
+      "community": 123,
+      "norm_label": "httpkernel"
+    },
+    {
+      "label": "Any",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "any",
+      "community": 68,
+      "norm_label": "any"
+    },
+    {
+      "label": ".compile()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_compile",
+      "community": 123,
+      "norm_label": ".compile()"
+    },
+    {
+      "label": "RouteDefinition",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "routedefinition",
+      "community": 123,
+      "norm_label": "routedefinition"
+    },
+    {
+      "label": "APIRouter",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "apirouter",
+      "community": 123,
+      "norm_label": "apirouter"
+    },
+    {
+      "label": "._resolve_handler()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L53",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_resolve_handler",
+      "community": 123,
+      "norm_label": "._resolve_handler()"
+    },
+    {
+      "label": "._resolve_middleware()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L104",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_resolve_middleware",
+      "community": 123,
+      "norm_label": "._resolve_middleware()"
+    },
+    {
+      "label": "._wrap_handler()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L121",
+      "_origin": "ast",
+      "id": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_wrap_handler",
+      "community": 123,
+      "norm_label": "._wrap_handler()"
+    },
+    {
+      "label": "Any",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 143,
+      "norm_label": "any",
+      "id": "src_armaden_framework_runtime_http_routing_route_compiler_py_any"
+    },
+    {
+      "label": "route_group.py",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 120,
+      "norm_label": "route_group.py",
+      "id": "src_armaden_framework_runtime_http_routing_route_group"
+    },
+    {
+      "label": "GroupState",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L7",
+      "_origin": "ast",
+      "community": 120,
+      "norm_label": "groupstate",
+      "id": "src_armaden_framework_runtime_http_routing_route_group_groupstate"
+    },
+    {
+      "label": "RouteGroupStack",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L13",
+      "_origin": "ast",
+      "community": 120,
+      "norm_label": "routegroupstack",
+      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L17",
+      "_origin": "ast",
+      "community": 120,
+      "norm_label": ".__init__()",
+      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_init"
+    },
+    {
+      "label": ".get_instance()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L21",
+      "_origin": "ast",
+      "community": 120,
+      "norm_label": ".get_instance()",
+      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_get_instance"
+    },
+    {
+      "label": ".push()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L28",
+      "_origin": "ast",
+      "community": 120,
+      "norm_label": ".push()",
+      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_push"
+    },
+    {
+      "label": ".pop()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L46",
+      "_origin": "ast",
+      "community": 120,
+      "norm_label": ".pop()",
+      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_pop"
+    },
+    {
+      "label": ".current()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L50",
+      "_origin": "ast",
+      "community": 120,
+      "norm_label": ".current()",
+      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_current"
+    },
+    {
+      "label": ".resolve_path()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L53",
+      "_origin": "ast",
+      "community": 120,
+      "norm_label": ".resolve_path()",
+      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_path"
+    },
+    {
+      "label": ".resolve_middleware()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L63",
+      "_origin": "ast",
+      "community": 120,
+      "norm_label": ".resolve_middleware()",
+      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_middleware"
+    },
+    {
+      "label": ".resolve_handler()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L69",
+      "_origin": "ast",
+      "community": 120,
+      "norm_label": ".resolve_handler()",
+      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_handler"
+    },
+    {
+      "label": "Any",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 120,
+      "norm_label": "any",
+      "id": "src_armaden_framework_runtime_http_routing_route_group_py_any"
+    },
+    {
+      "label": "RouteGroup",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L79",
+      "_origin": "ast",
+      "community": 120,
+      "norm_label": "routegroup",
+      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L80",
+      "_origin": "ast",
+      "community": 120,
+      "norm_label": ".__init__()",
+      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroup_init"
+    },
+    {
+      "label": ".prefix()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L90",
+      "_origin": "ast",
+      "community": 120,
+      "norm_label": ".prefix()",
+      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroup_prefix"
+    },
+    {
+      "label": ".middleware()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L94",
+      "_origin": "ast",
+      "community": 120,
+      "norm_label": ".middleware()",
+      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroup_middleware"
+    },
+    {
+      "label": ".namespace()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L98",
+      "_origin": "ast",
+      "community": 120,
+      "norm_label": ".namespace()",
+      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroup_namespace"
+    },
+    {
+      "label": ".__enter__()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L102",
+      "_origin": "ast",
+      "community": 120,
+      "norm_label": ".__enter__()",
+      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroup_enter"
+    },
+    {
+      "label": ".__exit__()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L110",
+      "_origin": "ast",
+      "community": 120,
+      "norm_label": ".__exit__()",
+      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroup_exit"
+    },
+    {
       "label": "http_service_provider.py",
       "file_type": "code",
       "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_armaden_framework_runtime_providers_http_service_provider",
       "community": 107,
-      "norm_label": "http_service_provider.py"
+      "norm_label": "http_service_provider.py",
+      "id": "src_armaden_framework_runtime_providers_http_service_provider"
     },
     {
       "label": "HttpServiceProvider",
@@ -50,9 +370,9 @@
       "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
       "source_location": "L19",
       "_origin": "ast",
-      "id": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider",
       "community": 68,
-      "norm_label": "httpserviceprovider"
+      "norm_label": "httpserviceprovider",
+      "id": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider"
     },
     {
       "label": "ServiceProvider",
@@ -60,9 +380,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "serviceprovider",
-      "community": 128,
-      "norm_label": "serviceprovider"
+      "community": 68,
+      "norm_label": "serviceprovider",
+      "id": "serviceprovider"
     },
     {
       "label": ".register()",
@@ -70,9 +390,9 @@
       "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
       "source_location": "L22",
       "_origin": "ast",
-      "id": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_register",
-      "community": 68,
-      "norm_label": ".register()"
+      "community": 3,
+      "norm_label": ".register()",
+      "id": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_register"
     },
     {
       "label": "Result",
@@ -80,9 +400,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "result",
       "community": 3,
-      "norm_label": "result"
+      "norm_label": "result",
+      "id": "result"
     },
     {
       "label": ".boot()",
@@ -90,9 +410,9 @@
       "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
       "source_location": "L25",
       "_origin": "ast",
-      "id": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_boot",
-      "community": 68,
-      "norm_label": ".boot()"
+      "community": 123,
+      "norm_label": ".boot()",
+      "id": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_boot"
     },
     {
       "label": "application.py",
@@ -143,16 +463,6 @@
       "community": 68,
       "norm_label": ".route_groups()",
       "id": "src_armaden_framework_protocols_application_applicationinterface_route_groups"
-    },
-    {
-      "label": "Any",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "community": 68,
-      "norm_label": "any",
-      "id": "any"
     },
     {
       "label": ".status()",
@@ -433,116 +743,6 @@
       "community": 68,
       "norm_label": "path",
       "id": "path"
-    },
-    {
-      "label": "route_compiler.py",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 122,
-      "norm_label": "route_compiler.py",
-      "id": "src_armaden_framework_runtime_http_routing_route_compiler"
-    },
-    {
-      "label": "RouteCompiler",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L20",
-      "_origin": "ast",
-      "community": 123,
-      "norm_label": "routecompiler",
-      "id": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler"
-    },
-    {
-      "label": ".__init__()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L21",
-      "_origin": "ast",
-      "community": 123,
-      "norm_label": ".__init__()",
-      "id": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_init"
-    },
-    {
-      "label": "FastAPI",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "community": 122,
-      "norm_label": "fastapi",
-      "id": "fastapi"
-    },
-    {
-      "label": "HttpKernel",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "community": 123,
-      "norm_label": "httpkernel",
-      "id": "httpkernel"
-    },
-    {
-      "label": ".compile()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L25",
-      "_origin": "ast",
-      "community": 123,
-      "norm_label": ".compile()",
-      "id": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_compile"
-    },
-    {
-      "label": "RouteDefinition",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "community": 123,
-      "norm_label": "routedefinition",
-      "id": "routedefinition"
-    },
-    {
-      "label": "APIRouter",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "community": 123,
-      "norm_label": "apirouter",
-      "id": "apirouter"
-    },
-    {
-      "label": "._resolve_handler()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L52",
-      "_origin": "ast",
-      "community": 123,
-      "norm_label": "._resolve_handler()",
-      "id": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_resolve_handler"
-    },
-    {
-      "label": "._resolve_middleware()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L104",
-      "_origin": "ast",
-      "community": 123,
-      "norm_label": "._resolve_middleware()",
-      "id": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_resolve_middleware"
-    },
-    {
-      "label": "._wrap_handler()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L121",
-      "_origin": "ast",
-      "community": 123,
-      "norm_label": "._wrap_handler()",
-      "id": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_wrap_handler"
     },
     {
       "label": "__init__.py",
@@ -1140,7 +1340,7 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L195",
       "_origin": "ast",
-      "community": 130,
+      "community": 10,
       "norm_label": ".booting()",
       "id": "src_armaden_framework_runtime_application_coreapplication_booting"
     },
@@ -1150,7 +1350,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 130,
+      "community": 10,
       "norm_label": "callable",
       "id": "callable"
     },
@@ -1160,7 +1360,7 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L198",
       "_origin": "ast",
-      "community": 130,
+      "community": 10,
       "norm_label": ".booted()",
       "id": "src_armaden_framework_runtime_application_coreapplication_booted"
     },
@@ -1170,7 +1370,7 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L203",
       "_origin": "ast",
-      "community": 130,
+      "community": 10,
       "norm_label": ".terminating()",
       "id": "src_armaden_framework_runtime_application_coreapplication_terminating"
     },
@@ -3123,196 +3323,6 @@
       "community": 120,
       "norm_label": ".resource()",
       "id": "src_armaden_framework_runtime_http_routing_route_facade_routefacade_resource"
-    },
-    {
-      "label": "route_group.py",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 120,
-      "norm_label": "route_group.py",
-      "id": "src_armaden_framework_runtime_http_routing_route_group"
-    },
-    {
-      "label": "GroupState",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L7",
-      "_origin": "ast",
-      "community": 120,
-      "norm_label": "groupstate",
-      "id": "src_armaden_framework_runtime_http_routing_route_group_groupstate"
-    },
-    {
-      "label": "RouteGroupStack",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L13",
-      "_origin": "ast",
-      "community": 120,
-      "norm_label": "routegroupstack",
-      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack"
-    },
-    {
-      "label": ".__init__()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L17",
-      "_origin": "ast",
-      "community": 120,
-      "norm_label": ".__init__()",
-      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_init"
-    },
-    {
-      "label": ".get_instance()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L21",
-      "_origin": "ast",
-      "community": 120,
-      "norm_label": ".get_instance()",
-      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_get_instance"
-    },
-    {
-      "label": ".push()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L28",
-      "_origin": "ast",
-      "community": 120,
-      "norm_label": ".push()",
-      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_push"
-    },
-    {
-      "label": ".pop()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L44",
-      "_origin": "ast",
-      "community": 120,
-      "norm_label": ".pop()",
-      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_pop"
-    },
-    {
-      "label": ".current()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L48",
-      "_origin": "ast",
-      "community": 120,
-      "norm_label": ".current()",
-      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_current"
-    },
-    {
-      "label": ".resolve_path()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L51",
-      "_origin": "ast",
-      "community": 120,
-      "norm_label": ".resolve_path()",
-      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_path"
-    },
-    {
-      "label": ".resolve_middleware()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L57",
-      "_origin": "ast",
-      "community": 120,
-      "norm_label": ".resolve_middleware()",
-      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_middleware"
-    },
-    {
-      "label": ".resolve_handler()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L63",
-      "_origin": "ast",
-      "community": 120,
-      "norm_label": ".resolve_handler()",
-      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_handler"
-    },
-    {
-      "label": "Any",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "community": 120,
-      "norm_label": "any",
-      "id": "src_armaden_framework_runtime_http_routing_route_group_py_any"
-    },
-    {
-      "label": "RouteGroup",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L73",
-      "_origin": "ast",
-      "community": 120,
-      "norm_label": "routegroup",
-      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
-    },
-    {
-      "label": ".__init__()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L74",
-      "_origin": "ast",
-      "community": 120,
-      "norm_label": ".__init__()",
-      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroup_init"
-    },
-    {
-      "label": ".prefix()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L84",
-      "_origin": "ast",
-      "community": 120,
-      "norm_label": ".prefix()",
-      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroup_prefix"
-    },
-    {
-      "label": ".middleware()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L88",
-      "_origin": "ast",
-      "community": 120,
-      "norm_label": ".middleware()",
-      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroup_middleware"
-    },
-    {
-      "label": ".namespace()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L92",
-      "_origin": "ast",
-      "community": 120,
-      "norm_label": ".namespace()",
-      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroup_namespace"
-    },
-    {
-      "label": ".__enter__()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L96",
-      "_origin": "ast",
-      "community": 120,
-      "norm_label": ".__enter__()",
-      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroup_enter"
-    },
-    {
-      "label": ".__exit__()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L104",
-      "_origin": "ast",
-      "community": 120,
-      "norm_label": ".__exit__()",
-      "id": "src_armaden_framework_runtime_http_routing_route_group_routegroup_exit"
     },
     {
       "label": "route_parameter.py",
@@ -5310,7 +5320,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server.py",
       "source_location": "L140",
       "_origin": "ast",
-      "community": 3,
+      "community": 68,
       "norm_label": ".status()",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_armareforgerserver_status"
     },
@@ -5711,7 +5721,7 @@
       "source_file": "src/armaden/framework/classes/executable.py",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 109,
+      "community": 130,
       "norm_label": "executable",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_framework_classes_executable_executable"
@@ -5722,7 +5732,7 @@
       "source_file": "src/armaden/framework/classes/executable.py",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 109,
+      "community": 130,
       "norm_label": ".__init__()",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_framework_classes_executable_executable_init"
@@ -5733,7 +5743,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 109,
+      "community": 130,
       "norm_label": "result",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_framework_classes_executable_py_result"
@@ -5744,7 +5754,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 109,
+      "community": 130,
       "norm_label": "path",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_framework_classes_executable_py_path"
@@ -5755,7 +5765,7 @@
       "source_file": "src/armaden/framework/classes/executable.py",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 109,
+      "community": 130,
       "norm_label": ".build_argv()",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_framework_classes_executable_executable_build_argv"
@@ -5766,7 +5776,7 @@
       "source_file": "src/armaden/framework/classes/executable.py",
       "source_location": "L27",
       "_origin": "ast",
-      "community": 109,
+      "community": 130,
       "norm_label": ".consume_argv()",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_framework_classes_executable_executable_consume_argv"
@@ -5777,7 +5787,7 @@
       "source_file": "src/armaden/framework/classes/executable.py",
       "source_location": "L33",
       "_origin": "ast",
-      "community": 109,
+      "community": 130,
       "norm_label": ".save_params()",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_framework_classes_executable_executable_save_params"
@@ -5788,7 +5798,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 109,
+      "community": 130,
       "norm_label": "self",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_framework_classes_executable_py_self"
@@ -5799,7 +5809,7 @@
       "source_file": "src/armaden/framework/classes/executable.py",
       "source_location": "L39",
       "_origin": "ast",
-      "community": 109,
+      "community": 130,
       "norm_label": ".clear_params()",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_framework_classes_executable_executable_clear_params"
@@ -5810,7 +5820,7 @@
       "source_file": "src/armaden/framework/classes/executable.py",
       "source_location": "L44",
       "_origin": "ast",
-      "community": 109,
+      "community": 130,
       "norm_label": ".restore_params()",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_framework_classes_executable_executable_restore_params"
@@ -5821,7 +5831,7 @@
       "source_file": "src/armaden/framework/classes/executable.py",
       "source_location": "L50",
       "_origin": "ast",
-      "community": 109,
+      "community": 130,
       "norm_label": ".push()",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_framework_classes_executable_executable_push"
@@ -5832,7 +5842,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 109,
+      "community": 130,
       "norm_label": "pushvalue",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_framework_classes_executable_py_pushvalue"
@@ -5843,7 +5853,7 @@
       "source_file": "src/armaden/framework/classes/executable.py",
       "source_location": "L62",
       "_origin": "ast",
-      "community": 109,
+      "community": 130,
       "norm_label": ".reset_params()",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_framework_classes_executable_executable_reset_params"
@@ -5854,7 +5864,7 @@
       "source_file": "src/armaden/framework/classes/executable.py",
       "source_location": "L66",
       "_origin": "ast",
-      "community": 109,
+      "community": 130,
       "norm_label": "._serialize_value()",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_framework_classes_executable_executable_serialize_value"
@@ -5865,7 +5875,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 6,
+      "community": 109,
       "norm_label": "task.py",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task"
@@ -6008,7 +6018,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L61",
       "_origin": "ast",
-      "community": 6,
+      "community": 131,
       "norm_label": "taskbuilder",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder"
@@ -6019,7 +6029,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L62",
       "_origin": "ast",
-      "community": 6,
+      "community": 131,
       "norm_label": ".__init__()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_init"
@@ -6030,7 +6040,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L72",
       "_origin": "ast",
-      "community": 6,
+      "community": 131,
       "norm_label": ".name()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_name"
@@ -6041,7 +6051,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 6,
+      "community": 131,
       "norm_label": "self",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_py_self"
@@ -6052,7 +6062,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L76",
       "_origin": "ast",
-      "community": 6,
+      "community": 131,
       "norm_label": ".description()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_description"
@@ -6063,7 +6073,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L80",
       "_origin": "ast",
-      "community": 6,
+      "community": 131,
       "norm_label": ".on_initialize()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_on_initialize"
@@ -6074,7 +6084,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L84",
       "_origin": "ast",
-      "community": 6,
+      "community": 131,
       "norm_label": ".on_run()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_on_run"
@@ -6085,7 +6095,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L88",
       "_origin": "ast",
-      "community": 6,
+      "community": 131,
       "norm_label": ".on_shutdown()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_on_shutdown"
@@ -6096,7 +6106,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L92",
       "_origin": "ast",
-      "community": 6,
+      "community": 131,
       "norm_label": ".on_status()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_on_status"
@@ -6107,7 +6117,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L96",
       "_origin": "ast",
-      "community": 6,
+      "community": 131,
       "norm_label": ".exclusive_thread()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_exclusive_thread"
@@ -6118,7 +6128,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L100",
       "_origin": "ast",
-      "community": 6,
+      "community": 131,
       "norm_label": ".shared_thread()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_shared_thread"
@@ -6129,7 +6139,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L104",
       "_origin": "ast",
-      "community": 6,
+      "community": 131,
       "norm_label": ".with_auto_restart()",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_classes_task_taskbuilder_with_auto_restart"
@@ -6206,7 +6216,7 @@
       "source_file": "src/armaden/framework/enums/__init__.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 131,
+      "community": 112,
       "norm_label": "__init__.py",
       "community_name": "Supervisor Request Handling",
       "id": "src_armaden_framework_enums_init"
@@ -6217,7 +6227,7 @@
       "source_file": "src/armaden/framework/enums/health_status.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 131,
+      "community": 112,
       "norm_label": "health_status.py",
       "community_name": "Supervisor Request Handling",
       "id": "src_armaden_framework_enums_health_status"
@@ -6228,7 +6238,7 @@
       "source_file": "src/armaden/framework/enums/health_status.py",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 131,
+      "community": 112,
       "norm_label": "healthstatus",
       "community_name": "Application Health Status",
       "id": "src_armaden_framework_enums_health_status_healthstatus"
@@ -6239,7 +6249,7 @@
       "source_file": "src/armaden/framework/enums/supervisor_request_kind.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 131,
+      "community": 112,
       "norm_label": "supervisor_request_kind.py",
       "community_name": "Supervisor Request Handling",
       "id": "src_armaden_framework_enums_supervisor_request_kind"
@@ -6360,7 +6370,7 @@
       "source_file": "src/armaden/framework/errors/error.py",
       "source_location": "L34",
       "_origin": "ast",
-      "community": 109,
+      "community": 140,
       "norm_label": ".value()",
       "community_name": "Config Value Management",
       "id": "src_armaden_framework_errors_error_errorkindinterface_value"
@@ -8098,7 +8108,7 @@
       "source_file": "src/armaden/framework/runtime/default_application.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 15,
+      "community": 107,
       "norm_label": "default_application.py",
       "community_name": "Framework Service Providers",
       "id": "src_armaden_framework_runtime_default_application"
@@ -8109,7 +8119,7 @@
       "source_file": "src/armaden/framework/runtime/default_application.py",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 15,
+      "community": 107,
       "norm_label": "defaultapplication",
       "community_name": "Application Health Status",
       "id": "src_armaden_framework_runtime_default_application_defaultapplication"
@@ -8120,7 +8130,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 15,
+      "community": 107,
       "norm_label": "application",
       "community_name": "Application Health Status",
       "id": "application"
@@ -8131,7 +8141,7 @@
       "source_file": "src/armaden/framework/runtime/default_application.py",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 15,
+      "community": 107,
       "norm_label": ".boot()",
       "community_name": "Application Health Status",
       "id": "src_armaden_framework_runtime_default_application_defaultapplication_boot"
@@ -8142,7 +8152,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 15,
+      "community": 107,
       "norm_label": "result",
       "community_name": "Application Health Status",
       "id": "src_armaden_framework_runtime_default_application_py_result"
@@ -8450,7 +8460,7 @@
       "source_file": "src/armaden/framework/runtime/module_loader.py",
       "source_location": "L18",
       "_origin": "ast",
-      "community": 109,
+      "community": 138,
       "norm_label": "moduleloader",
       "community_name": "Module Discovery Loader",
       "id": "src_armaden_framework_runtime_module_loader_moduleloader"
@@ -8461,7 +8471,7 @@
       "source_file": "src/armaden/framework/runtime/module_loader.py",
       "source_location": "L20",
       "_origin": "ast",
-      "community": 109,
+      "community": 138,
       "norm_label": ".try_load_user_application()",
       "community_name": "Module Discovery Loader",
       "id": "src_armaden_framework_runtime_module_loader_moduleloader_try_load_user_application"
@@ -8472,7 +8482,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 109,
+      "community": 138,
       "norm_label": "result",
       "community_name": "Module Discovery Loader",
       "id": "src_armaden_framework_runtime_module_loader_py_result"
@@ -8483,7 +8493,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 109,
+      "community": 138,
       "norm_label": "any",
       "community_name": "Module Discovery Loader",
       "id": "src_armaden_framework_runtime_module_loader_py_any"
@@ -8494,7 +8504,7 @@
       "source_file": "src/armaden/framework/runtime/module_loader.py",
       "source_location": "L51",
       "_origin": "ast",
-      "community": 109,
+      "community": 138,
       "norm_label": ".try_load_user_app_provider()",
       "community_name": "Module Discovery Loader",
       "id": "src_armaden_framework_runtime_module_loader_moduleloader_try_load_user_app_provider"
@@ -8505,7 +8515,7 @@
       "source_file": "src/armaden/framework/runtime/module_loader.py",
       "source_location": "L94",
       "_origin": "ast",
-      "community": 109,
+      "community": 138,
       "norm_label": ".try_load_user_config()",
       "community_name": "Module Discovery Loader",
       "id": "src_armaden_framework_runtime_module_loader_moduleloader_try_load_user_config"
@@ -8516,7 +8526,7 @@
       "source_file": "src/armaden/framework/runtime/module_loader.py",
       "source_location": "L131",
       "_origin": "ast",
-      "community": 109,
+      "community": 138,
       "norm_label": ".try_discover_user_modules()",
       "community_name": "Module Discovery Loader",
       "id": "src_armaden_framework_runtime_module_loader_moduleloader_try_discover_user_modules"
@@ -8527,7 +8537,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 109,
+      "community": 138,
       "norm_label": "moduletype",
       "community_name": "Module Discovery Loader",
       "id": "moduletype"
@@ -8538,7 +8548,7 @@
       "source_file": "src/armaden/framework/runtime/module_loader.py",
       "source_location": "L178",
       "_origin": "ast",
-      "community": 109,
+      "community": 138,
       "norm_label": ".try_import_module()",
       "community_name": "Module Discovery Loader",
       "id": "src_armaden_framework_runtime_module_loader_moduleloader_try_import_module"
@@ -8626,7 +8636,7 @@
       "source_file": "src/armaden/framework/runtime/providers/type_discovery_service_provider.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 109,
+      "community": 141,
       "norm_label": "type_discovery_service_provider.py",
       "community_name": "Framework Service Providers",
       "id": "src_armaden_framework_runtime_providers_type_discovery_service_provider"
@@ -8637,7 +8647,7 @@
       "source_file": "src/armaden/framework/runtime/providers/type_discovery_service_provider.py",
       "source_location": "L29",
       "_origin": "ast",
-      "community": 109,
+      "community": 141,
       "norm_label": "typediscoveryserviceprovider",
       "community_name": "Type Discovery Provider",
       "id": "src_armaden_framework_runtime_providers_type_discovery_service_provider_typediscoveryserviceprovider"
@@ -8648,7 +8658,7 @@
       "source_file": "src/armaden/framework/runtime/providers/type_discovery_service_provider.py",
       "source_location": "L32",
       "_origin": "ast",
-      "community": 109,
+      "community": 141,
       "norm_label": ".register()",
       "community_name": "Type Discovery Provider",
       "id": "src_armaden_framework_runtime_providers_type_discovery_service_provider_typediscoveryserviceprovider_register"
@@ -8659,7 +8669,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 109,
+      "community": 141,
       "norm_label": "result",
       "community_name": "Type Discovery Provider",
       "id": "src_armaden_framework_runtime_providers_type_discovery_service_provider_py_result"
@@ -8670,7 +8680,7 @@
       "source_file": "src/armaden/framework/runtime/providers/type_discovery_service_provider.py",
       "source_location": "L53",
       "_origin": "ast",
-      "community": 109,
+      "community": 141,
       "norm_label": "._declared_classes()",
       "community_name": "Type Discovery Provider",
       "id": "src_armaden_framework_runtime_providers_type_discovery_service_provider_typediscoveryserviceprovider_declared_classes"
@@ -8681,7 +8691,7 @@
       "source_file": "src/armaden/framework/runtime/providers/type_discovery_service_provider.py",
       "source_location": "L59",
       "_origin": "ast",
-      "community": 109,
+      "community": 141,
       "norm_label": "._bind_class()",
       "community_name": "Type Discovery Provider",
       "id": "src_armaden_framework_runtime_providers_type_discovery_service_provider_typediscoveryserviceprovider_bind_class"
@@ -8692,7 +8702,7 @@
       "source_file": "src/armaden/framework/runtime/providers/type_discovery_service_provider.py",
       "source_location": "L101",
       "_origin": "ast",
-      "community": 109,
+      "community": 141,
       "norm_label": "typediscoveryerror",
       "community_name": "Framework Service Providers",
       "id": "src_armaden_framework_runtime_providers_type_discovery_service_provider_typediscoveryerror"
@@ -9275,7 +9285,7 @@
       "source_file": "src/armaden/framework/utils/dictionary.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 109,
+      "community": 140,
       "norm_label": "dictionary.py",
       "community_name": "Task Lifecycle Management",
       "id": "src_armaden_framework_utils_dictionary"
@@ -9286,7 +9296,7 @@
       "source_file": "src/armaden/framework/utils/dictionary.py",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 109,
+      "community": 140,
       "norm_label": "dictionary",
       "community_name": "Application Health Status",
       "id": "src_armaden_framework_utils_dictionary_dictionary"
@@ -9297,7 +9307,7 @@
       "source_file": "src/armaden/framework/utils/dictionary.py",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 109,
+      "community": 140,
       "norm_label": ".has()",
       "community_name": "Config Value Management",
       "id": "src_armaden_framework_utils_dictionary_dictionary_has"
@@ -9308,7 +9318,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 109,
+      "community": 140,
       "norm_label": "any",
       "community_name": "Config Value Management",
       "id": "src_armaden_framework_utils_dictionary_py_any"
@@ -9319,7 +9329,7 @@
       "source_file": "src/armaden/framework/utils/dictionary.py",
       "source_location": "L26",
       "_origin": "ast",
-      "community": 109,
+      "community": 140,
       "norm_label": ".without()",
       "community_name": "Config Value Management",
       "id": "src_armaden_framework_utils_dictionary_dictionary_without"
@@ -9330,7 +9340,7 @@
       "source_file": "src/armaden/framework/utils/dictionary.py",
       "source_location": "L43",
       "_origin": "ast",
-      "community": 109,
+      "community": 140,
       "norm_label": ".merge()",
       "community_name": "Config Value Management",
       "id": "src_armaden_framework_utils_dictionary_dictionary_merge"
@@ -9671,7 +9681,7 @@
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_executable.py",
       "source_location": "L33",
       "_origin": "ast",
-      "community": 109,
+      "community": 140,
       "norm_label": ".__init__()",
       "community_name": "Config Value Management",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_executable_armareforgerserverexecutable_init"
@@ -9682,7 +9692,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 109,
+      "community": 140,
       "norm_label": "config",
       "community_name": "Config Value Management",
       "id": "src_armaden_games_arma_reforger_arma_reforger_server_executable_py_config"
@@ -11607,7 +11617,7 @@
       "source_file": "src/armaden/games/steamcmd/__init__.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 112,
+      "community": 142,
       "norm_label": "__init__.py",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_steamcmd_init"
@@ -11618,7 +11628,7 @@
       "source_file": "src/armaden/games/steamcmd/__init__.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 112,
+      "community": 142,
       "norm_label": "steamcmd \u2014 python wrapper for the steamcmd cli tool.",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_steamcmd_init_rationale_1"
@@ -11629,7 +11639,7 @@
       "source_file": "src/armaden/games/steamcmd/enums/__init__.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 112,
+      "community": 142,
       "norm_label": "__init__.py",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_steamcmd_enums_init"
@@ -11640,7 +11650,7 @@
       "source_file": "src/armaden/games/steamcmd/enums/steamcmd_executable_flag.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 112,
+      "community": 142,
       "norm_label": "steamcmd_executable_flag.py",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_steamcmd_enums_steamcmd_executable_flag"
@@ -11651,7 +11661,7 @@
       "source_file": "src/armaden/games/steamcmd/enums/steamcmd_executable_flag.py",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 112,
+      "community": 142,
       "norm_label": "steamcmdexecutableflag",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_steamcmd_enums_steamcmd_executable_flag_steamcmdexecutableflag"
@@ -11662,7 +11672,7 @@
       "source_file": "src/armaden/games/steamcmd/enums/steamcmd_executable_flag.py",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 112,
+      "community": 142,
       "norm_label": "steamcmd cli command flags (prefixed with ``+``).",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_steamcmd_enums_steamcmd_executable_flag_rationale_4"
@@ -11673,7 +11683,7 @@
       "source_file": "src/armaden/games/steamcmd/steamcmd_executable.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 112,
+      "community": 142,
       "norm_label": "steamcmd_executable.py",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_steamcmd_steamcmd_executable"
@@ -11695,7 +11705,7 @@
       "source_file": "src/armaden/games/steamcmd/steamcmd_executable.py",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 109,
+      "community": 5,
       "norm_label": ".__init__()",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_steamcmd_steamcmd_executable_steamcmdexecutable_init"
@@ -11706,7 +11716,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 109,
+      "community": 5,
       "norm_label": "config",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_steamcmd_steamcmd_executable_py_config"
@@ -11882,7 +11892,7 @@
       "source_file": "src/armaden/games/steamcmd/steamcmd_executable.py",
       "source_location": "L163",
       "_origin": "ast",
-      "community": 112,
+      "community": 142,
       "norm_label": "steamcmdexecutableerror",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_steamcmd_steamcmd_executable_steamcmdexecutableerror"
@@ -11893,7 +11903,7 @@
       "source_file": "src/armaden/games/steamcmd/steamcmd_executable_config.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 112,
+      "community": 142,
       "norm_label": "steamcmd_executable_config.py",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_steamcmd_steamcmd_executable_config"
@@ -11904,7 +11914,7 @@
       "source_file": "src/armaden/games/steamcmd/steamcmd_executable_config.py",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 112,
+      "community": 142,
       "norm_label": "config",
       "community_name": "Executable Argument Builder",
       "id": "src_armaden_games_steamcmd_steamcmd_executable_config_config"
@@ -14226,15 +14236,890 @@
   ],
   "links": [
     {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/__init__.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_init",
+      "target": "src_armaden_framework_runtime_http_routing_route_compiler"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_compiler",
+      "target": "fastapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_compiler",
+      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/__init__.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_init",
+      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler",
+      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_compile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler",
+      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler",
+      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_resolve_handler",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L104",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler",
+      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_resolve_middleware",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L121",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler",
+      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_wrap_handler",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider",
+      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_boot",
+      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_init",
+      "target": "any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_init",
+      "target": "fastapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_init",
+      "target": "httpkernel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/services/default_api.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_services_default_api",
+      "target": "fastapi"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/services/default_api.py",
+      "source_location": "L73",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_services_default_api_defaultapi_app",
+      "target": "fastapi"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/services/default_api.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_services_default_api_defaultapi_init",
+      "target": "fastapi"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/utils/types.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_utils_types",
+      "target": "fastapi"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_boot",
+      "target": "httpkernel"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_protocols_application_applicationinterface_route_groups",
+      "target": "any"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/protocols/application.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_protocols_application_applicationinterface_status",
+      "target": "any"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/route_discovery_service_provider.py",
+      "source_location": "L82",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_providers_route_discovery_service_provider_routediscoveryserviceprovider_find_group_for_file",
+      "target": "any"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/route_discovery_service_provider.py",
+      "source_location": "L73",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_providers_route_discovery_service_provider_routediscoveryserviceprovider_get_route_groups",
+      "target": "any"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server.py",
+      "source_location": "L140",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_armareforgerserver_status",
+      "target": "any"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "user/app/http/classes/api.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "user_app_http_classes_api_api_error",
+      "target": "any"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "user/app/http/classes/api.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "user_app_http_classes_api_api_success",
+      "target": "any"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_compile",
+      "target": "apirouter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_compile",
+      "target": "routedefinition",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_compile",
+      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_resolve_handler",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_compile",
+      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_resolve_middleware",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_compile",
+      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_wrap_handler",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_resolve_handler",
+      "target": "routedefinition",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
+      "source_location": "L104",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_resolve_middleware",
+      "target": "routedefinition",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/__init__.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_init",
+      "target": "src_armaden_framework_runtime_http_routing_route_group"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_facade.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_facade",
+      "target": "src_armaden_framework_runtime_http_routing_route_group"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_groupstate"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L79",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_registrar",
+      "target": "src_armaden_framework_runtime_http_routing_route_group"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/__init__.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_init",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_groupstate"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_current",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_groupstate"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_push",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_groupstate"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/__init__.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_init",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_current"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_get_instance"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_init"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_pop"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_push"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_handler"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_middleware"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L53",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_path"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_registrar",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "src_armaden_framework_runtime_http_routing_route_registrar_routeregistrar",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L103",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup_enter",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_get_instance"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L111",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup_exit",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_get_instance"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_registrar_routeregistrar_register",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_get_instance"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_registrar_routeregistrar_resource",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_get_instance"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L103",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup_enter",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_push"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L111",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup_exit",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_pop"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L70",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_handler",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_current"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L64",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_middleware",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_current"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_path",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_current"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_handler",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_py_any"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/__init__.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_init",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_facade.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_facade",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_facade.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "src_armaden_framework_runtime_http_routing_route_facade_routefacade",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/armaden/framework/runtime/http/routing/route_facade.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_facade_routefacade_group",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/armaden/framework/runtime/http/routing/route_facade.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_facade_routefacade_middleware",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/armaden/framework/runtime/http/routing/route_facade.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_facade_routefacade_namespace",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/armaden/framework/runtime/http/routing/route_facade.py",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_facade_routefacade_prefix",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup_enter"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L110",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup_exit"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L80",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup_init"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L94",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup_middleware"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L98",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup_namespace"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
+      "source_location": "L90",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup_prefix"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_registrar",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "src_armaden_framework_runtime_http_routing_route_registrar_routeregistrar",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_registrar_routeregistrar_group",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_registrar_routeregistrar_middleware",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_registrar_routeregistrar_namespace",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_http_routing_route_registrar_routeregistrar_prefix",
+      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_providers_http_service_provider",
-      "target": "armaden_framework_classes_service_provider",
-      "confidence_score": 1.0
+      "target": "armaden_framework_classes_service_provider"
     },
     {
       "relation": "imports_from",
@@ -14243,9 +15128,9 @@
       "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_providers_http_service_provider",
-      "target": "armaden_framework_classes_task",
-      "confidence_score": 1.0
+      "target": "armaden_framework_classes_task"
     },
     {
       "relation": "contains",
@@ -14253,9 +15138,9 @@
       "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_providers_http_service_provider",
-      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider"
     },
     {
       "relation": "re_exports",
@@ -14325,9 +15210,9 @@
       "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider",
-      "target": "serviceprovider",
-      "confidence_score": 1.0
+      "target": "serviceprovider"
     },
     {
       "relation": "method",
@@ -14335,9 +15220,9 @@
       "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
       "source_location": "L25",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider",
-      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_boot",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_boot"
     },
     {
       "relation": "method",
@@ -14345,9 +15230,9 @@
       "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
       "source_location": "L22",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider",
-      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_register",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_register"
     },
     {
       "relation": "imports",
@@ -14387,9 +15272,9 @@
       "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
       "source_location": "L22",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_register",
-      "target": "result",
-      "confidence_score": 1.0
+      "target": "result"
     },
     {
       "relation": "references",
@@ -14420,9 +15305,9 @@
       "source_file": "src/armaden/framework/runtime/providers/http_service_provider.py",
       "source_location": "L25",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_providers_http_service_provider_httpserviceprovider_boot",
-      "target": "result",
-      "confidence_score": 1.0
+      "target": "result"
     },
     {
       "relation": "references",
@@ -14932,83 +15817,6 @@
       "target": "abc"
     },
     {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/protocols/application.py",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_protocols_application_applicationinterface_route_groups",
-      "target": "any"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/protocols/application.py",
-      "source_location": "L18",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_protocols_application_applicationinterface_status",
-      "target": "any"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/route_discovery_service_provider.py",
-      "source_location": "L82",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_route_discovery_service_provider_routediscoveryserviceprovider_find_group_for_file",
-      "target": "any"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/route_discovery_service_provider.py",
-      "source_location": "L73",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_route_discovery_service_provider_routediscoveryserviceprovider_get_route_groups",
-      "target": "any"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server.py",
-      "source_location": "L140",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_games_arma_reforger_arma_reforger_server_armareforgerserver_status",
-      "target": "any"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "user/app/http/classes/api.py",
-      "source_location": "L18",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "user_app_http_classes_api_api_error",
-      "target": "any"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "user/app/http/classes/api.py",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "user_app_http_classes_api_api_success",
-      "target": "any"
-    },
-    {
       "relation": "re_exports",
       "context": "export",
       "confidence": "EXTRACTED",
@@ -15491,242 +16299,6 @@
       "weight": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_initialize_environment",
       "target": "path"
-    },
-    {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/__init__.py",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_init",
-      "target": "src_armaden_framework_runtime_http_routing_route_compiler"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_compiler",
-      "target": "fastapi"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L20",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_compiler",
-      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/__init__.py",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_init",
-      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L25",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler",
-      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_compile"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L21",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler",
-      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_init"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L52",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler",
-      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_resolve_handler"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L104",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler",
-      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_resolve_middleware"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L121",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler",
-      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_wrap_handler"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L21",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_init",
-      "target": "fastapi"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L21",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_init",
-      "target": "httpkernel"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/services/default_api.py",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_services_default_api",
-      "target": "fastapi"
-    },
-    {
-      "relation": "references",
-      "context": "return_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/services/default_api.py",
-      "source_location": "L73",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_services_default_api_defaultapi_app",
-      "target": "fastapi"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/services/default_api.py",
-      "source_location": "L19",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_services_default_api_defaultapi_init",
-      "target": "fastapi"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/utils/types.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_utils_types",
-      "target": "fastapi"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L25",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_compile",
-      "target": "apirouter"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L25",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_compile",
-      "target": "routedefinition"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L37",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_compile",
-      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_resolve_handler"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L38",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_compile",
-      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_resolve_middleware"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L39",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_compile",
-      "target": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_wrap_handler"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L52",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_resolve_handler",
-      "target": "routedefinition"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_compiler.py",
-      "source_location": "L104",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_compiler_routecompiler_resolve_middleware",
-      "target": "routedefinition"
     },
     {
       "relation": "re_exports",
@@ -20505,50 +21077,6 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/framework/runtime/http/routing/__init__.py",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_init",
-      "target": "src_armaden_framework_runtime_http_routing_route_group"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/__init__.py",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_init",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_groupstate"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/__init__.py",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_init",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/__init__.py",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_init",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack"
-    },
-    {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/__init__.py",
       "source_location": "L1",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -20682,28 +21210,6 @@
       "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_http_routing_route_facade",
       "target": "src_armaden_framework_runtime_http_routing_route_facade_routefacade"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_facade.py",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_facade",
-      "target": "src_armaden_framework_runtime_http_routing_route_group"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_facade.py",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_facade",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
     },
     {
       "relation": "imports_from",
@@ -20861,16 +21367,6 @@
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "src/armaden/framework/runtime/http/routing/route_facade.py",
-      "source_location": "L5",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "src_armaden_framework_runtime_http_routing_route_facade_routefacade",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_facade.py",
       "source_location": "L4",
       "weight": 0.8,
       "confidence_score": 0.5,
@@ -20975,449 +21471,6 @@
       "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_http_routing_route_facade_routefacade_resource",
       "target": "src_armaden_framework_runtime_http_routing_route_facade_py_any"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/armaden/framework/runtime/http/routing/route_facade.py",
-      "source_location": "L47",
-      "weight": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_facade_routefacade_prefix",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/armaden/framework/runtime/http/routing/route_facade.py",
-      "source_location": "L51",
-      "weight": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_facade_routefacade_middleware",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/armaden/framework/runtime/http/routing/route_facade.py",
-      "source_location": "L55",
-      "weight": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_facade_routefacade_namespace",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/armaden/framework/runtime/http/routing/route_facade.py",
-      "source_location": "L59",
-      "weight": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_facade_routefacade_group",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_groupstate"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L73",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_registrar",
-      "target": "src_armaden_framework_runtime_http_routing_route_group"
-    },
-    {
-      "relation": "references",
-      "context": "return_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L48",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_current",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_groupstate"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L38",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_push",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_groupstate"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L48",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_current"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L21",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_get_instance"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L17",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_init"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L44",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_pop"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L28",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_push"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L63",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_handler"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L57",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_middleware"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L51",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_path"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_registrar",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
-      "source_location": "L5",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "src_armaden_framework_runtime_http_routing_route_registrar_routeregistrar",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L97",
-      "weight": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup_enter",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_get_instance"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L105",
-      "weight": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup_exit",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_get_instance"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
-      "source_location": "L109",
-      "weight": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_registrar_routeregistrar_register",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_get_instance"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
-      "source_location": "L69",
-      "weight": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_registrar_routeregistrar_resource",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_get_instance"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L97",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup_enter",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_push"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L105",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup_exit",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_pop"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L64",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_handler",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_current"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L58",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_middleware",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_current"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L52",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_path",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_current"
-    },
-    {
-      "relation": "references",
-      "context": "return_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L63",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroupstack_resolve_handler",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_py_any"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L96",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup_enter"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L104",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup_exit"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L74",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup_init"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L88",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup_middleware"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L92",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup_namespace"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_group.py",
-      "source_location": "L84",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_group_routegroup",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup_prefix"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_registrar",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
-      "source_location": "L5",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "src_armaden_framework_runtime_http_routing_route_registrar_routeregistrar",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
-      "source_location": "L63",
-      "weight": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_registrar_routeregistrar_group",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
-      "source_location": "L57",
-      "weight": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_registrar_routeregistrar_middleware",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
-      "source_location": "L60",
-      "weight": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_registrar_routeregistrar_namespace",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/armaden/framework/runtime/http/routing/route_registrar.py",
-      "source_location": "L54",
-      "weight": 1.0,
-      "source": "src_armaden_framework_runtime_http_routing_route_registrar_routeregistrar_prefix",
-      "target": "src_armaden_framework_runtime_http_routing_route_group_routegroup"
     },
     {
       "relation": "contains",
@@ -42136,5 +42189,5 @@
       "source_file": "README.md"
     }
   ],
-  "built_at_commit": "35d2c1e6aef5fb067bd55f882e2e607d123b84bf"
+  "built_at_commit": "b1da64cfe473e423e0b86414bef46e5e005af606"
 }
