@@ -1,3 +1,7 @@
+## MANDATORY: Local Code Search/Traversal
+
+Always use the `graphify` skill to query and search for any local code. Only revert to manual grepping as a last resort.
+
 ## MANDATORY: Use td for Task Management
 
 Run td usage --new-session at conversation start (or after /clear). This tells you what to work on next.
