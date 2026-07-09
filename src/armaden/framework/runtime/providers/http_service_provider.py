@@ -20,14 +20,13 @@ class HttpServiceProvider(ServiceProvider):
     name = 'http'
 
     def register(self) -> Result[None]:
-        application = self._container.make(ApplicationInterface)
-        kernel = HttpKernel(application)
-        self._container.instance('http_kernel', kernel)
         return Success(None)
 
     def boot(self) -> Result[None]:
-        kernel = self._container.make('http_kernel')
+        application = self._container.make(ApplicationInterface)
+        kernel = HttpKernel(application)
         kernel.bootstrap()
+        self._container.instance('http_kernel', kernel)
 
         default_api = DefaultApi()
         api_app = default_api.app
