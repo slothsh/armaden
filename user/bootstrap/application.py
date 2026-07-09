@@ -7,6 +7,11 @@ from armaden.framework.utils.types import Result
 
 
 class Application(ApplicationBase):
+    def route_groups(self) -> dict:
+        return {
+            'api': {'prefix': '/api'},
+        }
+
     def boot(self) -> Result[None]:
         return Success(None)
 
