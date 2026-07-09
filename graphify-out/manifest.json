@@ -485,8 +485,8 @@
     "semantic_hash": ""
   },
   "user/bootstrap/application.py": {
-    "mtime": 1783619982.006813,
-    "ast_hash": "724c5558617ab7a4e694b6581b251fba",
+    "mtime": 1783620223.6622643,
+    "ast_hash": "cc89a507a2e97e0fe2778f513d284f8e",
     "semantic_hash": ""
   },
   "user/bootstrap/providers.py": {

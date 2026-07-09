@@ -129,8 +129,14 @@
   "127": "HttpServiceProvider",
   "128": "steamcmd_executable.py",
   "129": "ModuleLoader",
+  "130": "CoreApplicationInterface",
+  "131": "TypedDict",
+  "132": "__init__.py",
   "133": ".dispatch_subprocess",
   "134": "C",
   "135": "Self",
-  "136": "__init__.py"
+  "136": "__init__.py",
+  "137": "Application",
+  "138": "RconPacketInterface",
+  "139": "Result"
 }
