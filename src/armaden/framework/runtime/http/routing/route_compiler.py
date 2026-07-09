@@ -54,7 +54,7 @@ class RouteCompiler:
 
         if isinstance(handler, (list, tuple)):
             controller_cls, method_name = handler
-            async def _controller_handler(request: StarletteRequest, **kwargs: Any) -> Any:
+            async def _controller_handler(request: StarletteRequest) -> Any:
                 from armaden.framework.facades import App
                 wrapped_request = Request(request)
                 await wrapped_request._load_body()
@@ -62,6 +62,13 @@ class RouteCompiler:
                 try:
                     controller_instance = App.make(controller_cls)
                     method = getattr(controller_instance, method_name)
+                    kwargs: dict[str, Any] = dict(request.path_params)
+                    try:
+                        body = await request.json()
+                        if isinstance(body, dict):
+                            kwargs.update(body)
+                    except Exception:
+                        pass
                     try:
                         result = method(**kwargs)
                     except TypeError:
@@ -73,11 +80,18 @@ class RouteCompiler:
                     RequestContext.clear_request()
             return _controller_handler
 
-        async def _callable_handler(request: StarletteRequest, **kwargs: Any) -> Any:
+        async def _callable_handler(request: StarletteRequest) -> Any:
             wrapped_request = Request(request)
             await wrapped_request._load_body()
             RequestContext.set_request(wrapped_request)
             try:
+                kwargs: dict[str, Any] = dict(request.path_params)
+                try:
+                    body = await request.json()
+                    if isinstance(body, dict):
+                        kwargs.update(body)
+                except Exception:
+                    pass
                 result = handler(**kwargs)
                 if inspect.isawaitable(result):
                     result = await result
@@ -113,14 +127,14 @@ class RouteCompiler:
         if not middleware_classes:
             return handler
 
-        async def _wrapped(request: StarletteRequest, **kwargs: Any) -> Any:
+        async def _wrapped(request: StarletteRequest) -> Any:
             wrapped_request = Request(request)
             await wrapped_request._load_body()
             RequestContext.set_request(wrapped_request)
             try:
                 pipeline = MiddlewarePipeline(
                     middleware_classes,
-                    lambda req: handler(request, **kwargs),
+                    lambda req: handler(request),
                     container=App.container(),
                 )
                 response = await pipeline.send(wrapped_request)
