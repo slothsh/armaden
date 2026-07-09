@@ -1,6 +1,7 @@
 import importlib
 from typing import Any
 
+from armaden.framework.protocols.application import ApplicationInterface
 from .middleware import Middleware
 
 
@@ -9,8 +10,9 @@ class HttpKernel:
     middleware_groups: dict[str, list[type[Middleware]]] = {}
     route_middleware: dict[str, type[Middleware]] = {}
 
-    def __init__(self) -> None:
+    def __init__(self, app: ApplicationInterface | None = None) -> None:
         self._initialized = False
+        self._app = app
 
     def bootstrap(self) -> None:
         if self._initialized:
@@ -18,10 +20,14 @@ class HttpKernel:
         self._initialized = True
 
     def get_middleware(self) -> list[type[Middleware]]:
-        return list(self.middleware)
+        app_mw = list(self._app.middleware) if self._app else []
+        return app_mw + list(self.middleware)
 
     def get_middleware_groups(self) -> dict[str, list[type[Middleware]]]:
-        return dict(self.middleware_groups)
+        app_groups = dict(self._app.middleware_groups) if self._app else {}
+        merged = dict(app_groups)
+        merged.update(self.middleware_groups)
+        return merged
 
     def get_route_middleware(self) -> dict[str, type[Middleware]]:
         return dict(self.route_middleware)
@@ -34,10 +40,11 @@ class HttpKernel:
         return self._resolve_from_string(name_or_class)
 
     def resolve_middleware_list(self, names: list[str | type[Middleware]]) -> list[type[Middleware]]:
+        groups = self.get_middleware_groups()
         resolved: list[type[Middleware]] = []
         for name in names:
-            if isinstance(name, str) and name in self.middleware_groups:
-                group = self.middleware_groups[name]
+            if isinstance(name, str) and name in groups:
+                group = groups[name]
                 resolved.extend(self.resolve_middleware_list(group))
                 continue
             resolved.append(self.resolve_middleware(name))
@@ -51,12 +58,3 @@ class HttpKernel:
             return getattr(module, class_name)
         except (ValueError, ImportError, AttributeError) as e:
             raise ImportError(f'Cannot resolve middleware "{name}": {e}') from e
-
-
-class DefaultKernel(HttpKernel):
-    middleware: list[type[Middleware]] = []
-    middleware_groups: dict[str, list[type[Middleware]]] = {
-        'api': [],
-        'web': [],
-    }
-    route_middleware: dict[str, type[Middleware]] = {}

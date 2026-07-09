@@ -2,15 +2,16 @@ from returns.result import Success
 
 from armaden.framework.classes.service_provider import ServiceProvider
 from armaden.framework.classes.task import TaskBuilder
-from armaden.framework.facades import App
 from armaden.framework.utils.types import Result
 
-from armaden.framework.runtime.http.middleware.kernel import DefaultKernel
+from armaden.framework.runtime.http.middleware.kernel import HttpKernel
 from armaden.framework.runtime.http.routing.route_registrar import RouteRegistrar
 from armaden.framework.runtime.http.routing.route_compiler import RouteCompiler
 from armaden.framework.runtime.services.default_api import DefaultApi
+from armaden.framework.protocols.application import ApplicationInterface
 
 import logging
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
@@ -19,7 +20,9 @@ class HttpServiceProvider(ServiceProvider):
     name = 'http'
 
     def register(self) -> Result[None]:
-        self._container.singleton('http_kernel', DefaultKernel)
+        application = self._container.make(ApplicationInterface)
+        kernel = HttpKernel(application)
+        self._container.instance('http_kernel', kernel)
         return Success(None)
 
     def boot(self) -> Result[None]:
@@ -41,10 +44,21 @@ class HttpServiceProvider(ServiceProvider):
             .exclusive_thread()
             .build()
         )
-        App.supervisor().add_task(task)
+        self._container.make('app').supervisor.add_task(task)
 
-        App.instance('api', api_app)
-        App.instance('router', api_app.router)
+        self._container.instance('api', api_app)
+        self._container.instance('router', api_app.router)
+
+        route_files_dir = Path(__file__).absolute().parent.parent / 'http' / 'routes'
+        import importlib
+        for file in [
+            f for f in route_files_dir.glob('*.py')
+            if f.is_file() and not f.name.startswith(('.', '_'))
+        ]:
+            try:
+                importlib.import_module(f'armaden.framework.runtime.http.routes.{file.stem}')
+            except ImportError as e:
+                logger.warning('Failed to load route file %s: %s', file.name, e)
 
         registrar = RouteRegistrar.get_instance()
         routes = registrar.get_routes()
