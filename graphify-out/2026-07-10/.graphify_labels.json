@@ -247,5 +247,12 @@
   "245": ".script_authorize_all",
   "246": ".server_id",
   "247": ".server_world",
-  "248": "auth.py"
+  "248": "auth.py",
+  "249": ".extend",
+  "250": "__init__.py",
+  "251": "__init__.py",
+  "252": "DatagramTransportInterface",
+  "253": "SteamCmdExecutableFlag",
+  "254": "ApplicationInterface",
+  "255": "Any"
 }
