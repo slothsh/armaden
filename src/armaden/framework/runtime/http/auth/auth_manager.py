@@ -1,7 +1,5 @@
 from typing import Any
 
-from armaden.framework.protocols.application import ApplicationInterface
-
 from .api_user import ApiUser
 from .config_user_provider import ConfigUserProvider
 from .guards import AuthGuard, BasicAuthGuard, CustomHeaderGuard, TokenGuard
@@ -14,14 +12,14 @@ GUARD_MAP: dict[str, type[AuthGuard]] = {
 
 
 class AuthManager:
-    def __init__(self, app: ApplicationInterface) -> None:
-        self._app = app
+    def __init__(self) -> None:
         self._guards: dict[str, AuthGuard] = {}
         self._provider: ConfigUserProvider | None = None
         self._default_guard: str = 'token'
 
-    def bootstrap(self) -> None:
-        auth_config = self._app.config('auth', {})
+    def bootstrap(self, auth_config: dict[str, Any] | None = None) -> None:
+        if auth_config is None:
+            auth_config = {}
         self._default_guard = auth_config.get('defaults', {}).get('guard', 'token')
         guard_configs = auth_config.get('guards', {})
 

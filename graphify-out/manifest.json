@@ -235,8 +235,8 @@
     "semantic_hash": "94d1f66bcca7cfbb196e25fbf646c983"
   },
   "src/armaden/framework/runtime/providers/http_service_provider.py": {
-    "mtime": 1783700482.021793,
-    "ast_hash": "cfd1413b1a115430fd115cb4b604ad1f",
+    "mtime": 1783702625.6504786,
+    "ast_hash": "3c4ed7b888199d45d0fe83d591737349",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/providers/type_discovery_service_provider.py": {
@@ -720,8 +720,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/http/auth/auth_manager.py": {
-    "mtime": 1783700408.393951,
-    "ast_hash": "b57baaf1a8cfac6ac1c203677d9fa59e",
+    "mtime": 1783702625.6504786,
+    "ast_hash": "a2416bea1d29b7691b54e14f17ebcaa8",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/http/auth/authenticate_middleware.py": {
