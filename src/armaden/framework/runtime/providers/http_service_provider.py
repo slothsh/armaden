@@ -48,6 +48,8 @@ class HttpServiceProvider(ServiceProvider):
             'auth.header': AuthenticateWithHeader,
         })
 
+        self._container.instance(HttpKernel, kernel)
+
         self._container.instance('http_kernel', kernel)
 
         default_api = DefaultApi()
