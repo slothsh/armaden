@@ -21,7 +21,7 @@ from armaden.framework.protocols.supervisor_request_interface import SupervisorR
 from armaden.framework.dto.supervisor_request_data import SupervisorRequestData
 from armaden.framework.utils.types import Result, AsyncStreamArg, AsyncStreamCallback
 from armaden.framework.errors import Error
-from armaden.framework.protocols import TaskInterface
+from armaden.framework.protocols import TaskInterface, TaskRuntimeInterface
 
 logger = logging.getLogger(__name__)
 
@@ -253,7 +253,7 @@ class Supervisor:
     def _task_run(self, task_state: TaskStateData) -> Result[None]:
         runtime = TaskRuntime(task_state)
 
-        async def run(runtime: 'TaskRuntimeInterface') -> Result[None]:
+        async def run(runtime: TaskRuntimeInterface) -> Result[None]:
             return await task_state.task.run(runtime)
 
         task_state.future = asyncio.run_coroutine_threadsafe(

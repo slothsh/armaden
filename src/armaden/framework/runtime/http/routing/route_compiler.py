@@ -5,12 +5,13 @@ from typing import Any, Callable
 from fastapi import APIRouter, FastAPI
 from starlette.requests import Request as StarletteRequest
 
+from armaden.framework.runtime.http.middleware.middleware import Middleware
+
 from ..controller import Controller
 from ..middleware.kernel import HttpKernel
 from ..middleware.pipeline import MiddlewarePipeline
 from ..request import Request
 from ..request_context import RequestContext
-from ..response import JSONResponse
 from .route import RouteDefinition
 from .route_parameter import RouteParameter
 
@@ -106,7 +107,7 @@ class RouteCompiler:
         if kernel is None:
             return []
 
-        global_mw: list[str | type] = [mw for mw in kernel.get_middleware()]
+        global_mw: list[str | type[Middleware]] = [mw for mw in kernel.get_middleware()]
         route_mw = list(route.middleware)
 
         if isinstance(route.handler, (list, tuple)):
@@ -124,6 +125,8 @@ class RouteCompiler:
         middleware_classes: list[type],
         param_types: dict[str, type],
     ) -> Callable:
+        _ = param_types
+
         if not middleware_classes:
             return handler
 
@@ -134,7 +137,7 @@ class RouteCompiler:
             try:
                 pipeline = MiddlewarePipeline(
                     middleware_classes,
-                    lambda req: handler(request),
+                    lambda _: handler(request),
                     container=self._container,
                 )
                 response = await pipeline.send(wrapped_request)

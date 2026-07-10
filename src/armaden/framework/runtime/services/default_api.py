@@ -25,6 +25,7 @@ class DefaultApi:
     # --- Lifecycle Interface ----------------------------------------------------
 
     async def initialize(self, runtime: TaskRuntimeInterface) -> Result[None]:
+        _ = runtime
         try:
             server_config = uvicorn.Config(
                 app=self._app,
@@ -42,6 +43,7 @@ class DefaultApi:
 
 
     async def run(self, runtime: TaskRuntimeInterface) -> Result[None]:
+        _ = runtime
         if not self._uvicorn_server:
             return Failure(Error(DefaultApiError.RUN_FAILED, details={
                 'message': 'uvicorn server must be initialized before running the api server'
@@ -57,6 +59,7 @@ class DefaultApi:
 
 
     async def shutdown(self, runtime: TaskRuntimeInterface) -> Result[None]:
+        _ = runtime
         if self._uvicorn_server and self._uvicorn_server.started:
             self._uvicorn_server.should_exit = True
 
@@ -64,6 +67,7 @@ class DefaultApi:
 
 
     async def status(self, runtime: TaskRuntimeInterface) -> Result[Dict[str, Any]]:
+        _ = runtime
         return Success({
             'status': HealthStatus.OK,
         })

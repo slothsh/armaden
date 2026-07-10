@@ -60,13 +60,12 @@ class RouteRegistrar:
         return RouteGroup(namespace=ns)
 
     def group(self, callback: Callable[[], None]) -> None:
-        with RouteGroup() as _g:
+        with RouteGroup() as _:
             callback()
 
     # -- Resource routes ------------------------------------------------------
 
-    def resource(self, name: str, controller: type | str, **options: Any) -> None:
-        stack = RouteGroupStack.get_instance()
+    def resource(self, name: str, controller: type, **options: Any) -> None:
         only: list[str] | None = options.get('only')
         exclude: list[str] | None = options.get('except')
         resource_actions: dict[str, tuple[str, str]] = {
@@ -85,7 +84,7 @@ class RouteRegistrar:
             self._register(
                 [method],
                 path,
-                [controller, action],
+                (controller, action),
                 name=f'{name}.{action}',
             )
 

@@ -1,7 +1,6 @@
 import json as _json
 import re
-from typing import Any
-from urllib.parse import parse_qs
+from typing import Any, Callable
 
 from starlette.requests import Request as StarletteRequest
 
@@ -56,11 +55,11 @@ class Request:
     def missing(self, key: str | list[str]) -> bool:
         return not self.has(key)
 
-    def when_has(self, key: str, callback: callable) -> None:
+    def when_has(self, key: str, callback: Callable) -> None:
         if self.has(key):
             callback(self.input(key))
 
-    def when_filled(self, key: str, callback: callable) -> None:
+    def when_filled(self, key: str, callback: Callable) -> None:
         if self.filled(key):
             callback(self.input(key))
 
@@ -71,7 +70,7 @@ class Request:
 
     def bearer_token(self) -> str | None:
         auth = self.header('Authorization', '')
-        if auth.startswith('Bearer '):
+        if auth and auth.startswith('Bearer '):
             return auth[7:]
         return None
 
@@ -123,19 +122,19 @@ class Request:
         return '127.0.0.1'
 
     def user_agent(self) -> str:
-        return self.header('User-Agent', '')
+        return self.header('User-Agent', '') or ''
 
     def expects_json(self) -> bool:
         accept = self.header('Accept', '')
-        return 'application/json' in accept
+        return 'application/json' in accept if accept else False
 
     def wants_json(self) -> bool:
         accept = self.header('Accept', '')
-        return 'application/json' in accept or 'application/*' in accept or '*/*' in accept
+        return ('application/json' in accept or 'application/*' in accept or '*/*' in accept) if accept else False
 
     def accepts(self, *content_types: str) -> bool:
         accept = self.header('Accept', '')
-        return any(ct in accept for ct in content_types)
+        return any(ct in accept for ct in content_types) if accept else False
 
     def accepts_json(self) -> bool:
         return self.accepts('application/json')
@@ -173,10 +172,12 @@ class Request:
     # -- Files (placeholder) --------------------------------------------------
 
     def file(self, key: str) -> Any | None:
-        return None
+        _ = key
+        raise NotImplementedError("File support is not implemented")
 
     def has_file(self, key: str) -> bool:
-        return False
+        _ = key
+        raise NotImplementedError("File support is not implemented")
 
     # -- Internal helpers -----------------------------------------------------
 
@@ -206,10 +207,10 @@ class Request:
         if 'application/json' not in content_type:
             return {}
         try:
-            import asyncio
-            async def _read():
+            async def _():
                 raw = await self._request.body()
                 return raw
+            # TODO: handle this
             # We can't async here - json body should be loaded via async path
             return {}
         except Exception:

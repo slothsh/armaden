@@ -1,5 +1,4 @@
 import importlib
-from typing import Any
 
 from armaden.framework.protocols.application import ApplicationInterface
 from .middleware import Middleware

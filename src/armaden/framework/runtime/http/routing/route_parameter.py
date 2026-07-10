@@ -1,5 +1,4 @@
 import re
-from typing import Any, get_type_hints
 
 _PARAM_PATTERN = re.compile(r'\{(\w+)(?::(\w+))?\}')
 

@@ -77,9 +77,12 @@ class ConsoleKernel(Kernel):
         return Success(None)
 
     def handle(self, command: str | None = None, parameters: dict | None = None) -> TypedResult[int]:
+        _ = command
+        _ = parameters
         return Success(0)
 
     def terminate(self, status: int = 0) -> None:
+        _ = status
         pass
 
     def call(self, command: str, parameters: dict | None = None) -> int:

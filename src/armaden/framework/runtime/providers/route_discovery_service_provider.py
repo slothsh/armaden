@@ -3,7 +3,7 @@ import os
 import sys
 from importlib import import_module
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable, cast
 
 from returns.result import Success
 
@@ -72,7 +72,7 @@ class RouteDiscoveryServiceProvider(ServiceProvider):
 
     def _get_route_groups(self, user_app: ApplicationInterface) -> dict[str, dict[str, Any]]:
         try:
-            groups_method = getattr(user_app, 'route_groups', None)
+            groups_method = cast(Callable[..., dict[str, dict[str, Any]]] , getattr(user_app, 'route_groups', None))
             if callable(groups_method):
                 return groups_method()
         except Exception as exc:

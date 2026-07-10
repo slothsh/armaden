@@ -56,7 +56,7 @@ class RouteFacade:
 
     @classmethod
     def group(cls, callback: Callable[[], None]) -> None:
-        with RouteGroup() as _g:
+        with RouteGroup() as _:
             callback()
 
     @classmethod

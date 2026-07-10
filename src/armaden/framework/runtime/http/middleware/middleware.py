@@ -12,4 +12,6 @@ class Middleware(ABC):
         raise NotImplementedError
 
     async def terminate(self, request: Request, response: Any) -> None:
+        _ = request
+        _ = response
         pass

@@ -3,7 +3,7 @@ from .request_context import RequestContext
 from .response import JSONResponse, ResponseFactory, response, json_response
 from .helpers import request
 from .controller import Controller
-from .middleware import Middleware, MiddlewarePipeline, HttpKernel, AsgiMiddlewareAdapter
+from .middleware import Middleware, MiddlewarePipeline, HttpKernel
 from .url_generator import UrlGenerator
 
 __all__ = [
@@ -18,6 +18,5 @@ __all__ = [
     'Middleware',
     'MiddlewarePipeline',
     'HttpKernel',
-    'AsgiMiddlewareAdapter',
     'UrlGenerator',
 ]

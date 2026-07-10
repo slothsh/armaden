@@ -1,6 +1,6 @@
 from typing import Any, Callable
 
-from .middleware import Middleware, NextCallable
+from .middleware import Middleware
 from ..request import Request
 
 

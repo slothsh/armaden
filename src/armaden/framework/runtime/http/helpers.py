@@ -1,5 +1,5 @@
 from .request_context import RequestContext
-from .response import response as _response, json_response
+from .response import response, json_response
 
 
 def request():

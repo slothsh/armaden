@@ -1,6 +1,6 @@
 import asyncio
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional
 from enum import StrEnum
 import logging
 import os
@@ -15,9 +15,7 @@ from armaden.framework.classes.instance_container import InstanceContainer
 from armaden.framework.classes.service_provider import ServiceProvider
 from armaden.framework.protocols.application import ApplicationInterface
 from armaden.framework.protocols.supervisor import SupervisorInterface
-from armaden.framework.utils.dictionary import Dictionary
 from armaden.framework.utils.types import Result
-from armaden.framework.enums.health_status import HealthStatus
 from armaden.framework.errors import Error
 from armaden.framework.runtime.supervisor import Supervisor
 from armaden.framework.runtime.default_application import DefaultApplication
@@ -192,15 +190,15 @@ class CoreApplication:
 
         return Success(None)
 
-    def booting(self, callback: callable) -> None:
+    def booting(self, callback: Callable) -> None:
         self._booting_callbacks.append(callback)
 
-    def booted(self, callback: callable) -> None:
+    def booted(self, callback: Callable) -> None:
         self._booted_callbacks.append(callback)
         if self._booted:
             callback(self)
 
-    def terminating(self, callback: callable) -> None:
+    def terminating(self, callback: Callable) -> None:
         self._terminating_callbacks.append(callback)
 
     def terminate(self) -> Result[None]:
@@ -258,44 +256,6 @@ class CoreApplication:
 
     def is_production(self) -> bool:
         return self._app_env == 'production'
-
-    async def status(self) -> Result[Dict[str, Any]]:
-        def handle_result(results: Dict[str, Result[Dict[str, Any]]]) -> Dict[str, Any]:
-            status: Dict[str, Any] = {}
-            for name, result in results.items():
-                if not is_successful(result):
-                    logger.warning(result.failure())
-                    status[name] = {'status': HealthStatus.UNAVAILABLE}
-                    continue
-                status[name] = result.unwrap()
-            return status
-
-        async def wrap_provider_status(provider: ServiceProvider) -> Dict[str, Any]:
-            return handle_result(await provider.status())
-
-        provider_statuses = {
-            provider.name: await wrap_provider_status(provider)
-            for provider in self._providers
-        }
-        app_degraded = Dictionary.has(
-            'status',
-            lambda value: value != HealthStatus.OK,
-            [*provider_statuses.values()],
-        )
-
-        user_app = self._container.make(ApplicationInterface)
-        user_status_result = await user_app.status()
-        if is_successful(user_status_result):
-            user_status = user_status_result.unwrap()
-        else:
-            user_status = {}
-            logger.warning(user_status_result.failure())
-
-        return Success({
-            'status': HealthStatus.DEGRADED if app_degraded else HealthStatus.OK,
-            'providers': provider_statuses,
-            **user_status,
-        })
 
     @classmethod
     def _initialize_logging(cls) -> Result[None]:
