@@ -12,6 +12,12 @@ Sessions are automatic (based on terminal/agent context). Optional:
 
 Use td usage -q after first read.
 
+When the user asks you to create an epic in `td`, **always** add the epic and its tasks with these guidelines:
+
+- Use **VERY** elaborate descriptions for each task on the epic using the --description flag.
+- Add relevant labels to each task using the --label task. 2-5 is more than enough.
+- Keep the name of the epic concise and relevant to the overall theme of the tasks.
+
 ## MANDATORY: Worktree Management
 
 Whenever the user gives you an instruction to work on a git worktree, use the `wt` (worktrunk) command to manage worktrees.
