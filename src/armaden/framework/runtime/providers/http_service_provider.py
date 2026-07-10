@@ -9,6 +9,7 @@ from armaden.framework.runtime.http.routing.route_registrar import RouteRegistra
 from armaden.framework.runtime.http.routing.route_compiler import RouteCompiler
 from armaden.framework.runtime.services.default_api import DefaultApi
 from armaden.framework.protocols.application import ApplicationInterface
+from armaden.framework.runtime.http.auth import AuthManager, Authenticate
 
 import logging
 from pathlib import Path
@@ -20,12 +21,19 @@ class HttpServiceProvider(ServiceProvider):
     name = 'http'
 
     def register(self) -> Result[None]:
+        self._container.singleton(AuthManager, AuthManager)
         return Success(None)
 
     def boot(self) -> Result[None]:
         application = self._container.make(ApplicationInterface)
         kernel = HttpKernel(application)
         kernel.bootstrap()
+
+        auth_manager = self._container.make(AuthManager)
+        auth_manager.bootstrap()
+
+        kernel.middleware.append(Authenticate)
+
         self._container.instance('http_kernel', kernel)
 
         default_api = DefaultApi()
