@@ -9,7 +9,13 @@ from armaden.framework.runtime.http.routing.route_registrar import RouteRegistra
 from armaden.framework.runtime.http.routing.route_compiler import RouteCompiler
 from armaden.framework.runtime.services.default_api import DefaultApi
 from armaden.framework.protocols.application import ApplicationInterface
-from armaden.framework.runtime.http.auth import AuthManager, Authenticate
+from armaden.framework.runtime.http.auth import (
+    AuthManager,
+    Authenticate,
+    AuthenticateWithBasic,
+    AuthenticateWithHeader,
+    AuthenticateWithToken,
+)
 
 import logging
 from pathlib import Path
@@ -34,6 +40,13 @@ class HttpServiceProvider(ServiceProvider):
         auth_manager.bootstrap(auth_config)
 
         kernel.middleware.append(Authenticate)
+
+        kernel.route_middleware.update({
+            'auth': Authenticate,
+            'auth.basic': AuthenticateWithBasic,
+            'auth.token': AuthenticateWithToken,
+            'auth.header': AuthenticateWithHeader,
+        })
 
         self._container.instance('http_kernel', kernel)
 
