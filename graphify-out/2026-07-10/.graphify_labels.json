@@ -259,5 +259,6 @@
   "257": "types.py",
   "258": "RequestContext",
   "259": "Result",
-  "260": "ServiceProvider"
+  "260": "ServiceProvider",
+  "261": "Result"
 }
