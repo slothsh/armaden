@@ -37,10 +37,10 @@ class ServiceProvider(ABC):
             self._container.singleton(abstract, concrete)
 
     @abstractmethod
-    def register(self, **kwargs: Any) -> Result[None]:
+    def register(self) -> Result[None]:
         raise NotImplementedError
 
-    def boot(self, **kwargs: Any) -> Result[None]:
+    def boot(self) -> Result[None]:
         return Success(None)
 
     async def status(self) -> Result[Mapping[str, Any]]:
