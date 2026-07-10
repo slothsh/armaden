@@ -29,8 +29,9 @@ class HttpServiceProvider(ServiceProvider):
         kernel = HttpKernel(application)
         kernel.bootstrap()
 
+        auth_config = self._container.make('app').config('auth', {})
         auth_manager = self._container.make(AuthManager)
-        auth_manager.bootstrap()
+        auth_manager.bootstrap(auth_config)
 
         kernel.middleware.append(Authenticate)
 
