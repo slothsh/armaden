@@ -252,7 +252,5 @@
   "250": "__init__.py",
   "251": "__init__.py",
   "252": "DatagramTransportInterface",
-  "253": "SteamCmdExecutableFlag",
-  "254": "ApplicationInterface",
-  "255": "Any"
+  "254": "ApplicationInterface"
 }
