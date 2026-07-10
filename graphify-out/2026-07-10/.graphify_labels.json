@@ -143,13 +143,6 @@
   "141": "arma_reforger_server.py",
   "142": "steamcmd_executable.py",
   "143": "Any",
-  "144": "ApplicationInterface",
-  "145": "callable",
-  "146": "Path",
-  "147": "RouteDefinition",
-  "148": "Request",
-  "149": "Request",
   "150": "Any",
-  "151": "Result",
-  "152": "SupervisorInterface"
+  "151": "Result"
 }
