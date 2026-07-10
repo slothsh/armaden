@@ -720,13 +720,13 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/http/auth/auth_manager.py": {
-    "mtime": 1783704984.726959,
+    "mtime": 1783707093.0839036,
     "ast_hash": "df0839727c2cfd45ccd69c6e5fc49df3",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/http/auth/authenticate_middleware.py": {
-    "mtime": 1783705063.9847999,
-    "ast_hash": "8a9ad42cec2eed8e9f64cb6f1caced6f",
+    "mtime": 1783707247.474598,
+    "ast_hash": "ebb113746038e9cec7b587eeb7c0ec0b",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/http/auth/config_user_provider.py": {
