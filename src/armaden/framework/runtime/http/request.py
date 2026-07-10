@@ -142,6 +142,20 @@ class Request:
     def accepts_html(self) -> bool:
         return self.accepts('text/html')
 
+    # -- Auth -----------------------------------------------------------------
+
+    def _get_user(self) -> Any:
+        return getattr(self._request.state, '_armaden_user', None)
+
+    def set_user(self, user: Any) -> None:
+        self._request.state._armaden_user = user
+
+    def user(self) -> Any:
+        return self._get_user()
+
+    def is_authenticated(self) -> bool:
+        return self._get_user() is not None
+
     # -- Session (placeholder) ------------------------------------------------
 
     def session(self) -> Any:
@@ -149,11 +163,6 @@ class Request:
 
     def has_session(self) -> bool:
         return False
-
-    # -- User (placeholder) ---------------------------------------------------
-
-    def user(self) -> Any:
-        raise NotImplementedError('Authentication support is not yet implemented')
 
     # -- Body / Content -------------------------------------------------------
 

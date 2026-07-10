@@ -1,22 +1,39 @@
 from .request import Request
 from .request_context import RequestContext
 from .response import JSONResponse, ResponseFactory, response, json_response
-from .helpers import request
+from .helpers import request, auth
 from .controller import Controller
 from .middleware import Middleware, MiddlewarePipeline, HttpKernel
 from .url_generator import UrlGenerator
+from .auth import (
+    ApiUser,
+    AuthManager,
+    Authenticate,
+    BasicAuthGuard,
+    ConfigUserProvider,
+    CustomHeaderGuard,
+    TokenGuard,
+)
 
 __all__ = [
-    'Request',
-    'RequestContext',
-    'JSONResponse',
-    'ResponseFactory',
-    'response',
-    'json_response',
-    'request',
+    'ApiUser',
+    'AuthManager',
+    'Authenticate',
+    'auth',
+    'BasicAuthGuard',
+    'ConfigUserProvider',
     'Controller',
+    'CustomHeaderGuard',
+    'HttpKernel',
+    'JSONResponse',
     'Middleware',
     'MiddlewarePipeline',
-    'HttpKernel',
+    'Request',
+    'RequestContext',
+    'ResponseFactory',
+    'request',
+    'response',
+    'json_response',
+    'TokenGuard',
     'UrlGenerator',
 ]
