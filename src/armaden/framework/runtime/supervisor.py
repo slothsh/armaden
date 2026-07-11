@@ -3,6 +3,7 @@ from asyncio.subprocess import Process
 from datetime import datetime
 from enum import StrEnum
 import logging
+import os
 import signal
 import threading
 from asyncio.queues import Queue
@@ -15,19 +16,37 @@ from returns.pipeline import is_successful
 from returns.result import Failure, Success
 from pathlib import Path
 
+from armaden.framework.classes.instance_container import InstanceContainer
 from armaden.framework.enums.supervisor_request_kind import SupervisorRequestKind
+from armaden.framework.enums.task_threading_policy import TaskThreadingPolicy
 from armaden.framework.protocols.supervisor_request_interface import SupervisorRequestInterface
 
 from armaden.framework.dto.supervisor_request_data import SupervisorRequestData
 from armaden.framework.utils.types import Result, AsyncStreamArg, AsyncStreamCallback
 from armaden.framework.errors import Error
 from armaden.framework.protocols import TaskInterface, TaskRuntimeInterface
+from armaden.framework.runtime.errors import TaskError
+from armaden.framework.runtime.policy_engine import PolicyEngine
+from armaden.framework.runtime.progress import ProgressChannel
+from armaden.framework.runtime.task import Task as TaskABC
+from armaden.framework.runtime.task_graph import TaskGraph, TaskGraphCompiler, TaskGraphState
+from armaden.framework.runtime.task_injector import TaskInjector
+from armaden.framework.runtime.task_runtime import TaskRuntime as GraphTaskRuntime
 
 logger = logging.getLogger(__name__)
 
 
 class Supervisor:
-    def __init__(self, event_loop: asyncio.AbstractEventLoop) -> None:
+    def __init__(
+        self,
+        event_loop: asyncio.AbstractEventLoop,
+        container: InstanceContainer | None = None,
+        pool_size: int | None = None,
+        max_exclusive_threads: int = 8,
+    ) -> None:
+        self._container = container
+        self._max_exclusive_threads = max_exclusive_threads
+        self._pool_size = pool_size or (os.cpu_count() or 4)
         self._running = False
         self._shutdown_event = asyncio.Event()
         self._main_loop = event_loop
@@ -38,6 +57,13 @@ class Supervisor:
         self._task_states: Dict[int, TaskStateData] = {}
         self._task_records: Dict[int, TaskRecord] = {}
         self._processes: List[ProcessInfoData] = []
+
+        self._graphs: List[TaskGraph] = []
+        self._compiler = TaskGraphCompiler()
+        self._policy_engine = PolicyEngine()
+        self._injector = TaskInjector(container) if container is not None else None
+        self._worker_pool: WorkerPool | None = None
+        self._scheduler = None
 
         self._initialize_signal_handlers()
 
@@ -56,6 +82,9 @@ class Supervisor:
     # -- Builder Methods ------------------------------------------------------
 
     def add_task(self, task: TaskInterface) -> Self:
+        if isinstance(task, TaskABC):
+            self.submit([task])
+            return self
         task_id = self._generate_task_id()
         thread_info = self._generate_thread_info()
         self._task_states[task_id] = self._new_task_state(task_id, thread_info, task, asyncio.new_event_loop())
@@ -69,9 +98,62 @@ class Supervisor:
 
 
     def add_tasks(self, tasks: List[TaskInterface]) -> Self:
-        for task in tasks:
+        abc_tasks = [t for t in tasks if isinstance(t, TaskABC)]
+        legacy_tasks = [t for t in tasks if not isinstance(t, TaskABC)]
+        if abc_tasks:
+            self.submit(abc_tasks)
+        for task in legacy_tasks:
             self.add_task(task)
         return self
+
+
+    def submit(self, tasks: list) -> TaskGraph:
+        graph = self._compiler.compile(list(tasks))
+        graph.state = TaskGraphState.PENDING
+        self._graphs.append(graph)
+        return graph
+
+    # -- Facade accessors (stubs — implementation in later tasks) --------------
+
+    def process(self):
+        from armaden.framework.runtime.facades.process import ProcessFacade
+        return ProcessFacade(self)
+
+    def schedule(self):
+        from armaden.framework.runtime.facades.schedule import ScheduleFacade
+        return ScheduleFacade(self)
+
+    def concurrency(self):
+        from armaden.framework.runtime.facades.concurrency import ConcurrencyFacade
+        return ConcurrencyFacade(self)
+
+    def list_schedules(self) -> list:
+        if self._scheduler is None:
+            return []
+        return [
+            {'name': job.id, 'trigger': str(job.trigger), 'next_run_time': job.next_run_time}
+            for job in self._scheduler.get_jobs()
+        ]
+
+    def remove_schedule(self, name: str) -> None:
+        if self._scheduler is not None:
+            try:
+                self._scheduler.remove_job(name)
+            except Exception:
+                pass
+
+    def _ensure_scheduler(self):
+        if self._scheduler is not None:
+            return self._scheduler
+        try:
+            from apscheduler.schedulers.asyncio import AsyncIOScheduler
+        except ImportError:
+            raise RuntimeError(
+                'APScheduler is required for scheduled tasks. Install with: pip install apscheduler'
+            )
+        self._scheduler = AsyncIOScheduler()
+        self._scheduler.start()
+        return self._scheduler
 
 
     # -- Lifecycle ------------------------------------------------------------
@@ -87,8 +169,14 @@ class Supervisor:
         self._running = True
         self._start_ready_tasks()
 
+        try:
+            await self._execute_graphs()
+        except Exception as exception:
+            logger.error('Graph execution raised: %s', exception)
+
         if self._task_states and not any(s.started for s in self._task_states.values()):
-            logger.warning("No tasks are running, waiting until shutdown signal is received")
+            if not self._graphs:
+                logger.warning("No tasks are running, waiting until shutdown signal is received")
 
         while not self._shutdown_event.is_set():
             try:
@@ -154,6 +242,91 @@ class Supervisor:
 
     async def list_tasks(self) -> Result[List[TaskRecord]]:
         return Success(list(self._task_records.values()))
+
+
+    # -- Graph Execution ------------------------------------------------------
+
+    async def _execute_graphs(self) -> None:
+        pending = [g for g in self._graphs if g.state in (TaskGraphState.PENDING, TaskGraphState.RUNNING)]
+        for graph in pending:
+            try:
+                await self._execute_graph(graph)
+            except Exception as exception:
+                logger.exception('Graph %s execution failed: %s', graph.graph_id, exception)
+                graph.state = TaskGraphState.FAILED
+
+    async def _execute_graph(self, graph: TaskGraph) -> None:
+        graph.state = TaskGraphState.RUNNING
+        injector = self._injector or TaskInjector(self._container) if self._container is not None else None
+        if injector is None:
+            injector = TaskInjector(None)
+
+        for layer in graph.layers:
+            await self._execute_layer(graph, layer, injector)
+            if graph.state == TaskGraphState.FAILED:
+                break
+
+        if graph.state != TaskGraphState.FAILED:
+            graph.state = TaskGraphState.COMPLETED
+
+    async def _execute_layer(self, graph: TaskGraph, layer: list[str], injector: TaskInjector) -> None:
+        tasks = [graph.tasks[name] for name in layer]
+        long_running = any(getattr(t, 'long_running', False) for t in tasks)
+
+        coros: dict[str, asyncio.Task] = {}
+        ready_events: dict[str, asyncio.Event] = {}
+        for task in tasks:
+            event = asyncio.Event()
+            ready_events[task.name] = event
+            runtime = GraphTaskRuntime(
+                task_name=task.name,
+                graph_id=graph.graph_id,
+                graph=graph,
+                ready_event=event,
+            )
+            coros[task.name] = asyncio.create_task(self._run_one_task(task, runtime, graph, injector))
+
+        if long_running:
+            done, pending = await asyncio.wait(
+                coros.values(), return_when=asyncio.ALL_COMPLETED
+            )
+        else:
+            await asyncio.gather(*coros.values())
+
+        for name, task in zip(layer, tasks):
+            name = task.name
+            coro = coros.get(name)
+            result = coro.result() if coro is not None else None
+            if result is not None:
+                graph.outputs[name] = result
+            if result is not None and not is_successful(result):
+                task_obj = graph.tasks[name]
+                if not (task_obj.policy.continue_on_failure if hasattr(task_obj, 'policy') else False):
+                    graph.state = TaskGraphState.FAILED
+                    graph.errors.append(_result_error(result))
+                    return
+
+    async def _run_one_task(self, task, runtime, graph: TaskGraph, injector: TaskInjector):
+        try:
+            if hasattr(task, 'initialize') and callable(getattr(task, 'initialize', None)):
+                init_kwargs = await injector.resolve(task, task.initialize, graph, runtime) if hasattr(task.initialize, '__call__') else {}
+                init_result = task.initialize(**init_kwargs)
+                if hasattr(init_result, '__await__'):
+                    await init_result
+            result = await self._policy_engine.execute(task, runtime, injector, graph)
+            return result
+        except Exception as exception:
+            logger.exception('Task %s failed: %s', task.name, exception)
+            return Failure(Error(TaskError.SUBPROCESS_ERROR, details={'task': task.name, 'error': str(exception)}))
+        finally:
+            try:
+                if hasattr(task, 'shutdown') and callable(getattr(task, 'shutdown', None)):
+                    shutdown_kwargs = await injector.resolve(task, task.shutdown, graph, runtime) if hasattr(task.shutdown, '__call__') else {}
+                    shutdown_result = task.shutdown(**shutdown_kwargs)
+                    if hasattr(shutdown_result, '__await__'):
+                        await shutdown_result
+            except Exception:
+                logger.exception('Task %s shutdown failed', task.name)
 
 
     # -- Signal Handling ------------------------------------------------------
@@ -415,6 +588,13 @@ class Supervisor:
         return Success(None)
 
 
+def _result_error(result):
+    failure = result.failure() if hasattr(result, 'failure') else result
+    if isinstance(failure, Error):
+        return failure
+    return Error(TaskError.SUBPROCESS_ERROR, details={'error': str(failure)})
+
+
 # -- Internal Types -----------------------------------------------------------
 
 class TaskRuntime:
@@ -522,3 +702,78 @@ class ProcessInfoData:
 class RequestInfoData:
     data: SupervisorRequestData
     time_received: datetime = field(default=datetime.now(), compare=False)
+
+
+# -- WorkerPool --------------------------------------------------------------
+
+class _WorkerBase:
+    def __init__(self, name: str) -> None:
+        self.name = name
+        self.loop: asyncio.AbstractEventLoop = asyncio.new_event_loop()
+        self.thread = Thread(target=self._run_loop, name=name, daemon=True)
+        self.busy = False
+        self.thread.start()
+
+    def _run_loop(self) -> None:
+        asyncio.set_event_loop(self.loop)
+        self.loop.run_forever()
+
+    def shutdown(self) -> None:
+        try:
+            self.loop.call_soon_threadsafe(self.loop.stop)
+        except RuntimeError:
+            pass
+        self.thread.join(timeout=5.0)
+
+
+class _SharedWorker(_WorkerBase):
+    pass
+
+
+class _ExclusiveWorker(_WorkerBase):
+    pass
+
+
+class WorkerPool:
+    def __init__(self, pool_size: int, max_exclusive_threads: int) -> None:
+        self._pool_size = pool_size
+        self._max_exclusive_threads = max_exclusive_threads
+        self._shared: list[_SharedWorker] = [
+            _SharedWorker(f'shared-worker-{i}') for i in range(pool_size)
+        ]
+        self._free: asyncio.Queue[_SharedWorker] = asyncio.Queue()
+        for worker in self._shared:
+            self._free.put_nowait(worker)
+        self._exclusive: dict[str, _ExclusiveWorker] = {}
+        self._lock = asyncio.Lock()
+
+    async def acquire_shared(self) -> _SharedWorker:
+        return await self._free.get()
+
+    async def release_shared(self, worker: _SharedWorker) -> None:
+        worker.busy = False
+        await self._free.put(worker)
+
+    async def acquire_exclusive(self, task_name: str) -> _ExclusiveWorker:
+        async with self._lock:
+            if len(self._exclusive) >= self._max_exclusive_threads:
+                raise RuntimeError(
+                    f'Exclusive thread capacity reached ({self._max_exclusive_threads}); '
+                    f'cannot start task \"{task_name}\"'
+                )
+            worker = _ExclusiveWorker(f'exclusive-worker-{task_name}')
+            self._exclusive[task_name] = worker
+            return worker
+
+    async def release_exclusive(self, task_name: str) -> None:
+        async with self._lock:
+            worker = self._exclusive.pop(task_name, None)
+        if worker is not None:
+            worker.shutdown()
+
+    def shutdown(self) -> None:
+        for worker in self._shared:
+            worker.shutdown()
+        for worker in list(self._exclusive.values()):
+            worker.shutdown()
+        self._exclusive.clear()

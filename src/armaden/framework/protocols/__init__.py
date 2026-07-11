@@ -1,5 +1,5 @@
 from .error import ErrorInterface
-from .task import TaskInterface, TaskBuilderInterface
+from .task import TaskInterface, TaskBuilderInterface, Pipeline, Lifecycle
 from .task_runtime import TaskRuntimeInterface
 from .supervisor_request_interface import SupervisorRequestInterface
 from .supervisor import SupervisorInterface
@@ -9,6 +9,8 @@ __all__ = [
     'ErrorInterface',
     'TaskInterface',
     'TaskBuilderInterface',
+    'Pipeline',
+    'Lifecycle',
     'TaskRuntimeInterface',
     'SupervisorRequestInterface',
     'SupervisorInterface',

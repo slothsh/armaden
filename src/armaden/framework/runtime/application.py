@@ -55,6 +55,7 @@ class CoreApplication:
         self.register_contextual_attributes()
 
     def register_base_bindings(self) -> None:
+        self._container.instance(InstanceContainer, self._container)
         self._container.singleton(SupervisorInterface, Supervisor)
 
     def register_base_service_providers(self) -> None:
