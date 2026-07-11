@@ -29,10 +29,10 @@ class ArmaReforgerRconClient(BattleEyeRconClient):
 
     # -- Server ---------------------------------------------------------------
 
-    async def restart(self) -> CommandResponse:
+    async def restart_server(self) -> CommandResponse:
         return await self.send_command("#restart")
 
-    async def shutdown(self) -> CommandResponse:
+    async def shutdown_server(self) -> CommandResponse:
         return await self.send_command("#shutdown")
 
     # -- Player ---------------------------------------------------------------
