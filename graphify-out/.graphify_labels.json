@@ -98,11 +98,9 @@
   "96": "TaskInterface",
   "97": "Self",
   "98": ".server_id",
-  "99": ".silent_crash_report",
   "100": ".single_threaded_update",
   "101": ".staggering_budget",
   "102": ".streams_delta",
-  "103": "TaskGraph",
   "104": "Any",
   "105": "Config",
   "106": "Self",
@@ -285,9 +283,6 @@
   "283": ".script_authorize_all",
   "284": ".server_id",
   "285": "Any",
-  "286": "AsyncStreamCallback",
   "287": "Result",
-  "288": "Result",
-  "289": "TypeDiscoveryServiceProvider",
-  "290": "PolicyEngine"
+  "288": "Result"
 }
