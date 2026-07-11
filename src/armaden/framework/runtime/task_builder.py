@@ -157,18 +157,26 @@ class _BuiltTask(Task):
     def __init__(self, callbacks: _BuiltCallbacks, **kwargs: Any) -> None:
         super().__init__(**kwargs)
         self._callbacks = callbacks
+
+    async def _resolve_kwargs(self, callback) -> dict:
+        if callback is None or self.injector is None or self.graph is None or self.runtime is None:
+            return {}
+        return await self.injector.resolve(self, callback, self.graph, self.runtime)
+
     @override
     async def initialize(self) -> Result[None]:
         if self._callbacks.initialize is None:
             return Success(None)
-        result = self._callbacks.initialize(self)
+        kwargs = await self._resolve_kwargs(self._callbacks.initialize)
+        result = self._callbacks.initialize(**kwargs)
         if hasattr(result, '__await__'):
             return await result
         return result
 
     @override
     async def run(self) -> Result[Any]:
-        result = self._callbacks.run(self)
+        kwargs = await self._resolve_kwargs(self._callbacks.run)
+        result = self._callbacks.run(**kwargs)
         if hasattr(result, '__await__'):
             return await result
         return result
@@ -177,7 +185,8 @@ class _BuiltTask(Task):
     async def shutdown(self) -> Result[None]:
         if self._callbacks.shutdown is None:
             return Success(None)
-        result = self._callbacks.shutdown(self)
+        kwargs = await self._resolve_kwargs(self._callbacks.shutdown)
+        result = self._callbacks.shutdown(**kwargs)
         if hasattr(result, '__await__'):
             return await result
         return result
@@ -186,7 +195,8 @@ class _BuiltTask(Task):
     async def status(self) -> Result[dict[str, Any]]:
         if self._callbacks.status is None:
             return Success({})
-        result = self._callbacks.status(self)
+        kwargs = await self._resolve_kwargs(self._callbacks.status)
+        result = self._callbacks.status(**kwargs)
         if hasattr(result, '__await__'):
             return await result
         return result

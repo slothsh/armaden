@@ -540,6 +540,8 @@ class Supervisor:
 
     async def _run_one_task(self, task, runtime, graph: TaskGraph, injector: TaskInjector):
         task._runtime_ref = runtime
+        task._injector_ref = injector
+        task._graph_ref = graph
         try:
             if hasattr(task, 'initialize') and callable(getattr(task, 'initialize', None)):
                 init_kwargs = await injector.resolve(task, task.initialize, graph, runtime) if hasattr(task.initialize, '__call__') else {}
@@ -553,7 +555,8 @@ class Supervisor:
             return Failure(Error(TaskError.SUBPROCESS_ERROR, details={'task': task.name, 'error': str(exception)}))
         finally:
             task._runtime_ref = None
-
+            task._injector_ref = None
+            task._graph_ref = None
 
     # -- Signal Handling ------------------------------------------------------
 

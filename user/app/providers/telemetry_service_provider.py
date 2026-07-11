@@ -18,9 +18,9 @@ from app.tasks.telemetry_tasks import (
 logger = logging.getLogger('app.providers.telemetry_service_provider')
 
 
-async def _emit_banner(task) -> Result[None]:
+async def _emit_banner() -> Result[None]:
     await asyncio.sleep(0.02)
-    logger.info('Telemetry banner emitted for task=%s', task.name)
+    logger.info('Telemetry banner emitted')
     return Success(None)
 
 

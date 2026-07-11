@@ -33,6 +33,8 @@ class Task(ABC, MultiImplementation):
     long_running: bool = False
 
     _runtime_ref: Any = None
+    _injector_ref: Any = None
+    _graph_ref: Any = None
 
     def __init__(
         self,
@@ -67,6 +69,14 @@ class Task(ABC, MultiImplementation):
     @property
     def runtime(self) -> Any:
         return self._runtime_ref
+
+    @property
+    def injector(self) -> Any:
+        return self._injector_ref
+
+    @property
+    def graph(self) -> Any:
+        return self._graph_ref
 
     async def initialize(self) -> Result[None]:
         return Success(None)
