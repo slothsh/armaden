@@ -1,6 +1,7 @@
 from .utils.types import Result
 from .utils.dictionary import Dictionary
 from .errors import Error, GenericError
+from .classes.instance_container import MultiImplementation
 from .classes.task import _LegacyTask, TaskBuilder as _LegacyTaskBuilder
 from .runtime.task import Task
 from .runtime.task_builder import TaskBuilder
@@ -11,6 +12,7 @@ __all__ = [
     'Dictionary',
     'Error',
     'GenericError',
+    'MultiImplementation',
     'Task',
     'TaskBuilder',
     '_LegacyTask',

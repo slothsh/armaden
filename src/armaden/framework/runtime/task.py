@@ -5,6 +5,7 @@ from typing import Any
 
 from returns.result import Success
 
+from armaden.framework.classes.instance_container import MultiImplementation
 from armaden.framework.enums.restart_policy import RestartPolicy
 from armaden.framework.enums.task_threading_policy import TaskThreadingPolicy
 from armaden.framework.utils.types import Result
@@ -22,7 +23,7 @@ class TaskPolicy:
     ready_timeout: float | None = None
 
 
-class Task(ABC):
+class Task(ABC, MultiImplementation):
     name: str | None = None
     description: str | None = None
     policy: TaskPolicy | None = None

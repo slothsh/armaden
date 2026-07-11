@@ -7,6 +7,7 @@ from typing import Dict, Tuple
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
+from armaden.framework.classes.instance_container import MultiImplementation
 from armaden.framework.classes.service_provider import ServiceProvider
 from armaden.framework.errors.error import Error
 from armaden.framework.facades import config
@@ -24,15 +25,6 @@ logger = logging.getLogger(__name__)
 EXCLUDED_INTERFACES = frozenset({
     ApplicationInterface,
     SupervisorInterface,
-})
-
-# -- Abstract bases that allow multiple coexisting implementations ------------
-# These are category ABCs (not singleton interfaces): each concrete subclass
-# is bound to its own type, but the base itself is never bound as a singleton.
-
-MULTI_IMPLEMENTATION_INTERFACES = frozenset({
-    ServiceProvider,
-    Task,
 })
 
 
@@ -86,7 +78,7 @@ class TypeDiscoveryServiceProvider(ServiceProvider):
                     'file': file_location,
                 }))
 
-            if base in MULTI_IMPLEMENTATION_INTERFACES:
+            if issubclass(base, MultiImplementation):
                 continue
 
             if base in seen:
