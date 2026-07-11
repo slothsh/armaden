@@ -117,13 +117,12 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig]):
 
 
     async def run_rcon_client(self, runtime: TaskRuntimeInterface) -> Result[None]:
-        _ = runtime
         if not self._rcon_client:
             return Success(None)
 
-        await self._rcon_client.connect()
-
         await runtime.signal_ready()
+
+        await self._rcon_client.connect()
 
         return Success(None)
 
