@@ -13,6 +13,7 @@ from armaden.framework.facades import config
 from armaden.framework.protocols.application import ApplicationInterface
 from armaden.framework.protocols.supervisor import SupervisorInterface
 from armaden.framework.runtime.module_loader import ModuleLoader
+from armaden.framework.runtime.task import Task
 from armaden.framework.utils.types import Result
 
 logger = logging.getLogger(__name__)
@@ -23,6 +24,15 @@ logger = logging.getLogger(__name__)
 EXCLUDED_INTERFACES = frozenset({
     ApplicationInterface,
     SupervisorInterface,
+})
+
+# -- Abstract bases that allow multiple coexisting implementations ------------
+# These are category ABCs (not singleton interfaces): each concrete subclass
+# is bound to its own type, but the base itself is never bound as a singleton.
+
+MULTI_IMPLEMENTATION_INTERFACES = frozenset({
+    ServiceProvider,
+    Task,
 })
 
 
@@ -75,6 +85,9 @@ class TypeDiscoveryServiceProvider(ServiceProvider):
                     'interface': base.__name__,
                     'file': file_location,
                 }))
+
+            if base in MULTI_IMPLEMENTATION_INTERFACES:
+                continue
 
             if base in seen:
                 original_name, original_file = seen[base]
