@@ -72,17 +72,21 @@ class BattleEyeRconClient:
         return self._port
 
 
-    def send_command(self, command: str, *args: str) -> None:
+    def send_command(self, command: str, *args: str) -> asyncio.Future[CommandResponse]:
         argv = [command] + list(args)
         sequence = self._generate_sequence()
         packet = Packet.new(CommandRequestPacket, sequence, argv)
+        loop = asyncio.get_running_loop()
+        future: asyncio.Future[CommandResponse] = loop.create_future()
         self._pending_commands[sequence] = _PendingCommand(
             command=' '.join(argv),
+            future=future,
         )
         self._request_queue.append(Message(
             sequence=sequence,
             packet_request=packet,
         ))
+        return future
 
 
     async def on_server_message(self, message: ServerMessage) -> None:
@@ -170,7 +174,14 @@ class BattleEyeRconClient:
         logger.warning(exception)
         self._connected = False
         self._client_status.authenticated = False
+        self._cancel_pending_commands(exception or ConnectionError("Transport disconnected"))
         await self.on_disconnected()
+
+    def _cancel_pending_commands(self, exception: Exception) -> None:
+        for seq, pending in list(self._pending_commands.items()):
+            if not pending.future.done():
+                pending.future.set_exception(exception)
+        self._pending_commands.clear()
 
 
     async def handle_error(self, exception: Exception) -> None:
@@ -250,15 +261,18 @@ class BattleEyeRconClient:
             return
 
         response_data = packet.response_data.decode('ascii') if packet.response_data else None
+        response = CommandResponse(
+            sequence=packet.request_sequence,
+            command=pending.command,
+            response=response_data,
+        )
+        if not pending.future.done():
+            pending.future.set_result(response)
         del self._pending_commands[packet.request_sequence]
 
         self._response_queue.append(Message(
             sequence=packet.request_sequence,
-            command_response=CommandResponse(
-                sequence=packet.request_sequence,
-                command=pending.command,
-                response=response_data,
-            ),
+            command_response=response,
         ))
 
 
@@ -276,17 +290,21 @@ class BattleEyeRconClient:
         pending.partials[header.index] = packet.response_data or b''
 
         if len(pending.partials) == header.total_packets:
-            del self._pending_commands[packet.request_sequence]
             full_data = b''.join(
                 pending.partials[i] for i in range(header.total_packets)
             )
+            response = CommandResponse(
+                sequence=packet.request_sequence,
+                command=pending.command,
+                response=full_data.decode('ascii') if full_data else None,
+            )
+            if not pending.future.done():
+                pending.future.set_result(response)
+            del self._pending_commands[packet.request_sequence]
+
             self._response_queue.append(Message(
                 sequence=packet.request_sequence,
-                command_response=CommandResponse(
-                    sequence=packet.request_sequence,
-                    command=pending.command,
-                    response=full_data.decode('ascii') if full_data else None,
-                ),
+                command_response=response,
             ))
 
 
@@ -299,14 +317,18 @@ class BattleEyeRconClient:
 
         for seq in timed_out:
             pending = self._pending_commands.pop(seq)
+            error_message = f"Multi-packet response timed out after {self.MULTI_PACKET_TIMEOUT:.0f}s"
+            response = CommandResponse(
+                sequence=seq,
+                command=pending.command,
+                response=None,
+                error=error_message,
+            )
+            if not pending.future.done():
+                pending.future.set_exception(TimeoutError(error_message))
             self._response_queue.append(Message(
                 sequence=seq,
-                command_response=CommandResponse(
-                    sequence=seq,
-                    command=pending.command,
-                    response=None,
-                    error=f"Multi-packet response timed out after {self.MULTI_PACKET_TIMEOUT:.0f}s",
-                ),
+                command_response=response,
             ))
 
 
@@ -410,6 +432,7 @@ class Message:
 @dataclass
 class _PendingCommand:
     command: str
+    future: asyncio.Future[CommandResponse]
     total_packets: int | None = None
     partials: dict[int, bytes] = field(default_factory=dict)
     created_at: float = field(default_factory=time.monotonic)
