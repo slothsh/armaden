@@ -61,7 +61,7 @@ class Supervisor:
         self._graphs: List[TaskGraph] = []
         self._compiler = TaskGraphCompiler()
         self._policy_engine = PolicyEngine()
-        self._injector = TaskInjector(container) if container is not None else None
+        self._injector = TaskInjector(container)
         self._worker_pool: WorkerPool | None = None
         self._scheduler = None
         self._active_coros: dict = {}
@@ -203,7 +203,7 @@ class Supervisor:
 
         self._shutdown_event.set()
 
-        injector = self._injector or (TaskInjector(self._container) if self._container is not None else None)
+        injector = self._injector
 
         for graph in list(self._graphs):
             for task_name in graph.shutdown_order:
@@ -220,24 +220,26 @@ class Supervisor:
                     runtime = entry.get('runtime')
                     if worker_loop is not None and runtime is not None:
                         try:
-                            shutdown_kwargs = {}
-                            if injector is not None and hasattr(task, 'shutdown') and callable(getattr(task, 'shutdown', None)):
-                                shutdown_kwargs = await injector.resolve(task, task.shutdown, graph, runtime)
-                            task._runtime_ref = runtime
                             if worker_loop is asyncio.get_running_loop():
-                                shutdown_result = task.shutdown(**shutdown_kwargs)
-                                if hasattr(shutdown_result, '__await__'):
-                                    await shutdown_result
+                                task._runtime_ref = runtime
+                                task._injector_ref = injector
+                                task._graph_ref = graph
+                                try:
+                                    shutdown_result = task.shutdown()
+                                    if hasattr(shutdown_result, '__await__'):
+                                        await shutdown_result
+                                finally:
+                                    task._runtime_ref = None
+                                    task._injector_ref = None
+                                    task._graph_ref = None
                             else:
                                 fut = asyncio.run_coroutine_threadsafe(
-                                    _run_shutdown(task, shutdown_kwargs),
+                                    _run_shutdown(task, injector, graph, runtime),
                                     worker_loop,
                                 )
                                 await asyncio.wrap_future(fut)
                         except Exception as exception:
                             logger.error('Task %s shutdown failed: %s', task_name, exception)
-                        finally:
-                            task._runtime_ref = None
 
                     if not entry['coro'].done():
                         entry['coro'].cancel()
@@ -257,16 +259,17 @@ class Supervisor:
                         main_loop=self._main_loop,
                     )
                     task._runtime_ref = runtime
-                    shutdown_kwargs = {}
-                    if injector is not None and hasattr(task, 'shutdown') and callable(getattr(task, 'shutdown', None)):
-                        shutdown_kwargs = await injector.resolve(task, task.shutdown, graph, runtime)
-                    shutdown_result = task.shutdown(**shutdown_kwargs)
+                    task._injector_ref = injector
+                    task._graph_ref = graph
+                    shutdown_result = task.shutdown()
                     if hasattr(shutdown_result, '__await__'):
                         await shutdown_result
                 except Exception as exception:
                     logger.error('Task %s shutdown failed: %s', task_name, exception)
                 finally:
                     task._runtime_ref = None
+                    task._injector_ref = None
+                    task._graph_ref = None
 
         remaining_coros = [e['coro'] for e in self._active_coros.values() if not e['coro'].done()]
         for coro in remaining_coros:
@@ -362,9 +365,7 @@ class Supervisor:
 
     async def _execute_graph(self, graph: TaskGraph) -> None:
         graph.state = TaskGraphState.RUNNING
-        injector = self._injector or TaskInjector(self._container) if self._container is not None else None
-        if injector is None:
-            injector = TaskInjector(None)
+        injector = self._injector
 
         for layer in graph.layers:
             await self._execute_layer(graph, layer, injector)
@@ -399,7 +400,7 @@ class Supervisor:
             coros[task.name] = coro
             if getattr(task, 'long_running', False):
                 self._active_coros[id(task)] = {'coro': coro, 'loop': None, 'runtime': runtime}
-                def _remove(_c, _tid=id(task), _store=self._active_coros):
+                def _remove(_, _tid=id(task), _store=self._active_coros):
                     _store.pop(_tid, None)
                 coro.add_done_callback(_remove)
 
@@ -407,7 +408,7 @@ class Supervisor:
         for task in tasks:
             coro = coros[task.name]
             if getattr(task, 'long_running', False):
-                ready_timeout = getattr(task.policy, 'ready_timeout', None) if hasattr(task, 'policy') else None
+                ready_timeout = task.policy.ready_timeout
                 signals.append(asyncio.create_task(
                     self._await_long_running_ready(task, coro, runtimes[task.name], graph, ready_timeout)
                 ))
@@ -824,13 +825,21 @@ def _result_error(result):
     return Error(TaskError.SUBPROCESS_ERROR, details={'error': str(failure)})
 
 
-async def _run_shutdown(task, shutdown_kwargs):
+async def _run_shutdown(task, injector, graph, runtime):
     if not hasattr(task, 'shutdown') or not callable(getattr(task, 'shutdown', None)):
         return None
-    result = task.shutdown(**shutdown_kwargs)
-    if hasattr(result, '__await__'):
-        return await result
-    return result
+    task._runtime_ref = runtime
+    task._injector_ref = injector
+    task._graph_ref = graph
+    try:
+        result = task.shutdown()
+        if hasattr(result, '__await__'):
+            return await result
+        return result
+    finally:
+        task._runtime_ref = None
+        task._injector_ref = None
+        task._graph_ref = None
 
 
 # -- Internal Types -----------------------------------------------------------
