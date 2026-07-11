@@ -493,14 +493,15 @@ class Supervisor:
                 worker = await self._worker_pool.acquire_exclusive(task.name)
                 if getattr(task, 'long_running', False) and id(task) in self._active_coros:
                     self._active_coros[id(task)]['loop'] = worker.loop
+                task_ref: dict = {}
                 future = asyncio.run_coroutine_threadsafe(
-                    self._run_one_task(task, runtime, graph, injector),
+                    self._run_wrapped_task(task, runtime, graph, injector, task_ref),
                     worker.loop,
                 )
                 try:
                     return await asyncio.wrap_future(future)
                 finally:
-                    await self._drain_worker_future(future)
+                    self._drain_worker_future(future, worker.loop, task_ref)
                     await self._worker_pool.release_exclusive(task.name)
 
             if semaphore is not None:
@@ -509,14 +510,15 @@ class Supervisor:
                 worker = await self._worker_pool.acquire_shared()
                 if getattr(task, 'long_running', False) and id(task) in self._active_coros:
                     self._active_coros[id(task)]['loop'] = worker.loop
+                task_ref = {}
                 future = asyncio.run_coroutine_threadsafe(
-                    self._run_one_task(task, runtime, graph, injector),
+                    self._run_wrapped_task(task, runtime, graph, injector, task_ref),
                     worker.loop,
                 )
                 try:
                     return await asyncio.wrap_future(future)
                 finally:
-                    await self._drain_worker_future(future)
+                    self._drain_worker_future(future, worker.loop, task_ref)
                     await self._worker_pool.release_shared(worker)
             finally:
                 if semaphore is not None:
@@ -527,16 +529,21 @@ class Supervisor:
                 'task': task.name, 'error': str(exception),
             }))
 
-    async def _drain_worker_future(self, future) -> None:
-        if not future.done():
-            future.cancel()
-        try:
-            await asyncio.shield(asyncio.wrap_future(future))
-        except (asyncio.CancelledError, Exception):
-            pass
-        if not future.done():
+    async def _run_wrapped_task(self, task, runtime, graph, injector, task_ref: dict):
+        task_ref['task'] = asyncio.current_task()
+        return await self._run_one_task(task, runtime, graph, injector)
+
+    def _drain_worker_future(self, future, worker_loop, task_ref: dict) -> None:
+        worker_task = task_ref.get('task')
+        if worker_task is not None and not worker_task.done():
+            worker_loop.call_soon_threadsafe(worker_task.cancel)
             try:
-                future.result(timeout=5.0)
+                future.result(timeout=30.0)
+            except Exception:
+                pass
+            try:
+                sync_fut = asyncio.run_coroutine_threadsafe(asyncio.sleep(0), worker_loop)
+                sync_fut.result(timeout=5.0)
             except Exception:
                 pass
 
