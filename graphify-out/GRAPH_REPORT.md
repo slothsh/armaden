@@ -1,16 +1,16 @@
 # Graph Report - armaden  (2026-07-11)
 
 ## Corpus Check
-- 167 files · ~31,646 words
+- 167 files · ~31,625 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1752 nodes · 3011 edges · 396 communities (58 shown, 338 thin omitted)
-- Extraction: 83% EXTRACTED · 17% INFERRED · 0% AMBIGUOUS · INFERRED: 502 edges (avg confidence: 0.55)
+- 1757 nodes · 3004 edges · 394 communities (60 shown, 334 thin omitted)
+- Extraction: 84% EXTRACTED · 16% INFERRED · 0% AMBIGUOUS · INFERRED: 487 edges (avg confidence: 0.55)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7c91a2b1`
+- Built from commit: `aa441b35`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -82,7 +82,6 @@
 - .disable_crash_reporter
 - Global Streaming Budget
 - .enable_night_grain
-- Agent Guidelines Docs
 - Arma Games Module
 - Scaffold CLI Tool
 - App Config File
@@ -238,9 +237,7 @@
 - Kernel
 - ApplicationInterface
 - .list_scenarios
-- __init__.py
 - .log_scr_checksum
-- Kernel
 - Any
 - .no_backend
 - .no_sound
@@ -385,7 +382,6 @@
 - Path
 - Result
 - Any
-- Result
 - Self
 - TaskRuntimeInterface
 - SupervisorInterface
@@ -398,7 +394,7 @@
 
 ## God Nodes (most connected - your core abstractions)
 1. `InstanceContainer` - 119 edges
-2. `ArmaReforgerServerExecutable` - 85 edges
+2. `ArmaReforgerServerExecutable` - 84 edges
 3. `Request` - 49 edges
 4. `Supervisor` - 47 edges
 5. `app()` - 40 edges
@@ -423,7 +419,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (396 total, 338 thin omitted)
+## Communities (394 total, 334 thin omitted)
 
 ### Community 0 - "IoC Container Binding"
 Cohesion: 0.13
@@ -437,17 +433,13 @@ Nodes (19): app() facade, SupervisorRequestArgs, SupervisorRequestData, HealthSt
 Cohesion: 0.14
 Nodes (6): BindingResolutionException, CircularDependencyException, ContextualAttribute, EntryNotFoundException, SelfBuilding, Parameter
 
-### Community 3 - "Application Kernel Interface"
-Cohesion: 0.13
-Nodes (3): AsyncStreamCallback, ProcessBuilder, Path
-
 ### Community 4 - "App Facade Container"
-Cohesion: 0.11
+Cohesion: 0.12
 Nodes (3): Any, app(), T
 
 ### Community 5 - "Executable Argument Builder"
-Cohesion: 0.24
-Nodes (5): ArmaReforgerServerConfig, TaskRuntimeInterface, ArmaReforgerServerError, ArmaReforgerServerException, ExecutableContainer
+Cohesion: 0.21
+Nodes (3): Lifecycle, Pipeline, TaskRuntimeInterface
 
 ### Community 6 - "Task Lifecycle Management"
 Cohesion: 0.07
@@ -458,16 +450,12 @@ Cohesion: 0.10
 Nodes (9): DatagramProtocol, DatagramTransport, Exception, entry(), main(), entry(), main(), AsyncDatagramTransport (+1 more)
 
 ### Community 10 - "Core Application Bootstrap"
-Cohesion: 0.24
-Nodes (6): set_application(), bootstrap_console(), bootstrap_http(), HttpKernel, RuntimeEntry, TypedResult
+Cohesion: 0.11
+Nodes (9): set_application(), bootstrap_console(), bootstrap_http(), ConsoleKernel, HttpKernel, Kernel, RuntimeEntry, ConsoleServiceProvider (+1 more)
 
 ### Community 11 - "BattleEye RCON Server"
 Cohesion: 0.15
 Nodes (7): BattleEyeRconServer, Client, ClientState, ResponseMessage, LoginStatus, LoginResponsePacket, IntEnum
-
-### Community 12 - "Console Kernel Bootstrap"
-Cohesion: 0.10
-Nodes (3): AbstractEventLoop, CoreApplication, InstanceContainer
 
 ### Community 13 - "Scaffold File Generator"
 Cohesion: 0.14
@@ -478,40 +466,40 @@ Cohesion: 0.13
 Nodes (5): BattleEyeRconClient, ClientStatus, # TODO: handle stateful messages (responses to sequenced messages), # TODO: implement event system, # TODO: handle stateful messages (responses to sequences)
 
 ### Community 15 - "Arma Server Task Runtime"
-Cohesion: 0.19
-Nodes (16): TaskError, ConcurrencyFacade, ProcessFacade, ScheduleFacade, PolicyEngine, _ExclusiveWorker, ProcessInfoData, RequestInfoData (+8 more)
+Cohesion: 0.18
+Nodes (14): TaskError, ProcessFacade, ScheduleFacade, PolicyEngine, _ExclusiveWorker, ProcessInfoData, RequestInfoData, SupervisorError (+6 more)
 
 ### Community 16 - "Server Path Configuration"
-Cohesion: 0.05
-Nodes (21): Executable, Dictionary, ArmaReforgerRconClient, A2SConfig, Config, GameConfig, GamePropertiesConfig, GamePropertiesPersistence (+13 more)
+Cohesion: 0.06
+Nodes (29): ArmaReforgerServerConfig, ArmaReforgerRconClient, A2SConfig, Config, GameConfig, GamePropertiesConfig, GamePropertiesPersistence, JoinQueueConfig (+21 more)
 
 ### Community 17 - "BattleEye Packet Protocol"
 Cohesion: 0.18
 Nodes (3): Message, Packet, UnknownPacket
 
 ### Community 18 - "Framework Service Providers"
-Cohesion: 0.16
-Nodes (8): Lifecycle, Pipeline, DuplicateTaskNameError, TaskGraphCycleError, UnresolvedDependencyError, TaskGraph, TaskGraphCompiler, _UnresolvedSentinel
+Cohesion: 0.19
+Nodes (6): DuplicateTaskNameError, TaskGraphCycleError, UnresolvedDependencyError, TaskGraph, TaskGraphCompiler, _UnresolvedSentinel
 
 ### Community 19 - "Typed Environment Config"
 Cohesion: 0.16
-Nodes (6): GraphTaskRuntime, _result_error(), _run_shutdown(), WorkerPool, Semaphore, TaskInjector
+Nodes (7): GraphTaskRuntime, _result_error(), _run_shutdown(), _SharedWorker, WorkerPool, Semaphore, TaskInjector
 
 ### Community 21 - "Datagram Packet Parsing"
 Cohesion: 0.18
 Nodes (3): Config, Give, Tag
 
-### Community 22 - "FastAPI Default Application"
-Cohesion: 0.17
-Nodes (3): ConcurrencyBuilder, TaskInjector, TaskGraph
-
 ### Community 23 - "Module Discovery Loader"
-Cohesion: 0.14
-Nodes (6): DefaultApi, ArmaReforgerServer, PathContainer, AppServiceProvider, Result, TaskRuntimeInterface
+Cohesion: 0.21
+Nodes (5): FastAPI, DefaultApi, DefaultApiError, Result, TaskRuntimeInterface
 
 ### Community 24 - "Request"
 Cohesion: 0.06
 Nodes (20): HttpKernel, Middleware, MiddlewarePipeline, json_response(), JSONResponse, response(), ResponseFactory, ApiUser (+12 more)
+
+### Community 26 - "Command Request Packet"
+Cohesion: 0.14
+Nodes (6): Config, Executable, Path, PushValue, Result, SteamCmdExecutable
 
 ### Community 28 - "Server Message Packet"
 Cohesion: 0.20
@@ -521,29 +509,37 @@ Nodes (3): CommandHeader, CommandResponsePacket, BattleEyeInvalidPacketException
 Cohesion: 0.05
 Nodes (8): __getattr__(), _LegacyTask, TaskBuilder, TaskBuilderInterface, TaskInterface, StatusCallback, TaskCallback, TaskThreadingPolicy
 
+### Community 31 - "SupervisorRequestData"
+Cohesion: 0.09
+Nodes (3): _BuiltCallbacks, _BuiltTask, TaskBuilder
+
 ### Community 32 - "Server Message Response"
 Cohesion: 0.21
 Nodes (3): RequestMessage, KeepAlivePacket, LoginRequestPacket
+
+### Community 34 - "App Lifecycle Callbacks"
+Cohesion: 0.18
+Nodes (4): AppServiceProvider, ServiceProvider, AppServiceProvider, providers()
 
 ### Community 35 - "Async Subprocess Dispatch"
 Cohesion: 0.14
 Nodes (5): config(), env(), Facade for reading typed environment variables from the application., config(), config()
 
 ### Community 38 - "Steam Query Bind Address"
-Cohesion: 0.19
-Nodes (3): ErrorInterface, SupervisorInterface, SupervisorRequestInterface
+Cohesion: 0.16
+Nodes (4): ErrorInterface, SupervisorInterface, SupervisorRequestData, SupervisorRequestInterface
 
 ### Community 40 - "Addon Auto Repair Flag"
 Cohesion: 0.25
 Nodes (4): APIRouter, RouteCompiler, RouteParameter, HttpKernel
 
 ### Community 41 - "KeepAlivePacket"
-Cohesion: 0.20
-Nodes (7): RestartPolicy, _emit_banner(), TelemetryServiceProvider, CollectServerTelemetryTask, FormatTelemetryReportTask, TelemetryAlertTask, TelemetryReadinessProbeTask
+Cohesion: 0.13
+Nodes (9): RestartPolicy, Task, TaskPolicy, _emit_banner(), TelemetryServiceProvider, CollectServerTelemetryTask, FormatTelemetryReportTask, TelemetryAlertTask (+1 more)
 
 ### Community 42 - "Auto Shutdown Flag"
-Cohesion: 0.12
-Nodes (12): AppServiceProvider, ServiceProvider, TaskThreadingPolicy, ArmaReforgerExecutableFlag, ArmaReforgerExecutableFlagError, Arma Reforger CLI startup flags., ApplicationError, ApplicationException (+4 more)
+Cohesion: 0.15
+Nodes (10): TaskThreadingPolicy, MultiImplementation, ServiceProvider, ApplicationError, ApplicationException, ApplicationStatus, HttpServiceProvider, TypeDiscoveryError (+2 more)
 
 ### Community 45 - "Debugger Port Setting"
 Cohesion: 0.25
@@ -570,12 +566,12 @@ Cohesion: 0.16
 Nodes (4): Event, ProgressChannel, ProgressUpdate, TaskRuntime
 
 ### Community 100 - ".single_threaded_update"
-Cohesion: 0.12
-Nodes (3): Future, Supervisor, SupervisorRequestData
+Cohesion: 0.13
+Nodes (3): AbstractEventLoop, Future, Supervisor
 
 ### Community 107 - "ABC"
-Cohesion: 0.23
-Nodes (4): ABC, Configurable, _resolve_config_type(), Controller
+Cohesion: 0.21
+Nodes (3): ABC, Controller, DeferrableProvider
 
 ### Community 161 - "Any"
 Cohesion: 0.22
@@ -585,9 +581,9 @@ Nodes (8): ArmaDen, Build Locally, CLI Entrypoints, Install, Manual Application 
 Cohesion: 0.33
 Nodes (5): MANDATORY: Code Comment Conventions, MANDATORY: Git Rules, MANDATORY: Local Code Search/Traversal, MANDATORY: Use td for Task Management, MANDATORY: Worktree Management
 
-### Community 236 - "__init__.py"
-Cohesion: 0.48
-Nodes (3): MultiImplementation, TypeDiscoveryError, TypeDiscoveryServiceProvider
+### Community 231 - "ConsoleKernel"
+Cohesion: 0.28
+Nodes (3): Configurable, _resolve_config_type(), Dictionary
 
 ### Community 242 - "CoreApplicationInterface"
 Cohesion: 0.06
@@ -596,21 +592,21 @@ Nodes (7): ErrorInterface, CoreApplicationInterface, KernelInterface, RconPacket
 ## Knowledge Gaps
 - **26 isolated node(s):** `armaden`, `ApiResponseData`, `MANDATORY: Local Code Search/Traversal`, `MANDATORY: Use td for Task Management`, `MANDATORY: Worktree Management` (+21 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **338 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **334 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `ArmaReforgerServerExecutable` connect `IoC Container Binding` to `.addons_verify`, `Result`, `.autoshutdown`, `.backend_local_storage`, `.cfg`, `.create_db`, `.custom`, `.debugger`, `.debugger_port`, `.disable_crash_reporter`, `.disable_shaders_build`, `Server Path Configuration`, `.jobsys_long_worker_count`, `.limit_fps`, `.log_rdb_checksum`, `.logs_dir`, `.minidump`, `.nds`, `.no_splash`, `.no_throw`, `.nwk_resolution`, `.profile`, `.scenario`, `.script_authorize_all`, `.server_id`, `Local Backend Storage Flag`, `Freeze Detection Timeout`, `List Scenarios Flag`, `Log Append Mode Flag`, `.autoshutdown`, `Error Dialog Suppression`, `.backend_disable_storage`, `.backend_local_storage`, `.debugger_port`, `.disable_ai`, `Global Streaming Budget`, `Package Init Module`, `Package Init Module`, `Package Entry Point`, `Package Init Module`, `Package Init Module`, `Package Init Module`, `Package Init Module`, `Package Init Module`, `.freeze_check`, `.jobsys_long_worker_count`, `.keep_crash_files`, `.keep_session_save`, `.log_voting`, `.nds`, `.no_backend`, `.nwk_resolution`, `.server_id`, `.staggering_budget`, `.disable_navmesh_streaming`, `.streams_delta`, `.freeze_check_mode`, `Any`, `Config`, `.list_scenarios`, `Self`, `.log_scr_checksum`, `TaskRuntimeInterface`, `__init__.py`, `.no_backend`, `.no_sound`, `Result`, `.rpl_encode_as_long_jobs`, `.server_world`, `.addon_temp_dir`?**
-  _High betweenness centrality (0.169) - this node is a cross-community bridge._
-- **Why does `Executable` connect `Server Path Configuration` to `IoC Container Binding`, `ABC`?**
-  _High betweenness centrality (0.141) - this node is a cross-community bridge._
-- **Why does `InstanceContainer` connect `Bound Method Resolution` to `Arma Reforger Server Config`, `.silent_crash_report`, `Agent Guidelines Docs`, `App Lifecycle Callbacks`, `.single_threaded_update`, `Auto Shutdown Flag`, `Console Kernel Bootstrap`, `Arma Server Task Runtime`, `StrEnum`, `Typed Environment Config`?**
-  _High betweenness centrality (0.082) - this node is a cross-community bridge._
+- **Why does `ArmaReforgerServerExecutable` connect `IoC Container Binding` to `.addons_verify`, `Result`, `.autoshutdown`, `.backend_local_storage`, `.cfg`, `.create_db`, `.custom`, `.debugger`, `.debugger_port`, `.disable_crash_reporter`, `.disable_shaders_build`, `Server Path Configuration`, `.jobsys_long_worker_count`, `.limit_fps`, `.log_rdb_checksum`, `.logs_dir`, `.minidump`, `.nds`, `.no_splash`, `.no_throw`, `.nwk_resolution`, `.profile`, `.scenario`, `.script_authorize_all`, `.server_id`, `Local Backend Storage Flag`, `Freeze Detection Timeout`, `List Scenarios Flag`, `Log Append Mode Flag`, `.autoshutdown`, `Error Dialog Suppression`, `.backend_disable_storage`, `.backend_local_storage`, `.debugger_port`, `.disable_ai`, `Global Streaming Budget`, `Package Init Module`, `Package Init Module`, `Package Entry Point`, `Package Init Module`, `Package Init Module`, `Package Init Module`, `Package Init Module`, `Package Init Module`, `.freeze_check`, `.jobsys_long_worker_count`, `.keep_crash_files`, `.keep_session_save`, `.log_voting`, `.nds`, `.no_backend`, `.nwk_resolution`, `.server_id`, `.staggering_budget`, `.disable_navmesh_streaming`, `ConsoleKernel`, `.freeze_check_mode`, `.streams_delta`, `Any`, `.list_scenarios`, `Config`, `.log_scr_checksum`, `Self`, `TaskRuntimeInterface`, `.no_backend`, `.no_sound`, `__init__.py`, `Result`, `.rpl_encode_as_long_jobs`, `.server_world`, `RouteCompiler`, `.addon_temp_dir`?**
+  _High betweenness centrality (0.147) - this node is a cross-community bridge._
+- **Why does `Executable` connect `RouteCompiler` to `Server Path Configuration`, `IoC Container Binding`, `ABC`?**
+  _High betweenness centrality (0.115) - this node is a cross-community bridge._
+- **Why does `InstanceContainer` connect `Bound Method Resolution` to `Arma Reforger Server Config`, `.silent_crash_report`, `Agent Guidelines Docs`, `.single_threaded_update`, `Auto Shutdown Flag`, `ABC`, `Console Kernel Bootstrap`, `Arma Server Task Runtime`, `StrEnum`, `Typed Environment Config`?**
+  _High betweenness centrality (0.086) - this node is a cross-community bridge._
 - **Are the 21 inferred relationships involving `InstanceContainer` (e.g. with `._is_container_type()` and `DeferrableProvider`) actually correct?**
   _`InstanceContainer` has 21 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 4 inferred relationships involving `ArmaReforgerServerExecutable` (e.g. with `Executable` and `Dictionary`) actually correct?**
-  _`ArmaReforgerServerExecutable` has 4 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 3 inferred relationships involving `ArmaReforgerServerExecutable` (e.g. with `Executable` and `Dictionary`) actually correct?**
+  _`ArmaReforgerServerExecutable` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `armaden`, `Accepts any Enum instance that implements a .message property.`, `Enforces that any error type object has a code string and message string.` to the rest of the system?**
   _120 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `IoC Container Binding` be split into smaller, more focused modules?**
