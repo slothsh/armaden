@@ -50,7 +50,7 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig]):
 
     async def initialize(self, runtime: TaskRuntimeInterface) -> Result[None]:
         try:
-            if not is_successful(result := await self._executable.steamcmd.ensure_installed(runtime)):
+            if not is_successful(result := await self._executable.steamcmd.ensure_installed()):
                 return result.map(lambda _: None)
 
             if not is_successful(result := await self._executable.reforger.ensure_installed(runtime, self._executable.steamcmd)):
@@ -96,17 +96,14 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig]):
             handle_std_stream=ArmaReforgerServer._log_subprocess
         )
 
-        return await self.shutdown(runtime)
+        return await self.shutdown()
 
 
-    async def shutdown(self, runtime: TaskRuntimeInterface) -> Result[None]:
-        _ = runtime
+    async def shutdown(self) -> Result[None]:
         return Success(None)
 
 
-    async def initialize_rcon_client(self, runtime: TaskRuntimeInterface) -> Result[None]:
-        _ = runtime
-
+    async def initialize_rcon_client(self) -> Result[None]:
         if rcon_config := self.config['server'] and self.config['server']['rcon']:
             match (rcon_config['port'], rcon_config['password']):
                 case int() | None as port, str() | None as password:
@@ -126,11 +123,12 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig]):
 
         await self._rcon_client.connect()
 
+        await runtime.signal_ready()
+
         return Success(None)
 
 
-    async def shutdown_rcon_client(self, runtime: TaskRuntimeInterface) -> Result[None]:
-        _ = runtime
+    async def shutdown_rcon_client(self) -> Result[None]:
         if not self._rcon_client:
             return Success(None)
 

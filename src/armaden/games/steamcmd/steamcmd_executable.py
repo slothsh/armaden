@@ -10,7 +10,6 @@ from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
 from armaden.framework.classes.executable import Executable, PushValue
-from armaden.framework.protocols.task_runtime import TaskRuntimeInterface
 from armaden.framework.utils.types import Result
 from armaden.framework.utils.dictionary import Dictionary
 from armaden.framework.errors import Error
@@ -55,10 +54,10 @@ class SteamCmdExecutable(Executable):
         )
 
 
-    async def ensure_installed(self, runtime: TaskRuntimeInterface) -> Result[Path]:
+    async def ensure_installed(self) -> Result[Path]:
         if self._executable is not None and self._executable.exists():
             return Success(self._executable)
-        if not is_successful(result := await self.install(runtime)):
+        if not is_successful(result := await self.install()):
             return Failure(Error(SteamCmdExecutableError.INSTALL_FAILED, details={
                 'error': result.failure()
             }))
@@ -69,7 +68,7 @@ class SteamCmdExecutable(Executable):
         return result
 
 
-    async def install(self, runtime: TaskRuntimeInterface) -> Result[Path]:
+    async def install(self) -> Result[Path]:
         if not sys.platform.startswith('linux'):
             return Failure(Error(SteamCmdExecutableError.EXECUTABLE_NOT_FOUND))
 
