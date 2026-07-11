@@ -250,8 +250,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/supervisor.py": {
-    "mtime": 1783785074.0181284,
-    "ast_hash": "bfd9501e1bc0749a3cc72fe1bbca692e",
+    "mtime": 1783785606.9861426,
+    "ast_hash": "26ecedd0e0eeb362c06f032f0025849d",
     "semantic_hash": ""
   },
   "src/armaden/framework/utils/__init__.py": {
@@ -295,8 +295,8 @@
     "semantic_hash": ""
   },
   "src/armaden/games/arma_reforger/arma_reforger_server.py": {
-    "mtime": 1783783659.923753,
-    "ast_hash": "d63c7250f6586b99750cea74fabdacb2",
+    "mtime": 1783785643.783346,
+    "ast_hash": "0bb6fa611fda80bde2daa1ef9f3e5014",
     "semantic_hash": ""
   },
   "src/armaden/games/arma_reforger/arma_reforger_server_config.py": {
@@ -837,6 +837,11 @@
   "user/app/tasks/telemetry_tasks.py": {
     "mtime": 1783782237.09549,
     "ast_hash": "6b576b58cd231aa49d5df68adf98cccd",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/utils/string.py": {
+    "mtime": 1783785580.6291914,
+    "ast_hash": "02d04b5fe7fd1f6aef7ea868b182c1bf",
     "semantic_hash": ""
   }
 }
