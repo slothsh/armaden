@@ -107,8 +107,21 @@ class TaskRuntime:
             tasks.append(asyncio.create_task(drain(process.stdout, handle_std_stream)))
             tasks.append(asyncio.create_task(drain(process.stderr, handle_std_stream)))
 
-        return_code = await process.wait()
-        await asyncio.gather(*tasks)
+        try:
+            return_code = await process.wait()
+            await asyncio.gather(*tasks)
+        except asyncio.CancelledError:
+            for t in tasks:
+                t.cancel()
+            if tasks:
+                await asyncio.gather(*tasks, return_exceptions=True)
+            raise
+        finally:
+            for t in tasks:
+                if not t.done():
+                    t.cancel()
+            if tasks:
+                await asyncio.gather(*tasks, return_exceptions=True)
 
         if return_code == 0:
             return Success("Subprocess executed successfully")
