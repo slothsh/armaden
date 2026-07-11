@@ -235,8 +235,8 @@
     "semantic_hash": "94d1f66bcca7cfbb196e25fbf646c983"
   },
   "src/armaden/framework/runtime/providers/http_service_provider.py": {
-    "mtime": 1783777849.0271738,
-    "ast_hash": "cd5220b8487a3ca439892bf98eb39920",
+    "mtime": 1783781031.684841,
+    "ast_hash": "4ce68c1d13bafeb7e632905fe83155e5",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/providers/type_discovery_service_provider.py": {
@@ -250,8 +250,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/supervisor.py": {
-    "mtime": 1783778641.8278842,
-    "ast_hash": "f2d581cb2e1bb254d27563c8e68bc2c6",
+    "mtime": 1783780995.3459034,
+    "ast_hash": "4c0cb1c9e659d8adb28618defe405188",
     "semantic_hash": ""
   },
   "src/armaden/framework/utils/__init__.py": {
@@ -480,8 +480,8 @@
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
   "user/app/providers/app_service_provider.py": {
-    "mtime": 1783779030.7531967,
-    "ast_hash": "7616460abc61a35afbb300455dd5b2fd",
+    "mtime": 1783781049.2748106,
+    "ast_hash": "5ac86c455c6f5abdde3005d17cdbe7d1",
     "semantic_hash": ""
   },
   "user/bootstrap/application.py": {
@@ -800,13 +800,13 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/task.py": {
-    "mtime": 1783779641.9140944,
-    "ast_hash": "b668bd5b87792fff47344d97a2dbb53c",
+    "mtime": 1783781193.0305622,
+    "ast_hash": "fc43449c447b808415b0f7806fa9d4e7",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/task_builder.py": {
-    "mtime": 1783778768.2446625,
-    "ast_hash": "bb9914116fa5ae8114c4abbdb7d970d5",
+    "mtime": 1783781204.603542,
+    "ast_hash": "af66a45f0feb6f899524a6f9b23ed454",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/task_graph.py": {
@@ -825,8 +825,8 @@
     "semantic_hash": ""
   },
   "user/app/providers/telemetry_service_provider.py": {
-    "mtime": 1783773837.4170356,
-    "ast_hash": "aa3405259ffa93f7d26f054b6af47dd2",
+    "mtime": 1783781536.8089633,
+    "ast_hash": "cd39a55b32cbdd28c9272cdcb286c0d4",
     "semantic_hash": ""
   },
   "user/app/tasks/__init__.py": {
