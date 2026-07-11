@@ -1,14 +1,15 @@
 import asyncio
 import logging
 import errno
+import time
 from datetime import datetime
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from asyncio import AbstractEventLoop
 import signal
 from typing import Any, Generator
 
 from armaden.network.rcon.battle_eye.packets.command_request_packet import CommandRequestPacket
-from armaden.network.rcon.battle_eye.packets.command_response_packet import CommandResponsePacket
+from armaden.network.rcon.battle_eye.packets.command_response_packet import CommandHeader, CommandResponsePacket
 from armaden.network.rcon.battle_eye.packets.keep_alive_packet import KeepAlivePacket
 from armaden.network.rcon.battle_eye.packets.login_request_packet import LoginRequestPacket
 from armaden.network.rcon.battle_eye.packets.login_response_packet import LoginResponsePacket
@@ -28,6 +29,7 @@ class BattleEyeRconClient:
     RECONNECT_TIMEOUT = 45
     KEEP_ALIVE_TIMEOUT = 30
     LOGIN_TIMEOUT = 5
+    MULTI_PACKET_TIMEOUT = 10.0
 
     def __init__(
         self,
@@ -49,6 +51,7 @@ class BattleEyeRconClient:
         self._password = password
         self._request_queue: list[Message] = []
         self._response_queue: list[Message] = []
+        self._pending_commands: dict[int, _PendingCommand] = {}
 
         self._sequence_generator = self._new_sequence_generator()
         def generate_sequence() -> int:
@@ -69,6 +72,37 @@ class BattleEyeRconClient:
         return self._port
 
 
+    def send_command(self, command: str, *args: str) -> None:
+        argv = [command] + list(args)
+        sequence = self._generate_sequence()
+        packet = Packet.new(CommandRequestPacket, sequence, argv)
+        self._pending_commands[sequence] = _PendingCommand(
+            command=' '.join(argv),
+        )
+        self._request_queue.append(Message(
+            sequence=sequence,
+            packet_request=packet,
+        ))
+
+
+    async def on_server_message(self, message: ServerMessage) -> None:
+        _ = message
+        pass
+
+
+    async def on_command_response(self, response: CommandResponse) -> None:
+        _ = response
+        pass
+
+
+    async def on_connected(self) -> None:
+        pass
+
+
+    async def on_disconnected(self) -> None:
+        pass
+
+
     async def connect(self) -> None:
         while not self._shutdown_event.is_set():
             try:
@@ -80,9 +114,9 @@ class BattleEyeRconClient:
                 else:
                     await self._try_login()
 
-                # await self._process_events()
                 await self._handle_responses()
                 await self._handle_requests()
+                await self._cleanup_pending_commands()
 
                 await asyncio.wait_for(self._shutdown_event.wait(), timeout=1.0)
             except asyncio.TimeoutError:
@@ -123,7 +157,6 @@ class BattleEyeRconClient:
             UnknownPacket
         )
 
-        # TODO: handle stateful messages (responses to sequenced messages)
         self._handle_packet(packet, datetime.now())
 
 
@@ -137,6 +170,7 @@ class BattleEyeRconClient:
         logger.warning(exception)
         self._connected = False
         self._client_status.authenticated = False
+        await self.on_disconnected()
 
 
     async def handle_error(self, exception: Exception) -> None:
@@ -173,25 +207,114 @@ class BattleEyeRconClient:
     def _handle_packet(self, packet: Packet, time_received: datetime) -> None:
         match packet:
             case ServerMessageRequestPacket():
-                response_packet = Packet.new(ServerMessageResponsePacket, packet.sequence)
+                self._handle_server_message(packet, time_received)
+            case CommandResponsePacket():
+                self._handle_command_response(packet)
+            case LoginResponsePacket():
                 self._response_queue.append(Message(
-                    sequence=packet.sequence,
-                    packet_request=packet,
-                    time_request=time_received,
-                    packet_response=response_packet,
+                    packet_response=packet,
+                    time_response=time_received,
                 ))
             case _:
                 self._response_queue.append(Message(
                     packet_response=packet,
-                    time_response=time_received
+                    time_response=time_received,
                 ))
+
+
+    def _handle_server_message(self, packet: ServerMessageRequestPacket, time_received: datetime) -> None:
+        ack_packet = Packet.new(ServerMessageResponsePacket, packet.sequence)
+        self._response_queue.append(Message(
+            sequence=packet.sequence,
+            packet_request=packet,
+            time_request=time_received,
+            server_message=ServerMessage(
+                sequence=packet.sequence,
+                message=packet.message_data.decode('ascii'),
+            ),
+        ))
+        self._request_queue.append(Message(
+            sequence=packet.sequence,
+            packet_request=ack_packet,
+        ))
+
+
+    def _handle_command_response(self, packet: CommandResponsePacket) -> None:
+        pending = self._pending_commands.get(packet.request_sequence)
+
+        if (header := packet.response_header) is not None:
+            self._handle_multi_packet_response(header, packet, pending)
+            return
+
+        if pending is None:
+            return
+
+        response_data = packet.response_data.decode('ascii') if packet.response_data else None
+        del self._pending_commands[packet.request_sequence]
+
+        self._response_queue.append(Message(
+            sequence=packet.request_sequence,
+            command_response=CommandResponse(
+                sequence=packet.request_sequence,
+                command=pending.command,
+                response=response_data,
+            ),
+        ))
+
+
+    def _handle_multi_packet_response(
+        self, header: CommandHeader, packet: CommandResponsePacket, pending: _PendingCommand | None
+    ) -> None:
+        if pending is None:
+            logger.warning(
+                "Received multi-packet response for unknown sequence %d (packet %d/%d), ignoring",
+                packet.request_sequence, header.index + 1, header.total_packets,
+            )
+            return
+
+        pending.total_packets = header.total_packets
+        pending.partials[header.index] = packet.response_data or b''
+
+        if len(pending.partials) == header.total_packets:
+            del self._pending_commands[packet.request_sequence]
+            full_data = b''.join(
+                pending.partials[i] for i in range(header.total_packets)
+            )
+            self._response_queue.append(Message(
+                sequence=packet.request_sequence,
+                command_response=CommandResponse(
+                    sequence=packet.request_sequence,
+                    command=pending.command,
+                    response=full_data.decode('ascii') if full_data else None,
+                ),
+            ))
+
+
+    async def _cleanup_pending_commands(self) -> None:
+        now = time.monotonic()
+        timed_out: list[int] = []
+        for seq, pending in self._pending_commands.items():
+            if pending.total_packets is not None and (now - pending.created_at) > self.MULTI_PACKET_TIMEOUT:
+                timed_out.append(seq)
+
+        for seq in timed_out:
+            pending = self._pending_commands.pop(seq)
+            self._response_queue.append(Message(
+                sequence=seq,
+                command_response=CommandResponse(
+                    sequence=seq,
+                    command=pending.command,
+                    response=None,
+                    error=f"Multi-packet response timed out after {self.MULTI_PACKET_TIMEOUT:.0f}s",
+                ),
+            ))
 
 
     async def _handle_requests(self):
         while self._request_queue:
             message = self._request_queue.pop(0)
             if not message.packet_request:
-                logger.warning("Cannot sent message with empty request packet %s", message)
+                logger.warning("Cannot send message with empty request packet %s", message)
                 continue
 
             last_send_time = datetime.now()
@@ -202,26 +325,38 @@ class BattleEyeRconClient:
     async def _handle_responses(self):
         while self._response_queue:
             message = self._response_queue.pop(0)
-            match (message.packet_request, message.packet_response):
-                case None, LoginResponsePacket():
-                    self._authenticate(message.packet_response)
-                case None, CommandResponsePacket():
-                    await self._dispatch_command_response(message.packet_response)
-                case ServerMessageRequestPacket(), ServerMessageResponsePacket():
-                    await self._dispatch_server_message_response(message.packet_request, message.packet_response)
-                case None, UnknownPacket():
+
+            if message.server_message is not None:
+                await self.on_server_message(message.server_message)
+                continue
+
+            if message.command_response is not None:
+                await self.on_command_response(message.command_response)
+                continue
+
+            if message.login_connected:
+                await self.on_connected()
+                continue
+
+            match message.packet_response:
+                case LoginResponsePacket():
+                    self._handle_login_response(message.packet_response)
+                case UnknownPacket():
                     logger.warning('Unknown response packet received %s', message)
-                case None, None:
+                case None:
                     logger.warning("Cannot handle response message with None type packet %s", message)
+                case _:
+                    logger.warning('Unhandled response packet %s', message.packet_response)
 
 
-    async def _process_events(self):
-        # TODO: implement event system
-        # TODO: handle stateful messages (responses to sequences)
-        sequence = self._generate_sequence()
-        packet = Packet.new(CommandRequestPacket, sequence, ['print', 'foo'])
-        message = Message(sequence=sequence, packet_request=packet)
-        self._request_queue.append(message)
+    def _handle_login_response(self, packet: LoginResponsePacket) -> None:
+        if packet.authenticated:
+            logger.info(f"Successfully authenticated with remote console {self._address}:{self._port}")
+            self._client_status.authenticated = True
+            self._response_queue.append(Message(login_connected=True))
+        else:
+            logger.info(f"Authentication with remote console {self._address}:{self._port} failed")
+            self._client_status.authenticated = False
 
 
     def _handle_transport_error(self, exception: Exception):
@@ -235,32 +370,27 @@ class BattleEyeRconClient:
             logger.error(f"An unexpected error occurred: {type(exception).__name__}: {exception!r}")
 
 
-    def _authenticate(self, packet: LoginResponsePacket):
-        if packet.authenticated:
-            logger.info(f"Successfully authenticated with remote console {self._address}:{self._port}")
-            self._client_status.authenticated = True
-        else:
-            logger.info(f"Authentication with remote console {self._address}:{self._port} failed")
-            self._client_status.authenticated = False
-
-
-    async def _dispatch_command_response(self, packet: CommandResponsePacket) -> None:
-        logger.info("Received command response %s", packet)
-
-
-    async def _dispatch_server_message_response(self, request_packet: ServerMessageRequestPacket, response_packet: ServerMessageResponsePacket) -> None:
-        logger.info("Received server message request %s", request_packet)
-        self._request_queue.append(Message(
-            sequence=response_packet.request_sequence,
-            packet_request=response_packet,
-        ))
-
-
     def _new_sequence_generator(self) -> Generator[int]:
         i = 0
         while True:
             yield i
             i = (i + 1) % 255
+
+
+# -- Public Types -------------------------------------------------------------
+
+@dataclass
+class CommandResponse:
+    sequence: int
+    command: str
+    response: str | None
+    error: str | None = None
+
+
+@dataclass
+class ServerMessage:
+    sequence: int
+    message: str
 
 
 # -- Internal Types -----------------------------------------------------------
@@ -272,6 +402,18 @@ class Message:
     time_request: datetime | None = None
     packet_response: Packet | None = None
     time_response: datetime | None = None
+    server_message: ServerMessage | None = None
+    command_response: CommandResponse | None = None
+    login_connected: bool = False
+
+
+@dataclass
+class _PendingCommand:
+    command: str
+    total_packets: int | None = None
+    partials: dict[int, bytes] = field(default_factory=dict)
+    created_at: float = field(default_factory=time.monotonic)
+
 
 @dataclass
 class ClientStatus:
