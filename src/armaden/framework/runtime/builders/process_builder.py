@@ -4,6 +4,7 @@ import signal as signal_module
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
+from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
 from armaden.framework.enums.restart_policy import RestartPolicy
@@ -114,7 +115,7 @@ class _ProcessTask(Task):
     async def run(self) -> Result[Any]:
         self._handle = SubprocessHandle(self.name or 'process')
         start_result = await self._handle.start(self._argv, cwd=self._cwd, env=self._env)
-        if not start_result.is_successful():
+        if not is_successful(start_result):
             return start_result
 
         if self.long_running:

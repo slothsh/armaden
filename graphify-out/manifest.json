@@ -480,8 +480,8 @@
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
   "user/app/providers/app_service_provider.py": {
-    "mtime": 1783769817.3778937,
-    "ast_hash": "34a022cae4d7d683eade1552854f7b4e",
+    "mtime": 1783774047.01949,
+    "ast_hash": "049431a689cd40b8c2825f8db0978450",
     "semantic_hash": ""
   },
   "user/bootstrap/application.py": {
@@ -490,9 +490,9 @@
     "semantic_hash": ""
   },
   "user/bootstrap/providers.py": {
-    "mtime": 1783769817.378052,
-    "ast_hash": "155ab918cdce7e0492a2c65bdb2dc404",
-    "semantic_hash": "155ab918cdce7e0492a2c65bdb2dc404"
+    "mtime": 1783774009.7435832,
+    "ast_hash": "bb5f12d99e486ac520c5f3fd050a9377",
+    "semantic_hash": ""
   },
   "user/config/__init__.py": {
     "mtime": 1783769817.378052,
@@ -755,8 +755,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/builders/process_builder.py": {
-    "mtime": 1783772335.9308882,
-    "ast_hash": "14ddf93ac863b2f03e0149735e463cbd",
+    "mtime": 1783773777.2962036,
+    "ast_hash": "8cd9e62c169444ca77cb7a4e7c4c4b90",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/builders/schedule_builder.py": {
@@ -780,8 +780,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/facades/process.py": {
-    "mtime": 1783772189.3610225,
-    "ast_hash": "f9ba5c4c0de716ae796346f26f7ad0dc",
+    "mtime": 1783773545.3066878,
+    "ast_hash": "9eec8e46ce5278a1afbfb2a4a84dfaa5",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/facades/schedule.py": {
@@ -822,6 +822,21 @@
   "src/armaden/framework/runtime/task_runtime.py": {
     "mtime": 1783770894.074555,
     "ast_hash": "38e635516a434f140fe26c093b3bc2c3",
+    "semantic_hash": ""
+  },
+  "user/app/providers/telemetry_service_provider.py": {
+    "mtime": 1783773837.4170356,
+    "ast_hash": "aa3405259ffa93f7d26f054b6af47dd2",
+    "semantic_hash": ""
+  },
+  "user/app/tasks/__init__.py": {
+    "mtime": 1783773410.7829335,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "user/app/tasks/telemetry_tasks.py": {
+    "mtime": 1783773730.5463386,
+    "ast_hash": "6b576b58cd231aa49d5df68adf98cccd",
     "semantic_hash": ""
   }
 }

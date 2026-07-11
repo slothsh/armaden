@@ -12,9 +12,13 @@ class ProcessFacade:
         from armaden.framework.runtime.builders.process_builder import ProcessBuilder
         return ProcessBuilder(self._supervisor, name, argv)
 
-    def execute(self, name: str, argv: list[str], **kwargs):
+    def execute(self, name: str, argv: list[str], timeout: float | None = None, cwd=None, env: dict | None = None):
         from armaden.framework.runtime.builders.process_builder import ProcessBuilder
         builder = ProcessBuilder(self._supervisor, name, argv)
-        for key, value in kwargs.items():
-            getattr(builder, key)(value)
-        return builder.build()
+        if timeout is not None:
+            builder.timeout(timeout)
+        if cwd is not None:
+            builder.cwd(cwd)
+        if env:
+            builder.env(**env)
+        return builder.submit()
