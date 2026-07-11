@@ -5,9 +5,9 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/__init__.py": {
-    "mtime": 1783769817.366466,
-    "ast_hash": "e6fc8219b7ce6d8b725cf986fa02a2d8",
-    "semantic_hash": "e6fc8219b7ce6d8b725cf986fa02a2d8"
+    "mtime": 1783777589.072646,
+    "ast_hash": "b96d5454c689b3ae1ebbe178b6d3a8c3",
+    "semantic_hash": ""
   },
   "src/armaden/framework/application.py": {
     "mtime": 1783769817.3665888,
@@ -40,9 +40,9 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/classes/task.py": {
-    "mtime": 1783769817.367052,
-    "ast_hash": "679f13d783186cf2a1f94c1dacaec237",
-    "semantic_hash": "679f13d783186cf2a1f94c1dacaec237"
+    "mtime": 1783777573.1936755,
+    "ast_hash": "69f32b12ff4bb530e9ae4d2ce1d8319f",
+    "semantic_hash": ""
   },
   "src/armaden/framework/dto/__init__.py": {
     "mtime": 1783769817.367052,
@@ -100,9 +100,9 @@
     "semantic_hash": "01091c4d705458fe26a0054f27f3da35"
   },
   "src/armaden/framework/facades/app.py": {
-    "mtime": 1783769817.3682065,
-    "ast_hash": "949a4cf6c6a4398e011b974f8fab5db0",
-    "semantic_hash": "949a4cf6c6a4398e011b974f8fab5db0"
+    "mtime": 1783777655.8695211,
+    "ast_hash": "4bd3871532570e8653621491f602aed1",
+    "semantic_hash": ""
   },
   "src/armaden/framework/facades/config.py": {
     "mtime": 1783769817.3682065,
@@ -155,9 +155,9 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/supervisor.py": {
-    "mtime": 1783769817.3690522,
-    "ast_hash": "766b1184c47ed758f67ac1d1a6e752a2",
-    "semantic_hash": "766b1184c47ed758f67ac1d1a6e752a2"
+    "mtime": 1783778680.1508174,
+    "ast_hash": "7774736120b87f79e3a1e362d67cbe4d",
+    "semantic_hash": ""
   },
   "src/armaden/framework/protocols/supervisor_request_interface.py": {
     "mtime": 1783769817.3690522,
@@ -235,8 +235,8 @@
     "semantic_hash": "94d1f66bcca7cfbb196e25fbf646c983"
   },
   "src/armaden/framework/runtime/providers/http_service_provider.py": {
-    "mtime": 1783769817.3725753,
-    "ast_hash": "4af4ccdb4588c5d8f7e3f2ff523ecc87",
+    "mtime": 1783777849.0271738,
+    "ast_hash": "cd5220b8487a3ca439892bf98eb39920",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/providers/type_discovery_service_provider.py": {
@@ -245,13 +245,13 @@
     "semantic_hash": "cf2bbe9393243a76fe3e7c21114ad0b1"
   },
   "src/armaden/framework/runtime/services/default_api.py": {
-    "mtime": 1783769817.3725753,
-    "ast_hash": "6796feff0f27f7988512558e9e0231a6",
+    "mtime": 1783777838.9021883,
+    "ast_hash": "cd49987ee0710407126e63466c02cc94",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/supervisor.py": {
-    "mtime": 1783772135.5142481,
-    "ast_hash": "ce44263583861bc7cfa98c074b55ba53",
+    "mtime": 1783778641.8278842,
+    "ast_hash": "f2d581cb2e1bb254d27563c8e68bc2c6",
     "semantic_hash": ""
   },
   "src/armaden/framework/utils/__init__.py": {
@@ -295,8 +295,8 @@
     "semantic_hash": "cd6d562c94f7eab535a126f723184c90"
   },
   "src/armaden/games/arma_reforger/arma_reforger_server.py": {
-    "mtime": 1783769817.3736475,
-    "ast_hash": "ff13292c32d63bf129e8cd630de18aa9",
+    "mtime": 1783778130.2117453,
+    "ast_hash": "87a389854283db98bd1211f59279eddd",
     "semantic_hash": ""
   },
   "src/armaden/games/arma_reforger/arma_reforger_server_config.py": {
@@ -480,8 +480,8 @@
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
   "user/app/providers/app_service_provider.py": {
-    "mtime": 1783774047.01949,
-    "ast_hash": "049431a689cd40b8c2825f8db0978450",
+    "mtime": 1783779030.7531967,
+    "ast_hash": "7616460abc61a35afbb300455dd5b2fd",
     "semantic_hash": ""
   },
   "user/bootstrap/application.py": {
@@ -750,13 +750,13 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/builders/concurrency_builder.py": {
-    "mtime": 1783772215.410105,
-    "ast_hash": "a91ef3c489a3e5ee54bdcd957e166234",
+    "mtime": 1783776767.021167,
+    "ast_hash": "a819f03a6de7f131adfd79763d2d0083",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/builders/process_builder.py": {
-    "mtime": 1783773777.2962036,
-    "ast_hash": "8cd9e62c169444ca77cb7a4e7c4c4b90",
+    "mtime": 1783776320.0179658,
+    "ast_hash": "f05e076e721b5ddd21114af2a07afc71",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/builders/schedule_builder.py": {
@@ -800,18 +800,18 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/task.py": {
-    "mtime": 1783770609.9901311,
-    "ast_hash": "ab341c65418f2b75e750a72d6dfb920c",
+    "mtime": 1783778964.6513145,
+    "ast_hash": "c5265d3ee043915acbf3b7393c8385c7",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/task_builder.py": {
-    "mtime": 1783771049.2022505,
-    "ast_hash": "a79f04e9fa54364445ccc428534aaa67",
+    "mtime": 1783778768.2446625,
+    "ast_hash": "bb9914116fa5ae8114c4abbdb7d970d5",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/task_graph.py": {
-    "mtime": 1783770320.3207593,
-    "ast_hash": "07c9703e8e535eb697416c1d07b3a4d1",
+    "mtime": 1783779000.6902504,
+    "ast_hash": "d575cc7eb7703dec0bd53357c7b54164",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/task_injector.py": {
@@ -820,8 +820,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/task_runtime.py": {
-    "mtime": 1783770894.074555,
-    "ast_hash": "38e635516a434f140fe26c093b3bc2c3",
+    "mtime": 1783778561.904023,
+    "ast_hash": "dff9998d6ed91888db5e7958f855352c",
     "semantic_hash": ""
   },
   "user/app/providers/telemetry_service_provider.py": {
