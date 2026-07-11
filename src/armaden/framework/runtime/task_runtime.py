@@ -8,7 +8,7 @@ from returns.result import Failure, Success
 from armaden.framework.errors import Error
 from armaden.framework.protocols.task_runtime import AsyncStreamCallback, Result
 from armaden.framework.runtime.errors import TaskError
-from armaden.framework.runtime.progress import ProgressChannel, ProgressUpdate
+from armaden.framework.runtime.progress import ProgressChannel
 
 logger = logging.getLogger(__name__)
 
@@ -22,6 +22,7 @@ class TaskRuntime:
         progress: ProgressChannel | None = None,
         ready_event: asyncio.Event | None = None,
         graph: Any = None,
+        main_loop: asyncio.AbstractEventLoop | None = None,
     ) -> None:
         self._task_name = task_name
         self._graph_id = graph_id
@@ -29,6 +30,7 @@ class TaskRuntime:
         self._progress = progress or ProgressChannel()
         self._ready_event = ready_event or asyncio.Event()
         self._graph = graph
+        self._main_loop = main_loop
         self._signaled = False
 
     @property
@@ -48,10 +50,14 @@ class TaskRuntime:
             logger.warning("Task '%s' signaled ready more than once; ignoring duplicate", self._task_name)
             return Success(None)
         self._signaled = True
-        self._ready_event.set()
 
         if self._graph is not None:
             self._graph.lifecycle_signals[self._task_name] = Success(None)
+
+        if self._main_loop is not None and self._main_loop is not asyncio.get_running_loop():
+            self._main_loop.call_soon_threadsafe(self._ready_event.set)
+        else:
+            self._ready_event.set()
 
         logger.info("Task '%s' signaled ready", self._task_name)
         return Success(None)

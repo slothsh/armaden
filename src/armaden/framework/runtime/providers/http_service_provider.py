@@ -1,7 +1,7 @@
 from returns.result import Success
 
 from armaden.framework.classes.service_provider import ServiceProvider
-from armaden.framework.classes.task import TaskBuilder
+from armaden.framework.runtime.task_builder import TaskBuilder
 from armaden.framework.utils.types import Result
 
 from armaden.framework.runtime.http.middleware.kernel import HttpKernel
@@ -60,14 +60,16 @@ class HttpServiceProvider(ServiceProvider):
             TaskBuilder()
             .name('http_api')
             .description('HTTP API and FastAPI application runtime')
-            .on_initialize(default_api.initialize)
-            .on_run(default_api.run)
-            .on_shutdown(default_api.shutdown)
-            .on_status(default_api.status)
+            .on_initialize(lambda t: default_api.initialize(t.runtime))
+            .on_run(lambda t: default_api.run(t.runtime))
+            .on_shutdown(lambda t: default_api.shutdown(t.runtime))
+            .on_status(lambda t: default_api.status(t.runtime))
             .exclusive_thread()
+            .long_running()
+            .ready_timeout(30.0)
             .build()
         )
-        self._container.make('app').supervisor.add_task(task)
+        self._container.make('app').supervisor.submit([task])
 
         self._container.instance('api', api_app)
         self._container.instance('router', api_app.router)

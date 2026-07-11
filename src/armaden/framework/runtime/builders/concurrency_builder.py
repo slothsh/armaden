@@ -36,4 +36,7 @@ class ConcurrencyBuilder:
         return list(self._tasks)
 
     def submit(self) -> TaskGraph:
-        return self._supervisor.submit(self.build())
+        graph = self._supervisor.submit(self.build())
+        if self._max_concurrency is not None:
+            graph.max_concurrency = self._max_concurrency
+        return graph

@@ -26,6 +26,18 @@ class App:
         return get_application().supervisor
 
     @classmethod
+    def process(cls):
+        return get_application().supervisor.process()
+
+    @classmethod
+    def schedule(cls):
+        return get_application().supervisor.schedule()
+
+    @classmethod
+    def concurrency(cls):
+        return get_application().supervisor.concurrency()
+
+    @classmethod
     def config(cls, key: str, default: Any | None = None) -> Any:
         return get_application().config(key, default)
 

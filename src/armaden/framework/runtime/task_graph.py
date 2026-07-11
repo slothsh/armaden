@@ -38,6 +38,7 @@ class TaskGraph:
     state: str = TaskGraphState.PENDING
     errors: list[Error] = field(default_factory=list)
     graph_id: str = field(default_factory=lambda: str(uuid4()))
+    max_concurrency: int | None = None
 
     @property
     def shutdown_order(self) -> list[str]:
@@ -74,6 +75,7 @@ class TaskGraphCompiler:
             graph.lifecycle_deps.setdefault(name, {})
 
     def _collect_dependencies(self, tasks: list[Task], graph: TaskGraph) -> None:
+        _ = tasks
         pipeline_params_by_task = {
             name: self._extract_pipeline_params(task.run) for name, task in graph.tasks.items()
         }
@@ -82,8 +84,8 @@ class TaskGraphCompiler:
         }
 
         for name, task in graph.tasks.items():
-            declared_output_deps = list(task.depends_on)
-            declared_lifecycle_deps = list(task.awaits)
+            declared_output_deps = list(task.depends_on or [])
+            declared_lifecycle_deps = list(task.awaits or [])
 
             for param_name, (source_type, output_type) in pipeline_params_by_task[name].items():
                 graph.pipeline_deps[name][param_name] = (source_type, output_type)
@@ -161,7 +163,7 @@ class TaskGraphCompiler:
         while remaining:
             layer = sorted(
                 [name for name in remaining if in_degree[name] == 0],
-                key=lambda n: graph.tasks[n].policy.priority,
+                key=lambda n: (graph.tasks[n].policy.priority if graph.tasks[n].policy is not None else 0),
             )
             if not layer:
                 raise TaskGraphCycleError(sorted(remaining))

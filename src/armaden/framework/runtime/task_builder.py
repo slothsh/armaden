@@ -1,12 +1,10 @@
-from abc import abstractmethod
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any, Self, override
 
 from returns.result import Success
 
 from armaden.framework.enums.restart_policy import RestartPolicy
 from armaden.framework.enums.task_threading_policy import TaskThreadingPolicy
-from armaden.framework.protocols.task import TaskInterface, TaskBuilderInterface
 from armaden.framework.runtime.task import Task, TaskPolicy
 from armaden.framework.utils.types import Result
 
@@ -159,7 +157,6 @@ class _BuiltTask(Task):
     def __init__(self, callbacks: _BuiltCallbacks, **kwargs: Any) -> None:
         super().__init__(**kwargs)
         self._callbacks = callbacks
-
     @override
     async def initialize(self) -> Result[None]:
         if self._callbacks.initialize is None:

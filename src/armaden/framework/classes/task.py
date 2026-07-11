@@ -1,10 +1,11 @@
+import warnings
 from typing import Self
 
 from armaden.framework.protocols.task import TaskInterface, TaskCallback, StatusCallback
 from armaden.framework.enums.task_threading_policy import TaskThreadingPolicy
 
 
-class Task(TaskInterface):
+class _LegacyTask(TaskInterface):
     def __init__(
         self,
         name: str | None,
@@ -102,6 +103,11 @@ class TaskBuilder:
         return self
 
     def with_auto_restart(self) -> Self:
+        warnings.warn(
+            'TaskBuilder.with_auto_restart() is deprecated; use .restart(RestartPolicy.ALWAYS) instead',
+            DeprecationWarning,
+            stacklevel=2,
+        )
         self._auto_restart = True
         return self
 
@@ -109,7 +115,7 @@ class TaskBuilder:
         if self._run is None:
             raise ValueError('Task run callback must be set before building')
 
-        return Task(
+        return _LegacyTask(
             name=self._name,
             description=self._description,
             initialize=self._initialize,
@@ -119,3 +125,16 @@ class TaskBuilder:
             threading_policy=self._threading_policy,
             auto_restart=self._auto_restart,
         )
+
+
+def __getattr__(name):
+    if name == 'Task':
+        warnings.warn(
+            'armaden.framework.classes.task.Task is deprecated; '
+            'subclass armaden.framework.runtime.task.Task or use '
+            'armaden.framework.runtime.task_builder.TaskBuilder instead',
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return _LegacyTask
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

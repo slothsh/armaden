@@ -27,7 +27,6 @@ from armaden.framework.errors import Error
 from armaden.framework.protocols import TaskInterface, TaskRuntimeInterface
 from armaden.framework.runtime.errors import TaskError
 from armaden.framework.runtime.policy_engine import PolicyEngine
-from armaden.framework.runtime.progress import ProgressChannel
 from armaden.framework.runtime.task import Task as TaskABC
 from armaden.framework.runtime.task_graph import TaskGraph, TaskGraphCompiler, TaskGraphState
 from armaden.framework.runtime.task_injector import TaskInjector
@@ -48,6 +47,7 @@ class Supervisor:
         self._max_exclusive_threads = max_exclusive_threads
         self._pool_size = pool_size or (os.cpu_count() or 4)
         self._running = False
+        self._shutdown_completed = False
         self._shutdown_event = asyncio.Event()
         self._main_loop = event_loop
 
@@ -64,6 +64,8 @@ class Supervisor:
         self._injector = TaskInjector(container) if container is not None else None
         self._worker_pool: WorkerPool | None = None
         self._scheduler = None
+        self._active_coros: dict = {}
+        self._shutdown_task_ids: set = set()
 
         self._initialize_signal_handlers()
 
@@ -159,6 +161,9 @@ class Supervisor:
     # -- Lifecycle ------------------------------------------------------------
 
     async def initialize(self) -> Result[None]:
+        if self._worker_pool is None:
+            self._worker_pool = WorkerPool(self._pool_size, self._max_exclusive_threads)
+
         for task_state in self._task_states.values():
             self._task_initialize(task_state)
 
@@ -192,6 +197,92 @@ class Supervisor:
 
 
     async def shutdown(self) -> Result[None]:
+        if getattr(self, '_shutdown_completed', False):
+            return Success(None)
+        self._shutdown_completed = True
+
+        self._shutdown_event.set()
+
+        injector = self._injector or (TaskInjector(self._container) if self._container is not None else None)
+
+        for graph in list(self._graphs):
+            for task_name in graph.shutdown_order:
+                task = graph.tasks.get(task_name)
+                if task is None:
+                    continue
+                task_id = id(task)
+                if task_id in self._shutdown_task_ids:
+                    continue
+
+                entry = self._active_coros.get(task_id)
+                if entry is not None and not entry['coro'].done():
+                    worker_loop = entry.get('loop')
+                    runtime = entry.get('runtime')
+                    if worker_loop is not None and runtime is not None:
+                        try:
+                            shutdown_kwargs = {}
+                            if injector is not None and hasattr(task, 'shutdown') and callable(getattr(task, 'shutdown', None)):
+                                shutdown_kwargs = await injector.resolve(task, task.shutdown, graph, runtime)
+                            task._runtime_ref = runtime
+                            if worker_loop is asyncio.get_running_loop():
+                                shutdown_result = task.shutdown(**shutdown_kwargs)
+                                if hasattr(shutdown_result, '__await__'):
+                                    await shutdown_result
+                            else:
+                                fut = asyncio.run_coroutine_threadsafe(
+                                    _run_shutdown(task, shutdown_kwargs),
+                                    worker_loop,
+                                )
+                                await asyncio.wrap_future(fut)
+                        except Exception as exception:
+                            logger.error('Task %s shutdown failed: %s', task_name, exception)
+                        finally:
+                            task._runtime_ref = None
+
+                    if not entry['coro'].done():
+                        entry['coro'].cancel()
+                        try:
+                            await entry['coro']
+                        except (asyncio.CancelledError, Exception):
+                            pass
+                    self._shutdown_task_ids.add(task_id)
+                    continue
+
+                self._shutdown_task_ids.add(task_id)
+                try:
+                    runtime = GraphTaskRuntime(
+                        task_name=task.name,
+                        graph_id=graph.graph_id,
+                        graph=graph,
+                        main_loop=self._main_loop,
+                    )
+                    task._runtime_ref = runtime
+                    shutdown_kwargs = {}
+                    if injector is not None and hasattr(task, 'shutdown') and callable(getattr(task, 'shutdown', None)):
+                        shutdown_kwargs = await injector.resolve(task, task.shutdown, graph, runtime)
+                    shutdown_result = task.shutdown(**shutdown_kwargs)
+                    if hasattr(shutdown_result, '__await__'):
+                        await shutdown_result
+                except Exception as exception:
+                    logger.error('Task %s shutdown failed: %s', task_name, exception)
+                finally:
+                    task._runtime_ref = None
+
+        remaining_coros = [e['coro'] for e in self._active_coros.values() if not e['coro'].done()]
+        for coro in remaining_coros:
+            coro.cancel()
+        if remaining_coros:
+            try:
+                await asyncio.wait_for(
+                    asyncio.gather(*remaining_coros, return_exceptions=True),
+                    timeout=30.0,
+                )
+            except asyncio.TimeoutError:
+                logger.warning('Long-running graph tasks timed out during shutdown.')
+            except Exception as exception:
+                logger.error('Error during graph task cleanup: %s', exception)
+            self._active_coros.clear()
+
         for task_state in self._task_states.values():
             try:
                 await self._shutdown_task(task_state)
@@ -221,6 +312,20 @@ class Supervisor:
                 thread.join(timeout=30.0)
         except Exception as e:
             logger.error(f"Error while waiting for task threads to join: {e}")
+
+        if self._scheduler is not None:
+            try:
+                self._scheduler.shutdown(wait=False)
+            except Exception as exception:
+                logger.error('APScheduler shutdown failed: %s', exception)
+            finally:
+                self._scheduler = None
+
+        if self._worker_pool is not None:
+            try:
+                self._worker_pool.shutdown()
+            except Exception as exception:
+                logger.error('WorkerPool shutdown failed: %s', exception)
 
         self._running = False
 
@@ -271,42 +376,170 @@ class Supervisor:
 
     async def _execute_layer(self, graph: TaskGraph, layer: list[str], injector: TaskInjector) -> None:
         tasks = [graph.tasks[name] for name in layer]
-        long_running = any(getattr(t, 'long_running', False) for t in tasks)
+
+        semaphore = None
+        if graph.max_concurrency is not None and graph.max_concurrency > 0:
+            semaphore = asyncio.Semaphore(graph.max_concurrency)
 
         coros: dict[str, asyncio.Task] = {}
-        ready_events: dict[str, asyncio.Event] = {}
+        runtimes: dict[str, GraphTaskRuntime] = {}
         for task in tasks:
             event = asyncio.Event()
-            ready_events[task.name] = event
             runtime = GraphTaskRuntime(
                 task_name=task.name,
                 graph_id=graph.graph_id,
                 graph=graph,
                 ready_event=event,
+                main_loop=self._main_loop,
             )
-            coros[task.name] = asyncio.create_task(self._run_one_task(task, runtime, graph, injector))
-
-        if long_running:
-            done, pending = await asyncio.wait(
-                coros.values(), return_when=asyncio.ALL_COMPLETED
+            runtimes[task.name] = runtime
+            coro = asyncio.create_task(
+                self._dispatch_to_worker(task, runtime, graph, injector, semaphore)
             )
-        else:
-            await asyncio.gather(*coros.values())
+            coros[task.name] = coro
+            if getattr(task, 'long_running', False):
+                self._active_coros[id(task)] = {'coro': coro, 'loop': None, 'runtime': runtime}
+                def _remove(_c, _tid=id(task), _store=self._active_coros):
+                    _store.pop(_tid, None)
+                coro.add_done_callback(_remove)
 
-        for name, task in zip(layer, tasks):
+        signals: list[asyncio.Task] = []
+        for task in tasks:
+            coro = coros[task.name]
+            if getattr(task, 'long_running', False):
+                ready_timeout = getattr(task.policy, 'ready_timeout', None) if hasattr(task, 'policy') else None
+                signals.append(asyncio.create_task(
+                    self._await_long_running_ready(task, coro, runtimes[task.name], graph, ready_timeout)
+                ))
+            else:
+                signals.append(coro)
+
+        if signals:
+            await asyncio.gather(*signals, return_exceptions=True)
+
+        for task in tasks:
             name = task.name
             coro = coros.get(name)
-            result = coro.result() if coro is not None else None
+            if getattr(task, 'long_running', False):
+                if name not in graph.lifecycle_signals and coro is not None and coro.done():
+                    result = coro.result() if not coro.cancelled() else None
+                    if result is not None:
+                        graph.outputs[name] = result
+                    if result is not None and not is_successful(result):
+                        if not task.policy.continue_on_failure:
+                            graph.state = TaskGraphState.FAILED
+                            graph.errors.append(_result_error(result))
+                            return
+                continue
+
+            result = coro.result() if coro is not None and coro.done() and not coro.cancelled() else None
             if result is not None:
                 graph.outputs[name] = result
             if result is not None and not is_successful(result):
-                task_obj = graph.tasks[name]
-                if not (task_obj.policy.continue_on_failure if hasattr(task_obj, 'policy') else False):
+                if not task.policy.continue_on_failure:
                     graph.state = TaskGraphState.FAILED
                     graph.errors.append(_result_error(result))
                     return
 
+    async def _await_long_running_ready(
+        self,
+        task,
+        coro: asyncio.Task,
+        runtime: GraphTaskRuntime,
+        graph: TaskGraph,
+        ready_timeout: float | None,
+    ) -> None:
+        ready_wait = asyncio.create_task(runtime.ready_event.wait())
+        try:
+            await asyncio.wait(
+                {coro, ready_wait},
+                timeout=ready_timeout,
+                return_when=asyncio.FIRST_COMPLETED,
+            )
+        finally:
+            if not ready_wait.done():
+                ready_wait.cancel()
+
+        if runtime.ready_event.is_set():
+            return
+        if coro.done():
+            return
+        if ready_timeout is not None:
+            logger.warning(
+                "Long-running task '%s' failed to signal ready within %.2fs",
+                task.name, ready_timeout,
+            )
+            graph.lifecycle_signals[task.name] = Failure(
+                Error(TaskError.READY_TIMEOUT, details={'task': task.name})
+            )
+
+    async def _dispatch_to_worker(
+        self,
+        task,
+        runtime: GraphTaskRuntime,
+        graph: TaskGraph,
+        injector: TaskInjector,
+        semaphore: asyncio.Semaphore | None = None,
+    ):
+        if self._worker_pool is None:
+            self._worker_pool = WorkerPool(self._pool_size, self._max_exclusive_threads)
+
+        policy = getattr(task, 'threading_policy', TaskThreadingPolicy.SHARED)
+
+        try:
+            if policy == TaskThreadingPolicy.EXCLUSIVE:
+                worker = await self._worker_pool.acquire_exclusive(task.name)
+                if getattr(task, 'long_running', False) and id(task) in self._active_coros:
+                    self._active_coros[id(task)]['loop'] = worker.loop
+                future = asyncio.run_coroutine_threadsafe(
+                    self._run_one_task(task, runtime, graph, injector),
+                    worker.loop,
+                )
+                try:
+                    return await asyncio.wrap_future(future)
+                finally:
+                    await self._drain_worker_future(future)
+                    await self._worker_pool.release_exclusive(task.name)
+
+            if semaphore is not None:
+                await semaphore.acquire()
+            try:
+                worker = await self._worker_pool.acquire_shared()
+                if getattr(task, 'long_running', False) and id(task) in self._active_coros:
+                    self._active_coros[id(task)]['loop'] = worker.loop
+                future = asyncio.run_coroutine_threadsafe(
+                    self._run_one_task(task, runtime, graph, injector),
+                    worker.loop,
+                )
+                try:
+                    return await asyncio.wrap_future(future)
+                finally:
+                    await self._drain_worker_future(future)
+                    await self._worker_pool.release_shared(worker)
+            finally:
+                if semaphore is not None:
+                    semaphore.release()
+        except RuntimeError as exception:
+            logger.error('Worker dispatch failed for task %s: %s', task.name, exception)
+            return Failure(Error(TaskError.SUBPROCESS_ERROR, details={
+                'task': task.name, 'error': str(exception),
+            }))
+
+    async def _drain_worker_future(self, future) -> None:
+        if not future.done():
+            future.cancel()
+        try:
+            await asyncio.shield(asyncio.wrap_future(future))
+        except (asyncio.CancelledError, Exception):
+            pass
+        if not future.done():
+            try:
+                future.result(timeout=5.0)
+            except Exception:
+                pass
+
     async def _run_one_task(self, task, runtime, graph: TaskGraph, injector: TaskInjector):
+        task._runtime_ref = runtime
         try:
             if hasattr(task, 'initialize') and callable(getattr(task, 'initialize', None)):
                 init_kwargs = await injector.resolve(task, task.initialize, graph, runtime) if hasattr(task.initialize, '__call__') else {}
@@ -319,14 +552,7 @@ class Supervisor:
             logger.exception('Task %s failed: %s', task.name, exception)
             return Failure(Error(TaskError.SUBPROCESS_ERROR, details={'task': task.name, 'error': str(exception)}))
         finally:
-            try:
-                if hasattr(task, 'shutdown') and callable(getattr(task, 'shutdown', None)):
-                    shutdown_kwargs = await injector.resolve(task, task.shutdown, graph, runtime) if hasattr(task.shutdown, '__call__') else {}
-                    shutdown_result = task.shutdown(**shutdown_kwargs)
-                    if hasattr(shutdown_result, '__await__'):
-                        await shutdown_result
-            except Exception:
-                logger.exception('Task %s shutdown failed', task.name)
+            task._runtime_ref = None
 
 
     # -- Signal Handling ------------------------------------------------------
@@ -595,6 +821,15 @@ def _result_error(result):
     return Error(TaskError.SUBPROCESS_ERROR, details={'error': str(failure)})
 
 
+async def _run_shutdown(task, shutdown_kwargs):
+    if not hasattr(task, 'shutdown') or not callable(getattr(task, 'shutdown', None)):
+        return None
+    result = task.shutdown(**shutdown_kwargs)
+    if hasattr(result, '__await__'):
+        return await result
+    return result
+
+
 # -- Internal Types -----------------------------------------------------------
 
 class TaskRuntime:
@@ -604,6 +839,19 @@ class TaskRuntime:
     @property
     def name(self) -> str | None:
         return self._task_state.task.name
+
+    @property
+    def graph_id(self) -> str:
+        return f'legacy-{self._task_state.task_id}'
+
+    async def signal_ready(self) -> Result[None]:
+        logger.warning("signal_ready() called on legacy TaskRuntime for task '%s'; no-op", self.name)
+        return Success(None)
+
+    async def task_output(self, name: str) -> Result[Any]:
+        return Failure(Error(SupervisorError.REQUEST_NOT_FULFILLED, details={
+            'message': f'task_output not available on legacy TaskRuntime', 'name': name,
+        }))
 
     async def dispatch_subprocess(
         self,

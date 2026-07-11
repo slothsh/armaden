@@ -119,9 +119,8 @@ class _ProcessTask(Task):
             return start_result
 
         if self.long_running:
-            runtime = self._runtime_ref
-            if runtime is not None:
-                await runtime.signal_ready()
+            if self.runtime is not None:
+                await self.runtime.signal_ready()
 
         pump_tasks: list[asyncio.Task] = []
         if self._on_stdout is not None and self._handle.process is not None and self._handle.process.stdout is not None:
@@ -154,8 +153,6 @@ class _ProcessTask(Task):
                         await result
         except asyncio.CancelledError:
             raise
-
-    _runtime_ref: Any = None
 
 
 class ProcessBuilder:
