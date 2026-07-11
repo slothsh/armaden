@@ -22,6 +22,7 @@ from armaden.framework.enums.task_threading_policy import TaskThreadingPolicy
 from armaden.framework.protocols.supervisor_request_interface import SupervisorRequestInterface
 
 from armaden.framework.dto.supervisor_request_data import SupervisorRequestData
+from armaden.framework.utils.string import String
 from armaden.framework.utils.types import Result, AsyncStreamArg, AsyncStreamCallback
 from armaden.framework.errors import Error
 from armaden.framework.protocols import TaskInterface, TaskRuntimeInterface
@@ -999,7 +1000,7 @@ class WorkerPool:
         self._pool_size = pool_size
         self._max_exclusive_threads = max_exclusive_threads
         self._shared: list[_SharedWorker] = [
-            _SharedWorker(f'shared-worker-{i}') for i in range(pool_size)
+            _SharedWorker(f'worker-shared-{i:02d}') for i in range(pool_size)
         ]
         self._free: asyncio.Queue[_SharedWorker] = asyncio.Queue()
         for worker in self._shared:
@@ -1021,7 +1022,7 @@ class WorkerPool:
                     f'Exclusive thread capacity reached ({self._max_exclusive_threads}); '
                     f'cannot start task \"{task_name}\"'
                 )
-            worker = _ExclusiveWorker(f'exclusive-worker-{task_name}')
+            worker = _ExclusiveWorker(f'worker-{String.toKebabCase(task_name)}')
             self._exclusive[task_name] = worker
             return worker
 
