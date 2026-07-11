@@ -41,13 +41,13 @@ class AppServiceProvider(ServiceProvider):
             .on_initialize(self.server.initialize_rcon_client)
             .on_run(self.server.run_rcon_client)
             .on_shutdown(self.server.shutdown_rcon_client)
-            .awaits(ArmaReforgerServer)
+            .awaits('arma_reforger_server')
             .exclusive_thread()
             .long_running()
             .ready_timeout(30.0)
             .build()
         )
 
-        App.concurrency().pipeline(server_task, rcon_task).submit()
+        App.concurrency().batch(server_task, rcon_task).submit()
 
         return Success(None)

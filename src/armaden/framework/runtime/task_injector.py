@@ -67,6 +67,14 @@ class TaskInjector:
             return runtime
 
         try:
+            if self._container is None:
+                logger.warning(
+                    "Could not resolve parameter '%s' of task '%s' from the container (no container); "
+                    "leaving it for Python to handle",
+                    param_name,
+                    task.name,
+                )
+                return _UNRESOLVED
             return self._container.make(annotation)
         except BindingResolutionException:
             logger.warning(

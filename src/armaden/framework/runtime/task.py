@@ -24,9 +24,9 @@ class TaskPolicy:
 
 
 class Task(ABC, MultiImplementation):
-    name: str | None = None
+    name: str = ''
     description: str | None = None
-    policy: TaskPolicy | None = None
+    policy: TaskPolicy = TaskPolicy()
     threading_policy: TaskThreadingPolicy = TaskThreadingPolicy.SHARED
     depends_on: list[str | type] | None = None
     awaits: list[str | type] | None = None
@@ -53,10 +53,8 @@ class Task(ABC, MultiImplementation):
 
         if policy is not None:
             self.policy = policy
-        elif cls.policy is not None:
-            self.policy = copy(cls.policy)
         else:
-            self.policy = TaskPolicy()
+            self.policy = copy(cls.policy)
 
         self.threading_policy = (
             threading_policy if threading_policy is not None else cls.threading_policy
