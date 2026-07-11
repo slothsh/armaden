@@ -38,6 +38,10 @@ class SelfBuilding(ABC):
     pass
 
 
+class MultiImplementation:
+    pass
+
+
 class ContextualAttribute(ABC):
     @staticmethod
     @abstractmethod

@@ -1,7 +1,7 @@
 from returns.result import Success
 
 from armaden.framework.classes.service_provider import ServiceProvider
-from armaden.framework.classes.task import TaskBuilder
+from armaden.framework.runtime.task_builder import TaskBuilder
 from armaden.framework.facades import App, config
 from armaden.framework.utils.types import Result
 from armaden.games.arma_reforger import ArmaReforgerServer
@@ -29,6 +29,8 @@ class AppServiceProvider(ServiceProvider):
             .on_shutdown(self.server.shutdown)
             .on_status(self.server.status)
             .exclusive_thread()
+            .long_running()
+            .ready_timeout(120.0)
             .build()
         )
 
@@ -39,11 +41,13 @@ class AppServiceProvider(ServiceProvider):
             .on_initialize(self.server.initialize_rcon_client)
             .on_run(self.server.run_rcon_client)
             .on_shutdown(self.server.shutdown_rcon_client)
+            .awaits(ArmaReforgerServer)
             .exclusive_thread()
+            .long_running()
+            .ready_timeout(30.0)
             .build()
         )
 
-        App.supervisor().add_task(server_task)
-        App.supervisor().add_task(rcon_task)
+        App.concurrency().pipeline(server_task, rcon_task).submit()
 
         return Success(None)

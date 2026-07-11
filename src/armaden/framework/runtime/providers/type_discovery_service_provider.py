@@ -7,12 +7,14 @@ from typing import Dict, Tuple
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
+from armaden.framework.classes.instance_container import MultiImplementation
 from armaden.framework.classes.service_provider import ServiceProvider
 from armaden.framework.errors.error import Error
 from armaden.framework.facades import config
 from armaden.framework.protocols.application import ApplicationInterface
 from armaden.framework.protocols.supervisor import SupervisorInterface
 from armaden.framework.runtime.module_loader import ModuleLoader
+from armaden.framework.runtime.task import Task
 from armaden.framework.utils.types import Result
 
 logger = logging.getLogger(__name__)
@@ -75,6 +77,9 @@ class TypeDiscoveryServiceProvider(ServiceProvider):
                     'interface': base.__name__,
                     'file': file_location,
                 }))
+
+            if issubclass(base, MultiImplementation):
+                continue
 
             if base in seen:
                 original_name, original_file = seen[base]

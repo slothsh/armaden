@@ -88,6 +88,8 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig]):
                 'paths': self._paths
             }))
 
+        await runtime.signal_ready()
+
         await runtime.dispatch_subprocess(
             argv.unwrap(),
             cwd=self._paths.install,

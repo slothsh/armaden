@@ -1,7 +1,7 @@
 from returns.result import Success
 
 from armaden.framework.classes.service_provider import ServiceProvider
-from armaden.framework.classes.task import TaskBuilder
+from armaden.framework.runtime.task_builder import TaskBuilder
 from armaden.framework.utils.types import Result
 
 from armaden.framework.runtime.http.middleware.kernel import HttpKernel
@@ -65,9 +65,11 @@ class HttpServiceProvider(ServiceProvider):
             .on_shutdown(default_api.shutdown)
             .on_status(default_api.status)
             .exclusive_thread()
+            .long_running()
+            .ready_timeout(30.0)
             .build()
         )
-        self._container.make('app').supervisor.add_task(task)
+        self._container.make('app').supervisor.submit([task])
 
         self._container.instance('api', api_app)
         self._container.instance('router', api_app.router)

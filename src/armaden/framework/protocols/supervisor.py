@@ -1,17 +1,29 @@
-import asyncio
-from collections.abc import Callable, Coroutine
 from returns.result import Result
-from typing import Protocol, List, Self, Any
-from pathlib import Path
+from typing import TYPE_CHECKING, Protocol, List, Self
 
 from .supervisor_request_interface import SupervisorRequestInterface
 from .task import TaskInterface
 from .error import ErrorInterface
 
+if TYPE_CHECKING:
+    from armaden.framework.runtime.task_graph import TaskGraph
+    from armaden.framework.runtime.facades.process import ProcessFacade
+    from armaden.framework.runtime.facades.schedule import ScheduleFacade
+    from armaden.framework.runtime.facades.concurrency import ConcurrencyFacade
+
 
 class SupervisorInterface(Protocol):
     def add_task(self, task: TaskInterface) -> Self: ...
     def add_tasks(self, tasks: List[TaskInterface]) -> Self: ...
+
+    def submit(self, tasks: list) -> 'TaskGraph': ...
+
+    def process(self) -> 'ProcessFacade': ...
+    def schedule(self) -> 'ScheduleFacade': ...
+    def concurrency(self) -> 'ConcurrencyFacade': ...
+
+    def list_schedules(self) -> list: ...
+    def remove_schedule(self, name: str) -> None: ...
 
     async def initialize(self) -> Result[None, ErrorInterface]: ...
     async def run(self) -> Result[None, ErrorInterface]: ...

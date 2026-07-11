@@ -5,6 +5,7 @@ from returns.result import Success
 if TYPE_CHECKING:
     from armaden.framework.classes.instance_container import InstanceContainer
 
+from armaden.framework.classes.instance_container import MultiImplementation
 from armaden.framework.utils.types import Result
 
 
@@ -14,7 +15,7 @@ class DeferrableProvider(ABC):
         raise NotImplementedError
 
 
-class ServiceProvider(ABC):
+class ServiceProvider(ABC, MultiImplementation):
     name: str = 'service_provider'
 
     bindings: dict = {}

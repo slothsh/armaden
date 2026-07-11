@@ -43,14 +43,17 @@ class DefaultApi:
 
 
     async def run(self, runtime: TaskRuntimeInterface) -> Result[None]:
-        _ = runtime
         if not self._uvicorn_server:
             return Failure(Error(DefaultApiError.RUN_FAILED, details={
                 'message': 'uvicorn server must be initialized before running the api server'
             }))
 
         try:
-            await self._uvicorn_server.serve()
+            serve_task = asyncio.create_task(self._uvicorn_server.serve())
+            while not self._uvicorn_server.started:
+                await asyncio.sleep(0.1)
+            await runtime.signal_ready()
+            await serve_task
             return Success(None)
         except Exception as exception:
             return Failure(Error(DefaultApiError.RUN_FAILED, details={
