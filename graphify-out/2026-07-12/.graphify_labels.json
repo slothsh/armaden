@@ -310,6 +310,7 @@
   "308": "TaskBuilder",
   "309": "._resolve_parameter",
   "310": "RegisteredRconClient",
+  "311": ".streams_delta",
   "314": "._handle_multi_packet_response",
   "315": "Any",
   "316": "CommandResponse",
