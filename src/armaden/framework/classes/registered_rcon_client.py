@@ -27,6 +27,11 @@ class RegisteredRconClient:
     Subclasses populate ``BUILTIN_COMMAND_CLASSES`` with the built-in
     command classes appropriate to their game/protocol; those commands
     are instantiated and registered automatically at construction time.
+
+    Dispatch methods are async and marshal execution onto the RCON
+    client's own event loop when called from a different thread/loop,
+    so they are safe to call from HTTP handlers running in separate
+    worker threads.
     """
 
     BUILTIN_COMMAND_CLASSES: list[type[RconCommandInterface]] = []
@@ -41,7 +46,14 @@ class RegisteredRconClient:
         super().__init__(*args, **kwargs)
         self._repository: RconCommandRepository | None = repository
         self._registered_commands: dict[str, RconCommandInterface] = {}
+        self._loop: asyncio.AbstractEventLoop | None = None
         self._register_builtin_commands(builtin_command_overrides or [])
+
+    async def connect(self) -> None:
+        self._loop = asyncio.get_running_loop()
+        connect = getattr(super(), 'connect', None)
+        if connect:
+            await connect()
 
     @property
     def client(self) -> SendCommandProtocol:
@@ -54,27 +66,33 @@ class RegisteredRconClient:
             self._registered_commands[command.command_name] = command
         logger.info("Registered RCON command '%s' (category: %s)", command.command_name, command.category)
 
-    def dispatch_command(self, coro: Coroutine[Any, Any, Any]) -> asyncio.Future[Any]:
-        return asyncio.ensure_future(coro)
+    async def dispatch_command(self, coro: Coroutine[Any, Any, Any]) -> Any:
+        return await self._run_on_rcon_loop(coro)
 
-    def dispatch_registered_command(self, command_name: str, **kwargs) -> asyncio.Future[CommandResponse]:
+    async def dispatch_registered_command(self, command_name: str, **kwargs) -> CommandResponse:
         command = (
             self._repository.get(command_name)
             if self._repository is not None
             else self._registered_commands.get(command_name)
         )
         if command is None:
-            return self._failed_future(KeyError(f"No registered RCON command '{command_name}'"))
+            raise KeyError(f"No registered RCON command '{command_name}'")
 
         try:
             validated_kwargs, errors = command.validate(**kwargs)
         except Exception as exc:
-            return self._failed_future(exc)
+            raise exc
 
         if errors:
-            return self._failed_future(RconCommandArgumentError(command_name, validated_kwargs, errors))
+            raise RconCommandArgumentError(command_name, validated_kwargs, errors)
 
-        return asyncio.ensure_future(command.execute(**validated_kwargs))
+        return await self._run_on_rcon_loop(command.execute(**validated_kwargs))
+
+    async def _run_on_rcon_loop(self, coro: Coroutine[Any, Any, Any]) -> Any:
+        if self._loop is not None and self._loop is not asyncio.get_running_loop():
+            future = asyncio.run_coroutine_threadsafe(coro, self._loop)
+            return await asyncio.wrap_future(future)
+        return await coro
 
     def _register_builtin_commands(self, overrides: list[type[RconCommandInterface]]) -> None:
         overrides_by_name: dict[str, type[RconCommandInterface]] = {}
@@ -115,9 +133,3 @@ class RegisteredRconClient:
                 "with that name; override ignored",
                 name,
             )
-
-    def _failed_future(self, exception: Exception) -> asyncio.Future[CommandResponse]:
-        loop = asyncio.get_running_loop()
-        future: asyncio.Future[CommandResponse] = loop.create_future()
-        future.set_exception(exception)
-        return future
