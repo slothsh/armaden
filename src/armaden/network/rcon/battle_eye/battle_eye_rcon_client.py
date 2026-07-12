@@ -78,6 +78,7 @@ class BattleEyeRconClient:
         packet = Packet.new(CommandRequestPacket, sequence, argv)
         loop = asyncio.get_running_loop()
         future: asyncio.Future[CommandResponse] = loop.create_future()
+        logger.info(argv)
         self._pending_commands[sequence] = _PendingCommand(
             command=' '.join(argv),
             future=future,
