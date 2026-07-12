@@ -4,14 +4,44 @@
   "graph": {},
   "nodes": [
     {
+      "label": "login_command.py",
+      "file_type": "code",
+      "source_file": "src/armaden/games/arma_reforger/rcon/login_command.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_armaden_games_arma_reforger_rcon_login_command",
+      "community": 310,
+      "norm_label": "login_command.py"
+    },
+    {
+      "label": "LoginCommand",
+      "file_type": "code",
+      "source_file": "src/armaden/games/arma_reforger/rcon/login_command.py",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "src_armaden_games_arma_reforger_rcon_login_command_logincommand",
+      "community": 310,
+      "norm_label": "logincommand"
+    },
+    {
+      "label": "RconCommandInterface",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "rconcommandinterface",
+      "community": 310,
+      "norm_label": "rconcommandinterface"
+    },
+    {
       "label": "registered_rcon_client.py",
       "file_type": "code",
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_armaden_framework_classes_registered_rcon_client",
       "community": 291,
-      "norm_label": "registered_rcon_client.py"
+      "norm_label": "registered_rcon_client.py",
+      "id": "src_armaden_framework_classes_registered_rcon_client"
     },
     {
       "label": "RegisteredRconClient",
@@ -19,9 +49,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L17",
       "_origin": "ast",
-      "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient",
       "community": 291,
-      "norm_label": "registeredrconclient"
+      "norm_label": "registeredrconclient",
+      "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient"
     },
     {
       "label": ".__init__()",
@@ -29,9 +59,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L39",
       "_origin": "ast",
-      "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_init",
       "community": 291,
-      "norm_label": ".__init__()"
+      "norm_label": ".__init__()",
+      "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_init"
     },
     {
       "label": "RconCommandRepository",
@@ -39,9 +69,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "rconcommandrepository",
       "community": 291,
-      "norm_label": "rconcommandrepository"
+      "norm_label": "rconcommandrepository",
+      "id": "rconcommandrepository"
     },
     {
       "label": ".connect()",
@@ -49,9 +79,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L52",
       "_origin": "ast",
-      "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_connect",
       "community": 291,
-      "norm_label": ".connect()"
+      "norm_label": ".connect()",
+      "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_connect"
     },
     {
       "label": ".client()",
@@ -59,9 +89,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L59",
       "_origin": "ast",
-      "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_client",
       "community": 291,
-      "norm_label": ".client()"
+      "norm_label": ".client()",
+      "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_client"
     },
     {
       "label": ".register_rcon_command()",
@@ -69,9 +99,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L62",
       "_origin": "ast",
-      "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_register_rcon_command",
       "community": 291,
-      "norm_label": ".register_rcon_command()"
+      "norm_label": ".register_rcon_command()",
+      "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_register_rcon_command"
     },
     {
       "label": ".dispatch_command()",
@@ -79,9 +109,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L69",
       "_origin": "ast",
-      "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_dispatch_command",
       "community": 291,
-      "norm_label": ".dispatch_command()"
+      "norm_label": ".dispatch_command()",
+      "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_dispatch_command"
     },
     {
       "label": "Any",
@@ -89,9 +119,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "src_armaden_framework_classes_registered_rcon_client_py_any",
       "community": 291,
-      "norm_label": "any"
+      "norm_label": "any",
+      "id": "src_armaden_framework_classes_registered_rcon_client_py_any"
     },
     {
       "label": ".dispatch_registered_command()",
@@ -99,9 +129,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L72",
       "_origin": "ast",
-      "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_dispatch_registered_command",
       "community": 291,
-      "norm_label": ".dispatch_registered_command()"
+      "norm_label": ".dispatch_registered_command()",
+      "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_dispatch_registered_command"
     },
     {
       "label": "CommandResponse",
@@ -109,9 +139,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "src_armaden_framework_classes_registered_rcon_client_py_commandresponse",
       "community": 291,
-      "norm_label": "commandresponse"
+      "norm_label": "commandresponse",
+      "id": "src_armaden_framework_classes_registered_rcon_client_py_commandresponse"
     },
     {
       "label": "._run_on_rcon_loop()",
@@ -119,9 +149,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L91",
       "_origin": "ast",
-      "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_run_on_rcon_loop",
       "community": 291,
-      "norm_label": "._run_on_rcon_loop()"
+      "norm_label": "._run_on_rcon_loop()",
+      "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_run_on_rcon_loop"
     },
     {
       "label": "._register_builtin_commands()",
@@ -129,9 +159,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L97",
       "_origin": "ast",
-      "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_register_builtin_commands",
       "community": 291,
-      "norm_label": "._register_builtin_commands()"
+      "norm_label": "._register_builtin_commands()",
+      "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_register_builtin_commands"
     },
     {
       "label": "Mixin adding registered RCON command dispatch to any client that     exposes a `",
@@ -139,9 +169,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L18",
       "_origin": "ast",
-      "id": "src_armaden_framework_classes_registered_rcon_client_rationale_18",
       "community": 291,
-      "norm_label": "mixin adding registered rcon command dispatch to any client that     exposes a `"
+      "norm_label": "mixin adding registered rcon command dispatch to any client that     exposes a `",
+      "id": "src_armaden_framework_classes_registered_rcon_client_rationale_18"
     },
     {
       "label": "rcon_command.py",
@@ -149,9 +179,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_armaden_framework_protocols_rcon_command",
       "community": 291,
-      "norm_label": "rcon_command.py"
+      "norm_label": "rcon_command.py",
+      "id": "src_armaden_framework_protocols_rcon_command"
     },
     {
       "label": "SendCommandProtocol",
@@ -159,9 +189,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L18",
       "_origin": "ast",
-      "id": "src_armaden_framework_protocols_rcon_command_sendcommandprotocol",
       "community": 291,
-      "norm_label": "sendcommandprotocol"
+      "norm_label": "sendcommandprotocol",
+      "id": "src_armaden_framework_protocols_rcon_command_sendcommandprotocol"
     },
     {
       "label": "Protocol",
@@ -169,9 +199,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "protocol",
       "community": 59,
-      "norm_label": "protocol"
+      "norm_label": "protocol",
+      "id": "protocol"
     },
     {
       "label": ".send_command()",
@@ -179,9 +209,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L19",
       "_origin": "ast",
-      "id": "src_armaden_framework_protocols_rcon_command_sendcommandprotocol_send_command",
       "community": 291,
-      "norm_label": ".send_command()"
+      "norm_label": ".send_command()",
+      "id": "src_armaden_framework_protocols_rcon_command_sendcommandprotocol_send_command"
     },
     {
       "label": "Future",
@@ -189,9 +219,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "future",
       "community": 291,
-      "norm_label": "future"
+      "norm_label": "future",
+      "id": "future"
     },
     {
       "label": "CommandResponse",
@@ -199,9 +229,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "src_armaden_framework_protocols_rcon_command_py_commandresponse",
       "community": 291,
-      "norm_label": "commandresponse"
+      "norm_label": "commandresponse",
+      "id": "src_armaden_framework_protocols_rcon_command_py_commandresponse"
     },
     {
       "label": "RconCommandInterface",
@@ -209,9 +239,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L23",
       "_origin": "ast",
-      "id": "src_armaden_framework_protocols_rcon_command_rconcommandinterface",
       "community": 291,
-      "norm_label": "rconcommandinterface"
+      "norm_label": "rconcommandinterface",
+      "id": "src_armaden_framework_protocols_rcon_command_rconcommandinterface"
     },
     {
       "label": "ABC",
@@ -219,9 +249,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "abc",
       "community": 65,
-      "norm_label": "abc"
+      "norm_label": "abc",
+      "id": "abc"
     },
     {
       "label": ".__init__()",
@@ -229,9 +259,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L29",
       "_origin": "ast",
-      "id": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_init",
       "community": 291,
-      "norm_label": ".__init__()"
+      "norm_label": ".__init__()",
+      "id": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_init"
     },
     {
       "label": ".validate()",
@@ -239,9 +269,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L32",
       "_origin": "ast",
-      "id": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_validate",
       "community": 291,
-      "norm_label": ".validate()"
+      "norm_label": ".validate()",
+      "id": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_validate"
     },
     {
       "label": "Any",
@@ -249,9 +279,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "src_armaden_framework_protocols_rcon_command_py_any",
       "community": 291,
-      "norm_label": "any"
+      "norm_label": "any",
+      "id": "src_armaden_framework_protocols_rcon_command_py_any"
     },
     {
       "label": ".on_response()",
@@ -259,9 +289,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L79",
       "_origin": "ast",
-      "id": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_on_response",
       "community": 291,
-      "norm_label": ".on_response()"
+      "norm_label": ".on_response()",
+      "id": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_on_response"
     },
     {
       "label": ".__call__()",
@@ -269,9 +299,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L82",
       "_origin": "ast",
-      "id": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_call",
       "community": 291,
-      "norm_label": ".__call__()"
+      "norm_label": ".__call__()",
+      "id": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_call"
     },
     {
       "label": ".execute()",
@@ -279,9 +309,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L85",
       "_origin": "ast",
-      "id": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_execute",
       "community": 291,
-      "norm_label": ".execute()"
+      "norm_label": ".execute()",
+      "id": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_execute"
     },
     {
       "label": "Future",
@@ -452,16 +482,6 @@
       "community": 72,
       "norm_label": "strenum",
       "id": "strenum"
-    },
-    {
-      "label": "RconCommandInterface",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "community": 310,
-      "norm_label": "rconcommandinterface",
-      "id": "rconcommandinterface"
     },
     {
       "label": "SendCommandProtocol",
@@ -1122,26 +1142,6 @@
       "community": 310,
       "norm_label": "any",
       "id": "src_armaden_games_arma_reforger_rcon_kick_command_py_any"
-    },
-    {
-      "label": "login_command.py",
-      "file_type": "code",
-      "source_file": "src/armaden/games/arma_reforger/rcon/login_command.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 310,
-      "norm_label": "login_command.py",
-      "id": "src_armaden_games_arma_reforger_rcon_login_command"
-    },
-    {
-      "label": "LoginCommand",
-      "file_type": "code",
-      "source_file": "src/armaden/games/arma_reforger/rcon/login_command.py",
-      "source_location": "L4",
-      "_origin": "ast",
-      "community": 310,
-      "norm_label": "logincommand",
-      "id": "src_armaden_games_arma_reforger_rcon_login_command_logincommand"
     },
     {
       "label": "logout_command.py",
@@ -17769,14 +17769,178 @@
   ],
   "links": [
     {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/rcon/__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_games_arma_reforger_rcon_init",
+      "target": "src_armaden_games_arma_reforger_rcon_login_command"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/rcon/login_command.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_rcon_login_command",
+      "target": "src_armaden_games_arma_reforger_rcon_login_command_logincommand",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/rcon/__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_games_arma_reforger_rcon_init",
+      "target": "src_armaden_games_arma_reforger_rcon_login_command_logincommand"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/rcon/login_command.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_rcon_login_command_logincommand",
+      "target": "rconcommandinterface",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_armareforgerserver_init",
+      "target": "rconcommandinterface"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server.py",
+      "source_location": "L142",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_armareforgerserver_register_rcon_command",
+      "target": "rconcommandinterface"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/rcon/ban_create_command.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_games_arma_reforger_rcon_ban_create_command_bancreatecommand",
+      "target": "rconcommandinterface"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/rcon/ban_list_command.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_games_arma_reforger_rcon_ban_list_command_banlistcommand",
+      "target": "rconcommandinterface"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/rcon/ban_remove_command.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_games_arma_reforger_rcon_ban_remove_command_banremovecommand",
+      "target": "rconcommandinterface"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/rcon/id_command.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_games_arma_reforger_rcon_id_command_idcommand",
+      "target": "rconcommandinterface"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/rcon/kick_command.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_games_arma_reforger_rcon_kick_command_kickcommand",
+      "target": "rconcommandinterface"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/rcon/logout_command.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_games_arma_reforger_rcon_logout_command_logoutcommand",
+      "target": "rconcommandinterface"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/rcon/players_command.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_games_arma_reforger_rcon_players_command_playerscommand",
+      "target": "rconcommandinterface"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/rcon/restart_command.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_games_arma_reforger_rcon_restart_command_restartcommand",
+      "target": "rconcommandinterface"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/rcon/roles_command.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_games_arma_reforger_rcon_roles_command_rolescommand",
+      "target": "rconcommandinterface"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/rcon/shutdown_command.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_games_arma_reforger_rcon_shutdown_command_shutdowncommand",
+      "target": "rconcommandinterface"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client",
-      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient"
     },
     {
       "relation": "rationale_for",
@@ -17784,9 +17948,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client_rationale_18",
-      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient"
     },
     {
       "relation": "method",
@@ -17794,9 +17958,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L59",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient",
-      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_client",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_client"
     },
     {
       "relation": "method",
@@ -17804,9 +17968,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L52",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient",
-      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_connect",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_connect"
     },
     {
       "relation": "method",
@@ -17814,9 +17978,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L69",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient",
-      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_dispatch_command",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_dispatch_command"
     },
     {
       "relation": "method",
@@ -17824,9 +17988,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L72",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient",
-      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_dispatch_registered_command",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_dispatch_registered_command"
     },
     {
       "relation": "method",
@@ -17834,9 +17998,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L39",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient",
-      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_init",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_init"
     },
     {
       "relation": "method",
@@ -17844,9 +18008,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L97",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient",
-      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_register_builtin_commands",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_register_builtin_commands"
     },
     {
       "relation": "method",
@@ -17854,9 +18018,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L62",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient",
-      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_register_rcon_command",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_register_rcon_command"
     },
     {
       "relation": "method",
@@ -17864,9 +18028,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L91",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient",
-      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_run_on_rcon_loop",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_run_on_rcon_loop"
     },
     {
       "relation": "uses",
@@ -17874,9 +18038,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L9",
       "weight": 0.8,
+      "confidence_score": 0.5,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient",
-      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface",
-      "confidence_score": 0.5
+      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface"
     },
     {
       "relation": "uses",
@@ -17884,9 +18048,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L9",
       "weight": 0.8,
+      "confidence_score": 0.5,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient",
-      "target": "src_armaden_framework_protocols_rcon_command_sendcommandprotocol",
-      "confidence_score": 0.5
+      "target": "src_armaden_framework_protocols_rcon_command_sendcommandprotocol"
     },
     {
       "relation": "references",
@@ -17895,9 +18059,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L39",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_init",
-      "target": "rconcommandrepository",
-      "confidence_score": 1.0
+      "target": "rconcommandrepository"
     },
     {
       "relation": "calls",
@@ -17906,9 +18070,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L50",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_init",
-      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_register_builtin_commands",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_register_builtin_commands"
     },
     {
       "relation": "references",
@@ -17917,9 +18081,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L39",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_init",
-      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface"
     },
     {
       "relation": "references",
@@ -17961,9 +18125,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L121",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_register_builtin_commands",
-      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_register_rcon_command",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_register_rcon_command"
     },
     {
       "relation": "references",
@@ -17972,9 +18136,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L62",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_register_rcon_command",
-      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface"
     },
     {
       "relation": "references",
@@ -17983,9 +18147,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L69",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_dispatch_command",
-      "target": "src_armaden_framework_classes_registered_rcon_client_py_any",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_classes_registered_rcon_client_py_any"
     },
     {
       "relation": "calls",
@@ -17994,9 +18158,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L70",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_dispatch_command",
-      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_run_on_rcon_loop",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_run_on_rcon_loop"
     },
     {
       "relation": "references",
@@ -18005,9 +18169,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L91",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_run_on_rcon_loop",
-      "target": "src_armaden_framework_classes_registered_rcon_client_py_any",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_classes_registered_rcon_client_py_any"
     },
     {
       "relation": "references",
@@ -18016,9 +18180,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L72",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_dispatch_registered_command",
-      "target": "src_armaden_framework_classes_registered_rcon_client_py_commandresponse",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_classes_registered_rcon_client_py_commandresponse"
     },
     {
       "relation": "calls",
@@ -18027,9 +18191,9 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L89",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_dispatch_registered_command",
-      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_run_on_rcon_loop",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_run_on_rcon_loop"
     },
     {
       "relation": "references",
@@ -18060,9 +18224,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command",
-      "target": "abc",
-      "confidence_score": 1.0
+      "target": "abc"
     },
     {
       "relation": "contains",
@@ -18070,9 +18234,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command",
-      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface"
     },
     {
       "relation": "contains",
@@ -18080,9 +18244,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command",
-      "target": "src_armaden_framework_protocols_rcon_command_sendcommandprotocol",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_sendcommandprotocol"
     },
     {
       "relation": "references",
@@ -18091,9 +18255,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L29",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_init",
-      "target": "src_armaden_framework_protocols_rcon_command_sendcommandprotocol",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_sendcommandprotocol"
     },
     {
       "relation": "inherits",
@@ -18101,9 +18265,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command_sendcommandprotocol",
-      "target": "protocol",
-      "confidence_score": 1.0
+      "target": "protocol"
     },
     {
       "relation": "method",
@@ -18111,9 +18275,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command_sendcommandprotocol",
-      "target": "src_armaden_framework_protocols_rcon_command_sendcommandprotocol_send_command",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_sendcommandprotocol_send_command"
     },
     {
       "relation": "uses",
@@ -18283,9 +18447,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L91",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_execute",
-      "target": "src_armaden_framework_protocols_rcon_command_sendcommandprotocol_send_command",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_sendcommandprotocol_send_command"
     },
     {
       "relation": "references",
@@ -18294,9 +18458,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command_sendcommandprotocol_send_command",
-      "target": "future",
-      "confidence_score": 1.0
+      "target": "future"
     },
     {
       "relation": "references",
@@ -18305,9 +18469,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command_sendcommandprotocol_send_command",
-      "target": "src_armaden_framework_protocols_rcon_command_py_commandresponse",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_py_commandresponse"
     },
     {
       "relation": "references",
@@ -18327,9 +18491,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L79",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_on_response",
-      "target": "src_armaden_framework_protocols_rcon_command_py_commandresponse",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_py_commandresponse"
     },
     {
       "relation": "inherits",
@@ -18337,9 +18501,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command_rconcommandinterface",
-      "target": "abc",
-      "confidence_score": 1.0
+      "target": "abc"
     },
     {
       "relation": "method",
@@ -18347,9 +18511,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L82",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command_rconcommandinterface",
-      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_call",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_call"
     },
     {
       "relation": "method",
@@ -18357,9 +18521,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L85",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command_rconcommandinterface",
-      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_execute",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_execute"
     },
     {
       "relation": "method",
@@ -18367,9 +18531,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L29",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command_rconcommandinterface",
-      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_init",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_init"
     },
     {
       "relation": "method",
@@ -18377,9 +18541,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L79",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command_rconcommandinterface",
-      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_on_response",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_on_response"
     },
     {
       "relation": "method",
@@ -18387,9 +18551,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L32",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command_rconcommandinterface",
-      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_validate",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_validate"
     },
     {
       "relation": "uses",
@@ -18681,9 +18845,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L32",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_validate",
-      "target": "src_armaden_framework_protocols_rcon_command_py_any",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_py_any"
     },
     {
       "relation": "references",
@@ -18692,9 +18856,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L82",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_call",
-      "target": "src_armaden_framework_protocols_rcon_command_py_any",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_py_any"
     },
     {
       "relation": "references",
@@ -18703,9 +18867,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L85",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_execute",
-      "target": "src_armaden_framework_protocols_rcon_command_py_any",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_py_any"
     },
     {
       "relation": "references",
@@ -18714,9 +18878,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L79",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_on_response",
-      "target": "src_armaden_framework_protocols_rcon_command_py_any",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_py_any"
     },
     {
       "relation": "calls",
@@ -18725,9 +18889,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L92",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_execute",
-      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_on_response",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_on_response"
     },
     {
       "relation": "calls",
@@ -18736,9 +18900,9 @@
       "source_file": "src/armaden/framework/protocols/rcon_command.py",
       "source_location": "L83",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_call",
-      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_execute",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_protocols_rcon_command_rconcommandinterface_execute"
     },
     {
       "relation": "inherits",
@@ -19647,138 +19811,6 @@
     },
     {
       "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server.py",
-      "source_location": "L32",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_games_arma_reforger_arma_reforger_server_armareforgerserver_init",
-      "target": "rconcommandinterface"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server.py",
-      "source_location": "L142",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_games_arma_reforger_arma_reforger_server_armareforgerserver_register_rcon_command",
-      "target": "rconcommandinterface"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/rcon/ban_create_command.py",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_games_arma_reforger_rcon_ban_create_command_bancreatecommand",
-      "target": "rconcommandinterface"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/rcon/ban_list_command.py",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_games_arma_reforger_rcon_ban_list_command_banlistcommand",
-      "target": "rconcommandinterface"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/rcon/ban_remove_command.py",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_games_arma_reforger_rcon_ban_remove_command_banremovecommand",
-      "target": "rconcommandinterface"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/rcon/id_command.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_games_arma_reforger_rcon_id_command_idcommand",
-      "target": "rconcommandinterface"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/rcon/kick_command.py",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_games_arma_reforger_rcon_kick_command_kickcommand",
-      "target": "rconcommandinterface"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/rcon/login_command.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_games_arma_reforger_rcon_login_command_logincommand",
-      "target": "rconcommandinterface"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/rcon/logout_command.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_games_arma_reforger_rcon_logout_command_logoutcommand",
-      "target": "rconcommandinterface"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/rcon/players_command.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_games_arma_reforger_rcon_players_command_playerscommand",
-      "target": "rconcommandinterface"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/rcon/restart_command.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_games_arma_reforger_rcon_restart_command_restartcommand",
-      "target": "rconcommandinterface"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/rcon/roles_command.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_games_arma_reforger_rcon_roles_command_rolescommand",
-      "target": "rconcommandinterface"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/rcon/shutdown_command.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_games_arma_reforger_rcon_shutdown_command_shutdowncommand",
-      "target": "rconcommandinterface"
-    },
-    {
-      "relation": "references",
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/games/arma_reforger/arma_reforger_server.py",
@@ -20398,28 +20430,6 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/games/arma_reforger/rcon/__init__.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_games_arma_reforger_rcon_init",
-      "target": "src_armaden_games_arma_reforger_rcon_login_command"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/rcon/__init__.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_games_arma_reforger_rcon_init",
-      "target": "src_armaden_games_arma_reforger_rcon_login_command_logincommand"
-    },
-    {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/rcon/__init__.py",
       "source_location": "L2",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -20658,16 +20668,6 @@
       "confidence_score": 1.0,
       "source": "src_armaden_games_arma_reforger_rcon_kick_command_kickcommand_execute",
       "target": "src_armaden_games_arma_reforger_rcon_kick_command_py_any"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/rcon/login_command.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_games_arma_reforger_rcon_login_command",
-      "target": "src_armaden_games_arma_reforger_rcon_login_command_logincommand"
     },
     {
       "relation": "contains",
@@ -48961,5 +48961,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "930c23fd349b2b48e6d4beb3781c3abf945f1e40"
+  "built_at_commit": "3df44b9fc088a5b0696532d3994f2fac9873e65e"
 }
