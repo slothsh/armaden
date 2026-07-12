@@ -49,6 +49,7 @@ class DefaultApi:
             }))
 
         try:
+            import asyncio
             serve_task = asyncio.create_task(self._uvicorn_server.serve())
             while not self._uvicorn_server.started:
                 await asyncio.sleep(0.1)
