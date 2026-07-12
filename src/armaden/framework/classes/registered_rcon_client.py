@@ -6,10 +6,9 @@ from typing import TYPE_CHECKING, cast
 
 from armaden.framework.classes.rcon_command_repository import RconCommandRepository
 from armaden.framework.errors import RconCommandArgumentError
-from armaden.framework.protocols.rcon_command import SendCommandProtocol
+from armaden.framework.protocols.rcon_command import RconCommandInterface, SendCommandProtocol
 
 if TYPE_CHECKING:
-    from armaden.framework.protocols.rcon_command import RconCommandInterface
     from armaden.network.rcon.battle_eye.battle_eye_rcon_client import CommandResponse
 
 logger = logging.getLogger(__name__)
@@ -75,7 +74,24 @@ class RegisteredRconClient:
         return asyncio.ensure_future(command.execute(**validated_kwargs))
 
     def _register_builtin_commands(self, overrides: list[type[RconCommandInterface]]) -> None:
-        overrides_by_name = {cls.command_name: cls for cls in overrides}
+        overrides_by_name: dict[str, type[RconCommandInterface]] = {}
+        for cls in overrides:
+            if not isinstance(cls, type) or not issubclass(cls, RconCommandInterface):
+                logger.warning(
+                    "builtin_command_overrides entry '%s' is not a RconCommandInterface subclass; override ignored",
+                    getattr(cls, '__name__', cls),
+                )
+                continue
+            try:
+                name = cls.command_name
+            except AttributeError:
+                logger.warning(
+                    "builtin_command_overrides entry '%s' has no command_name attribute; override ignored",
+                    getattr(cls, '__name__', cls),
+                )
+                continue
+            overrides_by_name[name] = cls
+
         builtin_names = {cls.command_name for cls in self.BUILTIN_COMMAND_CLASSES}
 
         for cls in self.BUILTIN_COMMAND_CLASSES:
