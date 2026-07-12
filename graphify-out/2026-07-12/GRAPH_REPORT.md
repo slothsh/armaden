@@ -1,7 +1,7 @@
 # Graph Report - armaden  (2026-07-12)
 
 ## Corpus Check
-- 191 files · ~33,889 words
+- 191 files · ~33,904 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `fa3fe197`
+- Built from commit: `cf9a318f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
