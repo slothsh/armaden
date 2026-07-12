@@ -311,8 +311,17 @@
   "309": "._resolve_parameter",
   "310": "RegisteredRconClient",
   "311": ".streams_delta",
+  "312": ".log_rdb_checksum",
+  "313": ".single_threaded_update",
   "314": "._handle_multi_packet_response",
   "315": "Any",
   "316": "CommandResponse",
-  "317": "Future"
+  "317": "Future",
+  "318": ".staggering_budget",
+  "319": "BanListCommand",
+  "320": "KickCommand",
+  "321": "Exception",
+  "322": "RconCommandInterface",
+  "323": "RconCommandRepository",
+  "324": "SendCommandProtocol"
 }
