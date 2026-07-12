@@ -1,7 +1,7 @@
 # Graph Report - armaden  (2026-07-12)
 
 ## Corpus Check
-- 191 files · ~33,874 words
+- 191 files · ~33,888 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `930c23fd`
+- Built from commit: `3df44b9f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -521,9 +521,9 @@ Nodes (16): RconCommandInterface, BanCreateCommand, Any, BanListCommand, Any, Ba
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `ArmaReforgerServerExecutable` connect `ArmaReforgerServerExecutable` to `SteamCmdExecutable`, `.keep_num_of_logs`, `.no_throw`, `.server_id`, `.generate_shaders`, `.keep_session_save`, `HealthStatus`, `.limit_fps`, `.load_session_save`, `.log_scr_checksum`, `.log_stats`, `.log_time`, `.nds`, `.no_sound`, `.nwk_resolution`, `.logs_dir`, `.server_world`, `__init__.py`, `__init__.py`, `__init__.py`, `__init__.py`, `TypedDict`, `.create_db`, `.debugger`, `.addon_download_dir`, `.disable_navmesh_streaming`, `.addons`, `__init__.py`, `.disable_shaders_build`, `.freeze_check`, `.freeze_check_mode`, `CommandResponse`, `.log_fs`, `.region`, `.scenario`, `.streaming_budget`, `.disable_navmesh_streaming`, `.rpl_encode_as_long_jobs`, `__main__.py`, `.streams_delta`, `.log_rdb_checksum`, `.single_threaded_update`, `.script_authorize_all`, `__init__.py`, `.kind`, `.addons_verify`, `.ai_limit`, `.silent_crash_report`, `.backend_local_storage`, `.disable_ai`, `.freeze_check`, `.jobsys_short_worker_count`, `Executable`, `.limit_fps`, `ArmaReforgerExecutableError`, `.log_append`, `.log_scr_checksum`, `.minidump`, `.player_limits`, `.backend_fresh_session`, `.scenario`, `.server_id`, `.silent_crash_report`, `.single_threaded_update`, `.vm_error_mode`?**
-  _High betweenness centrality (0.155) - this node is a cross-community bridge._
+  _High betweenness centrality (0.153) - this node is a cross-community bridge._
 - **Why does `InstanceContainer` connect `InstanceContainer` to `WorkerPool`, `AuthManager`, `.get_alias`, `ContextualAttribute`, `.resolve_primitive`, `BattleEyeRconClient`, `SubprocessHandle`, `._initialize_configs`, `.resolve`, `TypedDict`, `._handle_multi_packet_response`?**
-  _High betweenness centrality (0.101) - this node is a cross-community bridge._
+  _High betweenness centrality (0.100) - this node is a cross-community bridge._
 - **Why does `TaskRuntimeInterface` connect `HealthStatus` to `ArmaReforgerServerExecutable`, `Protocol`, `RestartPolicy`, `TaskBuilderInterface`, `TaskGraph`, `ArmaReforgerExecutableError`, `Path`, `URL`?**
   _High betweenness centrality (0.091) - this node is a cross-community bridge._
 - **Are the 20 inferred relationships involving `InstanceContainer` (e.g. with `Application` and `Config`) actually correct?**
