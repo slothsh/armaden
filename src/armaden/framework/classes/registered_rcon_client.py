@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
-from typing import TYPE_CHECKING, cast
+from typing import TYPE_CHECKING, Any, Coroutine, cast
 
 from armaden.framework.classes.rcon_command_repository import RconCommandRepository
 from armaden.framework.errors import RconCommandArgumentError
@@ -53,6 +53,9 @@ class RegisteredRconClient:
         else:
             self._registered_commands[command.command_name] = command
         logger.info("Registered RCON command '%s' (category: %s)", command.command_name, command.category)
+
+    def dispatch_command(self, coro: Coroutine[Any, Any, Any]) -> asyncio.Future[Any]:
+        return asyncio.ensure_future(coro)
 
     def dispatch_registered_command(self, command_name: str, **kwargs) -> asyncio.Future[CommandResponse]:
         command = (

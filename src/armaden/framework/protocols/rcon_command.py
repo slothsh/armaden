@@ -79,6 +79,13 @@ class RconCommandInterface(ABC):
     async def on_response(self, response: CommandResponse) -> Any:
         return response
 
+    def __call__(self, *args: Any) -> Any:
+        kwargs = {
+            spec.name: value
+            for spec, value in zip(self.args, args)
+        }
+        return self.execute(**kwargs)
+
     async def execute(self, **kwargs: Any) -> Any:
         positional = [
             kwargs[spec.name]
