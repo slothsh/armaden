@@ -1,6 +1,9 @@
+import logging
 from dataclasses import dataclass
 
 from .packet import BattleEyeInvalidPacketException, Packet
+
+logger = logging.getLogger(__name__)
 
 
 class CommandResponsePacket(Packet):
@@ -69,27 +72,41 @@ class CommandResponsePacket(Packet):
         request_sequence = 0
         response_data: bytes | None = None
 
+        logger.info('data 1: %s', data)
+
         if len(data) < 9:
             return header, request_sequence, response_data
+
+        logger.info('data 2: %s', data)
 
         request_sequence = int.from_bytes(data[8:9], byteorder='little')
 
         if len(data) < 10:
             return header, request_sequence, response_data
 
+        logger.info('data 3: %s', data)
+
         if data[9] != 0x00:
             response_data = data[9:]
             return header, request_sequence, response_data
 
+        logger.info('data 4: %s', data)
+
         if len(data) < 12:
             return header, request_sequence, response_data
+
+        logger.info('data 5: %s', data)
 
         total_packets = int.from_bytes(data[10:11], byteorder='little')
         index = int.from_bytes(data[11:12], byteorder='little')
         header = CommandHeader(total_packets=total_packets, index=index)
+
+        logger.info('data 6: %s', data)
         
         if len(data) >= 12:
             response_data = data[12:]
+
+        logger.info('data 7: %s', data)
 
         return header, request_sequence, response_data
 
