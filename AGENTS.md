@@ -33,3 +33,5 @@ Do NOT add documentation comments to ANY code. This will only be required on req
 NEVER stage, commit, pull or push any changes EVER. This will only be required on request from the user.
 
 **Note**: When the user has asked you to make commits, then the `graphify` post-commit hook will run after a commit has been made. Always commit these `graphify` artifacts as a new, separate commit with message `chore: commit graph`.
+
+NEVER use squash commit merges unless explicitly asked to do so by the user.
