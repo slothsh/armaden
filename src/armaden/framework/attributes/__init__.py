@@ -34,3 +34,13 @@ class Scoped:
     def __call__(self, cls: type) -> type:
         setattr(cls, _SCOPED_ATTR, True)
         return cls
+
+
+from armaden.framework.attributes.rcon_command import register_rcon_command
+
+__all__ = [
+    'Bind',
+    'Singleton',
+    'Scoped',
+    'register_rcon_command',
+]

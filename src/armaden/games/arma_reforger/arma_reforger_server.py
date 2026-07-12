@@ -1,18 +1,22 @@
 import json
+import logging
 from dataclasses import dataclass
 from enum import StrEnum
-import logging
-from typing import Any, Dict, List, Self, Union, cast
 from pathlib import Path
+from typing import Any, Dict, List, Self, Union, cast
 
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 from armaden.framework.classes.configurable import Configurable
+from armaden.framework.classes.rcon_command_repository import RconCommandRepository
 from armaden.framework.enums.health_status import HealthStatus
-from armaden.framework.utils.types import Result
-from armaden.framework.errors import Error
+from armaden.framework.facades import App
+from armaden.framework.protocols.rcon_command import RconCommandInterface, SendCommandProtocol
+from armaden.framework.protocols.registers_rcon_command import RegistersRconCommand
 from armaden.framework.protocols.task_runtime import TaskRuntimeInterface
+from armaden.framework.errors import Error
 from armaden.framework.utils.dictionary import Dictionary
+from armaden.framework.utils.types import Result
 from armaden.games.steamcmd import SteamCmdExecutable
 from .arma_reforger_server_executable import ArmaReforgerServerExecutable
 from .arma_reforger_rcon_client import ArmaReforgerRconClient
@@ -22,19 +26,20 @@ from .enums.arma_reforger_executable_flag import ArmaReforgerExecutableFlag
 logger = logging.getLogger('games.arma_reforger.server')
 
 
-class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig]):
+class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCommand):
     config = DEFAULT_CONFIG
 
-    def __init__(self, *, config: ArmaReforgerServerConfig | None = None):
+    def __init__(self, *, config: ArmaReforgerServerConfig | None = None, rcon_client_cls: type[ArmaReforgerRconClient] | None = ArmaReforgerRconClient, rcon_command_overrides: list[type[RconCommandInterface]] | None = None):
         _ = config
         self._paths: PathContainer | None = None
+        self._rcon_client_cls: type[ArmaReforgerRconClient] | None = rcon_client_cls
+        self._rcon_command_overrides: list[type[RconCommandInterface]] | None = rcon_command_overrides
+        self._rcon_client: ArmaReforgerRconClient | None = None
 
         self._executable = ExecutableContainer(
             steamcmd=SteamCmdExecutable(config={'executable': self.config.get('steamExecutable'), 'installDirectory': self.config.get('steamInstallDirectory')}),
             reforger=ArmaReforgerServerExecutable(config={ 'executable': self.config['executable'], 'installDirectory': self.config['installDirectory'] })
         )
-
-        self._rcon_client: ArmaReforgerRconClient | None = None
 
         if not self.config['installDirectory']:
             raise ArmaReforgerServerException('The Arma Reforger installation directory must be provided with the configuration')
@@ -104,16 +109,55 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig]):
 
 
     async def initialize_rcon_client(self) -> Result[None]:
+        if self._rcon_client_cls is None:
+            return Success(None)
+
         if rcon_config := self.config['server'] and self.config['server']['rcon']:
             match (rcon_config['port'], rcon_config['password']):
                 case int() | None as port, str() | None as password:
-                    self._rcon_client = ArmaReforgerRconClient(
+                    repository = self._resolve_repository()
+                    self._rcon_client = self._rcon_client_cls(
                         address='127.0.0.1',
                         port=port or 2011,
-                        password=password or ''
+                        password=password or '',
+                        repository=repository,
+                        builtin_command_overrides=self._rcon_command_overrides,
                     )
+                    if repository is not None:
+                        for command in repository.all():
+                            command._client = self._rcon_client
 
         return Success(None)
+
+    # -- RegistersRconCommand -------------------------------------------------
+
+    @property
+    def client(self) -> SendCommandProtocol:
+        return cast(SendCommandProtocol, self._rcon_client)
+
+    @property
+    def rcon_client(self) -> ArmaReforgerRconClient | None:
+        return self._rcon_client
+
+    def register_rcon_command(self, command: RconCommandInterface) -> None:
+        repository = self._resolve_repository()
+        if repository is not None:
+            repository.register(command, registrar=type(self))
+            if self._rcon_client is not None:
+                command._client = self._rcon_client
+        elif self._rcon_client is not None:
+            self._rcon_client.register_rcon_command(command)
+        else:
+            logger.warning(
+                "No RCON repository or client available; RCON command '%s' could not be registered",
+                command.command_name,
+            )
+
+    def _resolve_repository(self) -> RconCommandRepository | None:
+        try:
+            return App.make(RconCommandRepository)
+        except Exception:
+            return None
 
 
     async def run_rcon_client(self, runtime: TaskRuntimeInterface) -> Result[None]:

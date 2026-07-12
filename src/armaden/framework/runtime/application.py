@@ -61,9 +61,11 @@ class CoreApplication:
     def register_base_service_providers(self) -> None:
         from armaden.framework.runtime.providers.http_service_provider import HttpServiceProvider
         from armaden.framework.runtime.providers.console_service_provider import ConsoleServiceProvider
+        from armaden.framework.runtime.providers.rcon_service_provider import RconServiceProvider
 
         self.register(self._make_provider(HttpServiceProvider))
         self.register(self._make_provider(ConsoleServiceProvider))
+        self.register(self._make_provider(RconServiceProvider))
 
     def _make_provider(self, provider_class) -> ServiceProvider:
         return self._container.make(provider_class, {'container': self._container})
