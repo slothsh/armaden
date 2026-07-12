@@ -252,14 +252,19 @@ class BattleEyeRconClient:
 
 
     def _handle_command_response(self, packet: CommandResponsePacket) -> None:
+        logger.info('1: %s', packet)
         pending = self._pending_commands.get(packet.request_sequence)
 
         if (header := packet.response_header) is not None:
             self._handle_multi_packet_response(header, packet, pending)
             return
 
+        logger.info('2: %s', packet)
+
         if pending is None:
             return
+
+        logger.info('3: %s', packet)
 
         response_data = packet.response_data.decode('ascii') if packet.response_data else None
         response = CommandResponse(
@@ -268,8 +273,11 @@ class BattleEyeRconClient:
             response=response_data,
         )
         if not pending.future.done():
+            logger.info('4: %s', packet)
             pending.future.set_result(response)
         del self._pending_commands[packet.request_sequence]
+
+        logger.info('5: %s', packet)
 
         self._response_queue.append(Message(
             sequence=packet.request_sequence,
