@@ -4,14 +4,134 @@
   "graph": {},
   "nodes": [
     {
+      "label": "arma_reforger_server_config.py",
+      "file_type": "code",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_armaden_games_arma_reforger_arma_reforger_server_config",
+      "community": 5,
+      "norm_label": "arma_reforger_server_config.py"
+    },
+    {
+      "label": "StartupConfig",
+      "file_type": "code",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_startupconfig",
+      "community": 5,
+      "norm_label": "startupconfig"
+    },
+    {
+      "label": "TypedDict",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "typeddict",
+      "community": 5,
+      "norm_label": "typeddict"
+    },
+    {
+      "label": "A2SConfig",
+      "file_type": "code",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_a2sconfig",
+      "community": 5,
+      "norm_label": "a2sconfig"
+    },
+    {
+      "label": "RconConfig",
+      "file_type": "code",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_rconconfig",
+      "community": 5,
+      "norm_label": "rconconfig"
+    },
+    {
+      "label": "GamePropertiesPersistence",
+      "file_type": "code",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_gamepropertiespersistence",
+      "community": 5,
+      "norm_label": "gamepropertiespersistence"
+    },
+    {
+      "label": "GamePropertiesConfig",
+      "file_type": "code",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_gamepropertiesconfig",
+      "community": 5,
+      "norm_label": "gamepropertiesconfig"
+    },
+    {
+      "label": "GameConfig",
+      "file_type": "code",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_gameconfig",
+      "community": 5,
+      "norm_label": "gameconfig"
+    },
+    {
+      "label": "JoinQueueConfig",
+      "file_type": "code",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L65",
+      "_origin": "ast",
+      "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_joinqueueconfig",
+      "community": 5,
+      "norm_label": "joinqueueconfig"
+    },
+    {
+      "label": "OperatingConfig",
+      "file_type": "code",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L69",
+      "_origin": "ast",
+      "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_operatingconfig",
+      "community": 5,
+      "norm_label": "operatingconfig"
+    },
+    {
+      "label": "ServerConfig",
+      "file_type": "code",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L81",
+      "_origin": "ast",
+      "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_serverconfig",
+      "community": 5,
+      "norm_label": "serverconfig"
+    },
+    {
+      "label": "Config",
+      "file_type": "code",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L92",
+      "_origin": "ast",
+      "id": "src_armaden_games_arma_reforger_arma_reforger_server_config_config",
+      "community": 5,
+      "norm_label": "config"
+    },
+    {
       "label": "battle_eye_rcon_client.py",
       "file_type": "code",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client",
       "community": 49,
-      "norm_label": "battle_eye_rcon_client.py"
+      "norm_label": "battle_eye_rcon_client.py",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client"
     },
     {
       "label": "BattleEyeRconClient",
@@ -19,9 +139,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L28",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
       "community": 49,
-      "norm_label": "battleeyerconclient"
+      "norm_label": "battleeyerconclient",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient"
     },
     {
       "label": ".__init__()",
@@ -29,9 +149,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L34",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_init",
       "community": 49,
-      "norm_label": ".__init__()"
+      "norm_label": ".__init__()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_init"
     },
     {
       "label": "AbstractEventLoop",
@@ -39,9 +159,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "abstracteventloop",
       "community": 9,
-      "norm_label": "abstracteventloop"
+      "norm_label": "abstracteventloop",
+      "id": "abstracteventloop"
     },
     {
       "label": "DatagramTransportFactory",
@@ -49,9 +169,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "datagramtransportfactory",
       "community": 49,
-      "norm_label": "datagramtransportfactory"
+      "norm_label": "datagramtransportfactory",
+      "id": "datagramtransportfactory"
     },
     {
       "label": ".address()",
@@ -59,9 +179,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L66",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_address",
       "community": 49,
-      "norm_label": ".address()"
+      "norm_label": ".address()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_address"
     },
     {
       "label": ".port()",
@@ -69,9 +189,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L71",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_port",
       "community": 49,
-      "norm_label": ".port()"
+      "norm_label": ".port()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_port"
     },
     {
       "label": ".send_command()",
@@ -79,9 +199,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L75",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_send_command",
       "community": 49,
-      "norm_label": ".send_command()"
+      "norm_label": ".send_command()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_send_command"
     },
     {
       "label": "Future",
@@ -89,9 +209,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "future",
       "community": 291,
-      "norm_label": "future"
+      "norm_label": "future",
+      "id": "future"
     },
     {
       "label": ".on_server_message()",
@@ -99,9 +219,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L94",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_server_message",
       "community": 49,
-      "norm_label": ".on_server_message()"
+      "norm_label": ".on_server_message()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_server_message"
     },
     {
       "label": ".on_command_response()",
@@ -109,9 +229,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L99",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_command_response",
       "community": 49,
-      "norm_label": ".on_command_response()"
+      "norm_label": ".on_command_response()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_command_response"
     },
     {
       "label": ".on_connected()",
@@ -119,9 +239,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L104",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_connected",
       "community": 49,
-      "norm_label": ".on_connected()"
+      "norm_label": ".on_connected()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_connected"
     },
     {
       "label": ".on_disconnected()",
@@ -129,9 +249,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L108",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_disconnected",
       "community": 49,
-      "norm_label": ".on_disconnected()"
+      "norm_label": ".on_disconnected()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_disconnected"
     },
     {
       "label": ".connect()",
@@ -139,9 +259,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L112",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect",
       "community": 49,
-      "norm_label": ".connect()"
+      "norm_label": ".connect()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect"
     },
     {
       "label": ".shutdown()",
@@ -149,9 +269,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L137",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_shutdown",
       "community": 49,
-      "norm_label": ".shutdown()"
+      "norm_label": ".shutdown()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_shutdown"
     },
     {
       "label": "._initialize_signal_handlers()",
@@ -159,9 +279,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L141",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_initialize_signal_handlers",
       "community": 49,
-      "norm_label": "._initialize_signal_handlers()"
+      "norm_label": "._initialize_signal_handlers()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_initialize_signal_handlers"
     },
     {
       "label": "._handle_os_signal()",
@@ -169,9 +289,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L146",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_os_signal",
       "community": 9,
-      "norm_label": "._handle_os_signal()"
+      "norm_label": "._handle_os_signal()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_os_signal"
     },
     {
       "label": "Any",
@@ -179,9 +299,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "any",
       "community": 9,
-      "norm_label": "any"
+      "norm_label": "any",
+      "id": "any"
     },
     {
       "label": ".receive_datagram()",
@@ -189,9 +309,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L152",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_receive_datagram",
       "community": 49,
-      "norm_label": ".receive_datagram()"
+      "norm_label": ".receive_datagram()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_receive_datagram"
     },
     {
       "label": ".handle_new_connection()",
@@ -199,9 +319,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L169",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_new_connection",
       "community": 49,
-      "norm_label": ".handle_new_connection()"
+      "norm_label": ".handle_new_connection()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_new_connection"
     },
     {
       "label": ".handle_lost_connection()",
@@ -209,9 +329,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L175",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_lost_connection",
       "community": 49,
-      "norm_label": ".handle_lost_connection()"
+      "norm_label": ".handle_lost_connection()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_lost_connection"
     },
     {
       "label": "Exception",
@@ -219,9 +339,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "exception",
       "community": 81,
-      "norm_label": "exception"
+      "norm_label": "exception",
+      "id": "exception"
     },
     {
       "label": "._cancel_pending_commands()",
@@ -229,9 +349,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L182",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cancel_pending_commands",
       "community": 49,
-      "norm_label": "._cancel_pending_commands()"
+      "norm_label": "._cancel_pending_commands()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cancel_pending_commands"
     },
     {
       "label": ".handle_error()",
@@ -239,9 +359,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L189",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_error",
       "community": 81,
-      "norm_label": ".handle_error()"
+      "norm_label": ".handle_error()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_error"
     },
     {
       "label": "._try_connect()",
@@ -249,9 +369,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L193",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_connect",
       "community": 49,
-      "norm_label": "._try_connect()"
+      "norm_label": "._try_connect()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_connect"
     },
     {
       "label": "._keep_alive()",
@@ -259,9 +379,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L197",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_keep_alive",
       "community": 49,
-      "norm_label": "._keep_alive()"
+      "norm_label": "._keep_alive()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_keep_alive"
     },
     {
       "label": "._try_login()",
@@ -269,9 +389,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L210",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_login",
       "community": 49,
-      "norm_label": "._try_login()"
+      "norm_label": "._try_login()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_login"
     },
     {
       "label": "._handle_packet()",
@@ -279,9 +399,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L220",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
       "community": 49,
-      "norm_label": "._handle_packet()"
+      "norm_label": "._handle_packet()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet"
     },
     {
       "label": "Packet",
@@ -289,9 +409,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "packet",
       "community": 49,
-      "norm_label": "packet"
+      "norm_label": "packet",
+      "id": "packet"
     },
     {
       "label": "datetime",
@@ -299,9 +419,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "datetime",
       "community": 49,
-      "norm_label": "datetime"
+      "norm_label": "datetime",
+      "id": "datetime"
     },
     {
       "label": "._handle_server_message()",
@@ -309,9 +429,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L238",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message",
       "community": 49,
-      "norm_label": "._handle_server_message()"
+      "norm_label": "._handle_server_message()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message"
     },
     {
       "label": "ServerMessageRequestPacket",
@@ -319,9 +439,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "servermessagerequestpacket",
       "community": 49,
-      "norm_label": "servermessagerequestpacket"
+      "norm_label": "servermessagerequestpacket",
+      "id": "servermessagerequestpacket"
     },
     {
       "label": "._handle_command_response()",
@@ -329,9 +449,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L255",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response",
       "community": 49,
-      "norm_label": "._handle_command_response()"
+      "norm_label": "._handle_command_response()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response"
     },
     {
       "label": "CommandResponsePacket",
@@ -339,9 +459,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "commandresponsepacket",
       "community": 49,
-      "norm_label": "commandresponsepacket"
+      "norm_label": "commandresponsepacket",
+      "id": "commandresponsepacket"
     },
     {
       "label": "._handle_multi_packet_response()",
@@ -349,9 +469,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L289",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response",
       "community": 49,
-      "norm_label": "._handle_multi_packet_response()"
+      "norm_label": "._handle_multi_packet_response()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response"
     },
     {
       "label": "CommandHeader",
@@ -359,9 +479,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "commandheader",
       "community": 49,
-      "norm_label": "commandheader"
+      "norm_label": "commandheader",
+      "id": "commandheader"
     },
     {
       "label": "._cleanup_pending_commands()",
@@ -369,9 +489,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L321",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cleanup_pending_commands",
       "community": 49,
-      "norm_label": "._cleanup_pending_commands()"
+      "norm_label": "._cleanup_pending_commands()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cleanup_pending_commands"
     },
     {
       "label": "._handle_requests()",
@@ -379,9 +499,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L345",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_requests",
       "community": 49,
-      "norm_label": "._handle_requests()"
+      "norm_label": "._handle_requests()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_requests"
     },
     {
       "label": "._handle_responses()",
@@ -389,9 +509,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L357",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses",
       "community": 49,
-      "norm_label": "._handle_responses()"
+      "norm_label": "._handle_responses()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses"
     },
     {
       "label": "._handle_login_response()",
@@ -399,9 +519,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L384",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_login_response",
       "community": 49,
-      "norm_label": "._handle_login_response()"
+      "norm_label": "._handle_login_response()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_login_response"
     },
     {
       "label": "LoginResponsePacket",
@@ -409,9 +529,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "loginresponsepacket",
       "community": 49,
-      "norm_label": "loginresponsepacket"
+      "norm_label": "loginresponsepacket",
+      "id": "loginresponsepacket"
     },
     {
       "label": "._handle_transport_error()",
@@ -419,9 +539,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L394",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_transport_error",
       "community": 81,
-      "norm_label": "._handle_transport_error()"
+      "norm_label": "._handle_transport_error()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_transport_error"
     },
     {
       "label": "._new_sequence_generator()",
@@ -429,9 +549,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L405",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_new_sequence_generator",
       "community": 49,
-      "norm_label": "._new_sequence_generator()"
+      "norm_label": "._new_sequence_generator()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_new_sequence_generator"
     },
     {
       "label": "CommandResponse",
@@ -439,9 +559,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L415",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse",
       "community": 49,
-      "norm_label": "commandresponse"
+      "norm_label": "commandresponse",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse"
     },
     {
       "label": "ServerMessage",
@@ -449,9 +569,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L423",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_servermessage",
       "community": 49,
-      "norm_label": "servermessage"
+      "norm_label": "servermessage",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_servermessage"
     },
     {
       "label": "Message",
@@ -459,9 +579,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L431",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
       "community": 49,
-      "norm_label": "message"
+      "norm_label": "message",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "label": "_PendingCommand",
@@ -469,9 +589,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L443",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_pendingcommand",
       "community": 49,
-      "norm_label": "_pendingcommand"
+      "norm_label": "_pendingcommand",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_pendingcommand"
     },
     {
       "label": "ClientStatus",
@@ -479,9 +599,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L452",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_clientstatus",
       "community": 49,
-      "norm_label": "clientstatus"
+      "norm_label": "clientstatus",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_clientstatus"
     },
     {
       "label": "command_response_packet.py",
@@ -619,7 +739,7 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 11,
+      "community": 291,
       "norm_label": "registered_rcon_client.py",
       "id": "src_armaden_framework_classes_registered_rcon_client"
     },
@@ -629,7 +749,7 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 11,
+      "community": 291,
       "norm_label": "registeredrconclient",
       "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient"
     },
@@ -639,7 +759,7 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L39",
       "_origin": "ast",
-      "community": 11,
+      "community": 291,
       "norm_label": ".__init__()",
       "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_init"
     },
@@ -659,7 +779,7 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L52",
       "_origin": "ast",
-      "community": 11,
+      "community": 291,
       "norm_label": ".connect()",
       "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_connect"
     },
@@ -679,7 +799,7 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L62",
       "_origin": "ast",
-      "community": 11,
+      "community": 291,
       "norm_label": ".register_rcon_command()",
       "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_register_rcon_command"
     },
@@ -689,7 +809,7 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L69",
       "_origin": "ast",
-      "community": 11,
+      "community": 291,
       "norm_label": ".dispatch_command()",
       "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_dispatch_command"
     },
@@ -699,7 +819,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 11,
+      "community": 291,
       "norm_label": "any",
       "id": "src_armaden_framework_classes_registered_rcon_client_py_any"
     },
@@ -709,7 +829,7 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L72",
       "_origin": "ast",
-      "community": 11,
+      "community": 291,
       "norm_label": ".dispatch_registered_command()",
       "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_dispatch_registered_command"
     },
@@ -719,7 +839,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 11,
+      "community": 291,
       "norm_label": "commandresponse",
       "id": "src_armaden_framework_classes_registered_rcon_client_py_commandresponse"
     },
@@ -729,7 +849,7 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L91",
       "_origin": "ast",
-      "community": 11,
+      "community": 291,
       "norm_label": "._run_on_rcon_loop()",
       "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_run_on_rcon_loop"
     },
@@ -739,7 +859,7 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L97",
       "_origin": "ast",
-      "community": 11,
+      "community": 291,
       "norm_label": "._register_builtin_commands()",
       "id": "src_armaden_framework_classes_registered_rcon_client_registeredrconclient_register_builtin_commands"
     },
@@ -749,7 +869,7 @@
       "source_file": "src/armaden/framework/classes/registered_rcon_client.py",
       "source_location": "L18",
       "_origin": "ast",
-      "community": 11,
+      "community": 291,
       "norm_label": "mixin adding registered rcon command dispatch to any client that     exposes a `",
       "id": "src_armaden_framework_classes_registered_rcon_client_rationale_18"
     },
@@ -3682,7 +3802,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L149",
       "_origin": "ast",
-      "community": 34,
+      "community": 6,
       "norm_label": ".resolved()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_resolved"
     },
@@ -3712,7 +3832,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L165",
       "_origin": "ast",
-      "community": 4,
+      "community": 6,
       "norm_label": ".bind()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_bind"
     },
@@ -3772,7 +3892,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L203",
       "_origin": "ast",
-      "community": 4,
+      "community": 6,
       "norm_label": ".bind_based_on_closure_return_types()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_bind_based_on_closure_return_types"
     },
@@ -3782,7 +3902,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L209",
       "_origin": "ast",
-      "community": 4,
+      "community": 6,
       "norm_label": ".get_closure()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_get_closure"
     },
@@ -3792,7 +3912,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L218",
       "_origin": "ast",
-      "community": 34,
+      "community": 6,
       "norm_label": ".extend()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_extend"
     },
@@ -3842,7 +3962,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L261",
       "_origin": "ast",
-      "community": 19,
+      "community": 6,
       "norm_label": ".tagged()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_tagged"
     },
@@ -3872,7 +3992,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L277",
       "_origin": "ast",
-      "community": 4,
+      "community": 6,
       "norm_label": ".rebound()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_rebound"
     },
@@ -3882,7 +4002,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L285",
       "_origin": "ast",
-      "community": 4,
+      "community": 6,
       "norm_label": ".get_rebound_callbacks()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_get_rebound_callbacks"
     },
@@ -3912,7 +4032,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L313",
       "_origin": "ast",
-      "community": 4,
+      "community": 6,
       "norm_label": ".factory()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_factory"
     },
@@ -3922,7 +4042,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L316",
       "_origin": "ast",
-      "community": 19,
+      "community": 6,
       "norm_label": ".make_with()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_make_with"
     },
@@ -3932,7 +4052,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L321",
       "_origin": "ast",
-      "community": 19,
+      "community": 6,
       "norm_label": ".make()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_make"
     },
@@ -3972,7 +4092,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L394",
       "_origin": "ast",
-      "community": 19,
+      "community": 73,
       "norm_label": ".get_concrete_binding_from_attributes()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_get_concrete_binding_from_attributes"
     },
@@ -4012,7 +4132,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L429",
       "_origin": "ast",
-      "community": 19,
+      "community": 6,
       "norm_label": "._resolve_contextual_marker()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_resolve_contextual_marker"
     },
@@ -4022,7 +4142,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L438",
       "_origin": "ast",
-      "community": 19,
+      "community": 6,
       "norm_label": "._resolve_config_value()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_resolve_config_value"
     },
@@ -4102,7 +4222,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L543",
       "_origin": "ast",
-      "community": 56,
+      "community": 33,
       "norm_label": ".resolve_primitive()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_resolve_primitive"
     },
@@ -4112,7 +4232,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L558",
       "_origin": "ast",
-      "community": 56,
+      "community": 33,
       "norm_label": ".resolve_builtin_default()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_resolve_builtin_default"
     },
@@ -4142,7 +4262,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L611",
       "_origin": "ast",
-      "community": 19,
+      "community": 6,
       "norm_label": ".resolve_variadic_class()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_resolve_variadic_class"
     },
@@ -4222,7 +4342,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L674",
       "_origin": "ast",
-      "community": 34,
+      "community": 6,
       "norm_label": ".before_resolving()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_before_resolving"
     },
@@ -4232,7 +4352,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L681",
       "_origin": "ast",
-      "community": 34,
+      "community": 6,
       "norm_label": ".resolving()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_resolving"
     },
@@ -4242,7 +4362,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L688",
       "_origin": "ast",
-      "community": 34,
+      "community": 6,
       "norm_label": ".after_resolving()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_after_resolving"
     },
@@ -4262,7 +4382,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L698",
       "_origin": "ast",
-      "community": 19,
+      "community": 4,
       "norm_label": ".fire_before_resolving_callbacks()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_fire_before_resolving_callbacks"
     },
@@ -4322,7 +4442,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L734",
       "_origin": "ast",
-      "community": 19,
+      "community": 4,
       "norm_label": "._fire_before_callback_array()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_fire_before_callback_array"
     },
@@ -4332,7 +4452,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L740",
       "_origin": "ast",
-      "community": 19,
+      "community": 6,
       "norm_label": ".closure_return_types()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_closure_return_types"
     },
@@ -4342,7 +4462,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L767",
       "_origin": "ast",
-      "community": 56,
+      "community": 33,
       "norm_label": ".currently_resolving()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_currently_resolving"
     },
@@ -4362,7 +4482,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L773",
       "_origin": "ast",
-      "community": 34,
+      "community": 6,
       "norm_label": ".get_alias()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_get_alias"
     },
@@ -4382,7 +4502,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L781",
       "_origin": "ast",
-      "community": 34,
+      "community": 6,
       "norm_label": ".forget_extenders()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_forget_extenders"
     },
@@ -4392,7 +4512,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L785",
       "_origin": "ast",
-      "community": 4,
+      "community": 6,
       "norm_label": ".drop_stale_instances()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_drop_stale_instances"
     },
@@ -4562,7 +4682,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L899",
       "_origin": "ast",
-      "community": 19,
+      "community": 6,
       "norm_label": ".__getitem__()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_getitem"
     },
@@ -4572,7 +4692,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L902",
       "_origin": "ast",
-      "community": 4,
+      "community": 6,
       "norm_label": ".__setitem__()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_setitem"
     },
@@ -4592,7 +4712,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L910",
       "_origin": "ast",
-      "community": 19,
+      "community": 6,
       "norm_label": ".__getattr__()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_getattr"
     },
@@ -4602,7 +4722,7 @@
       "source_file": "src/armaden/framework/classes/instance_container.py",
       "source_location": "L913",
       "_origin": "ast",
-      "community": 4,
+      "community": 6,
       "norm_label": ".__setattr__()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_instance_container_instancecontainer_setattr"
     },
@@ -4992,7 +5112,7 @@
       "source_file": "src/armaden/framework/classes/task.py",
       "source_location": "L114",
       "_origin": "ast",
-      "community": 308,
+      "community": 44,
       "norm_label": ".build()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_classes_task_taskbuilder_build"
     },
@@ -5012,7 +5132,7 @@
       "source_file": "src/armaden/framework/dto/__init__.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 5,
+      "community": 47,
       "norm_label": "__init__.py",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_dto_init_py"
     },
@@ -5022,7 +5142,7 @@
       "source_file": "src/armaden/framework/dto/supervisor_request_data.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 5,
+      "community": 47,
       "norm_label": "supervisor_request_data.py",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_dto_supervisor_request_data_py"
     },
@@ -5032,7 +5152,7 @@
       "source_file": "src/armaden/framework/dto/supervisor_request_data.py",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 28,
+      "community": 47,
       "norm_label": "supervisorrequestdata",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_dto_supervisor_request_data_supervisorrequestdata"
     },
@@ -5042,19 +5162,9 @@
       "source_file": "src/armaden/framework/dto/supervisor_request_data.py",
       "source_location": "L14",
       "_origin": "ast",
-      "community": 5,
+      "community": 47,
       "norm_label": "supervisorrequestargs",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_dto_supervisor_request_data_supervisorrequestargs"
-    },
-    {
-      "label": "TypedDict",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "typeddict",
-      "id": "typeddict"
     },
     {
       "label": "__init__.py",
@@ -5202,7 +5312,7 @@
       "source_file": "src/armaden/framework/errors/error.py",
       "source_location": "L34",
       "_origin": "ast",
-      "community": 56,
+      "community": 33,
       "norm_label": ".value()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_errors_error_errorkindinterface_value"
     },
@@ -5242,7 +5352,7 @@
       "source_file": "src/armaden/framework/errors/generic.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 90,
+      "community": 47,
       "norm_label": "generic.py",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_errors_generic_py"
     },
@@ -5252,7 +5362,7 @@
       "source_file": "src/armaden/framework/errors/generic.py",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 90,
+      "community": 47,
       "norm_label": "genericerror",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_errors_generic_genericerror"
     },
@@ -5352,7 +5462,7 @@
       "source_file": "src/armaden/framework/facades/app.py",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 28,
+      "community": 47,
       "norm_label": ".supervisor()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_facades_app_app_supervisor"
     },
@@ -6722,7 +6832,7 @@
       "source_file": "src/armaden/framework/protocols/supervisor_request_interface.py",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 13,
+      "community": 47,
       "norm_label": ".task_id()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_protocols_supervisor_request_interface_supervisorrequestinterface_task_id"
     },
@@ -7252,7 +7362,7 @@
       "source_file": "src/armaden/framework/runtime/builders/process_builder.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 31,
+      "community": 17,
       "norm_label": "process_builder.py",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_builders_process_builder_py"
     },
@@ -7262,7 +7372,7 @@
       "source_file": "src/armaden/framework/runtime/builders/process_builder.py",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 31,
+      "community": 17,
       "norm_label": "subprocesshandle",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_builders_process_builder_subprocesshandle"
     },
@@ -7272,7 +7382,7 @@
       "source_file": "src/armaden/framework/runtime/builders/process_builder.py",
       "source_location": "L29",
       "_origin": "ast",
-      "community": 31,
+      "community": 17,
       "norm_label": ".__init__()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_builders_process_builder_subprocesshandle_init"
     },
@@ -7282,7 +7392,7 @@
       "source_file": "src/armaden/framework/runtime/builders/process_builder.py",
       "source_location": "L35",
       "_origin": "ast",
-      "community": 31,
+      "community": 17,
       "norm_label": ".start()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_builders_process_builder_subprocesshandle_start"
     },
@@ -7312,7 +7422,7 @@
       "source_file": "src/armaden/framework/runtime/builders/process_builder.py",
       "source_location": "L54",
       "_origin": "ast",
-      "community": 31,
+      "community": 17,
       "norm_label": ".stop()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_builders_process_builder_subprocesshandle_stop"
     },
@@ -7322,7 +7432,7 @@
       "source_file": "src/armaden/framework/runtime/builders/process_builder.py",
       "source_location": "L79",
       "_origin": "ast",
-      "community": 31,
+      "community": 17,
       "norm_label": ".restart()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_builders_process_builder_subprocesshandle_restart"
     },
@@ -7332,7 +7442,7 @@
       "source_file": "src/armaden/framework/runtime/builders/process_builder.py",
       "source_location": "L83",
       "_origin": "ast",
-      "community": 31,
+      "community": 17,
       "norm_label": "._start_again()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_builders_process_builder_subprocesshandle_start_again"
     },
@@ -7342,7 +7452,7 @@
       "source_file": "src/armaden/framework/runtime/builders/process_builder.py",
       "source_location": "L86",
       "_origin": "ast",
-      "community": 31,
+      "community": 17,
       "norm_label": ".send_signal()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_builders_process_builder_subprocesshandle_send_signal"
     },
@@ -7352,7 +7462,7 @@
       "source_file": "src/armaden/framework/runtime/builders/process_builder.py",
       "source_location": "L91",
       "_origin": "ast",
-      "community": 31,
+      "community": 17,
       "norm_label": "_processtask",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_builders_process_builder_processtask"
     },
@@ -7392,7 +7502,7 @@
       "source_file": "src/armaden/framework/runtime/builders/process_builder.py",
       "source_location": "L112",
       "_origin": "ast",
-      "community": 31,
+      "community": 17,
       "norm_label": ".handle()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_builders_process_builder_processtask_handle"
     },
@@ -7402,7 +7512,7 @@
       "source_file": "src/armaden/framework/runtime/builders/process_builder.py",
       "source_location": "L115",
       "_origin": "ast",
-      "community": 31,
+      "community": 17,
       "norm_label": ".run()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_builders_process_builder_processtask_run"
     },
@@ -7412,7 +7522,7 @@
       "source_file": "src/armaden/framework/runtime/builders/process_builder.py",
       "source_location": "L138",
       "_origin": "ast",
-      "community": 31,
+      "community": 17,
       "norm_label": ".shutdown()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_builders_process_builder_processtask_shutdown"
     },
@@ -7422,7 +7532,7 @@
       "source_file": "src/armaden/framework/runtime/builders/process_builder.py",
       "source_location": "L143",
       "_origin": "ast",
-      "community": 31,
+      "community": 17,
       "norm_label": "._drain()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_builders_process_builder_processtask_drain"
     },
@@ -7882,7 +7992,7 @@
       "source_file": "src/armaden/framework/runtime/errors.py",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 23,
+      "community": 3,
       "norm_label": "unresolveddependencyerror",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_errors_unresolveddependencyerror"
     },
@@ -8032,7 +8142,7 @@
       "source_file": "src/armaden/framework/runtime/facades/schedule.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 47,
+      "community": 13,
       "norm_label": "schedule.py",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_facades_schedule_py"
     },
@@ -8042,7 +8152,7 @@
       "source_file": "src/armaden/framework/runtime/facades/schedule.py",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 47,
+      "community": 13,
       "norm_label": "schedulefacade",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_facades_schedule_schedulefacade"
     },
@@ -8052,7 +8162,7 @@
       "source_file": "src/armaden/framework/runtime/facades/schedule.py",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 47,
+      "community": 13,
       "norm_label": ".__init__()",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_facades_schedule_schedulefacade_init"
     },
@@ -9012,7 +9122,7 @@
       "source_file": "src/armaden/framework/runtime/http/request.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 8,
+      "community": 25,
       "norm_label": "request.py",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_auth_plumbing_worktree_src_armaden_framework_runtime_http_request_py"
     },
@@ -9522,7 +9632,7 @@
       "source_file": "src/armaden/framework/runtime/http/request.py",
       "source_location": "L222",
       "_origin": "ast",
-      "community": 8,
+      "community": 25,
       "norm_label": "# todo: handle this",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_auth_plumbing_worktree_src_armaden_framework_runtime_http_request_rationale_222"
     },
@@ -10582,7 +10692,7 @@
       "source_file": "src/armaden/framework/runtime/kernel.py",
       "source_location": "L14",
       "_origin": "ast",
-      "community": 16,
+      "community": 28,
       "norm_label": "kernel",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_kernel_kernel"
     },
@@ -10592,7 +10702,7 @@
       "source_file": "src/armaden/framework/runtime/kernel.py",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 16,
+      "community": 28,
       "norm_label": ".__init__()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_kernel_kernel_init"
     },
@@ -10602,7 +10712,7 @@
       "source_file": "src/armaden/framework/runtime/kernel.py",
       "source_location": "L19",
       "_origin": "ast",
-      "community": 16,
+      "community": 28,
       "norm_label": ".application()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_kernel_kernel_application"
     },
@@ -10612,7 +10722,7 @@
       "source_file": "src/armaden/framework/runtime/kernel.py",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 16,
+      "community": 28,
       "norm_label": ".bootstrap()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_kernel_kernel_bootstrap"
     },
@@ -10632,7 +10742,7 @@
       "source_file": "src/armaden/framework/runtime/kernel.py",
       "source_location": "L26",
       "_origin": "ast",
-      "community": 16,
+      "community": 28,
       "norm_label": ".handle()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_kernel_kernel_handle"
     },
@@ -10652,7 +10762,7 @@
       "source_file": "src/armaden/framework/runtime/kernel.py",
       "source_location": "L29",
       "_origin": "ast",
-      "community": 16,
+      "community": 28,
       "norm_label": ".terminate()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_kernel_kernel_terminate"
     },
@@ -11052,7 +11162,7 @@
       "source_file": "src/armaden/framework/runtime/providers/__init__.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 16,
+      "community": 60,
       "norm_label": "__init__.py",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_providers_init_py"
     },
@@ -11062,7 +11172,7 @@
       "source_file": "src/armaden/framework/runtime/providers/console_service_provider.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 16,
+      "community": 60,
       "norm_label": "console_service_provider.py",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_providers_console_service_provider_py"
     },
@@ -11072,7 +11182,7 @@
       "source_file": "src/armaden/framework/runtime/providers/console_service_provider.py",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 16,
+      "community": 60,
       "norm_label": "consoleserviceprovider",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_providers_console_service_provider_consoleserviceprovider"
     },
@@ -11082,7 +11192,7 @@
       "source_file": "src/armaden/framework/runtime/providers/console_service_provider.py",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 16,
+      "community": 60,
       "norm_label": ".register()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_providers_console_service_provider_consoleserviceprovider_register"
     },
@@ -11102,7 +11212,7 @@
       "source_file": "src/armaden/framework/runtime/providers/console_service_provider.py",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 16,
+      "community": 60,
       "norm_label": ".boot()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_providers_console_service_provider_consoleserviceprovider_boot"
     },
@@ -11282,7 +11392,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 47,
+      "community": 11,
       "norm_label": "supervisor.py",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_py"
     },
@@ -11362,7 +11472,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L121",
       "_origin": "ast",
-      "community": 13,
+      "community": 47,
       "norm_label": ".process()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_supervisor_process"
     },
@@ -11442,7 +11552,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L174",
       "_origin": "ast",
-      "community": 13,
+      "community": 2,
       "norm_label": ".run()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_supervisor_run"
     },
@@ -11452,7 +11562,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L200",
       "_origin": "ast",
-      "community": 13,
+      "community": 11,
       "norm_label": ".shutdown()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_supervisor_shutdown"
     },
@@ -11462,7 +11572,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L341",
       "_origin": "ast",
-      "community": 28,
+      "community": 47,
       "norm_label": ".enqueue_request()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_supervisor_enqueue_request"
     },
@@ -11472,7 +11582,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L352",
       "_origin": "ast",
-      "community": 13,
+      "community": 47,
       "norm_label": ".list_tasks()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_supervisor_list_tasks"
     },
@@ -11502,7 +11612,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L379",
       "_origin": "ast",
-      "community": 13,
+      "community": 11,
       "norm_label": "._execute_layer()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_supervisor_execute_layer"
     },
@@ -11512,7 +11622,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L446",
       "_origin": "ast",
-      "community": 13,
+      "community": 11,
       "norm_label": "._await_long_running_ready()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_supervisor_await_long_running_ready"
     },
@@ -11522,7 +11632,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 13,
+      "community": 11,
       "norm_label": "graphtaskruntime",
       "id": "graphtaskruntime"
     },
@@ -11532,7 +11642,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L478",
       "_origin": "ast",
-      "community": 13,
+      "community": 11,
       "norm_label": "._dispatch_to_worker()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_supervisor_dispatch_to_worker"
     },
@@ -11542,7 +11652,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 13,
+      "community": 11,
       "norm_label": "semaphore",
       "id": "semaphore"
     },
@@ -11612,7 +11722,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L585",
       "_origin": "ast",
-      "community": 13,
+      "community": 2,
       "norm_label": "._start_ready_tasks()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_supervisor_start_ready_tasks"
     },
@@ -11622,7 +11732,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L595",
       "_origin": "ast",
-      "community": 13,
+      "community": 2,
       "norm_label": "._process_requests_queue()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_supervisor_process_requests_queue"
     },
@@ -11632,7 +11742,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L648",
       "_origin": "ast",
-      "community": 13,
+      "community": 2,
       "norm_label": "._task_initialize()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_supervisor_task_initialize"
     },
@@ -11642,7 +11752,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L664",
       "_origin": "ast",
-      "community": 13,
+      "community": 2,
       "norm_label": "._task_run()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_supervisor_task_run"
     },
@@ -11672,7 +11782,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L703",
       "_origin": "ast",
-      "community": 13,
+      "community": 2,
       "norm_label": "._shutdown_task()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_supervisor_shutdown_task"
     },
@@ -11692,7 +11802,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L792",
       "_origin": "ast",
-      "community": 13,
+      "community": 2,
       "norm_label": "._update_task_status()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_supervisor_update_task_status"
     },
@@ -11712,7 +11822,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L814",
       "_origin": "ast",
-      "community": 13,
+      "community": 2,
       "norm_label": "._task_initialization_callback()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_supervisor_task_initialization_callback"
     },
@@ -11732,7 +11842,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L829",
       "_origin": "ast",
-      "community": 13,
+      "community": 11,
       "norm_label": "_result_error()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_result_error"
     },
@@ -11742,7 +11852,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L836",
       "_origin": "ast",
-      "community": 13,
+      "community": 11,
       "norm_label": "_run_shutdown()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_run_shutdown"
     },
@@ -11812,7 +11922,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L876",
       "_origin": "ast",
-      "community": 2,
+      "community": 47,
       "norm_label": ".dispatch_subprocess()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_taskruntime_dispatch_subprocess"
     },
@@ -11852,7 +11962,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L937",
       "_origin": "ast",
-      "community": 47,
+      "community": 2,
       "norm_label": "taskstatedata",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_taskstatedata"
     },
@@ -11872,7 +11982,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L958",
       "_origin": "ast",
-      "community": 47,
+      "community": 13,
       "norm_label": "threadinfodata",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_threadinfodata"
     },
@@ -11942,7 +12052,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L997",
       "_origin": "ast",
-      "community": 47,
+      "community": 11,
       "norm_label": "_sharedworker",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_sharedworker"
     },
@@ -11962,7 +12072,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L1005",
       "_origin": "ast",
-      "community": 47,
+      "community": 11,
       "norm_label": "workerpool",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_workerpool"
     },
@@ -11972,7 +12082,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L1006",
       "_origin": "ast",
-      "community": 47,
+      "community": 11,
       "norm_label": ".__init__()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_workerpool_init"
     },
@@ -11982,7 +12092,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L1018",
       "_origin": "ast",
-      "community": 47,
+      "community": 11,
       "norm_label": ".acquire_shared()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_workerpool_acquire_shared"
     },
@@ -11992,7 +12102,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L1021",
       "_origin": "ast",
-      "community": 47,
+      "community": 11,
       "norm_label": ".release_shared()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_workerpool_release_shared"
     },
@@ -12002,7 +12112,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L1025",
       "_origin": "ast",
-      "community": 47,
+      "community": 11,
       "norm_label": ".acquire_exclusive()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_workerpool_acquire_exclusive"
     },
@@ -12012,7 +12122,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L1036",
       "_origin": "ast",
-      "community": 13,
+      "community": 11,
       "norm_label": ".release_exclusive()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_workerpool_release_exclusive"
     },
@@ -12022,7 +12132,7 @@
       "source_file": "src/armaden/framework/runtime/supervisor.py",
       "source_location": "L1042",
       "_origin": "ast",
-      "community": 13,
+      "community": 11,
       "norm_label": ".shutdown()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_runtime_supervisor_workerpool_shutdown"
     },
@@ -12512,7 +12622,7 @@
       "source_file": "src/armaden/framework/runtime/task_graph.py",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 47,
+      "community": 23,
       "norm_label": "taskgraphstate",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_task_graph_taskgraphstate"
     },
@@ -12802,7 +12912,7 @@
       "source_file": "src/armaden/framework/runtime/task_injector.py",
       "source_location": "L165",
       "_origin": "ast",
-      "community": 23,
+      "community": 3,
       "norm_label": "_unresolvedsentinel",
       "id": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_task_injector_unresolvedsentinel"
     },
@@ -13012,7 +13122,7 @@
       "source_file": "src/armaden/framework/utils/container.py",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 56,
+      "community": 33,
       "norm_label": "unwrap_if_closure()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_utils_container_unwrap_if_closure"
     },
@@ -13122,7 +13232,7 @@
       "source_file": "src/armaden/framework/utils/dictionary.py",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 56,
+      "community": 33,
       "norm_label": ".has()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_utils_dictionary_dictionary_has"
     },
@@ -13252,7 +13362,7 @@
       "source_file": "src/armaden/framework/utils/string.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 47,
+      "community": 11,
       "norm_label": "string.py",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_utils_string_py"
     },
@@ -13262,7 +13372,7 @@
       "source_file": "src/armaden/framework/utils/string.py",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 47,
+      "community": 11,
       "norm_label": "string",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_utils_string_string"
     },
@@ -13272,7 +13382,7 @@
       "source_file": "src/armaden/framework/utils/string.py",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 47,
+      "community": 11,
       "norm_label": ".tokebabcase()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_framework_utils_string_string_tokebabcase"
     },
@@ -13345,116 +13455,6 @@
       "community": 229,
       "norm_label": "any",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_py_any"
-    },
-    {
-      "label": "arma_reforger_server_config.py",
-      "file_type": "code",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "arma_reforger_server_config.py",
-      "id": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_py"
-    },
-    {
-      "label": "StartupConfig",
-      "file_type": "code",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L5",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "startupconfig",
-      "id": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_startupconfig"
-    },
-    {
-      "label": "A2SConfig",
-      "file_type": "code",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L11",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "a2sconfig",
-      "id": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_a2sconfig"
-    },
-    {
-      "label": "RconConfig",
-      "file_type": "code",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L16",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "rconconfig",
-      "id": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_rconconfig"
-    },
-    {
-      "label": "GamePropertiesPersistence",
-      "file_type": "code",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L26",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "gamepropertiespersistence",
-      "id": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_gamepropertiespersistence"
-    },
-    {
-      "label": "GamePropertiesConfig",
-      "file_type": "code",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L36",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "gamepropertiesconfig",
-      "id": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_gamepropertiesconfig"
-    },
-    {
-      "label": "GameConfig",
-      "file_type": "code",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L50",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "gameconfig",
-      "id": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_gameconfig"
-    },
-    {
-      "label": "JoinQueueConfig",
-      "file_type": "code",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L65",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "joinqueueconfig",
-      "id": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_joinqueueconfig"
-    },
-    {
-      "label": "OperatingConfig",
-      "file_type": "code",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L69",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "operatingconfig",
-      "id": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_operatingconfig"
-    },
-    {
-      "label": "ServerConfig",
-      "file_type": "code",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L81",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "serverconfig",
-      "id": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_serverconfig"
-    },
-    {
-      "label": "Config",
-      "file_type": "code",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L92",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "config",
-      "id": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_config"
     },
     {
       "label": "arma_reforger_server_executable.py",
@@ -15622,7 +15622,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_server.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 6,
+      "community": 75,
       "norm_label": "battle_eye_rcon_server.py",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_battle_eye_rcon_server_py"
     },
@@ -15702,7 +15702,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_server.py",
       "source_location": "L80",
       "_origin": "ast",
-      "community": 17,
+      "community": 43,
       "norm_label": ".receive_datagram()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_battle_eye_rcon_server_battleeyerconserver_receive_datagram"
     },
@@ -15862,7 +15862,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_server.py",
       "source_location": "L231",
       "_origin": "ast",
-      "community": 6,
+      "community": 75,
       "norm_label": "clientstate",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_battle_eye_rcon_server_clientstate"
     },
@@ -15872,7 +15872,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_server.py",
       "source_location": "L237",
       "_origin": "ast",
-      "community": 17,
+      "community": 43,
       "norm_label": "requestmessage",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_battle_eye_rcon_server_requestmessage"
     },
@@ -16032,7 +16032,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/keep_alive_packet.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 17,
+      "community": 22,
       "norm_label": "keep_alive_packet.py",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_keep_alive_packet_py"
     },
@@ -16042,7 +16042,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/keep_alive_packet.py",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 17,
+      "community": 22,
       "norm_label": "keepalivepacket",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_keep_alive_packet_keepalivepacket"
     },
@@ -16052,7 +16052,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/keep_alive_packet.py",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 17,
+      "community": 22,
       "norm_label": ".__init__()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_keep_alive_packet_keepalivepacket_init"
     },
@@ -16062,7 +16062,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/keep_alive_packet.py",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 17,
+      "community": 22,
       "norm_label": ".validate_packet_data()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_keep_alive_packet_keepalivepacket_validate_packet_data"
     },
@@ -16072,7 +16072,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/keep_alive_packet.py",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 17,
+      "community": 22,
       "norm_label": ".packet_data()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_keep_alive_packet_keepalivepacket_packet_data"
     },
@@ -16082,7 +16082,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/keep_alive_packet.py",
       "source_location": "L29",
       "_origin": "ast",
-      "community": 17,
+      "community": 22,
       "norm_label": "._extract_sequence()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_keep_alive_packet_keepalivepacket_extract_sequence"
     },
@@ -16172,7 +16172,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/login_response_packet.py",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 22,
+      "community": 56,
       "norm_label": "loginresponsepacket",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_login_response_packet_loginresponsepacket"
     },
@@ -16182,7 +16182,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/login_response_packet.py",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 22,
+      "community": 56,
       "norm_label": ".__init__()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_login_response_packet_loginresponsepacket_init"
     },
@@ -16192,7 +16192,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/login_response_packet.py",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 22,
+      "community": 56,
       "norm_label": ".authenticated()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_login_response_packet_loginresponsepacket_authenticated"
     },
@@ -16202,7 +16202,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/login_response_packet.py",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 22,
+      "community": 56,
       "norm_label": ".validate_packet_data()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_login_response_packet_loginresponsepacket_validate_packet_data"
     },
@@ -16212,7 +16212,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/login_response_packet.py",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 22,
+      "community": 56,
       "norm_label": ".packet_data()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_login_response_packet_loginresponsepacket_packet_data"
     },
@@ -16222,7 +16222,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/login_response_packet.py",
       "source_location": "L33",
       "_origin": "ast",
-      "community": 22,
+      "community": 56,
       "norm_label": "._extract_status()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_login_response_packet_loginresponsepacket_extract_status"
     },
@@ -16312,7 +16312,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/packet.py",
       "source_location": "L60",
       "_origin": "ast",
-      "community": 17,
+      "community": 43,
       "norm_label": ".try_any_from_datagram()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_packet_packet_try_any_from_datagram"
     },
@@ -16332,7 +16332,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/packet.py",
       "source_location": "L72",
       "_origin": "ast",
-      "community": 58,
+      "community": 75,
       "norm_label": ".new()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_packet_packet_new"
     },
@@ -16412,7 +16412,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/server_message_request_packet.py",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 22,
+      "community": 67,
       "norm_label": ".validate_packet_data()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_server_message_request_packet_servermessagerequestpacket_validate_packet_data"
     },
@@ -16522,7 +16522,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/unknown_packet.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 22,
+      "community": 43,
       "norm_label": "unknown_packet.py",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_unknown_packet_py"
     },
@@ -16532,7 +16532,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/unknown_packet.py",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 17,
+      "community": 43,
       "norm_label": "unknownpacket",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_unknown_packet_unknownpacket"
     },
@@ -16542,7 +16542,7 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/unknown_packet.py",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 17,
+      "community": 43,
       "norm_label": ".__init__()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_unknown_packet_unknownpacket_init"
     },
@@ -16582,7 +16582,7 @@
       "source_file": "src/armaden/network/server.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 6,
+      "community": 24,
       "norm_label": "server.py",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_server_py"
     },
@@ -16592,7 +16592,7 @@
       "source_file": "src/armaden/network/server.py",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 6,
+      "community": 24,
       "norm_label": "entry()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_server_entry"
     },
@@ -16602,7 +16602,7 @@
       "source_file": "src/armaden/network/server.py",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 6,
+      "community": 24,
       "norm_label": "main()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_server_main"
     },
@@ -16612,7 +16612,7 @@
       "source_file": "src/armaden/network/udp/__init__.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 309,
+      "community": 81,
       "norm_label": "__init__.py",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_udp_init_py"
     },
@@ -16732,7 +16732,7 @@
       "source_file": "src/armaden/network/udp/async_datagram_transport.py",
       "source_location": "L55",
       "_origin": "ast",
-      "community": 24,
+      "community": 81,
       "norm_label": ".error_received()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_udp_async_datagram_transport_asyncdatagramtransport_error_received"
     },
@@ -16772,7 +16772,7 @@
       "source_file": "src/armaden/network/udp/async_datagram_transport.py",
       "source_location": "L65",
       "_origin": "ast",
-      "community": 24,
+      "community": 81,
       "norm_label": ".connection_lost()",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_udp_async_datagram_transport_asyncdatagramtransport_connection_lost"
     },
@@ -16782,7 +16782,7 @@
       "source_file": "src/armaden/network/udp/datagram_transport_interface.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 309,
+      "community": 81,
       "norm_label": "datagram_transport_interface.py",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_udp_datagram_transport_interface_py"
     },
@@ -16862,7 +16862,7 @@
       "source_file": "src/armaden/network/udp/wrapper_transport_interface.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 24,
+      "community": 81,
       "norm_label": "wrapper_transport_interface.py",
       "id": "home_slothsh_developer_projects_armaden_src_armaden_network_udp_wrapper_transport_interface_py"
     },
@@ -17012,7 +17012,7 @@
       "source_file": "user/app/http/actions/restart_app_service.py",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 28,
+      "community": 47,
       "norm_label": "restartappservice",
       "id": "home_slothsh_developer_projects_armaden_user_app_http_actions_restart_app_service_restartappservice"
     },
@@ -17022,7 +17022,7 @@
       "source_file": "user/app/http/actions/restart_app_service.py",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 28,
+      "community": 47,
       "norm_label": ".__call__()",
       "id": "home_slothsh_developer_projects_armaden_user_app_http_actions_restart_app_service_restartappservice_call"
     },
@@ -17042,7 +17042,7 @@
       "source_file": "user/app/http/actions/shutdown_app_service.py",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 28,
+      "community": 47,
       "norm_label": "shutdownappservice",
       "id": "home_slothsh_developer_projects_armaden_user_app_http_actions_shutdown_app_service_shutdownappservice"
     },
@@ -17052,7 +17052,7 @@
       "source_file": "user/app/http/actions/shutdown_app_service.py",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 28,
+      "community": 47,
       "norm_label": ".__call__()",
       "id": "home_slothsh_developer_projects_armaden_user_app_http_actions_shutdown_app_service_shutdownappservice_call"
     },
@@ -17162,7 +17162,7 @@
       "source_file": "user/app/http/controllers/lifecycle_controller.py",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 28,
+      "community": 47,
       "norm_label": ".__init__()",
       "id": "home_slothsh_developer_projects_armaden_user_app_http_controllers_lifecycle_controller_lifecyclecontroller_init"
     },
@@ -17769,15 +17769,245 @@
   ],
   "links": [
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config",
+      "target": "src_armaden_games_arma_reforger_arma_reforger_server_config_a2sconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L92",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config",
+      "target": "src_armaden_games_arma_reforger_arma_reforger_server_config_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config",
+      "target": "src_armaden_games_arma_reforger_arma_reforger_server_config_gameconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config",
+      "target": "src_armaden_games_arma_reforger_arma_reforger_server_config_gamepropertiesconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config",
+      "target": "src_armaden_games_arma_reforger_arma_reforger_server_config_gamepropertiespersistence",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config",
+      "target": "src_armaden_games_arma_reforger_arma_reforger_server_config_joinqueueconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config",
+      "target": "src_armaden_games_arma_reforger_arma_reforger_server_config_operatingconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config",
+      "target": "src_armaden_games_arma_reforger_arma_reforger_server_config_rconconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config",
+      "target": "src_armaden_games_arma_reforger_arma_reforger_server_config_serverconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config",
+      "target": "src_armaden_games_arma_reforger_arma_reforger_server_config_startupconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config_startupconfig",
+      "target": "typeddict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/dto/supervisor_request_data.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "home_slothsh_developer_projects_armaden_src_armaden_framework_dto_supervisor_request_data_supervisorrequestargs",
+      "target": "typeddict"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_executable_config.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_executable_config_config",
+      "target": "typeddict"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/steamcmd/steamcmd_executable_config.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_steamcmd_steamcmd_executable_config_config",
+      "target": "typeddict"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config_a2sconfig",
+      "target": "typeddict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L92",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config_config",
+      "target": "typeddict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config_gameconfig",
+      "target": "typeddict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config_gamepropertiesconfig",
+      "target": "typeddict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config_gamepropertiespersistence",
+      "target": "typeddict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config_joinqueueconfig",
+      "target": "typeddict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config_operatingconfig",
+      "target": "typeddict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config_rconconfig",
+      "target": "typeddict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "src_armaden_games_arma_reforger_arma_reforger_server_config_serverconfig",
+      "target": "typeddict",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client",
-      "target": "datetime",
-      "confidence_score": 1.0
+      "target": "datetime"
     },
     {
       "relation": "imports_from",
@@ -17786,9 +18016,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client",
-      "target": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_packet_py",
-      "confidence_score": 1.0
+      "target": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_packet_py"
     },
     {
       "relation": "contains",
@@ -17796,9 +18026,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L28",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient"
     },
     {
       "relation": "contains",
@@ -17806,9 +18036,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L452",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_clientstatus",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_clientstatus"
     },
     {
       "relation": "contains",
@@ -17816,9 +18046,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L415",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse"
     },
     {
       "relation": "contains",
@@ -17826,9 +18056,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L431",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "contains",
@@ -17836,9 +18066,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L443",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_pendingcommand",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_pendingcommand"
     },
     {
       "relation": "contains",
@@ -17846,9 +18076,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L423",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_servermessage",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_servermessage"
     },
     {
       "relation": "method",
@@ -17856,9 +18086,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L66",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_address",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_address"
     },
     {
       "relation": "method",
@@ -17866,9 +18096,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L182",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cancel_pending_commands",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cancel_pending_commands"
     },
     {
       "relation": "method",
@@ -17876,9 +18106,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L321",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cleanup_pending_commands",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cleanup_pending_commands"
     },
     {
       "relation": "method",
@@ -17886,9 +18116,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L112",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect"
     },
     {
       "relation": "method",
@@ -17896,9 +18126,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L255",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response"
     },
     {
       "relation": "method",
@@ -17906,9 +18136,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L189",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_error",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_error"
     },
     {
       "relation": "method",
@@ -17916,9 +18146,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L384",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_login_response",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_login_response"
     },
     {
       "relation": "method",
@@ -17926,9 +18156,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L175",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_lost_connection",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_lost_connection"
     },
     {
       "relation": "method",
@@ -17936,9 +18166,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L289",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response"
     },
     {
       "relation": "method",
@@ -17946,9 +18176,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L169",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_new_connection",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_new_connection"
     },
     {
       "relation": "method",
@@ -17956,9 +18186,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L146",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_os_signal",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_os_signal"
     },
     {
       "relation": "method",
@@ -17966,9 +18196,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L220",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet"
     },
     {
       "relation": "method",
@@ -17976,9 +18206,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L345",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_requests",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_requests"
     },
     {
       "relation": "method",
@@ -17986,9 +18216,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L357",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses"
     },
     {
       "relation": "method",
@@ -17996,9 +18226,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L238",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message"
     },
     {
       "relation": "method",
@@ -18006,9 +18236,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L394",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_transport_error",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_transport_error"
     },
     {
       "relation": "method",
@@ -18016,9 +18246,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_init",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_init"
     },
     {
       "relation": "method",
@@ -18026,9 +18256,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L141",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_initialize_signal_handlers",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_initialize_signal_handlers"
     },
     {
       "relation": "method",
@@ -18036,9 +18266,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L197",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_keep_alive",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_keep_alive"
     },
     {
       "relation": "method",
@@ -18046,9 +18276,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L405",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_new_sequence_generator",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_new_sequence_generator"
     },
     {
       "relation": "method",
@@ -18056,9 +18286,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L99",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_command_response",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_command_response"
     },
     {
       "relation": "method",
@@ -18066,9 +18296,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L104",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_connected",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_connected"
     },
     {
       "relation": "method",
@@ -18076,9 +18306,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L108",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_disconnected",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_disconnected"
     },
     {
       "relation": "method",
@@ -18086,9 +18316,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L94",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_server_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_server_message"
     },
     {
       "relation": "method",
@@ -18096,9 +18326,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L71",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_port",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_port"
     },
     {
       "relation": "method",
@@ -18106,9 +18336,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L152",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_receive_datagram",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_receive_datagram"
     },
     {
       "relation": "method",
@@ -18116,9 +18346,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L75",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_send_command",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_send_command"
     },
     {
       "relation": "method",
@@ -18126,9 +18356,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L137",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_shutdown",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_shutdown"
     },
     {
       "relation": "method",
@@ -18136,9 +18366,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L193",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_connect",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_connect"
     },
     {
       "relation": "method",
@@ -18146,9 +18376,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L210",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_login",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_login"
     },
     {
       "relation": "references",
@@ -18157,9 +18387,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_init",
-      "target": "abstracteventloop",
-      "confidence_score": 1.0
+      "target": "abstracteventloop"
     },
     {
       "relation": "references",
@@ -18168,9 +18398,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_init",
-      "target": "datagramtransportfactory",
-      "confidence_score": 1.0
+      "target": "datagramtransportfactory"
     },
     {
       "relation": "calls",
@@ -18179,9 +18409,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L62",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_init",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_initialize_signal_handlers",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_initialize_signal_handlers"
     },
     {
       "relation": "calls",
@@ -18190,9 +18420,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L56",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_init",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_new_sequence_generator",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_new_sequence_generator"
     },
     {
       "relation": "calls",
@@ -18201,9 +18431,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L47",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_init",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_clientstatus",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_clientstatus"
     },
     {
       "relation": "references",
@@ -18223,9 +18453,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L75",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_send_command",
-      "target": "future",
-      "confidence_score": 1.0
+      "target": "future"
     },
     {
       "relation": "references",
@@ -18234,9 +18464,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L75",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_send_command",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse"
     },
     {
       "relation": "calls",
@@ -18245,9 +18475,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L87",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_send_command",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "calls",
@@ -18256,9 +18486,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L83",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_send_command",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_pendingcommand",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_pendingcommand"
     },
     {
       "relation": "references",
@@ -18278,9 +18508,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L362",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_server_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_server_message"
     },
     {
       "relation": "references",
@@ -18289,9 +18519,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L94",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_server_message",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_servermessage",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_servermessage"
     },
     {
       "relation": "calls",
@@ -18300,9 +18530,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L366",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_command_response",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_command_response"
     },
     {
       "relation": "references",
@@ -18311,9 +18541,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L99",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_command_response",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse"
     },
     {
       "relation": "calls",
@@ -18322,9 +18552,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L370",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_connected",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_connected"
     },
     {
       "relation": "calls",
@@ -18333,9 +18563,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L180",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_lost_connection",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_disconnected",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_disconnected"
     },
     {
       "relation": "calls",
@@ -18344,9 +18574,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L125",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cleanup_pending_commands",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cleanup_pending_commands"
     },
     {
       "relation": "calls",
@@ -18355,9 +18585,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L124",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_requests",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_requests"
     },
     {
       "relation": "calls",
@@ -18366,9 +18596,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L123",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses"
     },
     {
       "relation": "calls",
@@ -18377,9 +18607,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L119",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_keep_alive",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_keep_alive"
     },
     {
       "relation": "calls",
@@ -18388,9 +18618,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L116",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_connect",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_connect"
     },
     {
       "relation": "calls",
@@ -18399,9 +18629,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L121",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_login",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_login"
     },
     {
       "relation": "references",
@@ -18410,9 +18640,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L146",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_os_signal",
-      "target": "any",
-      "confidence_score": 1.0
+      "target": "any"
     },
     {
       "relation": "references",
@@ -18498,9 +18728,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L166",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_receive_datagram",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet"
     },
     {
       "relation": "references",
@@ -18509,9 +18739,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L175",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_lost_connection",
-      "target": "exception",
-      "confidence_score": 1.0
+      "target": "exception"
     },
     {
       "relation": "calls",
@@ -18520,9 +18750,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L179",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_lost_connection",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cancel_pending_commands",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cancel_pending_commands"
     },
     {
       "relation": "inherits",
@@ -18737,9 +18967,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L182",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cancel_pending_commands",
-      "target": "exception",
-      "confidence_score": 1.0
+      "target": "exception"
     },
     {
       "relation": "references",
@@ -18748,9 +18978,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L189",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_error",
-      "target": "exception",
-      "confidence_score": 1.0
+      "target": "exception"
     },
     {
       "relation": "references",
@@ -18759,9 +18989,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L394",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_transport_error",
-      "target": "exception",
-      "confidence_score": 1.0
+      "target": "exception"
     },
     {
       "relation": "calls",
@@ -18770,9 +19000,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L190",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_error",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_transport_error",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_transport_error"
     },
     {
       "relation": "calls",
@@ -18781,9 +19011,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L205",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_keep_alive",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "calls",
@@ -18792,9 +19022,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L215",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_login",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "references",
@@ -18803,9 +19033,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L220",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
-      "target": "datetime",
-      "confidence_score": 1.0
+      "target": "datetime"
     },
     {
       "relation": "references",
@@ -18814,9 +19044,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L220",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
-      "target": "packet",
-      "confidence_score": 1.0
+      "target": "packet"
     },
     {
       "relation": "calls",
@@ -18825,9 +19055,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L225",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response"
     },
     {
       "relation": "calls",
@@ -18836,9 +19066,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L223",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message"
     },
     {
       "relation": "calls",
@@ -18847,9 +19077,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L227",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "inherits",
@@ -18868,9 +19098,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L238",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message",
-      "target": "datetime",
-      "confidence_score": 1.0
+      "target": "datetime"
     },
     {
       "relation": "references",
@@ -18879,9 +19109,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L238",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message",
-      "target": "servermessagerequestpacket",
-      "confidence_score": 1.0
+      "target": "servermessagerequestpacket"
     },
     {
       "relation": "calls",
@@ -18890,9 +19120,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L240",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "calls",
@@ -18901,9 +19131,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L244",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_servermessage",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_servermessage"
     },
     {
       "relation": "references",
@@ -18912,9 +19142,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L255",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response",
-      "target": "commandresponsepacket",
-      "confidence_score": 1.0
+      "target": "commandresponsepacket"
     },
     {
       "relation": "calls",
@@ -18923,9 +19153,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L260",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response"
     },
     {
       "relation": "calls",
@@ -18934,9 +19164,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L271",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse"
     },
     {
       "relation": "calls",
@@ -18945,9 +19175,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L283",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "references",
@@ -18956,9 +19186,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L289",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response",
-      "target": "commandresponsepacket",
-      "confidence_score": 1.0
+      "target": "commandresponsepacket"
     },
     {
       "relation": "references",
@@ -18967,9 +19197,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L289",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response",
-      "target": "commandheader",
-      "confidence_score": 1.0
+      "target": "commandheader"
     },
     {
       "relation": "calls",
@@ -18978,9 +19208,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L306",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse"
     },
     {
       "relation": "calls",
@@ -18989,9 +19219,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L315",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "references",
@@ -19000,9 +19230,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L289",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_pendingcommand",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_pendingcommand"
     },
     {
       "relation": "calls",
@@ -19011,9 +19241,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L331",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cleanup_pending_commands",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse"
     },
     {
       "relation": "calls",
@@ -19022,9 +19252,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L339",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cleanup_pending_commands",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "calls",
@@ -19033,9 +19263,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L375",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_login_response",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_login_response"
     },
     {
       "relation": "references",
@@ -19044,9 +19274,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L384",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_login_response",
-      "target": "loginresponsepacket",
-      "confidence_score": 1.0
+      "target": "loginresponsepacket"
     },
     {
       "relation": "calls",
@@ -19055,9 +19285,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L388",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_login_response",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "imports_from",
@@ -28162,136 +28392,6 @@
       "confidence_score": 0.5,
       "source": "home_slothsh_developer_projects_armaden_src_armaden_framework_dto_supervisor_request_data_supervisorrequestargs",
       "target": "home_slothsh_developer_projects_armaden_src_armaden_framework_enums_supervisor_request_kind_supervisorrequestkind"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/dto/supervisor_request_data.py",
-      "source_location": "L14",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_framework_dto_supervisor_request_data_supervisorrequestargs",
-      "target": "typeddict"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_a2sconfig",
-      "target": "typeddict"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L92",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_config",
-      "target": "typeddict"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L50",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_gameconfig",
-      "target": "typeddict"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L36",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_gamepropertiesconfig",
-      "target": "typeddict"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L26",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_gamepropertiespersistence",
-      "target": "typeddict"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L65",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_joinqueueconfig",
-      "target": "typeddict"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L69",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_operatingconfig",
-      "target": "typeddict"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L16",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_rconconfig",
-      "target": "typeddict"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L81",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_serverconfig",
-      "target": "typeddict"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_startupconfig",
-      "target": "typeddict"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_executable_config.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_executable_config_config",
-      "target": "typeddict"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/steamcmd/steamcmd_executable_config.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_steamcmd_steamcmd_executable_config_config",
-      "target": "typeddict"
     },
     {
       "relation": "imports_from",
@@ -43101,17 +43201,6 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/games/arma_reforger/__init__.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_init_py",
-      "target": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_py"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/__init__.py",
       "source_location": "L2",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -43128,106 +43217,6 @@
       "confidence_score": 1.0,
       "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_init_py",
       "target": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_executable_py"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_py",
-      "target": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_a2sconfig"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L92",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_py",
-      "target": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_config"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L50",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_py",
-      "target": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_gameconfig"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L36",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_py",
-      "target": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_gamepropertiesconfig"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L26",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_py",
-      "target": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_gamepropertiespersistence"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L65",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_py",
-      "target": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_joinqueueconfig"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L69",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_py",
-      "target": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_operatingconfig"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L16",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_py",
-      "target": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_rconconfig"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L81",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_py",
-      "target": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_serverconfig"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/games/arma_reforger/arma_reforger_server_config.py",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_py",
-      "target": "home_slothsh_developer_projects_armaden_src_armaden_games_arma_reforger_arma_reforger_server_config_startupconfig"
     },
     {
       "relation": "contains",
@@ -48870,5 +48859,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "5dd3f5a9722151a06bcaa9f41ff3b7aa4b4e6210"
+  "built_at_commit": "03d0ad34a5174ce25cb4c8309910b7078da7e9b0"
 }
