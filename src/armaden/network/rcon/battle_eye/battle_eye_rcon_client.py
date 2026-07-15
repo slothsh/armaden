@@ -76,10 +76,8 @@ class BattleEyeRconClient:
         argv = [command] + list(args)
         sequence = self._generate_sequence()
         packet = Packet.new(CommandRequestPacket, sequence, argv)
-        logger.info(packet)
         loop = asyncio.get_running_loop()
         future: asyncio.Future[CommandResponse] = loop.create_future()
-        logger.info(argv)
         self._pending_commands[sequence] = _PendingCommand(
             command=' '.join(argv),
             future=future,
@@ -253,19 +251,14 @@ class BattleEyeRconClient:
 
 
     def _handle_command_response(self, packet: CommandResponsePacket) -> None:
-        logger.info('1: %s', packet)
         pending = self._pending_commands.get(packet.request_sequence)
 
         if (header := packet.response_header) is not None:
             self._handle_multi_packet_response(header, packet, pending)
             return
 
-        logger.info('2: %s', packet)
-
         if pending is None:
             return
-
-        logger.info('3: %s', packet)
 
         response_data = packet.response_data.decode('ascii') if packet.response_data else None
         response = CommandResponse(
@@ -274,11 +267,8 @@ class BattleEyeRconClient:
             response=response_data,
         )
         if not pending.future.done():
-            logger.info('4: %s', packet)
             pending.future.set_result(response)
         del self._pending_commands[packet.request_sequence]
-
-        logger.info('5: %s', packet)
 
         self._response_queue.append(Message(
             sequence=packet.request_sequence,
@@ -387,7 +377,7 @@ class BattleEyeRconClient:
             self._client_status.authenticated = True
             self._response_queue.append(Message(login_connected=True))
         else:
-            logger.info(f"Authentication with remote console {self._address}:{self._port} failed")
+            logger.warning(f"Authentication with remote console {self._address}:{self._port} failed")
             self._client_status.authenticated = False
 
 
