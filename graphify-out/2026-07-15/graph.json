@@ -4,284 +4,24 @@
   "graph": {},
   "nodes": [
     {
-      "label": "battle_eye_rcon_client.py",
+      "label": "command_response_packet.py",
       "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client",
+      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet",
       "community": 49,
-      "norm_label": "battle_eye_rcon_client.py"
+      "norm_label": "command_response_packet.py"
     },
     {
-      "label": "BattleEyeRconClient",
+      "label": "CommandResponsePacket",
       "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L28",
+      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
+      "source_location": "L9",
       "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
+      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket",
       "community": 49,
-      "norm_label": "battleeyerconclient"
-    },
-    {
-      "label": ".__init__()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L34",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_init",
-      "community": 49,
-      "norm_label": ".__init__()"
-    },
-    {
-      "label": "AbstractEventLoop",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "abstracteventloop",
-      "community": 9,
-      "norm_label": "abstracteventloop"
-    },
-    {
-      "label": "DatagramTransportFactory",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "datagramtransportfactory",
-      "community": 49,
-      "norm_label": "datagramtransportfactory"
-    },
-    {
-      "label": ".address()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L66",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_address",
-      "community": 49,
-      "norm_label": ".address()"
-    },
-    {
-      "label": ".port()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L71",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_port",
-      "community": 49,
-      "norm_label": ".port()"
-    },
-    {
-      "label": ".send_command()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L75",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_send_command",
-      "community": 49,
-      "norm_label": ".send_command()"
-    },
-    {
-      "label": "Future",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "future",
-      "community": 291,
-      "norm_label": "future"
-    },
-    {
-      "label": ".on_server_message()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L94",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_server_message",
-      "community": 49,
-      "norm_label": ".on_server_message()"
-    },
-    {
-      "label": ".on_command_response()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L99",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_command_response",
-      "community": 49,
-      "norm_label": ".on_command_response()"
-    },
-    {
-      "label": ".on_connected()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L104",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_connected",
-      "community": 49,
-      "norm_label": ".on_connected()"
-    },
-    {
-      "label": ".on_disconnected()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L108",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_disconnected",
-      "community": 49,
-      "norm_label": ".on_disconnected()"
-    },
-    {
-      "label": ".connect()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L112",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect",
-      "community": 49,
-      "norm_label": ".connect()"
-    },
-    {
-      "label": ".shutdown()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L137",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_shutdown",
-      "community": 49,
-      "norm_label": ".shutdown()"
-    },
-    {
-      "label": "._initialize_signal_handlers()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L141",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_initialize_signal_handlers",
-      "community": 49,
-      "norm_label": "._initialize_signal_handlers()"
-    },
-    {
-      "label": "._handle_os_signal()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L146",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_os_signal",
-      "community": 9,
-      "norm_label": "._handle_os_signal()"
-    },
-    {
-      "label": "Any",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "any",
-      "community": 9,
-      "norm_label": "any"
-    },
-    {
-      "label": ".receive_datagram()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L152",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_receive_datagram",
-      "community": 49,
-      "norm_label": ".receive_datagram()"
-    },
-    {
-      "label": ".handle_new_connection()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L169",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_new_connection",
-      "community": 49,
-      "norm_label": ".handle_new_connection()"
-    },
-    {
-      "label": ".handle_lost_connection()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L175",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_lost_connection",
-      "community": 49,
-      "norm_label": ".handle_lost_connection()"
-    },
-    {
-      "label": "Exception",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "exception",
-      "community": 81,
-      "norm_label": "exception"
-    },
-    {
-      "label": "._cancel_pending_commands()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L182",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cancel_pending_commands",
-      "community": 49,
-      "norm_label": "._cancel_pending_commands()"
-    },
-    {
-      "label": ".handle_error()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L189",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_error",
-      "community": 81,
-      "norm_label": ".handle_error()"
-    },
-    {
-      "label": "._try_connect()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L193",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_connect",
-      "community": 49,
-      "norm_label": "._try_connect()"
-    },
-    {
-      "label": "._keep_alive()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L197",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_keep_alive",
-      "community": 49,
-      "norm_label": "._keep_alive()"
-    },
-    {
-      "label": "._try_login()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L210",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_login",
-      "community": 49,
-      "norm_label": "._try_login()"
-    },
-    {
-      "label": "._handle_packet()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L220",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
-      "community": 49,
-      "norm_label": "._handle_packet()"
+      "norm_label": "commandresponsepacket"
     },
     {
       "label": "Packet",
@@ -294,224 +34,14 @@
       "norm_label": "packet"
     },
     {
-      "label": "datetime",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "datetime",
-      "community": 49,
-      "norm_label": "datetime"
-    },
-    {
-      "label": "._handle_server_message()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L238",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message",
-      "community": 49,
-      "norm_label": "._handle_server_message()"
-    },
-    {
-      "label": "ServerMessageRequestPacket",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "servermessagerequestpacket",
-      "community": 49,
-      "norm_label": "servermessagerequestpacket"
-    },
-    {
-      "label": "._handle_command_response()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L255",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response",
-      "community": 49,
-      "norm_label": "._handle_command_response()"
-    },
-    {
-      "label": "CommandResponsePacket",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "commandresponsepacket",
-      "community": 49,
-      "norm_label": "commandresponsepacket"
-    },
-    {
-      "label": "._handle_multi_packet_response()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L289",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response",
-      "community": 49,
-      "norm_label": "._handle_multi_packet_response()"
-    },
-    {
-      "label": "CommandHeader",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "commandheader",
-      "community": 49,
-      "norm_label": "commandheader"
-    },
-    {
-      "label": "._cleanup_pending_commands()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L321",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cleanup_pending_commands",
-      "community": 49,
-      "norm_label": "._cleanup_pending_commands()"
-    },
-    {
-      "label": "._handle_requests()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L345",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_requests",
-      "community": 49,
-      "norm_label": "._handle_requests()"
-    },
-    {
-      "label": "._handle_responses()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L357",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses",
-      "community": 49,
-      "norm_label": "._handle_responses()"
-    },
-    {
-      "label": "._handle_login_response()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L384",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_login_response",
-      "community": 49,
-      "norm_label": "._handle_login_response()"
-    },
-    {
-      "label": "LoginResponsePacket",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "loginresponsepacket",
-      "community": 49,
-      "norm_label": "loginresponsepacket"
-    },
-    {
-      "label": "._handle_transport_error()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L394",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_transport_error",
-      "community": 81,
-      "norm_label": "._handle_transport_error()"
-    },
-    {
-      "label": "._new_sequence_generator()",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L405",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_new_sequence_generator",
-      "community": 49,
-      "norm_label": "._new_sequence_generator()"
-    },
-    {
-      "label": "CommandResponse",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L415",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse",
-      "community": 49,
-      "norm_label": "commandresponse"
-    },
-    {
-      "label": "ServerMessage",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L423",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_servermessage",
-      "community": 49,
-      "norm_label": "servermessage"
-    },
-    {
-      "label": "Message",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L431",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "community": 49,
-      "norm_label": "message"
-    },
-    {
-      "label": "_PendingCommand",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L443",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_pendingcommand",
-      "community": 49,
-      "norm_label": "_pendingcommand"
-    },
-    {
-      "label": "ClientStatus",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L452",
-      "_origin": "ast",
-      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_clientstatus",
-      "community": 49,
-      "norm_label": "clientstatus"
-    },
-    {
-      "label": "command_response_packet.py",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 49,
-      "norm_label": "command_response_packet.py",
-      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet"
-    },
-    {
-      "label": "CommandResponsePacket",
-      "file_type": "code",
-      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
-      "source_location": "L9",
-      "_origin": "ast",
-      "community": 49,
-      "norm_label": "commandresponsepacket",
-      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket"
-    },
-    {
       "label": ".__init__()",
       "file_type": "code",
       "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
       "source_location": "L10",
       "_origin": "ast",
+      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_init",
       "community": 49,
-      "norm_label": ".__init__()",
-      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_init"
+      "norm_label": ".__init__()"
     },
     {
       "label": ".response_header()",
@@ -519,9 +49,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
       "source_location": "L20",
       "_origin": "ast",
+      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_response_header",
       "community": 49,
-      "norm_label": ".response_header()",
-      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_response_header"
+      "norm_label": ".response_header()"
     },
     {
       "label": ".request_sequence()",
@@ -529,9 +59,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
       "source_location": "L25",
       "_origin": "ast",
+      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_request_sequence",
       "community": 49,
-      "norm_label": ".request_sequence()",
-      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_request_sequence"
+      "norm_label": ".request_sequence()"
     },
     {
       "label": ".response_data()",
@@ -539,9 +69,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
       "source_location": "L30",
       "_origin": "ast",
+      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_response_data",
       "community": 49,
-      "norm_label": ".response_data()",
-      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_response_data"
+      "norm_label": ".response_data()"
     },
     {
       "label": ".validate_packet_data()",
@@ -549,9 +79,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
       "source_location": "L34",
       "_origin": "ast",
+      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_validate_packet_data",
       "community": 49,
-      "norm_label": ".validate_packet_data()",
-      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_validate_packet_data"
+      "norm_label": ".validate_packet_data()"
     },
     {
       "label": ".packet_data()",
@@ -559,9 +89,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
       "source_location": "L45",
       "_origin": "ast",
+      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_packet_data",
       "community": 49,
-      "norm_label": ".packet_data()",
-      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_packet_data"
+      "norm_label": ".packet_data()"
     },
     {
       "label": "._extract_response()",
@@ -569,9 +99,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
       "source_location": "L70",
       "_origin": "ast",
+      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_extract_response",
       "community": 49,
-      "norm_label": "._extract_response()",
-      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_extract_response"
+      "norm_label": "._extract_response()"
     },
     {
       "label": "CommandHeader",
@@ -579,9 +109,479 @@
       "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
       "source_location": "L117",
       "_origin": "ast",
+      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandheader",
+      "community": 49,
+      "norm_label": "commandheader"
+    },
+    {
+      "label": "battle_eye_rcon_client.py",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "battle_eye_rcon_client.py",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client"
+    },
+    {
+      "label": "BattleEyeRconClient",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L28",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "battleeyerconclient",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L34",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": ".__init__()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_init"
+    },
+    {
+      "label": "AbstractEventLoop",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 9,
+      "norm_label": "abstracteventloop",
+      "id": "abstracteventloop"
+    },
+    {
+      "label": "DatagramTransportFactory",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "datagramtransportfactory",
+      "id": "datagramtransportfactory"
+    },
+    {
+      "label": ".address()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L66",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": ".address()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_address"
+    },
+    {
+      "label": ".port()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L71",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": ".port()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_port"
+    },
+    {
+      "label": ".send_command()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L75",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": ".send_command()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_send_command"
+    },
+    {
+      "label": "Future",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 291,
+      "norm_label": "future",
+      "id": "future"
+    },
+    {
+      "label": ".on_server_message()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L93",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": ".on_server_message()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_server_message"
+    },
+    {
+      "label": ".on_command_response()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L98",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": ".on_command_response()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_command_response"
+    },
+    {
+      "label": ".on_connected()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L103",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": ".on_connected()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_connected"
+    },
+    {
+      "label": ".on_disconnected()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L107",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": ".on_disconnected()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_disconnected"
+    },
+    {
+      "label": ".connect()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L111",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": ".connect()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect"
+    },
+    {
+      "label": ".shutdown()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L136",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": ".shutdown()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_shutdown"
+    },
+    {
+      "label": "._initialize_signal_handlers()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L140",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "._initialize_signal_handlers()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_initialize_signal_handlers"
+    },
+    {
+      "label": "._handle_os_signal()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L145",
+      "_origin": "ast",
+      "community": 9,
+      "norm_label": "._handle_os_signal()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_os_signal"
+    },
+    {
+      "label": "Any",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 9,
+      "norm_label": "any",
+      "id": "any"
+    },
+    {
+      "label": ".receive_datagram()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L151",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": ".receive_datagram()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_receive_datagram"
+    },
+    {
+      "label": ".handle_new_connection()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L168",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": ".handle_new_connection()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_new_connection"
+    },
+    {
+      "label": ".handle_lost_connection()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L174",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": ".handle_lost_connection()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_lost_connection"
+    },
+    {
+      "label": "Exception",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 81,
+      "norm_label": "exception",
+      "id": "exception"
+    },
+    {
+      "label": "._cancel_pending_commands()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L181",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "._cancel_pending_commands()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cancel_pending_commands"
+    },
+    {
+      "label": ".handle_error()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L188",
+      "_origin": "ast",
+      "community": 81,
+      "norm_label": ".handle_error()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_error"
+    },
+    {
+      "label": "._try_connect()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L192",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "._try_connect()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_connect"
+    },
+    {
+      "label": "._keep_alive()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L196",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "._keep_alive()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_keep_alive"
+    },
+    {
+      "label": "._try_login()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L209",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "._try_login()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_login"
+    },
+    {
+      "label": "._handle_packet()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L219",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "._handle_packet()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet"
+    },
+    {
+      "label": "datetime",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "datetime",
+      "id": "datetime"
+    },
+    {
+      "label": "._handle_server_message()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L237",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "._handle_server_message()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message"
+    },
+    {
+      "label": "ServerMessageRequestPacket",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "servermessagerequestpacket",
+      "id": "servermessagerequestpacket"
+    },
+    {
+      "label": "._handle_command_response()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L254",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "._handle_command_response()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response"
+    },
+    {
+      "label": "CommandResponsePacket",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "commandresponsepacket",
+      "id": "commandresponsepacket"
+    },
+    {
+      "label": "._handle_multi_packet_response()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L288",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "._handle_multi_packet_response()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response"
+    },
+    {
+      "label": "CommandHeader",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
       "community": 49,
       "norm_label": "commandheader",
-      "id": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandheader"
+      "id": "commandheader"
+    },
+    {
+      "label": "._cleanup_pending_commands()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L320",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "._cleanup_pending_commands()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cleanup_pending_commands"
+    },
+    {
+      "label": "._handle_requests()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L344",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "._handle_requests()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_requests"
+    },
+    {
+      "label": "._handle_responses()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L356",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "._handle_responses()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses"
+    },
+    {
+      "label": "._handle_login_response()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L383",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "._handle_login_response()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_login_response"
+    },
+    {
+      "label": "LoginResponsePacket",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "loginresponsepacket",
+      "id": "loginresponsepacket"
+    },
+    {
+      "label": "._handle_transport_error()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L393",
+      "_origin": "ast",
+      "community": 81,
+      "norm_label": "._handle_transport_error()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_transport_error"
+    },
+    {
+      "label": "._new_sequence_generator()",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L404",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "._new_sequence_generator()",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_new_sequence_generator"
+    },
+    {
+      "label": "CommandResponse",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L414",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "commandresponse",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse"
+    },
+    {
+      "label": "ServerMessage",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L422",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "servermessage",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_servermessage"
+    },
+    {
+      "label": "Message",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L430",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "message",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
+    },
+    {
+      "label": "_PendingCommand",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L442",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "_pendingcommand",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_pendingcommand"
+    },
+    {
+      "label": "ClientStatus",
+      "file_type": "code",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L451",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "clientstatus",
+      "id": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_clientstatus"
     },
     {
       "label": "login_command.py",
@@ -17772,12 +17772,167 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet",
+      "target": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_packet_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
+      "source_location": "L117",
+      "weight": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet",
+      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandheader",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet",
+      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket",
+      "target": "packet",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
+      "source_location": "L70",
+      "weight": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket",
+      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_extract_response",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket",
+      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket",
+      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_packet_data",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket",
+      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_request_sequence",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket",
+      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_response_data",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket",
+      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_response_header",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket",
+      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_validate_packet_data",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L219",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
+      "target": "packet"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_init",
+      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_extract_response",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_response_header",
+      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandheader",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
+      "source_location": "L70",
+      "weight": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_extract_response",
+      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandheader",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client",
-      "target": "datetime",
-      "confidence_score": 1.0
+      "target": "datetime"
     },
     {
       "relation": "imports_from",
@@ -17786,9 +17941,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client",
-      "target": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_packet_py",
-      "confidence_score": 1.0
+      "target": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_packet_py"
     },
     {
       "relation": "contains",
@@ -17796,59 +17951,59 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L28",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L452",
+      "source_location": "L451",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_clientstatus",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_clientstatus"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L415",
+      "source_location": "L414",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L431",
+      "source_location": "L430",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L443",
+      "source_location": "L442",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_pendingcommand",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_pendingcommand"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L423",
+      "source_location": "L422",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_servermessage",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_servermessage"
     },
     {
       "relation": "method",
@@ -17856,159 +18011,159 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L66",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_address",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_address"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L182",
+      "source_location": "L181",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cancel_pending_commands",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cancel_pending_commands"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L321",
+      "source_location": "L320",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cleanup_pending_commands",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cleanup_pending_commands"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L112",
+      "source_location": "L111",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L255",
+      "source_location": "L254",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L189",
+      "source_location": "L188",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_error",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_error"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L384",
+      "source_location": "L383",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_login_response",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_login_response"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L175",
+      "source_location": "L174",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_lost_connection",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_lost_connection"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L289",
+      "source_location": "L288",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L169",
+      "source_location": "L168",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_new_connection",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_new_connection"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L146",
+      "source_location": "L145",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_os_signal",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_os_signal"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L220",
+      "source_location": "L219",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L345",
+      "source_location": "L344",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_requests",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_requests"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L357",
+      "source_location": "L356",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L238",
+      "source_location": "L237",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L394",
+      "source_location": "L393",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_transport_error",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_transport_error"
     },
     {
       "relation": "method",
@@ -18016,79 +18171,79 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_init",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_init"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L141",
+      "source_location": "L140",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_initialize_signal_handlers",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_initialize_signal_handlers"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L197",
+      "source_location": "L196",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_keep_alive",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_keep_alive"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L405",
+      "source_location": "L404",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_new_sequence_generator",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_new_sequence_generator"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L99",
+      "source_location": "L98",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_command_response",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_command_response"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L104",
+      "source_location": "L103",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_connected",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_connected"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L108",
+      "source_location": "L107",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_disconnected",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_disconnected"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L94",
+      "source_location": "L93",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_server_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_server_message"
     },
     {
       "relation": "method",
@@ -18096,19 +18251,19 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L71",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_port",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_port"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L152",
+      "source_location": "L151",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_receive_datagram",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_receive_datagram"
     },
     {
       "relation": "method",
@@ -18116,39 +18271,39 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L75",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_send_command",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_send_command"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L137",
+      "source_location": "L136",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_shutdown",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_shutdown"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L193",
+      "source_location": "L192",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_connect",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_connect"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L210",
+      "source_location": "L209",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_login",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_login"
     },
     {
       "relation": "references",
@@ -18157,9 +18312,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_init",
-      "target": "abstracteventloop",
-      "confidence_score": 1.0
+      "target": "abstracteventloop"
     },
     {
       "relation": "references",
@@ -18168,9 +18323,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_init",
-      "target": "datagramtransportfactory",
-      "confidence_score": 1.0
+      "target": "datagramtransportfactory"
     },
     {
       "relation": "calls",
@@ -18179,9 +18334,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L62",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_init",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_initialize_signal_handlers",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_initialize_signal_handlers"
     },
     {
       "relation": "calls",
@@ -18190,9 +18345,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L56",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_init",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_new_sequence_generator",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_new_sequence_generator"
     },
     {
       "relation": "calls",
@@ -18201,9 +18356,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L47",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_init",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_clientstatus",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_clientstatus"
     },
     {
       "relation": "references",
@@ -18223,9 +18378,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L75",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_send_command",
-      "target": "future",
-      "confidence_score": 1.0
+      "target": "future"
     },
     {
       "relation": "references",
@@ -18234,31 +18389,31 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L75",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_send_command",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L87",
+      "source_location": "L86",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_send_command",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L83",
+      "source_location": "L82",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_send_command",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_pendingcommand",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_pendingcommand"
     },
     {
       "relation": "references",
@@ -18276,77 +18431,66 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L362",
+      "source_location": "L361",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_server_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_server_message"
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L94",
+      "source_location": "L93",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_server_message",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_servermessage",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_servermessage"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L366",
+      "source_location": "L365",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_command_response",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_command_response"
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L99",
+      "source_location": "L98",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_command_response",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L370",
+      "source_location": "L369",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_connected",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_connected"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L180",
+      "source_location": "L179",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_lost_connection",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_disconnected",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L125",
-      "weight": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cleanup_pending_commands",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_on_disconnected"
     },
     {
       "relation": "calls",
@@ -18355,9 +18499,9 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L124",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_requests",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cleanup_pending_commands"
     },
     {
       "relation": "calls",
@@ -18366,53 +18510,64 @@
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L123",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_requests"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L119",
+      "source_location": "L122",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_keep_alive",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L116",
+      "source_location": "L118",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_connect",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_keep_alive"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L121",
+      "source_location": "L115",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_login",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_connect"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L120",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_connect",
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_login"
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L146",
+      "source_location": "L145",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_os_signal",
-      "target": "any",
-      "confidence_score": 1.0
+      "target": "any"
     },
     {
       "relation": "references",
@@ -18496,33 +18651,33 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L166",
+      "source_location": "L165",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_receive_datagram",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet"
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L175",
+      "source_location": "L174",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_lost_connection",
-      "target": "exception",
-      "confidence_score": 1.0
+      "target": "exception"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L179",
+      "source_location": "L178",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_lost_connection",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cancel_pending_commands",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cancel_pending_commands"
     },
     {
       "relation": "inherits",
@@ -18735,463 +18890,308 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L182",
+      "source_location": "L181",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cancel_pending_commands",
-      "target": "exception",
-      "confidence_score": 1.0
+      "target": "exception"
     },
     {
       "relation": "references",
       "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L188",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_error",
+      "target": "exception"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L393",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_transport_error",
+      "target": "exception"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
       "source_location": "L189",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_error",
-      "target": "exception",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L394",
-      "weight": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_transport_error",
-      "target": "exception",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_transport_error"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L190",
+      "source_location": "L204",
       "weight": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_error",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_transport_error",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L205",
-      "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_keep_alive",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L215",
+      "source_location": "L214",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_try_login",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L220",
-      "weight": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
-      "target": "datetime",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L220",
-      "weight": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
-      "target": "packet",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L225",
-      "weight": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L223",
-      "weight": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L227",
-      "weight": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
-      "source_location": "L9",
+      "source_location": "L219",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket",
-      "target": "packet"
+      "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
+      "target": "datetime"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L224",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L222",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
+      "source_location": "L226",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_packet",
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L238",
+      "source_location": "L237",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message",
-      "target": "datetime",
-      "confidence_score": 1.0
+      "target": "datetime"
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L238",
+      "source_location": "L237",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message",
-      "target": "servermessagerequestpacket",
-      "confidence_score": 1.0
+      "target": "servermessagerequestpacket"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L240",
+      "source_location": "L239",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L244",
+      "source_location": "L243",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_server_message",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_servermessage",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_servermessage"
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L255",
+      "source_location": "L254",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response",
-      "target": "commandresponsepacket",
-      "confidence_score": 1.0
+      "target": "commandresponsepacket"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L260",
+      "source_location": "L259",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L271",
+      "source_location": "L270",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L283",
+      "source_location": "L282",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_command_response",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L289",
+      "source_location": "L288",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response",
-      "target": "commandresponsepacket",
-      "confidence_score": 1.0
+      "target": "commandresponsepacket"
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L289",
+      "source_location": "L288",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response",
-      "target": "commandheader",
-      "confidence_score": 1.0
+      "target": "commandheader"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L306",
+      "source_location": "L305",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L315",
+      "source_location": "L314",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L289",
+      "source_location": "L288",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_multi_packet_response",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_pendingcommand",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_pendingcommand"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L331",
+      "source_location": "L330",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cleanup_pending_commands",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_commandresponse"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L339",
+      "source_location": "L338",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_cleanup_pending_commands",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L375",
+      "source_location": "L374",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_responses",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_login_response",
-      "confidence_score": 1.0
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_login_response"
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L384",
+      "source_location": "L383",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_login_response",
-      "target": "loginresponsepacket",
-      "confidence_score": 1.0
+      "target": "loginresponsepacket"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py",
-      "source_location": "L388",
+      "source_location": "L387",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_battleeyerconclient_handle_login_response",
-      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet",
-      "target": "home_slothsh_developer_projects_armaden_src_armaden_network_rcon_battle_eye_packets_packet_py"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
-      "source_location": "L117",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet",
-      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandheader"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet",
-      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
-      "source_location": "L70",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket",
-      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_extract_response"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket",
-      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_init"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
-      "source_location": "L45",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket",
-      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_packet_data"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
-      "source_location": "L25",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket",
-      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_request_sequence"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
-      "source_location": "L30",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket",
-      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_response_data"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
-      "source_location": "L20",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket",
-      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_response_header"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
-      "source_location": "L34",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket",
-      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_validate_packet_data"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_init",
-      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_extract_response"
-    },
-    {
-      "relation": "references",
-      "context": "return_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
-      "source_location": "L20",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_response_header",
-      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandheader"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/network/rcon/battle_eye/packets/command_response_packet.py",
-      "source_location": "L70",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandresponsepacket_extract_response",
-      "target": "src_armaden_network_rcon_battle_eye_packets_command_response_packet_commandheader"
+      "target": "src_armaden_network_rcon_battle_eye_battle_eye_rcon_client_message"
     },
     {
       "relation": "re_exports",
@@ -48870,5 +48870,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "5dd3f5a9722151a06bcaa9f41ff3b7aa4b4e6210"
+  "built_at_commit": "96f6fd1ec1ea0b3f84e2f0e2d6d3f25bb353578e"
 }

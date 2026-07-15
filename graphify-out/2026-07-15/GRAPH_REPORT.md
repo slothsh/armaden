@@ -1,7 +1,7 @@
-# Graph Report - armaden  (2026-07-15)
+# Graph Report - armaden  (2026-07-12)
 
 ## Corpus Check
-- 191 files · ~33,938 words
+- 191 files · ~33,937 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `5dd3f5a9`
+- Built from commit: `96f6fd1e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -515,7 +515,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `InstanceContainer` connect `InstanceContainer` to `WorkerPool`, `AuthManager`, `.get_alias`, `ContextualAttribute`, `.resolve_primitive`, `BattleEyeRconClient`, `SubprocessHandle`, `._initialize_configs`, `ServiceProvider`, `.resolve`, `TypedDict`?**
   _High betweenness centrality (0.125) - this node is a cross-community bridge._
 - **Why does `TaskRuntimeInterface` connect `HealthStatus` to `ArmaReforgerServerExecutable`, `Protocol`, `RestartPolicy`, `SteamCmdExecutable`, `TaskBuilderInterface`, `TaskGraph`, `Path`, `URL`?**
-  _High betweenness centrality (0.103) - this node is a cross-community bridge._
+  _High betweenness centrality (0.104) - this node is a cross-community bridge._
 - **Are the 20 inferred relationships involving `InstanceContainer` (e.g. with `Application` and `Config`) actually correct?**
   _`InstanceContainer` has 20 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 5 inferred relationships involving `ArmaReforgerServerExecutable` (e.g. with `Executable` and `Dictionary`) actually correct?**
