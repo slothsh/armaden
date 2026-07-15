@@ -23,6 +23,13 @@ class RconConfig(TypedDict):
     whitelist: list | None
 
 
+class ModConfig(TypedDict):
+    modId: str
+    name: str
+    version: str | None
+    required: bool
+
+
 class GamePropertiesPersistence(TypedDict):
     autoSaveInterval: int | None
     saveRetention: int | None
@@ -58,7 +65,7 @@ class GameConfig(TypedDict):
     crossPlatform: bool | None
     supportedPlatforms: list | None
     modsRequiredByDefault: bool | None
-    mods: list | None
+    mods: list[ModConfig] | None
     gameProperties: GamePropertiesConfig | None
 
 
