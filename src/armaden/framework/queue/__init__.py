@@ -1,5 +1,6 @@
 from .job import Job, ShouldQueue, PendingChain
 from .driver import QueueDriver
+from .worker import QueueWorker
 
 DRIVER_MAP = {
     'sync': 'armaden.framework.queue.sync_driver.SyncQueueDriver',
@@ -12,5 +13,6 @@ __all__ = [
     'ShouldQueue',
     'PendingChain',
     'QueueDriver',
+    'QueueWorker',
     'DRIVER_MAP',
 ]
