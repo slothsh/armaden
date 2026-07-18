@@ -4,494 +4,14 @@
   "graph": {},
   "nodes": [
     {
-      "label": "__init__.py",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/facades/__init__.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_armaden_framework_facades_init",
-      "community": 98,
-      "norm_label": "__init__.py"
-    },
-    {
-      "label": "application.py",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application",
-      "community": 6,
-      "norm_label": "application.py"
-    },
-    {
-      "label": "CoreApplication",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L27",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication",
-      "community": 6,
-      "norm_label": "coreapplication"
-    },
-    {
-      "label": ".__init__()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L30",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_init",
-      "community": 6,
-      "norm_label": ".__init__()"
-    },
-    {
-      "label": ".register_base_bindings()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L57",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_register_base_bindings",
-      "community": 6,
-      "norm_label": ".register_base_bindings()"
-    },
-    {
-      "label": ".register_base_service_providers()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L61",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_register_base_service_providers",
-      "community": 6,
-      "norm_label": ".register_base_service_providers()"
-    },
-    {
-      "label": "._make_provider()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L72",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_make_provider",
-      "community": 6,
-      "norm_label": "._make_provider()"
-    },
-    {
-      "label": "ServiceProvider",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "serviceprovider",
-      "community": 6,
-      "norm_label": "serviceprovider"
-    },
-    {
-      "label": ".register_core_container_aliases()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L75",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_register_core_container_aliases",
-      "community": 6,
-      "norm_label": ".register_core_container_aliases()"
-    },
-    {
-      "label": ".register_contextual_attributes()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L78",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_register_contextual_attributes",
-      "community": 6,
-      "norm_label": ".register_contextual_attributes()"
-    },
-    {
-      "label": ".bootstrap()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L82",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_bootstrap",
-      "community": 6,
-      "norm_label": ".bootstrap()"
-    },
-    {
-      "label": "Result",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "result",
-      "community": 11,
-      "norm_label": "result"
-    },
-    {
-      "label": ".register()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L145",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_register",
-      "community": 6,
-      "norm_label": ".register()"
-    },
-    {
-      "label": "._register_deferred_provider()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L161",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_register_deferred_provider",
-      "community": 6,
-      "norm_label": "._register_deferred_provider()"
-    },
-    {
-      "label": ".register_provider()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L172",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_register_provider",
-      "community": 6,
-      "norm_label": ".register_provider()"
-    },
-    {
-      "label": ".boot()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L175",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_boot",
-      "community": 6,
-      "norm_label": ".boot()"
-    },
-    {
-      "label": ".booting()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L198",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_booting",
-      "community": 6,
-      "norm_label": ".booting()"
-    },
-    {
-      "label": ".booted()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L201",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_booted",
-      "community": 6,
-      "norm_label": ".booted()"
-    },
-    {
-      "label": ".terminating()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L206",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_terminating",
-      "community": 6,
-      "norm_label": ".terminating()"
-    },
-    {
-      "label": ".terminate()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L209",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_terminate",
-      "community": 6,
-      "norm_label": ".terminate()"
-    },
-    {
-      "label": ".container()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L215",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_container",
-      "community": 6,
-      "norm_label": ".container()"
-    },
-    {
-      "label": "InstanceContainer",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "instancecontainer",
-      "community": 6,
-      "norm_label": "instancecontainer"
-    },
-    {
-      "label": ".make()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L218",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_make",
-      "community": 6,
-      "norm_label": ".make()"
-    },
-    {
-      "label": "Any",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "any",
-      "community": 6,
-      "norm_label": "any"
-    },
-    {
-      "label": ".singleton()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L221",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_singleton",
-      "community": 6,
-      "norm_label": ".singleton()"
-    },
-    {
-      "label": ".bind()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L224",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_bind",
-      "community": 6,
-      "norm_label": ".bind()"
-    },
-    {
-      "label": ".instance()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L227",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_instance",
-      "community": 6,
-      "norm_label": ".instance()"
-    },
-    {
-      "label": ".supervisor()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L231",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_supervisor",
-      "community": 6,
-      "norm_label": ".supervisor()"
-    },
-    {
-      "label": "SupervisorInterface",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "supervisorinterface",
-      "community": 6,
-      "norm_label": "supervisorinterface"
-    },
-    {
-      "label": ".event_loop()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L235",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_event_loop",
-      "community": 6,
-      "norm_label": ".event_loop()"
-    },
-    {
-      "label": "AbstractEventLoop",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "abstracteventloop",
-      "community": 6,
-      "norm_label": "abstracteventloop"
-    },
-    {
-      "label": ".version()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L238",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_version",
-      "community": 6,
-      "norm_label": ".version()"
-    },
-    {
-      "label": ".config()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L245",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_config",
-      "community": 6,
-      "norm_label": ".config()"
-    },
-    {
-      "label": ".environment()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L256",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_environment",
-      "community": 6,
-      "norm_label": ".environment()"
-    },
-    {
-      "label": ".is_local()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L259",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_is_local",
-      "community": 6,
-      "norm_label": ".is_local()"
-    },
-    {
-      "label": ".is_production()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L262",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_is_production",
-      "community": 6,
-      "norm_label": ".is_production()"
-    },
-    {
-      "label": "._initialize_logging()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L266",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_initialize_logging",
-      "community": 6,
-      "norm_label": "._initialize_logging()"
-    },
-    {
-      "label": "._register_providers()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L274",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_register_providers",
-      "community": 6,
-      "norm_label": "._register_providers()"
-    },
-    {
-      "label": "._initialize_environment()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L309",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_initialize_environment",
-      "community": 6,
-      "norm_label": "._initialize_environment()"
-    },
-    {
-      "label": "._initialize_configs()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L345",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_initialize_configs",
-      "community": 6,
-      "norm_label": "._initialize_configs()"
-    },
-    {
-      "label": "._register_provider_bindings()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L388",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_register_provider_bindings",
-      "community": 6,
-      "norm_label": "._register_provider_bindings()"
-    },
-    {
-      "label": "._fire_app_callbacks()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L391",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_coreapplication_fire_app_callbacks",
-      "community": 6,
-      "norm_label": "._fire_app_callbacks()"
-    },
-    {
-      "label": "ApplicationStatus",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L398",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_applicationstatus",
-      "community": 6,
-      "norm_label": "applicationstatus"
-    },
-    {
-      "label": "StrEnum",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "strenum",
-      "community": 47,
-      "norm_label": "strenum"
-    },
-    {
-      "label": "ApplicationException",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L403",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_applicationexception",
-      "community": 6,
-      "norm_label": "applicationexception"
-    },
-    {
-      "label": "Exception",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "exception",
-      "community": 24,
-      "norm_label": "exception"
-    },
-    {
-      "label": "ApplicationError",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L407",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_application_applicationerror",
-      "community": 6,
-      "norm_label": "applicationerror"
-    },
-    {
-      "label": "__init__.py",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/providers/__init__.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_armaden_framework_runtime_providers_init",
-      "community": 99,
-      "norm_label": "__init__.py"
-    },
-    {
       "label": "storage.py",
       "file_type": "code",
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage",
       "community": 21,
-      "norm_label": "storage.py",
-      "id": "src_armaden_framework_facades_storage"
+      "norm_label": "storage.py"
     },
     {
       "label": "Storage",
@@ -499,9 +19,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L12",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage",
       "community": 21,
-      "norm_label": "storage",
-      "id": "src_armaden_framework_facades_storage_storage"
+      "norm_label": "storage"
     },
     {
       "label": ".disk()",
@@ -509,9 +29,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L15",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_disk",
       "community": 21,
-      "norm_label": ".disk()",
-      "id": "src_armaden_framework_facades_storage_storage_disk"
+      "norm_label": ".disk()"
     },
     {
       "label": "._default_disk()",
@@ -519,9 +39,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L22",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_default_disk",
       "community": 21,
-      "norm_label": "._default_disk()",
-      "id": "src_armaden_framework_facades_storage_storage_default_disk"
+      "norm_label": "._default_disk()"
     },
     {
       "label": ".exists()",
@@ -529,9 +49,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L26",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_exists",
       "community": 21,
-      "norm_label": ".exists()",
-      "id": "src_armaden_framework_facades_storage_storage_exists"
+      "norm_label": ".exists()"
     },
     {
       "label": ".missing()",
@@ -539,9 +59,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L30",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_missing",
       "community": 21,
-      "norm_label": ".missing()",
-      "id": "src_armaden_framework_facades_storage_storage_missing"
+      "norm_label": ".missing()"
     },
     {
       "label": ".get()",
@@ -549,9 +69,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L34",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_get",
       "community": 21,
-      "norm_label": ".get()",
-      "id": "src_armaden_framework_facades_storage_storage_get"
+      "norm_label": ".get()"
     },
     {
       "label": ".put()",
@@ -559,9 +79,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L38",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_put",
       "community": 21,
-      "norm_label": ".put()",
-      "id": "src_armaden_framework_facades_storage_storage_put"
+      "norm_label": ".put()"
     },
     {
       "label": ".delete()",
@@ -569,9 +89,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L42",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_delete",
       "community": 21,
-      "norm_label": ".delete()",
-      "id": "src_armaden_framework_facades_storage_storage_delete"
+      "norm_label": ".delete()"
     },
     {
       "label": ".copy()",
@@ -579,9 +99,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L46",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_copy",
       "community": 21,
-      "norm_label": ".copy()",
-      "id": "src_armaden_framework_facades_storage_storage_copy"
+      "norm_label": ".copy()"
     },
     {
       "label": ".move()",
@@ -589,9 +109,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L50",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_move",
       "community": 21,
-      "norm_label": ".move()",
-      "id": "src_armaden_framework_facades_storage_storage_move"
+      "norm_label": ".move()"
     },
     {
       "label": ".size()",
@@ -599,19 +119,19 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L54",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_size",
       "community": 21,
-      "norm_label": ".size()",
-      "id": "src_armaden_framework_facades_storage_storage_size"
+      "norm_label": ".size()"
     },
     {
-      "label": ".lastModified()",
+      "label": ".last_modified()",
       "file_type": "code",
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L58",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_last_modified",
       "community": 21,
-      "norm_label": ".lastmodified()",
-      "id": "src_armaden_framework_facades_storage_storage_lastmodified"
+      "norm_label": ".last_modified()"
     },
     {
       "label": ".files()",
@@ -619,9 +139,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L62",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_files",
       "community": 21,
-      "norm_label": ".files()",
-      "id": "src_armaden_framework_facades_storage_storage_files"
+      "norm_label": ".files()"
     },
     {
       "label": ".directories()",
@@ -629,29 +149,29 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L66",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_directories",
       "community": 21,
-      "norm_label": ".directories()",
-      "id": "src_armaden_framework_facades_storage_storage_directories"
+      "norm_label": ".directories()"
     },
     {
-      "label": ".makeDirectory()",
+      "label": ".make_directory()",
       "file_type": "code",
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L70",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_make_directory",
       "community": 21,
-      "norm_label": ".makedirectory()",
-      "id": "src_armaden_framework_facades_storage_storage_makedirectory"
+      "norm_label": ".make_directory()"
     },
     {
-      "label": ".deleteDirectory()",
+      "label": ".delete_directory()",
       "file_type": "code",
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L74",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_delete_directory",
       "community": 21,
-      "norm_label": ".deletedirectory()",
-      "id": "src_armaden_framework_facades_storage_storage_deletedirectory"
+      "norm_label": ".delete_directory()"
     },
     {
       "label": ".path()",
@@ -659,9 +179,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L78",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_path",
       "community": 21,
-      "norm_label": ".path()",
-      "id": "src_armaden_framework_facades_storage_storage_path"
+      "norm_label": ".path()"
     },
     {
       "label": ".url()",
@@ -669,19 +189,19 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L82",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_url",
       "community": 21,
-      "norm_label": ".url()",
-      "id": "src_armaden_framework_facades_storage_storage_url"
+      "norm_label": ".url()"
     },
     {
-      "label": ".temporaryUrl()",
+      "label": ".temporary_url()",
       "file_type": "code",
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L86",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_temporary_url",
       "community": 21,
-      "norm_label": ".temporaryurl()",
-      "id": "src_armaden_framework_facades_storage_storage_temporaryurl"
+      "norm_label": ".temporary_url()"
     },
     {
       "label": ".exists_async()",
@@ -689,9 +209,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L90",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_exists_async",
       "community": 21,
-      "norm_label": ".exists_async()",
-      "id": "src_armaden_framework_facades_storage_storage_exists_async"
+      "norm_label": ".exists_async()"
     },
     {
       "label": ".missing_async()",
@@ -699,9 +219,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L94",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_missing_async",
       "community": 21,
-      "norm_label": ".missing_async()",
-      "id": "src_armaden_framework_facades_storage_storage_missing_async"
+      "norm_label": ".missing_async()"
     },
     {
       "label": ".get_async()",
@@ -709,9 +229,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L98",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_get_async",
       "community": 21,
-      "norm_label": ".get_async()",
-      "id": "src_armaden_framework_facades_storage_storage_get_async"
+      "norm_label": ".get_async()"
     },
     {
       "label": ".put_async()",
@@ -719,9 +239,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L102",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_put_async",
       "community": 21,
-      "norm_label": ".put_async()",
-      "id": "src_armaden_framework_facades_storage_storage_put_async"
+      "norm_label": ".put_async()"
     },
     {
       "label": ".delete_async()",
@@ -729,9 +249,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L106",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_delete_async",
       "community": 21,
-      "norm_label": ".delete_async()",
-      "id": "src_armaden_framework_facades_storage_storage_delete_async"
+      "norm_label": ".delete_async()"
     },
     {
       "label": ".copy_async()",
@@ -739,9 +259,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L110",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_copy_async",
       "community": 21,
-      "norm_label": ".copy_async()",
-      "id": "src_armaden_framework_facades_storage_storage_copy_async"
+      "norm_label": ".copy_async()"
     },
     {
       "label": ".move_async()",
@@ -749,9 +269,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L114",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_move_async",
       "community": 21,
-      "norm_label": ".move_async()",
-      "id": "src_armaden_framework_facades_storage_storage_move_async"
+      "norm_label": ".move_async()"
     },
     {
       "label": ".size_async()",
@@ -759,19 +279,19 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L118",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_size_async",
       "community": 21,
-      "norm_label": ".size_async()",
-      "id": "src_armaden_framework_facades_storage_storage_size_async"
+      "norm_label": ".size_async()"
     },
     {
-      "label": ".lastModified_async()",
+      "label": ".last_modified_async()",
       "file_type": "code",
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L122",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_last_modified_async",
       "community": 21,
-      "norm_label": ".lastmodified_async()",
-      "id": "src_armaden_framework_facades_storage_storage_lastmodified_async"
+      "norm_label": ".last_modified_async()"
     },
     {
       "label": ".files_async()",
@@ -779,9 +299,9 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L126",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_files_async",
       "community": 21,
-      "norm_label": ".files_async()",
-      "id": "src_armaden_framework_facades_storage_storage_files_async"
+      "norm_label": ".files_async()"
     },
     {
       "label": ".directories_async()",
@@ -789,29 +309,509 @@
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L130",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_directories_async",
       "community": 21,
-      "norm_label": ".directories_async()",
-      "id": "src_armaden_framework_facades_storage_storage_directories_async"
+      "norm_label": ".directories_async()"
     },
     {
-      "label": ".makeDirectory_async()",
+      "label": ".make_directory_async()",
       "file_type": "code",
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L134",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_make_directory_async",
       "community": 21,
-      "norm_label": ".makedirectory_async()",
-      "id": "src_armaden_framework_facades_storage_storage_makedirectory_async"
+      "norm_label": ".make_directory_async()"
     },
     {
-      "label": ".deleteDirectory_async()",
+      "label": ".delete_directory_async()",
       "file_type": "code",
       "source_file": "src/armaden/framework/facades/storage.py",
       "source_location": "L138",
       "_origin": "ast",
+      "id": "src_armaden_framework_facades_storage_storage_delete_directory_async",
       "community": 21,
-      "norm_label": ".deletedirectory_async()",
-      "id": "src_armaden_framework_facades_storage_storage_deletedirectory_async"
+      "norm_label": ".delete_directory_async()"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/facades/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 98,
+      "norm_label": "__init__.py",
+      "id": "src_armaden_framework_facades_init"
+    },
+    {
+      "label": "application.py",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "application.py",
+      "id": "src_armaden_framework_runtime_application"
+    },
+    {
+      "label": "CoreApplication",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L27",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "coreapplication",
+      "id": "src_armaden_framework_runtime_application_coreapplication"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L30",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".__init__()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_init"
+    },
+    {
+      "label": ".register_base_bindings()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L57",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".register_base_bindings()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_register_base_bindings"
+    },
+    {
+      "label": ".register_base_service_providers()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L61",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".register_base_service_providers()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_register_base_service_providers"
+    },
+    {
+      "label": "._make_provider()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L72",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "._make_provider()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_make_provider"
+    },
+    {
+      "label": "ServiceProvider",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "serviceprovider",
+      "id": "serviceprovider"
+    },
+    {
+      "label": ".register_core_container_aliases()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L75",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".register_core_container_aliases()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_register_core_container_aliases"
+    },
+    {
+      "label": ".register_contextual_attributes()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L78",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".register_contextual_attributes()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_register_contextual_attributes"
+    },
+    {
+      "label": ".bootstrap()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L82",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".bootstrap()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_bootstrap"
+    },
+    {
+      "label": "Result",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 11,
+      "norm_label": "result",
+      "id": "result"
+    },
+    {
+      "label": ".register()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L145",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".register()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_register"
+    },
+    {
+      "label": "._register_deferred_provider()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L161",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "._register_deferred_provider()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_register_deferred_provider"
+    },
+    {
+      "label": ".register_provider()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L172",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".register_provider()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_register_provider"
+    },
+    {
+      "label": ".boot()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L175",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".boot()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_boot"
+    },
+    {
+      "label": ".booting()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L198",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".booting()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_booting"
+    },
+    {
+      "label": ".booted()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L201",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".booted()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_booted"
+    },
+    {
+      "label": ".terminating()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L206",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".terminating()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_terminating"
+    },
+    {
+      "label": ".terminate()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L209",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".terminate()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_terminate"
+    },
+    {
+      "label": ".container()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L215",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".container()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_container"
+    },
+    {
+      "label": "InstanceContainer",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "instancecontainer",
+      "id": "instancecontainer"
+    },
+    {
+      "label": ".make()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L218",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".make()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_make"
+    },
+    {
+      "label": "Any",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "any",
+      "id": "any"
+    },
+    {
+      "label": ".singleton()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L221",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".singleton()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_singleton"
+    },
+    {
+      "label": ".bind()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L224",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".bind()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_bind"
+    },
+    {
+      "label": ".instance()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L227",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".instance()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_instance"
+    },
+    {
+      "label": ".supervisor()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L231",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".supervisor()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_supervisor"
+    },
+    {
+      "label": "SupervisorInterface",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "supervisorinterface",
+      "id": "supervisorinterface"
+    },
+    {
+      "label": ".event_loop()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L235",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".event_loop()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_event_loop"
+    },
+    {
+      "label": "AbstractEventLoop",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "abstracteventloop",
+      "id": "abstracteventloop"
+    },
+    {
+      "label": ".version()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L238",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".version()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_version"
+    },
+    {
+      "label": ".config()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L245",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".config()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_config"
+    },
+    {
+      "label": ".environment()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L256",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".environment()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_environment"
+    },
+    {
+      "label": ".is_local()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L259",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".is_local()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_is_local"
+    },
+    {
+      "label": ".is_production()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L262",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": ".is_production()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_is_production"
+    },
+    {
+      "label": "._initialize_logging()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L266",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "._initialize_logging()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_initialize_logging"
+    },
+    {
+      "label": "._register_providers()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L274",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "._register_providers()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_register_providers"
+    },
+    {
+      "label": "._initialize_environment()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L309",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "._initialize_environment()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_initialize_environment"
+    },
+    {
+      "label": "._initialize_configs()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L345",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "._initialize_configs()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_initialize_configs"
+    },
+    {
+      "label": "._register_provider_bindings()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L388",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "._register_provider_bindings()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_register_provider_bindings"
+    },
+    {
+      "label": "._fire_app_callbacks()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L391",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "._fire_app_callbacks()",
+      "id": "src_armaden_framework_runtime_application_coreapplication_fire_app_callbacks"
+    },
+    {
+      "label": "ApplicationStatus",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L398",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "applicationstatus",
+      "id": "src_armaden_framework_runtime_application_applicationstatus"
+    },
+    {
+      "label": "StrEnum",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 47,
+      "norm_label": "strenum",
+      "id": "strenum"
+    },
+    {
+      "label": "ApplicationException",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L403",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "applicationexception",
+      "id": "src_armaden_framework_runtime_application_applicationexception"
+    },
+    {
+      "label": "Exception",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 24,
+      "norm_label": "exception",
+      "id": "exception"
+    },
+    {
+      "label": "ApplicationError",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L407",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "applicationerror",
+      "id": "src_armaden_framework_runtime_application_applicationerror"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/runtime/providers/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 99,
+      "norm_label": "__init__.py",
+      "id": "src_armaden_framework_runtime_providers_init"
     },
     {
       "label": "filesystem_service_provider.py",
@@ -18851,12 +18851,673 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L142",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage",
+      "target": "src_armaden_framework_facades_storage_storage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_copy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L110",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_copy_async",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_delete",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L106",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_delete_async",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_delete_directory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L138",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_delete_directory_async",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_directories",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L130",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_directories_async",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_exists",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L90",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_exists_async",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_files",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L126",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_files_async",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_get",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L98",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_get_async",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_last_modified",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L122",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_last_modified_async",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L70",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_make_directory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L134",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_make_directory_async",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_missing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L94",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_missing_async",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_move",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L114",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_move_async",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L78",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_put",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_put_async",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_size",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L118",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_size_async",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L86",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_temporary_url",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L82",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage",
+      "target": "src_armaden_framework_facades_storage_storage_url",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_default_disk",
+      "target": "src_armaden_framework_facades_storage_storage_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_disk",
+      "target": "src_armaden_framework_facades_storage_storage_get",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_copy",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L111",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_copy_async",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_delete",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L107",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_delete_async",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_delete_directory",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_delete_directory_async",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_directories",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L131",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_directories_async",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_exists",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_exists_async",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_files",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L127",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_files_async",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_get",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L99",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_get_async",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_last_modified",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L123",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_last_modified_async",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_make_directory",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L135",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_make_directory_async",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_missing",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L95",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_missing_async",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_move",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L115",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_move_async",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_path",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_put",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L103",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_put_async",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_size",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L119",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_size_async",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_temporary_url",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/facades/storage.py",
+      "source_location": "L83",
+      "weight": 1.0,
+      "source": "src_armaden_framework_facades_storage_storage_url",
+      "target": "src_armaden_framework_facades_storage_storage_default_disk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L407",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application",
-      "target": "src_armaden_framework_runtime_application_applicationerror",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_applicationerror"
     },
     {
       "relation": "contains",
@@ -18864,9 +19525,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L403",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application",
-      "target": "src_armaden_framework_runtime_application_applicationexception",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_applicationexception"
     },
     {
       "relation": "contains",
@@ -18874,9 +19535,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L398",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application",
-      "target": "src_armaden_framework_runtime_application_applicationstatus",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_applicationstatus"
     },
     {
       "relation": "contains",
@@ -18884,9 +19545,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L27",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application",
-      "target": "src_armaden_framework_runtime_application_coreapplication",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication"
     },
     {
       "relation": "method",
@@ -18894,9 +19555,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L224",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_bind",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_bind"
     },
     {
       "relation": "method",
@@ -18904,9 +19565,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L175",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_boot",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_boot"
     },
     {
       "relation": "method",
@@ -18914,9 +19575,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L201",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_booted",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_booted"
     },
     {
       "relation": "method",
@@ -18924,9 +19585,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L198",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_booting",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_booting"
     },
     {
       "relation": "method",
@@ -18934,9 +19595,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L82",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_bootstrap",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_bootstrap"
     },
     {
       "relation": "method",
@@ -18944,9 +19605,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L245",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_config",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_config"
     },
     {
       "relation": "method",
@@ -18954,9 +19615,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L215",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_container",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_container"
     },
     {
       "relation": "method",
@@ -18964,9 +19625,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L256",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_environment",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_environment"
     },
     {
       "relation": "method",
@@ -18974,9 +19635,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L235",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_event_loop",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_event_loop"
     },
     {
       "relation": "method",
@@ -18984,9 +19645,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L391",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_fire_app_callbacks",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_fire_app_callbacks"
     },
     {
       "relation": "method",
@@ -18994,9 +19655,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L30",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_init",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_init"
     },
     {
       "relation": "method",
@@ -19004,9 +19665,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L345",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_initialize_configs",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_initialize_configs"
     },
     {
       "relation": "method",
@@ -19014,9 +19675,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L309",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_initialize_environment",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_initialize_environment"
     },
     {
       "relation": "method",
@@ -19024,9 +19685,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L266",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_initialize_logging",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_initialize_logging"
     },
     {
       "relation": "method",
@@ -19034,9 +19695,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L227",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_instance",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_instance"
     },
     {
       "relation": "method",
@@ -19044,9 +19705,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L259",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_is_local",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_is_local"
     },
     {
       "relation": "method",
@@ -19054,9 +19715,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L262",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_is_production",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_is_production"
     },
     {
       "relation": "method",
@@ -19064,9 +19725,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L218",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_make",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_make"
     },
     {
       "relation": "method",
@@ -19074,9 +19735,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L72",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_make_provider",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_make_provider"
     },
     {
       "relation": "method",
@@ -19084,9 +19745,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L145",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register"
     },
     {
       "relation": "method",
@@ -19094,9 +19755,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L57",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register_base_bindings",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register_base_bindings"
     },
     {
       "relation": "method",
@@ -19104,9 +19765,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L61",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register_base_service_providers",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register_base_service_providers"
     },
     {
       "relation": "method",
@@ -19114,9 +19775,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L78",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register_contextual_attributes",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register_contextual_attributes"
     },
     {
       "relation": "method",
@@ -19124,9 +19785,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L75",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register_core_container_aliases",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register_core_container_aliases"
     },
     {
       "relation": "method",
@@ -19134,9 +19795,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L161",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register_deferred_provider",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register_deferred_provider"
     },
     {
       "relation": "method",
@@ -19144,9 +19805,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L172",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register_provider",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register_provider"
     },
     {
       "relation": "method",
@@ -19154,9 +19815,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L388",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register_provider_bindings",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register_provider_bindings"
     },
     {
       "relation": "method",
@@ -19164,9 +19825,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L274",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register_providers",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register_providers"
     },
     {
       "relation": "method",
@@ -19174,9 +19835,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L221",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_singleton",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_singleton"
     },
     {
       "relation": "method",
@@ -19184,9 +19845,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L231",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_supervisor",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_supervisor"
     },
     {
       "relation": "method",
@@ -19194,9 +19855,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L209",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_terminate",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_terminate"
     },
     {
       "relation": "method",
@@ -19204,9 +19865,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L206",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_terminating",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_terminating"
     },
     {
       "relation": "method",
@@ -19214,9 +19875,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L238",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication",
-      "target": "src_armaden_framework_runtime_application_coreapplication_version",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_version"
     },
     {
       "relation": "calls",
@@ -19225,9 +19886,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L31",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_init",
-      "target": "instancecontainer",
-      "confidence_score": 1.0
+      "target": "instancecontainer"
     },
     {
       "relation": "calls",
@@ -19236,9 +19897,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L32",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_init",
-      "target": "src_armaden_framework_runtime_application_coreapplication_instance",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_instance"
     },
     {
       "relation": "calls",
@@ -19247,9 +19908,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L52",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_init",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register_base_bindings",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register_base_bindings"
     },
     {
       "relation": "calls",
@@ -19258,9 +19919,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L53",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_init",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register_base_service_providers",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register_base_service_providers"
     },
     {
       "relation": "calls",
@@ -19269,9 +19930,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L55",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_init",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register_contextual_attributes",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register_contextual_attributes"
     },
     {
       "relation": "calls",
@@ -19280,9 +19941,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L54",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_init",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register_core_container_aliases",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register_core_container_aliases"
     },
     {
       "relation": "calls",
@@ -19291,9 +19952,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L58",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register_base_bindings",
-      "target": "src_armaden_framework_runtime_application_coreapplication_instance",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_instance"
     },
     {
       "relation": "calls",
@@ -19302,9 +19963,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L59",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register_base_bindings",
-      "target": "src_armaden_framework_runtime_application_coreapplication_singleton",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_singleton"
     },
     {
       "relation": "calls",
@@ -19313,9 +19974,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L67",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register_base_service_providers",
-      "target": "src_armaden_framework_runtime_application_coreapplication_make_provider",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_make_provider"
     },
     {
       "relation": "calls",
@@ -19324,9 +19985,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L67",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register_base_service_providers",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register"
     },
     {
       "relation": "calls",
@@ -19335,9 +19996,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L125",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_bootstrap",
-      "target": "src_armaden_framework_runtime_application_coreapplication_make_provider",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_make_provider"
     },
     {
       "relation": "references",
@@ -19346,9 +20007,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L72",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_make_provider",
-      "target": "serviceprovider",
-      "confidence_score": 1.0
+      "target": "serviceprovider"
     },
     {
       "relation": "calls",
@@ -19357,9 +20018,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L73",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_make_provider",
-      "target": "src_armaden_framework_runtime_application_coreapplication_make",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_make"
     },
     {
       "relation": "calls",
@@ -19368,9 +20029,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L291",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register_providers",
-      "target": "src_armaden_framework_runtime_application_coreapplication_make_provider",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_make_provider"
     },
     {
       "relation": "references",
@@ -19379,9 +20040,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L145",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register",
-      "target": "serviceprovider",
-      "confidence_score": 1.0
+      "target": "serviceprovider"
     },
     {
       "relation": "references",
@@ -19390,9 +20051,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L161",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register_deferred_provider",
-      "target": "serviceprovider",
-      "confidence_score": 1.0
+      "target": "serviceprovider"
     },
     {
       "relation": "references",
@@ -19401,9 +20062,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L172",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register_provider",
-      "target": "serviceprovider",
-      "confidence_score": 1.0
+      "target": "serviceprovider"
     },
     {
       "relation": "references",
@@ -19412,9 +20073,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L388",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register_provider_bindings",
-      "target": "serviceprovider",
-      "confidence_score": 1.0
+      "target": "serviceprovider"
     },
     {
       "relation": "inherits",
@@ -19433,9 +20094,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L82",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_bootstrap",
-      "target": "result",
-      "confidence_score": 1.0
+      "target": "result"
     },
     {
       "relation": "calls",
@@ -19444,9 +20105,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L86",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_bootstrap",
-      "target": "src_armaden_framework_runtime_application_applicationexception",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_applicationexception"
     },
     {
       "relation": "calls",
@@ -19455,9 +20116,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L96",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_bootstrap",
-      "target": "src_armaden_framework_runtime_application_coreapplication_bind",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_bind"
     },
     {
       "relation": "calls",
@@ -19466,9 +20127,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L115",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_bootstrap",
-      "target": "src_armaden_framework_runtime_application_coreapplication_initialize_configs",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_initialize_configs"
     },
     {
       "relation": "calls",
@@ -19477,9 +20138,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L113",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_bootstrap",
-      "target": "src_armaden_framework_runtime_application_coreapplication_initialize_environment",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_initialize_environment"
     },
     {
       "relation": "calls",
@@ -19488,9 +20149,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L85",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_bootstrap",
-      "target": "src_armaden_framework_runtime_application_coreapplication_initialize_logging",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_initialize_logging"
     },
     {
       "relation": "calls",
@@ -19499,9 +20160,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L125",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_bootstrap",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register"
     },
     {
       "relation": "calls",
@@ -19510,9 +20171,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L140",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_bootstrap",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register_providers",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register_providers"
     },
     {
       "relation": "references",
@@ -20379,9 +21040,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L175",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_boot",
-      "target": "result",
-      "confidence_score": 1.0
+      "target": "result"
     },
     {
       "relation": "references",
@@ -20390,9 +21051,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L345",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_initialize_configs",
-      "target": "result",
-      "confidence_score": 1.0
+      "target": "result"
     },
     {
       "relation": "references",
@@ -20401,9 +21062,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L309",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_initialize_environment",
-      "target": "result",
-      "confidence_score": 1.0
+      "target": "result"
     },
     {
       "relation": "references",
@@ -20412,9 +21073,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L266",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_initialize_logging",
-      "target": "result",
-      "confidence_score": 1.0
+      "target": "result"
     },
     {
       "relation": "references",
@@ -20423,9 +21084,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L145",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register",
-      "target": "result",
-      "confidence_score": 1.0
+      "target": "result"
     },
     {
       "relation": "references",
@@ -20434,9 +21095,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L161",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register_deferred_provider",
-      "target": "result",
-      "confidence_score": 1.0
+      "target": "result"
     },
     {
       "relation": "references",
@@ -20445,9 +21106,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L172",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register_provider",
-      "target": "result",
-      "confidence_score": 1.0
+      "target": "result"
     },
     {
       "relation": "references",
@@ -20456,9 +21117,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L209",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_terminate",
-      "target": "result",
-      "confidence_score": 1.0
+      "target": "result"
     },
     {
       "relation": "references",
@@ -20489,9 +21150,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L147",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register_deferred_provider",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register_deferred_provider"
     },
     {
       "relation": "calls",
@@ -20500,9 +21161,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L148",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register_provider_bindings",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register_provider_bindings"
     },
     {
       "relation": "calls",
@@ -20511,9 +21172,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L173",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register_provider",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register"
     },
     {
       "relation": "calls",
@@ -20522,9 +21183,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L296",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register_providers",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register"
     },
     {
       "relation": "calls",
@@ -20533,9 +21194,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L293",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register_providers",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register_deferred_provider",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register_deferred_provider"
     },
     {
       "relation": "calls",
@@ -20544,9 +21205,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L179",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_boot",
-      "target": "src_armaden_framework_runtime_application_coreapplication_fire_app_callbacks",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_fire_app_callbacks"
     },
     {
       "relation": "references",
@@ -20555,9 +21216,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L215",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_container",
-      "target": "instancecontainer",
-      "confidence_score": 1.0
+      "target": "instancecontainer"
     },
     {
       "relation": "calls",
@@ -20566,9 +21227,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L236",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_event_loop",
-      "target": "src_armaden_framework_runtime_application_coreapplication_make",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_make"
     },
     {
       "relation": "references",
@@ -20577,9 +21238,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L218",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_make",
-      "target": "any",
-      "confidence_score": 1.0
+      "target": "any"
     },
     {
       "relation": "calls",
@@ -20588,9 +21249,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L232",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_supervisor",
-      "target": "src_armaden_framework_runtime_application_coreapplication_make",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_make"
     },
     {
       "relation": "references",
@@ -20599,9 +21260,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L224",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_bind",
-      "target": "any",
-      "confidence_score": 1.0
+      "target": "any"
     },
     {
       "relation": "references",
@@ -20610,9 +21271,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L245",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_config",
-      "target": "any",
-      "confidence_score": 1.0
+      "target": "any"
     },
     {
       "relation": "references",
@@ -20621,9 +21282,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L227",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_instance",
-      "target": "any",
-      "confidence_score": 1.0
+      "target": "any"
     },
     {
       "relation": "references",
@@ -20632,9 +21293,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L221",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_singleton",
-      "target": "any",
-      "confidence_score": 1.0
+      "target": "any"
     },
     {
       "relation": "references",
@@ -20643,9 +21304,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L231",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_supervisor",
-      "target": "supervisorinterface",
-      "confidence_score": 1.0
+      "target": "supervisorinterface"
     },
     {
       "relation": "references",
@@ -20654,9 +21315,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L235",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_event_loop",
-      "target": "abstracteventloop",
-      "confidence_score": 1.0
+      "target": "abstracteventloop"
     },
     {
       "relation": "indirect_call",
@@ -20665,9 +21326,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L363",
       "weight": 1.0,
+      "confidence_score": 0.5,
       "source": "src_armaden_framework_runtime_application_coreapplication_initialize_configs",
-      "target": "src_armaden_framework_runtime_application_coreapplication_config",
-      "confidence_score": 0.5
+      "target": "src_armaden_framework_runtime_application_coreapplication_config"
     },
     {
       "relation": "calls",
@@ -20676,9 +21337,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L295",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register_providers",
-      "target": "src_armaden_framework_runtime_application_coreapplication_register_provider_bindings",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_runtime_application_coreapplication_register_provider_bindings"
     },
     {
       "relation": "inherits",
@@ -20686,9 +21347,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L398",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_applicationstatus",
-      "target": "strenum",
-      "confidence_score": 1.0
+      "target": "strenum"
     },
     {
       "relation": "inherits",
@@ -20877,9 +21538,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L407",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_applicationerror",
-      "target": "strenum",
-      "confidence_score": 1.0
+      "target": "strenum"
     },
     {
       "relation": "inherits",
@@ -20887,9 +21548,9 @@
       "source_file": "src/armaden/framework/runtime/application.py",
       "source_location": "L403",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_applicationexception",
-      "target": "exception",
-      "confidence_score": 1.0
+      "target": "exception"
     },
     {
       "relation": "inherits",
@@ -21130,667 +21791,6 @@
       "confidence_score": 1.0,
       "source": "home_slothsh_local_state_worktrees_armaden_feature_supervisor_task_refactor_worktree_src_armaden_framework_runtime_errors_unresolveddependencyerror",
       "target": "exception"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L142",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage",
-      "target": "src_armaden_framework_facades_storage_storage"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L46",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_copy"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L110",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_copy_async"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L22",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L42",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_delete"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L106",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_delete_async"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L74",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_deletedirectory"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L138",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_deletedirectory_async"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L66",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_directories"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L130",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_directories_async"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_disk"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L26",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_exists"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L90",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_exists_async"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L62",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_files"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L126",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_files_async"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L34",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_get"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L98",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_get_async"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L58",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_lastmodified"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L122",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_lastmodified_async"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L70",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_makedirectory"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L134",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_makedirectory_async"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L30",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_missing"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L94",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_missing_async"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L50",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_move"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L114",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_move_async"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L78",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_path"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L38",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_put"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L102",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_put_async"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L54",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_size"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L118",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_size_async"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L86",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_temporaryurl"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L82",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage",
-      "target": "src_armaden_framework_facades_storage_storage_url"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L23",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_default_disk",
-      "target": "src_armaden_framework_facades_storage_storage_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L18",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_disk",
-      "target": "src_armaden_framework_facades_storage_storage_get"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L47",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_copy",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L111",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_copy_async",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L43",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_delete",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L107",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_delete_async",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L75",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_deletedirectory",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L139",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_deletedirectory_async",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L67",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_directories",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L131",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_directories_async",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L27",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_exists",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L91",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_exists_async",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L63",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_files",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L127",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_files_async",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L35",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_get",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L99",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_get_async",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L59",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_lastmodified",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L123",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_lastmodified_async",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L71",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_makedirectory",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L135",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_makedirectory_async",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L31",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_missing",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L95",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_missing_async",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L51",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_move",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L115",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_move_async",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L79",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_path",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L39",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_put",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L103",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_put_async",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L55",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_size",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L119",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_size_async",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L87",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_temporaryurl",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/facades/storage.py",
-      "source_location": "L83",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_facades_storage_storage_url",
-      "target": "src_armaden_framework_facades_storage_storage_default_disk"
     },
     {
       "relation": "contains",
@@ -54964,5 +54964,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "00619d2ae7f8a9cab85509f524361c36c044157a"
+  "built_at_commit": "fac58c3f7ca5318e9f24b60c0bbd6f0aa2943871"
 }

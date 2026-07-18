@@ -960,7 +960,7 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/filesystem.py": {
-    "mtime": 1784368593.7264163,
+    "mtime": 1784372730.9961066,
     "ast_hash": "ce2a253d003ae3f7a36e9972f531fb91",
     "semantic_hash": ""
   },
@@ -992,6 +992,16 @@
   "src/armaden/framework/runtime/providers/filesystem_service_provider.py": {
     "mtime": 1784369986.1724803,
     "ast_hash": "da436b39752377f6472fe0e757b29719",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/protocols/cache.py": {
+    "mtime": 1784374988.5808046,
+    "ast_hash": "4686c8adbc3c95c6c17311c660b5d87e",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/runtime/config/cache.py": {
+    "mtime": 1784374988.5808046,
+    "ast_hash": "2a8007ed344a0177960aaec48a50f768",
     "semantic_hash": ""
   }
 }

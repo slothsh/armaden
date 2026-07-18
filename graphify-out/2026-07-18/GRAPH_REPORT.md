@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `00619d2a`
+- Built from commit: `fac58c3f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -476,11 +476,11 @@ Nodes (5): MANDATORY: Code Comment Conventions, MANDATORY: Git Rules, MANDATORY:
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `ArmaReforgerServerExecutable` connect `ArmaReforgerServerExecutable` to `SteamCmdExecutable`, `.server_id`, `.generate_shaders`, `HealthStatus`, `.log_time`, `ServiceProvider`, `.no_sound`, `.load_session_save`, `.logs_dir`, `.profile`, `.cfg`, `.create_db`, `.script_authorize_all`, `__init__.py`, `.disable_crash_reporter`, `TaskBuilder`, `.backend_local_storage`, `.jobsys_short_worker_count`, `api.py`, `.log_scr_checksum`, `.player_limits`, `.backend_fresh_session`, `.scenario`?**
-  _High betweenness centrality (0.155) - this node is a cross-community bridge._
+  _High betweenness centrality (0.158) - this node is a cross-community bridge._
 - **Why does `InstanceContainer` connect `InstanceContainer` to `WorkerPool`, `.get_alias`, `RconCommandArgumentError`, `RconCommandInterface`, `ContextualAttribute`, `.resolve_primitive`, `BattleEyeRconClient`, `.ai_limit`, `SubprocessHandle`, `Exception`, `Message`, `.resolve`, `TaskRuntimeInterface`, `Kernel`, `.log_append`, `HttpServiceProvider`?**
-  _High betweenness centrality (0.113) - this node is a cross-community bridge._
+  _High betweenness centrality (0.115) - this node is a cross-community bridge._
 - **Why does `Filesystem` connect `CoreApplication` to `ServerMessageResponsePacket`?**
-  _High betweenness centrality (0.099) - this node is a cross-community bridge._
+  _High betweenness centrality (0.100) - this node is a cross-community bridge._
 - **Are the 25 inferred relationships involving `InstanceContainer` (e.g. with `Application` and `Config`) actually correct?**
   _`InstanceContainer` has 25 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 11 inferred relationships involving `ArmaReforgerServerExecutable` (e.g. with `Executable` and `Dictionary`) actually correct?**
