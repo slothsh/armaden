@@ -110,8 +110,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/facades/__init__.py": {
-    "mtime": 1784368141.1443202,
-    "ast_hash": "79d25128d7f506e5dc00b77fb89909fa",
+    "mtime": 1784370015.3134296,
+    "ast_hash": "33789597424c67c01f78165cdd7f969c",
     "semantic_hash": ""
   },
   "src/armaden/framework/facades/_registry.py": {
@@ -210,8 +210,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/application.py": {
-    "mtime": 1784368141.146008,
-    "ast_hash": "b885d671df797e7360e701da368b0b12",
+    "mtime": 1784370015.3144298,
+    "ast_hash": "517f0dc78a4bc5fc6be6fc45d2f2af8e",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/builders/__init__.py": {
@@ -435,8 +435,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/providers/__init__.py": {
-    "mtime": 1784368141.1493204,
-    "ast_hash": "5a94c84f0dc10660c15a14eb4682623b",
+    "mtime": 1784370015.3134296,
+    "ast_hash": "cbf138d487b4c7ac2427f6fb211a5cee",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/providers/console_service_provider.py": {
@@ -970,13 +970,28 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/filesystem/__init__.py": {
-    "mtime": 1784369336.595557,
-    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "mtime": 1784369986.1724803,
+    "ast_hash": "61e15f21e3b8072a7f5d94c827938849",
     "semantic_hash": ""
   },
   "src/armaden/framework/filesystem/local_filesystem.py": {
     "mtime": 1784369336.595557,
     "ast_hash": "085dee09d062a3910714a61c2decf818",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/filesystem/s3_filesystem.py": {
+    "mtime": 1784369588.6621559,
+    "ast_hash": "edaedf5bca2553408e9e1257533cd79d",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/facades/storage.py": {
+    "mtime": 1784369986.1724803,
+    "ast_hash": "added57470d90db29d88b7ee286d58fe",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/runtime/providers/filesystem_service_provider.py": {
+    "mtime": 1784369986.1724803,
+    "ast_hash": "da436b39752377f6472fe0e757b29719",
     "semantic_hash": ""
   }
 }
