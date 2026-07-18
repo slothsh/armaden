@@ -1,8 +1,10 @@
 from .app import App, app
-from .config import config
-from .route import Route
-from .storage import Storage, storage
 from .cache import Cache, cache
+from .config import config
+from .db import DB
+from .route import Route
+from .schema import Schema
+from .storage import Storage, storage
 
 __all__ = [
     'App',
@@ -13,4 +15,6 @@ __all__ = [
     'storage',
     'Cache',
     'cache',
+    'DB',
+    'Schema',
 ]
