@@ -55,7 +55,7 @@ class Storage:
         return cls._default_disk().size(path)
 
     @classmethod
-    def lastModified(cls, path: str) -> 'Result[int]':
+    def last_modified(cls, path: str) -> 'Result[int]':
         return cls._default_disk().last_modified(path)
 
     @classmethod
@@ -67,11 +67,11 @@ class Storage:
         return cls._default_disk().directories(directory)
 
     @classmethod
-    def makeDirectory(cls, path: str) -> 'Result[bool]':
+    def make_directory(cls, path: str) -> 'Result[bool]':
         return cls._default_disk().make_directory(path)
 
     @classmethod
-    def deleteDirectory(cls, path: str) -> 'Result[bool]':
+    def delete_directory(cls, path: str) -> 'Result[bool]':
         return cls._default_disk().delete_directory(path)
 
     @classmethod
@@ -83,7 +83,7 @@ class Storage:
         return cls._default_disk().url(path)
 
     @classmethod
-    def temporaryUrl(cls, path: str, expiration: int) -> str:
+    def temporary_url(cls, path: str, expiration: int) -> str:
         return cls._default_disk().temporary_url(path, expiration)
 
     @classmethod
@@ -119,7 +119,7 @@ class Storage:
         return await cls._default_disk().size_async(path)
 
     @classmethod
-    async def lastModified_async(cls, path: str) -> 'Result[int]':
+    async def last_modified_async(cls, path: str) -> 'Result[int]':
         return await cls._default_disk().last_modified_async(path)
 
     @classmethod
@@ -131,11 +131,11 @@ class Storage:
         return await cls._default_disk().directories_async(directory)
 
     @classmethod
-    async def makeDirectory_async(cls, path: str) -> 'Result[bool]':
+    async def make_directory_async(cls, path: str) -> 'Result[bool]':
         return await cls._default_disk().make_directory_async(path)
 
     @classmethod
-    async def deleteDirectory_async(cls, path: str) -> 'Result[bool]':
+    async def delete_directory_async(cls, path: str) -> 'Result[bool]':
         return await cls._default_disk().delete_directory_async(path)
 
 
