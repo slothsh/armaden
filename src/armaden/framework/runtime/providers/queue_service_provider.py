@@ -209,6 +209,7 @@ class QueueServiceProvider(ServiceProvider):
                 .on_shutdown(worker.shutdown)
                 .shared_thread()
                 .long_running()
+                .ready_timeout(10.0)
                 .build()
             )
             supervisor.submit([task])
