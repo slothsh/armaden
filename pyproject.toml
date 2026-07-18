@@ -27,6 +27,9 @@ uvicorn = {extras = ["standard"], version = "^0.32"}
 returns = "^0.28.0"
 python-dotenv = "^1.2.2"
 apscheduler = "^3.10"
+fsspec = "^2026.6.0"
+s3fs = "^2026.6.0"
+masonite-framework-orm = "^3.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.0"

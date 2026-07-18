@@ -62,8 +62,14 @@ class CoreApplication:
         from armaden.framework.runtime.providers.http_service_provider import HttpServiceProvider
         from armaden.framework.runtime.providers.console_service_provider import ConsoleServiceProvider
         from armaden.framework.runtime.providers.rcon_service_provider import RconServiceProvider
+        from armaden.framework.runtime.providers.filesystem_service_provider import FilesystemServiceProvider
+        from armaden.framework.runtime.providers.cache_service_provider import CacheServiceProvider
+        from armaden.framework.runtime.providers.database_service_provider import DatabaseServiceProvider
 
         self.register(self._make_provider(HttpServiceProvider))
+        self.register(self._make_provider(FilesystemServiceProvider))
+        self.register(self._make_provider(CacheServiceProvider))
+        self.register(self._make_provider(DatabaseServiceProvider))
         self.register(self._make_provider(ConsoleServiceProvider))
         self.register(self._make_provider(RconServiceProvider))
 
