@@ -19,14 +19,22 @@ class DatabaseServiceProvider(ServiceProvider):
         self._registered = False
 
     def register(self) -> Result[None]:
+        if self._build_connections():
+            self._registered = True
+        return Success(None)
+
+    def boot(self) -> Result[None]:
+        if not self._registered:
+            if self._build_connections():
+                self._registered = True
+        return Success(None)
+
+    def _build_connections(self) -> bool:
         application = self._container.make('app')
         config = application.config('database', {}) or {}
 
         if not config or not config.get('connections'):
-            logger.warning(
-                "No database configuration found; skipping database registration"
-            )
-            return Success(None)
+            return False
 
         try:
             from masoniteorm.connections import ConnectionResolver
@@ -35,18 +43,23 @@ class DatabaseServiceProvider(ServiceProvider):
                 "masonite-framework-orm is not installed; skipping database "
                 "registration: %s", exception,
             )
-            return Success(None)
+            return False
 
         masonite_db = self._map_config(config)
 
         if masonite_db is None:
-            return Success(None)
+            return False
 
         resolver = ConnectionResolver(connection_details=masonite_db)
 
         self._container.instance('database.resolver', resolver)
         self._container.instance('database.connection_details', masonite_db)
         self._container.instance('database.default', masonite_db.get('default'))
+
+        import os
+        import armaden.framework.runtime.config.database as db_config_module
+        db_config_module.DB = resolver
+        os.environ['DB_CONFIG_PATH'] = 'armaden.framework.runtime.config.database'
 
         registered = [
             name for name in masonite_db
@@ -58,11 +71,7 @@ class DatabaseServiceProvider(ServiceProvider):
             masonite_db.get('default', 'none'),
         )
 
-        self._registered = True
-        return Success(None)
-
-    def boot(self) -> Result[None]:
-        return Success(None)
+        return True
 
     def _map_config(self, config: dict) -> dict | None:
         default = config.get('default')
