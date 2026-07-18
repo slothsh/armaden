@@ -985,8 +985,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/facades/storage.py": {
-    "mtime": 1784369986.1724803,
-    "ast_hash": "added57470d90db29d88b7ee286d58fe",
+    "mtime": 1784370759.747842,
+    "ast_hash": "294c78175009841e38b4d16bdd36a36f",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/providers/filesystem_service_provider.py": {
