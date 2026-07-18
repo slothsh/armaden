@@ -1,7 +1,7 @@
 {
   "pyproject.toml": {
-    "mtime": 1784369138.893626,
-    "ast_hash": "772e96c047b1364f1f92367f54f346e8",
+    "mtime": 1784391004.1615741,
+    "ast_hash": "cbe3ea7363182a7d2cd37a103946b9e5",
     "semantic_hash": ""
   },
   "src/armaden/framework/__init__.py": {
@@ -110,8 +110,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/facades/__init__.py": {
-    "mtime": 1784376173.0330238,
-    "ast_hash": "93b87362cd31b50b59b491e8e1bae7fb",
+    "mtime": 1784390982.5816054,
+    "ast_hash": "e0b1f5134348a8661be6a2ef81b14bd1",
     "semantic_hash": ""
   },
   "src/armaden/framework/facades/_registry.py": {
@@ -210,8 +210,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/application.py": {
-    "mtime": 1784376200.3099523,
-    "ast_hash": "79f6435e2c10444eebc4f14b0a6e6fe4",
+    "mtime": 1784390993.883589,
+    "ast_hash": "1f1cfa6ca27040fa2efef43107a4f6e3",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/builders/__init__.py": {
@@ -435,8 +435,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/providers/__init__.py": {
-    "mtime": 1784376173.0330238,
-    "ast_hash": "a83f64fa034ae3588e4ddad62ae57a90",
+    "mtime": 1784390987.3445985,
+    "ast_hash": "04cef994afe81533e0eb81870531e303",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/providers/console_service_provider.py": {
@@ -1050,13 +1050,18 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/providers/database_service_provider.py": {
-    "mtime": 1784390821.4968314,
-    "ast_hash": "5ae559617961c71828da6ea9284a528f",
+    "mtime": 1784391166.5603344,
+    "ast_hash": "aefed121f89c8a9382a0026342df3bc9",
     "semantic_hash": ""
   },
   "src/armaden/framework/facades/db.py": {
     "mtime": 1784390909.5297093,
     "ast_hash": "3dd2050fa32e9d00d4881fbc98bf0f0b",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/facades/schema.py": {
+    "mtime": 1784390947.5256555,
+    "ast_hash": "bbbeae4e598c697117c062e7a625cb29",
     "semantic_hash": ""
   }
 }
