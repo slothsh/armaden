@@ -5,9 +5,11 @@ import logging
 from typing import TYPE_CHECKING, Any
 
 from returns.pipeline import is_successful
-from returns.result import Result, Success
+from returns.result import Success
 
+from armaden.framework.protocols.task_runtime import TaskRuntimeInterface
 from armaden.framework.runtime.task import Task
+from armaden.framework.utils.types import Result
 
 if TYPE_CHECKING:
     from armaden.framework.queue.driver import QueueDriver
@@ -51,52 +53,90 @@ class QueueWorker(Task):
         self._running = False
         self._worker_tasks: list[asyncio.Task] = []
         self._inflight: set[asyncio.Task] = set()
+        self._ready_signaled = False
 
-    async def run(self) -> Result[None]:
+    async def run(self, runtime: TaskRuntimeInterface) -> Result[None]:
         self._running = True
         self._worker_tasks = [
             asyncio.create_task(self._poll_loop(worker_id))
             for worker_id in range(self._num_workers)
         ]
+        await self._signal_ready(runtime)
         try:
             await asyncio.gather(*self._worker_tasks, return_exceptions=True)
         except asyncio.CancelledError:
             pass
         return Success(None)
 
-    async def shutdown(self) -> Result[None]:
+    async def shutdown(self, runtime: TaskRuntimeInterface) -> Result[None]:
         self._running = False
+
         for task in self._worker_tasks:
             if not task.done():
                 task.cancel()
         if self._worker_tasks:
             await asyncio.gather(*self._worker_tasks, return_exceptions=True)
+
         if self._inflight:
-            await asyncio.gather(*self._inflight, return_exceptions=True)
+            logger.info(
+                "Queue worker '%s' draining %d inflight job(s) (timeout=%ss)",
+                self.name, len(self._inflight), self._timeout,
+            )
+            try:
+                await asyncio.wait_for(
+                    asyncio.gather(*self._inflight, return_exceptions=True),
+                    timeout=float(self._timeout),
+                )
+            except asyncio.TimeoutError:
+                logger.warning(
+                    "Queue worker '%s' drain timed out after %ss; cancelling %d job(s)",
+                    self.name, self._timeout, len(self._inflight),
+                )
+                for task in self._inflight:
+                    if not task.done():
+                        task.cancel()
+                if self._inflight:
+                    await asyncio.gather(*self._inflight, return_exceptions=True)
+
         return Success(None)
+
+    async def _signal_ready(self, runtime: TaskRuntimeInterface) -> None:
+        if self._ready_signaled:
+            return
+        self._ready_signaled = True
+        try:
+            await runtime.signal_ready()
+        except Exception:
+            logger.exception(
+                "Queue worker '%s' failed to signal ready", self.name,
+            )
 
     async def _poll_loop(self, worker_id: int) -> None:
         logger.debug("Queue worker %s[%d] started for connection '%s'",
                      self.name, worker_id, self._connection_name)
         while self._running:
             popped = False
-            for queue in self._queues:
-                pop_result = await asyncio.to_thread(self._driver.pop, queue)
-                if not is_successful(pop_result):
-                    logger.warning(
-                        "Queue worker %s[%d] pop failed on queue '%s': %s",
-                        self.name, worker_id, queue, pop_result.failure(),
-                    )
-                    continue
-                job = pop_result.unwrap()
-                if job is None:
-                    continue
-                job_id = getattr(job, '_job_id', '') or ''
-                task = asyncio.create_task(self._process_job(job, job_id, queue))
-                self._inflight.add(task)
-                task.add_done_callback(self._inflight.discard)
-                popped = True
+            try:
+                for queue in self._queues:
+                    pop_result = await asyncio.to_thread(self._driver.pop, queue)
+                    if not is_successful(pop_result):
+                        logger.warning(
+                            "Queue worker %s[%d] pop failed on queue '%s': %s",
+                            self.name, worker_id, queue, pop_result.failure(),
+                        )
+                        continue
+                    job = pop_result.unwrap()
+                    if job is None:
+                        continue
+                    job_id = getattr(job, '_job_id', '') or ''
+                    task = asyncio.create_task(self._process_job(job, job_id, queue))
+                    self._inflight.add(task)
+                    task.add_done_callback(self._inflight.discard)
+                    popped = True
+                    break
+            except asyncio.CancelledError:
                 break
+
             if not popped and self._running:
                 try:
                     await asyncio.sleep(self._sleep)
@@ -120,6 +160,9 @@ class QueueWorker(Task):
         try:
             await asyncio.wait_for(asyncio.to_thread(job.handle), timeout=timeout)
             success = True
+        except asyncio.CancelledError:
+            await self._release_on_cancel(job_id, job_name, queue)
+            raise
         except asyncio.TimeoutError:
             exception = TimeoutError(f"Job {job_id} timed out after {timeout}s")
             logger.error("Job %s (%s) timed out after %ss", job_id, job_name, timeout)
@@ -136,12 +179,10 @@ class QueueWorker(Task):
                 job.after()
             except Exception:
                 logger.exception("Job %s after() hook raised an exception", job_name)
-            delete_result = await asyncio.to_thread(self._driver.delete, job_id, queue)
-            if not is_successful(delete_result):
-                logger.warning(
-                    "Job %s (%s) processed but delete failed: %s",
-                    job_id, job_name, delete_result.failure(),
-                )
+            await self._safe_driver_call(
+                'delete', self._driver.delete, job_id, queue,
+                job_name=job_name,
+            )
             return
 
         if exception is None:
@@ -153,10 +194,11 @@ class QueueWorker(Task):
                 "Job %s (%s) retrying in %ss (attempt %d/%d)",
                 job_id, job_name, backoff_seconds, attempts, max_attempts,
             )
-            release_result = await asyncio.to_thread(
-                self._driver.release, job_id, backoff_seconds, queue,
+            release_result = await self._safe_driver_call(
+                'release', self._driver.release, job_id, backoff_seconds, queue,
+                job_name=job_name, level='error',
             )
-            if not is_successful(release_result):
+            if release_result is not None and not is_successful(release_result):
                 logger.error(
                     "Job %s (%s) release for retry failed: %s",
                     job_id, job_name, release_result.failure(),
@@ -167,11 +209,45 @@ class QueueWorker(Task):
             "Job %s (%s) exhausted retries (attempt %d/%d); marking failed",
             job_id, job_name, attempts, max_attempts,
         )
-        fail_result = await asyncio.to_thread(
-            self._driver.fail, job_id, job, exception, queue,
+        fail_result = await self._safe_driver_call(
+            'fail', self._driver.fail, job_id, job, exception, queue,
+            job_name=job_name, level='error',
         )
-        if not is_successful(fail_result):
+        if fail_result is not None and not is_successful(fail_result):
             logger.error(
                 "Job %s (%s) fail() to driver failed: %s",
                 job_id, job_name, fail_result.failure(),
             )
+
+    async def _release_on_cancel(self, job_id: str, job_name: str, queue: str) -> None:
+        if not job_id:
+            return
+        logger.info(
+            "Job %s (%s) cancelled during shutdown; releasing back to queue '%s'",
+            job_id, job_name, queue,
+        )
+        await self._safe_driver_call(
+            'release', self._driver.release, job_id, 0, queue,
+            job_name=job_name, force=True,
+        )
+
+    async def _safe_driver_call(self, op: str, fn, *args, job_name: str = '',
+                                level: str = 'warning', force: bool = False) -> Any:
+        try:
+            return await asyncio.to_thread(fn, *args)
+        except RuntimeError as exc:
+            if 'cannot schedule new futures' in str(exc):
+                logger.debug(
+                    "Executor shutting down; could not %s job %s (%s)",
+                    op, job_name, exc,
+                )
+            else:
+                getattr(logger, level)(
+                    "RuntimeError during %s for job %s: %s", op, job_name, exc,
+                )
+            return None
+        except Exception:
+            logger.exception(
+                "Unexpected error during %s for job %s", op, job_name,
+            )
+            return None

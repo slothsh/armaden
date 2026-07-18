@@ -25,6 +25,9 @@ class Queue:
     @classmethod
     def push(cls, job: 'Job', queue: str = 'default',
              connection: str | None = None) -> Result[str]:
+        delay = getattr(job, '__delay__', None)
+        if delay is not None and delay > 0:
+            return cls._driver(connection).later(delay, job, queue)
         return cls._driver(connection).push(job, queue)
 
     @classmethod
@@ -38,7 +41,11 @@ class Queue:
         driver = cls._driver(connection)
         job_ids: list[str] = []
         for job in jobs:
-            result = driver.push(job, queue)
+            delay = getattr(job, '__delay__', None)
+            if delay is not None and delay > 0:
+                result = driver.later(delay, job, queue)
+            else:
+                result = driver.push(job, queue)
             from returns.pipeline import is_successful
             if not is_successful(result):
                 return result.map(lambda _: job_ids)

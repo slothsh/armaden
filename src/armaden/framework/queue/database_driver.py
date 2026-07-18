@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import threading
 import time
 import traceback
 import uuid
@@ -32,6 +33,7 @@ class DatabaseQueueDriver(QueueDriver):
         self._default_queue: str = self._config.get('queue', 'default')
         self._serializer: Any = None
         self._tables_ready = False
+        self._tables_lock = threading.Lock()
 
     def _resolver(self):
         from armaden.framework.facades import DB
@@ -53,26 +55,42 @@ class DatabaseQueueDriver(QueueDriver):
     def _ensure_tables(self) -> Result[None]:
         if self._tables_ready:
             return Success(None)
-        from armaden.framework.facades import Schema
 
-        has_jobs = Schema.has_table(self._table, connection=self._connection)
-        if not is_successful(has_jobs):
-            return has_jobs.map(lambda _: None)
-        if not has_jobs.unwrap():
-            result = Schema.create(self._table, self._define_jobs_table, connection=self._connection)
-            if not is_successful(result):
-                return result
+        with self._tables_lock:
+            if self._tables_ready:
+                return Success(None)
 
-        has_failed = Schema.has_table(self._failed_table, connection=self._connection)
-        if not is_successful(has_failed):
-            return has_failed.map(lambda _: None)
-        if not has_failed.unwrap():
-            result = Schema.create(self._failed_table, self._define_failed_table, connection=self._connection)
-            if not is_successful(result):
-                return result
+            from armaden.framework.facades import Schema
 
-        self._tables_ready = True
-        return Success(None)
+            has_jobs = Schema.has_table(self._table, connection=self._connection)
+            if not is_successful(has_jobs):
+                return has_jobs.map(lambda _: None)
+            if not has_jobs.unwrap():
+                result = Schema.create(self._table, self._define_jobs_table, connection=self._connection)
+                if not is_successful(result):
+                    if not self._is_already_exists(result.failure()):
+                        return result
+                    logger.debug("Table '%s' already exists; skipping creation", self._table)
+
+            has_failed = Schema.has_table(self._failed_table, connection=self._connection)
+            if not is_successful(has_failed):
+                return has_failed.map(lambda _: None)
+            if not has_failed.unwrap():
+                result = Schema.create(self._failed_table, self._define_failed_table, connection=self._connection)
+                if not is_successful(result):
+                    if not self._is_already_exists(result.failure()):
+                        return result
+                    logger.debug("Table '%s' already exists; skipping creation", self._failed_table)
+
+            self._tables_ready = True
+            return Success(None)
+
+    @staticmethod
+    def _is_already_exists(failure) -> bool:
+        details = getattr(failure, 'details', {}) or {}
+        exception = details.get('exception')
+        message = str(exception or failure).lower()
+        return 'already exists' in message
 
     def _define_jobs_table(self, t) -> None:
         t.string('id', length=36)
