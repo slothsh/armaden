@@ -4,14 +4,24 @@
   "graph": {},
   "nodes": [
     {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/orm/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_armaden_framework_orm_init",
+      "community": 267,
+      "norm_label": "__init__.py"
+    },
+    {
       "label": "model.py",
       "file_type": "code",
       "source_file": "src/armaden/framework/orm/model.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_armaden_framework_orm_model",
       "community": 94,
-      "norm_label": "model.py"
+      "norm_label": "model.py",
+      "id": "src_armaden_framework_orm_model"
     },
     {
       "label": "Model",
@@ -19,9 +29,9 @@
       "source_file": "src/armaden/framework/orm/model.py",
       "source_location": "L6",
       "_origin": "ast",
-      "id": "src_armaden_framework_orm_model_model",
       "community": 94,
-      "norm_label": "model"
+      "norm_label": "model",
+      "id": "src_armaden_framework_orm_model_model"
     },
     {
       "label": "_MasoniteModel",
@@ -29,9 +39,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "masonitemodel",
       "community": 94,
-      "norm_label": "_masonitemodel"
+      "norm_label": "_masonitemodel",
+      "id": "masonitemodel"
     },
     {
       "label": ".get_connection_details()",
@@ -39,9 +49,9 @@
       "source_file": "src/armaden/framework/orm/model.py",
       "source_location": "L15",
       "_origin": "ast",
-      "id": "src_armaden_framework_orm_model_model_get_connection_details",
       "community": 94,
-      "norm_label": ".get_connection_details()"
+      "norm_label": ".get_connection_details()",
+      "id": "src_armaden_framework_orm_model_model_get_connection_details"
     },
     {
       "label": "Base ORM model for armaden applications.      Extends masoniteorm's Model, overr",
@@ -49,9 +59,9 @@
       "source_file": "src/armaden/framework/orm/model.py",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "src_armaden_framework_orm_model_rationale_7",
       "community": 94,
-      "norm_label": "base orm model for armaden applications.      extends masoniteorm's model, overr"
+      "norm_label": "base orm model for armaden applications.      extends masoniteorm's model, overr",
+      "id": "src_armaden_framework_orm_model_rationale_7"
     },
     {
       "label": "database.py",
@@ -20674,9 +20684,9 @@
       "source_file": "src/armaden/framework/orm/model.py",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_orm_model",
-      "target": "src_armaden_framework_orm_model_model",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_orm_model_model"
     },
     {
       "relation": "inherits",
@@ -20684,9 +20694,9 @@
       "source_file": "src/armaden/framework/orm/model.py",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_orm_model_model",
-      "target": "masonitemodel",
-      "confidence_score": 1.0
+      "target": "masonitemodel"
     },
     {
       "relation": "method",
@@ -20694,9 +20704,9 @@
       "source_file": "src/armaden/framework/orm/model.py",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_orm_model_model",
-      "target": "src_armaden_framework_orm_model_model_get_connection_details",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_orm_model_model_get_connection_details"
     },
     {
       "relation": "rationale_for",
@@ -20704,9 +20714,9 @@
       "source_file": "src/armaden/framework/orm/model.py",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_orm_model_rationale_7",
-      "target": "src_armaden_framework_orm_model_model",
-      "confidence_score": 1.0
+      "target": "src_armaden_framework_orm_model_model"
     },
     {
       "relation": "contains",
@@ -62243,5 +62253,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "82a75376492917397384f85ed0494de90e3c5c95"
+  "built_at_commit": "3a3bba4a551e4b05d6b3727bae3b5eeadee95584"
 }
