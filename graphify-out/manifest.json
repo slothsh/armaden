@@ -1065,8 +1065,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/facades/queue.py": {
-    "mtime": 1784400462.7690046,
-    "ast_hash": "8c1bbab8fc2bb2218b71f9a2e782ed83",
+    "mtime": 1784404519.4282684,
+    "ast_hash": "d6add3252f4c74ac130dda2c3e909a02",
     "semantic_hash": ""
   },
   "src/armaden/framework/queue/__init__.py": {

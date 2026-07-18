@@ -1,16 +1,16 @@
 # Graph Report - feature-filesystem-storage-worktree  (2026-07-18)
 
 ## Corpus Check
-- 222 files · ~46,034 words
+- 222 files · ~46,090 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2240 nodes · 4381 edges · 279 communities (84 shown, 195 thin omitted)
+- 2241 nodes · 4383 edges · 281 communities (82 shown, 199 thin omitted)
 - Extraction: 83% EXTRACTED · 17% INFERRED · 0% AMBIGUOUS · INFERRED: 763 edges (avg confidence: 0.55)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2bdd6a00`
+- Built from commit: `87602da4`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -172,7 +172,9 @@
 - .rpl_encode_as_long_jobs
 - .keep_num_of_logs
 - DatabaseServiceProvider
+- Exception
 - api.py
+- Result
 - .disable_shaders_build
 - .enable_night_grain
 - .force_session_load
@@ -294,7 +296,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (279 total, 195 thin omitted)
+## Communities (281 total, 199 thin omitted)
 
 ### Community 0 - "ArmaReforgerServerExecutable"
 Cohesion: 0.01
@@ -309,8 +311,8 @@ Cohesion: 0.13
 Nodes (3): BattleEyeRconClient, Message, ServerMessage
 
 ### Community 5 - "SteamCmdExecutable"
-Cohesion: 0.13
-Nodes (7): QueueDriver, CacheQueueDriver, Exception, Result, Persists jobs to a Cache store with a queue-specific index for ordering     and, Runs jobs immediately on the calling thread with no persistence., SyncQueueDriver
+Cohesion: 0.14
+Nodes (9): CacheIndex, Lock, CacheSerializationError, CacheSerializer, Any, CacheQueueDriver, Exception, Result (+1 more)
 
 ### Community 6 - "BattleEyeRconServer"
 Cohesion: 0.05
@@ -365,12 +367,12 @@ Cohesion: 0.15
 Nodes (8): Exception, DuplicateTaskNameError, TaskGraphCycleError, UnresolvedDependencyError, TaskGraph, TaskGraphCompiler, TaskGraphState, _UnresolvedSentinel
 
 ### Community 24 - "AsyncDatagramTransport"
-Cohesion: 0.18
+Cohesion: 0.19
 Nodes (4): MultiImplementation, Self, Job, Base class for all queue jobs. Users subclass this and implement handle().
 
 ### Community 26 - "Path"
-Cohesion: 0.12
-Nodes (3): Any, ErrorInterface, CacheProtocol
+Cohesion: 0.08
+Nodes (5): Any, Result, CacheProtocol, QueueDriver, Contract for queue backend drivers. Sync, Database, and Cache drivers     implem
 
 ### Community 28 - "HttpServiceProvider"
 Cohesion: 0.21
@@ -394,19 +396,11 @@ Nodes (4): Config, Give, Tag, ContextualAttribute
 
 ### Community 41 - "RouteGroupStack"
 Cohesion: 0.11
-Nodes (10): CacheIndex, CacheProtocol, Lock, CacheStorageDriver, _failure(), _failure_msg(), _is_already_exists(), _is_not_found() (+2 more)
+Nodes (8): CacheProtocol, CacheStorageDriver, _failure(), _failure_msg(), _is_already_exists(), _is_not_found(), Any, Exception
 
 ### Community 42 - "RouteRegistrar"
 Cohesion: 0.08
 Nodes (8): route(), URL, RequestContext, RouteNotFoundException, RouteParameterMissingException, UrlGenerator, auth(), request()
-
-### Community 43 - "CommandResponse"
-Cohesion: 0.21
-Nodes (4): DatabaseQueueDriver, Exception, Result, Persists jobs to a database table via the ORM, supports delayed jobs,     tracks
-
-### Community 44 - "_LegacyTask"
-Cohesion: 0.08
-Nodes (4): Result, Filesystem, QueueDriver, Contract for queue backend drivers. Sync, Database, and Cache drivers     implem
 
 ### Community 45 - "_BuiltTask"
 Cohesion: 0.12
@@ -469,8 +463,8 @@ Cohesion: 0.18
 Nodes (3): _run_shutdown(), TaskRuntime, TaskStateData
 
 ### Community 77 - ".addons_verify"
-Cohesion: 0.40
-Nodes (3): CacheSerializationError, CacheSerializer, Any
+Cohesion: 0.17
+Nodes (3): QueueDriver, Runs jobs immediately on the calling thread with no persistence., SyncQueueDriver
 
 ### Community 80 - ".backend_local_storage"
 Cohesion: 0.25
@@ -523,22 +517,22 @@ Nodes (5): Application, ApplicationBase, Application, DefaultApplication, Applic
 ## Knowledge Gaps
 - **14 isolated node(s):** `armaden`, `ApiResponseData`, `MANDATORY: Local Code Search/Traversal`, `MANDATORY: Use td for Task Management`, `MANDATORY: Worktree Management` (+9 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **195 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **199 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `ArmaReforgerServerExecutable` connect `ArmaReforgerServerExecutable` to `FilesystemServiceProvider`, `.jobsys_short_worker_count`, `AuthManager`, `.keep_session_save`, `.profile`, `.keep_num_of_logs`, `.rpl_encode_as_long_jobs`, `DatabaseServiceProvider`, `ServiceProvider`, `.log_scr_checksum`, `Dictionary`?**
-  _High betweenness centrality (0.104) - this node is a cross-community bridge._
+  _High betweenness centrality (0.111) - this node is a cross-community bridge._
 - **Why does `InstanceContainer` connect `InstanceContainer` to `DefaultApplication`, `.get_alias`, `PlayerResponseData`, `WorkerPool`, `RconCommandArgumentError`, `ContextualAttribute`, `RconCommandInterface`, `.resolve_primitive`, `.kind`, `BattleEyeRconClient`, `SubprocessHandle`, `Exception`, `Message`, `.resolve`, `Kernel`, `.log_append`, `HttpServiceProvider`?**
-  _High betweenness centrality (0.102) - this node is a cross-community bridge._
-- **Why does `CacheProtocol` connect `Path` to `RconCommandInterface`?**
-  _High betweenness centrality (0.068) - this node is a cross-community bridge._
+  _High betweenness centrality (0.101) - this node is a cross-community bridge._
+- **Why does `TaskRuntimeInterface` connect `ServiceProvider` to `ArmaReforgerServerExecutable`, `.no_backend`, `RestartPolicy`, `._initialize_configs`, `Task`, `TaskGraph`, `Dictionary`, `DatagramTransportInterface`?**
+  _High betweenness centrality (0.057) - this node is a cross-community bridge._
 - **Are the 25 inferred relationships involving `InstanceContainer` (e.g. with `Application` and `Config`) actually correct?**
   _`InstanceContainer` has 25 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 11 inferred relationships involving `ArmaReforgerServerExecutable` (e.g. with `Executable` and `Dictionary`) actually correct?**
   _`ArmaReforgerServerExecutable` has 11 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 15 inferred relationships involving `Supervisor` (e.g. with `SupervisorRequestData` and `SupervisorRequestKind`) actually correct?**
   _`Supervisor` has 15 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `Supervisor-managed Task that polls a queue driver and processes jobs     with re`, `Persists jobs to a database table via the ORM, supports delayed jobs,     tracks`, `Persists jobs to a Cache store with a queue-specific index for ordering     and` to the rest of the system?**
+- **What connects `Persists jobs to a database table via the ORM, supports delayed jobs,     tracks`, `Supervisor-managed Task that polls a queue driver and processes jobs     with re`, `Persists jobs to a Cache store with a queue-specific index for ordering     and` to the rest of the system?**
   _116 weakly-connected nodes found - possible documentation gaps or missing edges._
