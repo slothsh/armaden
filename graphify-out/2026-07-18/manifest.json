@@ -1038,5 +1038,10 @@
     "mtime": 1784390689.418006,
     "ast_hash": "232580550c2a5a3f15d2cc1c56898513",
     "semantic_hash": ""
+  },
+  "src/armaden/framework/orm/model.py": {
+    "mtime": 1784390762.2629108,
+    "ast_hash": "27bace6e3edc5e17561c75552e364563",
+    "semantic_hash": ""
   }
 }

@@ -1,16 +1,16 @@
 # Graph Report - feature-filesystem-storage-worktree  (2026-07-18)
 
 ## Corpus Check
-- 208 files · ~40,721 words
+- 209 files · ~40,763 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2066 nodes · 3990 edges · 280 communities (71 shown, 209 thin omitted)
+- 2067 nodes · 3990 edges · 281 communities (72 shown, 209 thin omitted)
 - Extraction: 81% EXTRACTED · 19% INFERRED · 0% AMBIGUOUS · INFERRED: 765 edges (avg confidence: 0.55)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `82a75376`
+- Built from commit: `3a3bba4a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -299,7 +299,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (280 total, 209 thin omitted)
+## Communities (281 total, 209 thin omitted)
 
 ### Community 0 - "ArmaReforgerServerExecutable"
 Cohesion: 0.02
@@ -499,10 +499,10 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `ArmaReforgerServerExecutable` connect `ArmaReforgerServerExecutable` to `SteamCmdExecutable`, `.profile`, `.rpl_timeout_ms`, `.script_authorize_all`, `.server_id`, `ServiceProvider`, `.logs_dir`, `api.py`, `.a2s`, `.cfg`, `.create_db`, `.addon`, `__init__.py`, `.addon_download_dir`, `CommandResponse`, `.no_sound`, `.backend_local_storage`, `.player_limits`, `.backend_fresh_session`, `.scenario`, `AppServiceProvider`, `LoginRequestPacket`, `lifecycle_controller.py`?**
   _High betweenness centrality (0.109) - this node is a cross-community bridge._
-- **Why does `InstanceContainer` connect `InstanceContainer` to `DefaultApplication`, `.get_alias`, `WorkerPool`, `RconCommandArgumentError`, `RconCommandInterface`, `ContextualAttribute`, `.resolve_primitive`, `BattleEyeRconClient`, `SubprocessHandle`, `Exception`, `Message`, `.resolve`, `Kernel`, `.log_append`, `HttpServiceProvider`?**
-  _High betweenness centrality (0.107) - this node is a cross-community bridge._
 - **Why does `RconCommandInterface` connect `.generate` to `ServerMessageResponsePacket`, `RouteFacade`, `Exception`, `ServiceProvider`, `Message`, `SteamCmdExecutableError`?**
-  _High betweenness centrality (0.083) - this node is a cross-community bridge._
+  _High betweenness centrality (0.093) - this node is a cross-community bridge._
+- **Why does `InstanceContainer` connect `InstanceContainer` to `DefaultApplication`, `.get_alias`, `WorkerPool`, `RconCommandArgumentError`, `RconCommandInterface`, `ContextualAttribute`, `.resolve_primitive`, `BattleEyeRconClient`, `SubprocessHandle`, `Exception`, `Message`, `.resolve`, `Kernel`, `.log_append`, `HttpServiceProvider`?**
+  _High betweenness centrality (0.091) - this node is a cross-community bridge._
 - **Are the 25 inferred relationships involving `InstanceContainer` (e.g. with `Application` and `Config`) actually correct?**
   _`InstanceContainer` has 25 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 11 inferred relationships involving `ArmaReforgerServerExecutable` (e.g. with `Executable` and `Dictionary`) actually correct?**

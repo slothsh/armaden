@@ -266,6 +266,7 @@
   "264": ".script_authorize_all",
   "265": ".server_id",
   "266": ".keep_crash_files",
+  "267": "__init__.py",
   "270": ".log_level",
   "276": ".no_splash",
   "279": ".player_limits",
