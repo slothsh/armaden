@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 
 from returns.pipeline import is_successful
-from returns.result import Failure, Result, Success
+from returns.result import Result, Success
 
 from armaden.framework.cache import create_cache_driver
 from armaden.framework.classes.service_provider import ServiceProvider
@@ -15,27 +15,62 @@ logger = logging.getLogger(__name__)
 class CacheServiceProvider(ServiceProvider):
     name = 'cache'
 
+    def __init__(self, container) -> None:
+        super().__init__(container)
+        self._registered = False
+
     def register(self) -> Result[None]:
+        if self._build_stores():
+            self._registered = True
+        return Success(None)
+
+    def boot(self) -> Result[None]:
+        if not self._registered:
+            self._build_stores()
+            self._registered = True
+
+        try:
+            default_driver = self._container.get('cache.store.default')
+        except Exception:
+            return Success(None)
+
+        if default_driver is None:
+            return Success(None)
+
+        cache_dir = getattr(default_driver, '_cache_dir', None)
+        disk = getattr(default_driver, '_disk', None)
+        if cache_dir is not None and disk is not None:
+            ensure = disk.make_directory(cache_dir)
+            if not is_successful(ensure):
+                from armaden.framework.errors import Error
+                from armaden.framework.errors.generic import GenericError
+                failure = ensure.failure()
+                details = getattr(failure, 'details', {}) or {}
+                exception = details.get('exception')
+                if not isinstance(exception, FileExistsError):
+                    logger.warning(
+                        "Failed to create cache directory '%s': %s",
+                        cache_dir, failure,
+                    )
+
+        return Success(None)
+
+    def _build_stores(self) -> bool:
         application = self._container.make('app')
         config = application.config('cache', {}) or {}
 
-        if not config:
-            logger.warning("No cache configuration found; skipping cache registration")
-            return Success(None)
-
-        stores_config = config.get('stores', {}) or {}
-        default_name = config.get('default')
-
-        if not stores_config:
-            logger.warning("No cache stores configured; skipping cache registration")
-            return Success(None)
+        if not config or not config.get('stores'):
+            return False
 
         if not self._container.has('filesystem.disk.default'):
             logger.warning(
                 "Storage subsystem is not available; skipping cache registration "
                 "(CacheServiceProvider must boot after FilesystemServiceProvider)"
             )
-            return Success(None)
+            return False
+
+        stores_config = config.get('stores', {}) or {}
+        default_name = config.get('default')
 
         driver_map: dict[str, CacheProtocol] = {}
         default_driver: CacheProtocol | None = None
@@ -76,34 +111,4 @@ class CacheServiceProvider(ServiceProvider):
             default_driver_name if default_driver else 'none',
         )
 
-        return Success(None)
-
-    def boot(self) -> Result[None]:
-        try:
-            default_driver = self._container.get('cache.store.default')
-        except Exception:
-            return Success(None)
-
-        if default_driver is None:
-            return Success(None)
-
-        cache_dir = getattr(default_driver, '_cache_dir', None)
-        if cache_dir is None:
-            return Success(None)
-
-        disk = getattr(default_driver, '_disk', None)
-        if disk is None:
-            return Success(None)
-
-        ensure = disk.make_directory(cache_dir)
-        if not is_successful(ensure):
-            failure = ensure.failure()
-            details = getattr(failure, 'details', {}) or {}
-            exception = details.get('exception')
-            if not isinstance(exception, FileExistsError):
-                logger.warning(
-                    "Failed to create cache directory '%s': %s",
-                    cache_dir, failure,
-                )
-
-        return Success(None)
+        return bool(driver_map)
