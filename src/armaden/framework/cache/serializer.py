@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import base64
 import json
 import pickle
 import logging
@@ -34,8 +35,6 @@ class CacheSerializer:
         return f'{_HEADER_PREFIX}V{self._version}::{format_name}::'
 
     def _parse_header(self, data: str | bytes) -> tuple[int, str, str | bytes] | None:
-        # Parse at the byte level: pickle payloads contain non-UTF-8 bytes,
-        # so a full decode-then-split would fail on those.
         if isinstance(data, str):
             raw = data.encode('utf-8')
             payload_is_str = True
@@ -80,7 +79,7 @@ class CacheSerializer:
             return version, format_name, payload_bytes.decode('utf-8')
         return version, format_name, payload_bytes
 
-    def serialize(self, value: Any) -> str | bytes:
+    def serialize(self, value: Any) -> str:
         default = self._default_format.lower()
 
         if default == 'json':
@@ -88,30 +87,48 @@ class CacheSerializer:
                 payload = json.dumps(value)
                 return self._build_header(_FORMAT_JSON) + payload
             except TypeError as exception:
-                if self._auto_detect_type:
-                    try:
-                        payload = pickle.dumps(value)
-                    except Exception as pickling_error:
-                        raise CacheSerializationError(
-                            f"Failed to pickle value after JSON serialization failed: {pickling_error}"
-                        ) from pickling_error
-                    return self._build_header(_FORMAT_PICKLE).encode('utf-8') + payload
-                raise CacheSerializationError(
-                    f"Value is not JSON-serializable and auto_detect_type is disabled: {exception}"
-                ) from exception
+                if not self._auto_detect_type:
+                    raise CacheSerializationError(
+                        f"Value is not JSON-serializable and auto_detect_type is disabled: {exception}"
+                    ) from exception
+                try:
+                    raw = pickle.dumps(value)
+                except Exception as pickling_error:
+                    raise CacheSerializationError(
+                        f"Failed to pickle value after JSON serialization failed: {pickling_error}"
+                    ) from pickling_error
+                encoded = base64.b64encode(raw).decode('ascii')
+                return self._build_header(_FORMAT_PICKLE) + encoded
 
         if default == 'pickle':
             try:
-                payload = pickle.dumps(value)
+                raw = pickle.dumps(value)
             except Exception as pickling_error:
                 raise CacheSerializationError(
                     f"Failed to pickle value: {pickling_error}"
                 ) from pickling_error
-            return self._build_header(_FORMAT_PICKLE).encode('utf-8') + payload
+            encoded = base64.b64encode(raw).decode('ascii')
+            return self._build_header(_FORMAT_PICKLE) + encoded
 
         raise CacheSerializationError(
             f"Unsupported default serializer format '{self._default_format}'"
         )
+
+    def _deserialize_pickle_payload(self, payload: str | bytes) -> Any:
+        if isinstance(payload, str):
+            payload = payload.encode('ascii')
+        try:
+            raw = base64.b64decode(payload, validate=True)
+        except Exception as exception:
+            raise CacheSerializationError(
+                f"Failed to base64-decode pickle cache payload: {exception}"
+            ) from exception
+        try:
+            return pickle.loads(raw)
+        except Exception as exception:
+            raise CacheSerializationError(
+                f"Failed to pickle-deserialize cache payload: {exception}"
+            ) from exception
 
     def deserialize(self, data: str | bytes) -> Any:
         if data is None:
@@ -135,40 +152,30 @@ class CacheSerializer:
                         f"Failed to JSON-deserialize cache payload: {exception}"
                     ) from exception
             if format_name == _FORMAT_PICKLE:
-                if isinstance(payload, str):
-                    payload = payload.encode('utf-8')
-                try:
-                    return pickle.loads(payload)
-                except Exception as exception:
-                    raise CacheSerializationError(
-                        f"Failed to pickle-deserialize cache payload: {exception}"
-                    ) from exception
+                return self._deserialize_pickle_payload(payload)
             raise CacheSerializationError(
                 f"Unknown cache payload format '{format_name}'"
             )
 
         if isinstance(data, bytes):
             try:
-                text = data.decode('utf-8')
-            except UnicodeDecodeError:
+                return pickle.loads(data)
+            except Exception:
                 try:
-                    return pickle.loads(data)
-                except Exception:
+                    return json.loads(data.decode('utf-8'))
+                except (UnicodeDecodeError, json.JSONDecodeError, TypeError):
                     raise CacheSerializationError(
                         "Unversioned cache payload could not be decoded as UTF-8 or unpickled"
                     )
-            candidate = text
-        else:
-            candidate = data
 
         try:
-            return json.loads(candidate)
+            return json.loads(data)
         except (json.JSONDecodeError, TypeError):
             pass
 
         try:
-            return pickle.loads(candidate.encode('utf-8'))
+            return pickle.loads(data.encode('utf-8'))
         except Exception:
             pass
 
-        return candidate
+        return data
