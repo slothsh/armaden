@@ -1,7 +1,7 @@
 {
   "pyproject.toml": {
-    "mtime": 1784368141.1413202,
-    "ast_hash": "fe9d3799a51ba0e121e6981e1ac3364c",
+    "mtime": 1784369138.893626,
+    "ast_hash": "772e96c047b1364f1f92367f54f346e8",
     "semantic_hash": ""
   },
   "src/armaden/framework/__init__.py": {
@@ -967,6 +967,21 @@
   "src/armaden/framework/runtime/config/filesystems.py": {
     "mtime": 1784368593.7264163,
     "ast_hash": "c3a6cfdb22d905dd14114b61e06fc80a",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/filesystem/__init__.py": {
+    "mtime": 1784369336.595557,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/filesystem/local_filesystem.py": {
+    "mtime": 1784369336.595557,
+    "ast_hash": "085dee09d062a3910714a61c2decf818",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/filesystem/s3_filesystem.py": {
+    "mtime": 1784369588.6621559,
+    "ast_hash": "edaedf5bca2553408e9e1257533cd79d",
     "semantic_hash": ""
   }
 }
