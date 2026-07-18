@@ -1003,5 +1003,15 @@
     "mtime": 1784374988.5808046,
     "ast_hash": "2a8007ed344a0177960aaec48a50f768",
     "semantic_hash": ""
+  },
+  "src/armaden/framework/cache/index.py": {
+    "mtime": 1784375124.8736024,
+    "ast_hash": "4b01a6a3aafc8558bb346db160f74411",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/cache/serializer.py": {
+    "mtime": 1784375243.7474253,
+    "ast_hash": "625098cce38ba923ef088d34dfe70676",
+    "semantic_hash": ""
   }
 }
