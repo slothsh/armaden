@@ -4,64 +4,54 @@
   "graph": {},
   "nodes": [
     {
-      "label": "worker.py",
+      "label": "queue_service_provider.py",
       "file_type": "code",
-      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_armaden_framework_queue_worker",
-      "community": 20,
-      "norm_label": "worker.py"
+      "id": "src_armaden_framework_runtime_providers_queue_service_provider",
+      "community": 6,
+      "norm_label": "queue_service_provider.py"
     },
     {
-      "label": "QueueWorker",
+      "label": "QueueServiceProvider",
       "file_type": "code",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L21",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L23",
       "_origin": "ast",
-      "id": "src_armaden_framework_queue_worker_queueworker",
-      "community": 20,
-      "norm_label": "queueworker"
+      "id": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
+      "community": 6,
+      "norm_label": "queueserviceprovider"
     },
     {
-      "label": "Task",
+      "label": "ServiceProvider",
       "file_type": "code",
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "task",
-      "community": 20,
-      "norm_label": "task"
+      "id": "serviceprovider",
+      "community": 6,
+      "norm_label": "serviceprovider"
     },
     {
       "label": ".__init__()",
       "file_type": "code",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L27",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L26",
       "_origin": "ast",
-      "id": "src_armaden_framework_queue_worker_queueworker_init",
-      "community": 20,
+      "id": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_init",
+      "community": 6,
       "norm_label": ".__init__()"
     },
     {
-      "label": ".run()",
+      "label": ".register()",
       "file_type": "code",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L58",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L31",
       "_origin": "ast",
-      "id": "src_armaden_framework_queue_worker_queueworker_run",
-      "community": 20,
-      "norm_label": ".run()"
-    },
-    {
-      "label": "TaskRuntimeInterface",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "taskruntimeinterface",
-      "community": 20,
-      "norm_label": "taskruntimeinterface"
+      "id": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_register",
+      "community": 6,
+      "norm_label": ".register()"
     },
     {
       "label": "Result",
@@ -74,64 +64,64 @@
       "norm_label": "result"
     },
     {
-      "label": ".shutdown()",
+      "label": ".boot()",
       "file_type": "code",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L71",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L36",
       "_origin": "ast",
-      "id": "src_armaden_framework_queue_worker_queueworker_shutdown",
-      "community": 20,
-      "norm_label": ".shutdown()"
+      "id": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_boot",
+      "community": 6,
+      "norm_label": ".boot()"
     },
     {
-      "label": "._signal_ready()",
+      "label": "._build_drivers()",
       "file_type": "code",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L103",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L50",
       "_origin": "ast",
-      "id": "src_armaden_framework_queue_worker_queueworker_signal_ready",
-      "community": 20,
-      "norm_label": "._signal_ready()"
+      "id": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_build_drivers",
+      "community": 6,
+      "norm_label": "._build_drivers()"
     },
     {
-      "label": "._poll_loop()",
+      "label": "._resolve_driver_class()",
       "file_type": "code",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L114",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L139",
       "_origin": "ast",
-      "id": "src_armaden_framework_queue_worker_queueworker_poll_loop",
-      "community": 20,
-      "norm_label": "._poll_loop()"
+      "id": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_resolve_driver_class",
+      "community": 6,
+      "norm_label": "._resolve_driver_class()"
     },
     {
-      "label": "._process_job()",
+      "label": "._discover_jobs()",
       "file_type": "code",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L146",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L144",
       "_origin": "ast",
-      "id": "src_armaden_framework_queue_worker_queueworker_process_job",
-      "community": 20,
-      "norm_label": "._process_job()"
+      "id": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_discover_jobs",
+      "community": 6,
+      "norm_label": "._discover_jobs()"
     },
     {
-      "label": "._release_on_cancel()",
+      "label": "._spawn_workers()",
       "file_type": "code",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L222",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L179",
       "_origin": "ast",
-      "id": "src_armaden_framework_queue_worker_queueworker_release_on_cancel",
-      "community": 20,
-      "norm_label": "._release_on_cancel()"
+      "id": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_spawn_workers",
+      "community": 6,
+      "norm_label": "._spawn_workers()"
     },
     {
-      "label": "._safe_driver_call()",
+      "label": ".status()",
       "file_type": "code",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L234",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L218",
       "_origin": "ast",
-      "id": "src_armaden_framework_queue_worker_queueworker_safe_driver_call",
-      "community": 20,
-      "norm_label": "._safe_driver_call()"
+      "id": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_status",
+      "community": 26,
+      "norm_label": ".status()"
     },
     {
       "label": "Any",
@@ -144,14 +134,134 @@
       "norm_label": "any"
     },
     {
+      "label": "worker.py",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 20,
+      "norm_label": "worker.py",
+      "id": "src_armaden_framework_queue_worker"
+    },
+    {
+      "label": "QueueWorker",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L21",
+      "_origin": "ast",
+      "community": 20,
+      "norm_label": "queueworker",
+      "id": "src_armaden_framework_queue_worker_queueworker"
+    },
+    {
+      "label": "Task",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 20,
+      "norm_label": "task",
+      "id": "task"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L27",
+      "_origin": "ast",
+      "community": 20,
+      "norm_label": ".__init__()",
+      "id": "src_armaden_framework_queue_worker_queueworker_init"
+    },
+    {
+      "label": ".run()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L58",
+      "_origin": "ast",
+      "community": 20,
+      "norm_label": ".run()",
+      "id": "src_armaden_framework_queue_worker_queueworker_run"
+    },
+    {
+      "label": "TaskRuntimeInterface",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 20,
+      "norm_label": "taskruntimeinterface",
+      "id": "taskruntimeinterface"
+    },
+    {
+      "label": ".shutdown()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L71",
+      "_origin": "ast",
+      "community": 20,
+      "norm_label": ".shutdown()",
+      "id": "src_armaden_framework_queue_worker_queueworker_shutdown"
+    },
+    {
+      "label": "._signal_ready()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L103",
+      "_origin": "ast",
+      "community": 20,
+      "norm_label": "._signal_ready()",
+      "id": "src_armaden_framework_queue_worker_queueworker_signal_ready"
+    },
+    {
+      "label": "._poll_loop()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L114",
+      "_origin": "ast",
+      "community": 20,
+      "norm_label": "._poll_loop()",
+      "id": "src_armaden_framework_queue_worker_queueworker_poll_loop"
+    },
+    {
+      "label": "._process_job()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L146",
+      "_origin": "ast",
+      "community": 20,
+      "norm_label": "._process_job()",
+      "id": "src_armaden_framework_queue_worker_queueworker_process_job"
+    },
+    {
+      "label": "._release_on_cancel()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L222",
+      "_origin": "ast",
+      "community": 20,
+      "norm_label": "._release_on_cancel()",
+      "id": "src_armaden_framework_queue_worker_queueworker_release_on_cancel"
+    },
+    {
+      "label": "._safe_driver_call()",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L234",
+      "_origin": "ast",
+      "community": 20,
+      "norm_label": "._safe_driver_call()",
+      "id": "src_armaden_framework_queue_worker_queueworker_safe_driver_call"
+    },
+    {
       "label": "Supervisor-managed Task that polls a queue driver and processes jobs     with re",
       "file_type": "rationale",
       "source_file": "src/armaden/framework/queue/worker.py",
       "source_location": "L22",
       "_origin": "ast",
-      "id": "src_armaden_framework_queue_worker_rationale_22",
       "community": 20,
-      "norm_label": "supervisor-managed task that polls a queue driver and processes jobs     with re"
+      "norm_label": "supervisor-managed task that polls a queue driver and processes jobs     with re",
+      "id": "src_armaden_framework_queue_worker_rationale_22"
     },
     {
       "label": "__init__.py",
@@ -222,16 +332,6 @@
       "community": 6,
       "norm_label": "._make_provider()",
       "id": "src_armaden_framework_runtime_application_coreapplication_make_provider"
-    },
-    {
-      "label": "ServiceProvider",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "community": 6,
-      "norm_label": "serviceprovider",
-      "id": "serviceprovider"
     },
     {
       "label": ".register_core_container_aliases()",
@@ -712,106 +812,6 @@
       "community": 83,
       "norm_label": ".flush()",
       "id": "src_armaden_framework_facades_queue_queue_flush"
-    },
-    {
-      "label": "queue_service_provider.py",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 6,
-      "norm_label": "queue_service_provider.py",
-      "id": "src_armaden_framework_runtime_providers_queue_service_provider"
-    },
-    {
-      "label": "QueueServiceProvider",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L23",
-      "_origin": "ast",
-      "community": 6,
-      "norm_label": "queueserviceprovider",
-      "id": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider"
-    },
-    {
-      "label": ".__init__()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L26",
-      "_origin": "ast",
-      "community": 6,
-      "norm_label": ".__init__()",
-      "id": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_init"
-    },
-    {
-      "label": ".register()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L31",
-      "_origin": "ast",
-      "community": 6,
-      "norm_label": ".register()",
-      "id": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_register"
-    },
-    {
-      "label": ".boot()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L36",
-      "_origin": "ast",
-      "community": 6,
-      "norm_label": ".boot()",
-      "id": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_boot"
-    },
-    {
-      "label": "._build_drivers()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L50",
-      "_origin": "ast",
-      "community": 6,
-      "norm_label": "._build_drivers()",
-      "id": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_build_drivers"
-    },
-    {
-      "label": "._resolve_driver_class()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L139",
-      "_origin": "ast",
-      "community": 6,
-      "norm_label": "._resolve_driver_class()",
-      "id": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_resolve_driver_class"
-    },
-    {
-      "label": "._discover_jobs()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L144",
-      "_origin": "ast",
-      "community": 6,
-      "norm_label": "._discover_jobs()",
-      "id": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_discover_jobs"
-    },
-    {
-      "label": "._spawn_workers()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L179",
-      "_origin": "ast",
-      "community": 6,
-      "norm_label": "._spawn_workers()",
-      "id": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_spawn_workers"
-    },
-    {
-      "label": ".status()",
-      "file_type": "code",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L217",
-      "_origin": "ast",
-      "community": 26,
-      "norm_label": ".status()",
-      "id": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_status"
     },
     {
       "label": "__init__.py",
@@ -22409,145 +22409,198 @@
   ],
   "links": [
     {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/__init__.py",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_queue_init",
-      "target": "src_armaden_framework_queue_worker"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L21",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L23",
       "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker",
-      "target": "src_armaden_framework_queue_worker_queueworker",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/__init__.py",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_queue_init",
-      "target": "src_armaden_framework_queue_worker_queueworker"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L27",
-      "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker",
-      "target": "src_armaden_framework_queue_worker_queueworker_init",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L114",
-      "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker",
-      "target": "src_armaden_framework_queue_worker_queueworker_poll_loop",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L146",
-      "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker",
-      "target": "src_armaden_framework_queue_worker_queueworker_process_job",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L222",
-      "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker",
-      "target": "src_armaden_framework_queue_worker_queueworker_release_on_cancel",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L58",
-      "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker",
-      "target": "src_armaden_framework_queue_worker_queueworker_run",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L234",
-      "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker",
-      "target": "src_armaden_framework_queue_worker_queueworker_safe_driver_call",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L71",
-      "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker",
-      "target": "src_armaden_framework_queue_worker_queueworker_shutdown",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L103",
-      "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker",
-      "target": "src_armaden_framework_queue_worker_queueworker_signal_ready",
+      "source": "src_armaden_framework_runtime_providers_queue_service_provider",
+      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
       "confidence_score": 1.0
     },
     {
       "relation": "inherits",
       "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L21",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L23",
       "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker",
-      "target": "task",
+      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
+      "target": "serviceprovider",
       "confidence_score": 1.0
     },
     {
-      "relation": "rationale_for",
+      "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L22",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L36",
       "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_rationale_22",
-      "target": "src_armaden_framework_queue_worker_queueworker",
+      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
+      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_boot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
+      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_build_drivers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L144",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
+      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_discover_jobs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
+      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
+      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_register",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
+      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_resolve_driver_class",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L179",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
+      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_spawn_workers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L218",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
+      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_status",
       "confidence_score": 1.0
     },
     {
       "relation": "references",
       "context": "return_type",
       "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L58",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L78",
       "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker_run",
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_application_coreapplication_make_provider",
+      "target": "serviceprovider"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L151",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_application_coreapplication_register",
+      "target": "serviceprovider"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L167",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_application_coreapplication_register_deferred_provider",
+      "target": "serviceprovider"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L178",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_application_coreapplication_register_provider",
+      "target": "serviceprovider"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/application.py",
+      "source_location": "L394",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_application_coreapplication_register_provider_bindings",
+      "target": "serviceprovider"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/cache_service_provider.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_providers_cache_service_provider_cacheserviceprovider",
+      "target": "serviceprovider"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/database_service_provider.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_providers_database_service_provider_databaseserviceprovider",
+      "target": "serviceprovider"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/filesystem_service_provider.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_runtime_providers_filesystem_service_provider_filesystemserviceprovider",
+      "target": "serviceprovider"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_register",
       "target": "result",
       "confidence_score": 1.0
     },
@@ -22555,55 +22608,11 @@
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L61",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L32",
       "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker_run",
-      "target": "src_armaden_framework_queue_worker_queueworker_poll_loop",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L64",
-      "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker_run",
-      "target": "src_armaden_framework_queue_worker_queueworker_signal_ready",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L58",
-      "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker_run",
-      "target": "taskruntimeinterface",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L71",
-      "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker_shutdown",
-      "target": "taskruntimeinterface",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L103",
-      "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker_signal_ready",
-      "target": "taskruntimeinterface",
+      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_register",
+      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_build_drivers",
       "confidence_score": 1.0
     },
     {
@@ -24690,11 +24699,22 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker_run",
+      "target": "result"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
       "source_location": "L71",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_armaden_framework_queue_worker_queueworker_shutdown",
-      "target": "result",
-      "confidence_score": 1.0
+      "target": "result"
     },
     {
       "relation": "references",
@@ -24846,84 +24866,73 @@
       "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
       "source_location": "L36",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_boot",
-      "target": "result"
+      "target": "result",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L31",
+      "source_location": "L218",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_register",
-      "target": "result"
-    },
-    {
-      "relation": "references",
-      "context": "return_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L217",
-      "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_status",
-      "target": "result"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L132",
-      "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker_poll_loop",
-      "target": "src_armaden_framework_queue_worker_queueworker_process_job",
+      "target": "result",
       "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L164",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L38",
       "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker_process_job",
-      "target": "src_armaden_framework_queue_worker_queueworker_release_on_cancel",
+      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_boot",
+      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_build_drivers",
       "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L182",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L46",
       "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker_process_job",
-      "target": "src_armaden_framework_queue_worker_queueworker_safe_driver_call",
+      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_boot",
+      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_discover_jobs",
       "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L229",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L47",
       "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker_release_on_cancel",
-      "target": "src_armaden_framework_queue_worker_queueworker_safe_driver_call",
+      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_boot",
+      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_spawn_workers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_build_drivers",
+      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_resolve_driver_class",
       "confidence_score": 1.0
     },
     {
       "relation": "references",
-      "context": "return_type",
+      "context": "generic_arg",
       "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/queue/worker.py",
-      "source_location": "L234",
+      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
+      "source_location": "L218",
       "weight": 1.0,
-      "source": "src_armaden_framework_queue_worker_queueworker_safe_driver_call",
+      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_status",
       "target": "any",
       "confidence_score": 1.0
     },
@@ -25215,6 +25224,17 @@
     },
     {
       "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L234",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker_safe_driver_call",
+      "target": "any"
+    },
+    {
+      "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/armaden/framework/runtime/application.py",
@@ -25269,15 +25289,235 @@
       "target": "any"
     },
     {
-      "relation": "references",
-      "context": "generic_arg",
+      "relation": "re_exports",
+      "context": "export",
       "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L217",
+      "source_file": "src/armaden/framework/queue/__init__.py",
+      "source_location": "L3",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_status",
-      "target": "any"
+      "source": "src_armaden_framework_queue_init",
+      "target": "src_armaden_framework_queue_worker"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker",
+      "target": "src_armaden_framework_queue_worker_queueworker"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/__init__.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_init",
+      "target": "src_armaden_framework_queue_worker_queueworker"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker",
+      "target": "src_armaden_framework_queue_worker_queueworker_init"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L114",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker",
+      "target": "src_armaden_framework_queue_worker_queueworker_poll_loop"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L146",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker",
+      "target": "src_armaden_framework_queue_worker_queueworker_process_job"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L222",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker",
+      "target": "src_armaden_framework_queue_worker_queueworker_release_on_cancel"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker",
+      "target": "src_armaden_framework_queue_worker_queueworker_run"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L234",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker",
+      "target": "src_armaden_framework_queue_worker_queueworker_safe_driver_call"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker",
+      "target": "src_armaden_framework_queue_worker_queueworker_shutdown"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L103",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker",
+      "target": "src_armaden_framework_queue_worker_queueworker_signal_ready"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker",
+      "target": "task"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_rationale_22",
+      "target": "src_armaden_framework_queue_worker_queueworker"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker_run",
+      "target": "src_armaden_framework_queue_worker_queueworker_poll_loop"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L64",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker_run",
+      "target": "src_armaden_framework_queue_worker_queueworker_signal_ready"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker_run",
+      "target": "taskruntimeinterface"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker_shutdown",
+      "target": "taskruntimeinterface"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L103",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker_signal_ready",
+      "target": "taskruntimeinterface"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L132",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker_poll_loop",
+      "target": "src_armaden_framework_queue_worker_queueworker_process_job"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L164",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker_process_job",
+      "target": "src_armaden_framework_queue_worker_queueworker_release_on_cancel"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L182",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker_process_job",
+      "target": "src_armaden_framework_queue_worker_queueworker_safe_driver_call"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/armaden/framework/queue/worker.py",
+      "source_location": "L229",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_armaden_framework_queue_worker_queueworker_release_on_cancel",
+      "target": "src_armaden_framework_queue_worker_queueworker_safe_driver_call"
     },
     {
       "relation": "contains",
@@ -25771,17 +26011,6 @@
       "target": "src_armaden_framework_runtime_application_coreapplication_make_provider"
     },
     {
-      "relation": "references",
-      "context": "return_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L78",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_application_coreapplication_make_provider",
-      "target": "serviceprovider"
-    },
-    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -25802,90 +26031,6 @@
       "confidence_score": 1.0,
       "source": "src_armaden_framework_runtime_application_coreapplication_register_providers",
       "target": "src_armaden_framework_runtime_application_coreapplication_make_provider"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L151",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_application_coreapplication_register",
-      "target": "serviceprovider"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L167",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_application_coreapplication_register_deferred_provider",
-      "target": "serviceprovider"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L178",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_application_coreapplication_register_provider",
-      "target": "serviceprovider"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/application.py",
-      "source_location": "L394",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_application_coreapplication_register_provider_bindings",
-      "target": "serviceprovider"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/cache_service_provider.py",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_cache_service_provider_cacheserviceprovider",
-      "target": "serviceprovider"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/database_service_provider.py",
-      "source_location": "L14",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_database_service_provider_databaseserviceprovider",
-      "target": "serviceprovider"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/filesystem_service_provider.py",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_filesystem_service_provider_filesystemserviceprovider",
-      "target": "serviceprovider"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L23",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
-      "target": "serviceprovider"
     },
     {
       "relation": "calls",
@@ -26798,151 +26943,6 @@
       "confidence_score": 1.0,
       "source": "src_armaden_framework_facades_queue_queue_bulk",
       "target": "src_armaden_framework_facades_queue_queue_push"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L23",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_queue_service_provider",
-      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L36",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
-      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_boot"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L50",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
-      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_build_drivers"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L144",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
-      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_discover_jobs"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L26",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
-      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_init"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L31",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
-      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_register"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L139",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
-      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_resolve_driver_class"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L179",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
-      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_spawn_workers"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L217",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider",
-      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_status"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L32",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_register",
-      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_build_drivers"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L38",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_boot",
-      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_build_drivers"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L46",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_boot",
-      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_discover_jobs"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L47",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_boot",
-      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_spawn_workers"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/armaden/framework/runtime/providers/queue_service_provider.py",
-      "source_location": "L79",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_build_drivers",
-      "target": "src_armaden_framework_runtime_providers_queue_service_provider_queueserviceprovider_resolve_driver_class"
     },
     {
       "relation": "contains",

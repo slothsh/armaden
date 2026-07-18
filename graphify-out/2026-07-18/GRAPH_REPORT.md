@@ -529,11 +529,11 @@ Nodes (5): Application, ApplicationBase, Application, DefaultApplication, Applic
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `ArmaReforgerServerExecutable` connect `ArmaReforgerServerExecutable` to `FilesystemServiceProvider`, `.jobsys_short_worker_count`, `AuthManager`, `.keep_session_save`, `.profile`, `.keep_num_of_logs`, `.rpl_encode_as_long_jobs`, `DatabaseServiceProvider`, `ServiceProvider`, `.log_scr_checksum`, `Dictionary`?**
-  _High betweenness centrality (0.105) - this node is a cross-community bridge._
+  _High betweenness centrality (0.104) - this node is a cross-community bridge._
 - **Why does `InstanceContainer` connect `InstanceContainer` to `DefaultApplication`, `.get_alias`, `PlayerResponseData`, `WorkerPool`, `RconCommandArgumentError`, `ContextualAttribute`, `RconCommandInterface`, `.resolve_primitive`, `.kind`, `BattleEyeRconClient`, `SubprocessHandle`, `Exception`, `Message`, `.resolve`, `Kernel`, `.log_append`, `HttpServiceProvider`?**
   _High betweenness centrality (0.102) - this node is a cross-community bridge._
 - **Why does `CacheProtocol` connect `Path` to `RconCommandInterface`?**
-  _High betweenness centrality (0.069) - this node is a cross-community bridge._
+  _High betweenness centrality (0.068) - this node is a cross-community bridge._
 - **Are the 25 inferred relationships involving `InstanceContainer` (e.g. with `Application` and `Config`) actually correct?**
   _`InstanceContainer` has 25 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 11 inferred relationships involving `ArmaReforgerServerExecutable` (e.g. with `Executable` and `Dictionary`) actually correct?**
