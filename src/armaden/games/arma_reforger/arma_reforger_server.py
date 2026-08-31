@@ -36,7 +36,7 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
         config: ArmaReforgerServerConfig | None = None,
         rcon_client_cls: type[ArmaReforgerRconClient] | None = ArmaReforgerRconClient,
         rcon_command_overrides: list[type[RconCommandInterface]] | None = None,
-        log_handler: Callable[[str], Result[None]] | None = None
+        log_handler: Callable[[str], CoroutineType[Any, Any, Result[None]]] | None = None
     ):
         _ = config
         self._paths: PathContainer | None = None
