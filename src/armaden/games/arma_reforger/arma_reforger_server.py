@@ -200,7 +200,7 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
                     if flag == ArmaReforgerExecutableFlag.CONFIG_FILE:
                         logger.warning("Skipping Arma Reforger %s startup flag specified from app config")
                         continue
-                    reforger.custom(flag.unwrap(), cast(str | int, value))
+                    reforger.custom(flag.unwrap(), cast(str | int | bool, value))
                 else:
                     logger.warning(flag.failure())
 

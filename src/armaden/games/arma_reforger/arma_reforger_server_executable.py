@@ -604,7 +604,7 @@ class ArmaReforgerServerExecutable(Executable):
 
     # -- Miscellaneous --------------------------------------------------------
 
-    def custom(self, flag: str, *values: str | int) -> ArmaReforgerServerExecutable:
+    def custom(self, flag: str, *values: str | int | bool) -> ArmaReforgerServerExecutable:
         """Append an arbitrary launch flag and values.
 
         Useful for undocumented or future parameters.
@@ -613,7 +613,11 @@ class ArmaReforgerServerExecutable(Executable):
             flag: The flag name (e.g. ``"-myFlag"``).
             values: Flag values.
         """
-        self.push(flag, *values)
+        filtered_values = [value for value in values if value]
+        if filtered_values:
+            self.push(flag, *filtered_values)
+        else:
+            self.push(flag)
         return self
 
 
