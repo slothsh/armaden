@@ -3,7 +3,8 @@ import logging
 from dataclasses import dataclass
 from enum import StrEnum
 from pathlib import Path
-from typing import Any, Dict, List, Self, Union, cast
+from types import CoroutineType
+from typing import Any, Callable, Dict, List, Self, Union, cast
 
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
@@ -29,12 +30,20 @@ logger = logging.getLogger('games.arma_reforger.server')
 class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCommand):
     config = DEFAULT_CONFIG
 
-    def __init__(self, *, config: ArmaReforgerServerConfig | None = None, rcon_client_cls: type[ArmaReforgerRconClient] | None = ArmaReforgerRconClient, rcon_command_overrides: list[type[RconCommandInterface]] | None = None):
+    def __init__(
+        self,
+        *,
+        config: ArmaReforgerServerConfig | None = None,
+        rcon_client_cls: type[ArmaReforgerRconClient] | None = ArmaReforgerRconClient,
+        rcon_command_overrides: list[type[RconCommandInterface]] | None = None,
+        log_handler: Callable[[str], Result[None]] | None = None
+    ):
         _ = config
         self._paths: PathContainer | None = None
         self._rcon_client_cls: type[ArmaReforgerRconClient] | None = rcon_client_cls
         self._rcon_command_overrides: list[type[RconCommandInterface]] | None = rcon_command_overrides
         self._rcon_client: ArmaReforgerRconClient | None = None
+        self._log_handler: Callable[[str], CoroutineType[Any, Any, Result[None]]] | None = None
 
         self._executable = ExecutableContainer(
             steamcmd=SteamCmdExecutable(config={'executable': self.config.get('steamExecutable'), 'installDirectory': self.config.get('steamInstallDirectory')}),
@@ -98,7 +107,7 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
         await runtime.dispatch_subprocess(
             argv.unwrap(),
             cwd=self._paths.install,
-            handle_std_stream=ArmaReforgerServer._log_subprocess
+            handle_std_stream=self._log_handler or ArmaReforgerServer._log_subprocess
         )
 
         return await self.shutdown()
