@@ -43,7 +43,7 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
         self._rcon_client_cls: type[ArmaReforgerRconClient] | None = rcon_client_cls
         self._rcon_command_overrides: list[type[RconCommandInterface]] | None = rcon_command_overrides
         self._rcon_client: ArmaReforgerRconClient | None = None
-        self._log_handler: Callable[[str], CoroutineType[Any, Any, Result[None]]] | None = None
+        self._log_handler: Callable[[str], CoroutineType[Any, Any, Result[None]]] | None = log_handler
 
         self._executable = ExecutableContainer(
             steamcmd=SteamCmdExecutable(config={'executable': self.config.get('steamExecutable'), 'installDirectory': self.config.get('steamInstallDirectory')}),
