@@ -1,0 +1,113 @@
+from __future__ import annotations
+
+from abc import ABC, abstractmethod
+from typing import Any, Callable
+
+from returns.result import Result
+
+from armaden.framework.protocols.error import ErrorInterface
+
+
+class CacheProtocol(ABC):
+
+    @abstractmethod
+    def has(self, key: str) -> Result[bool, ErrorInterface]: ...
+
+    @abstractmethod
+    def missing(self, key: str) -> Result[bool, ErrorInterface]: ...
+
+    @abstractmethod
+    def get(self, key: str, default: Any = None) -> Result[Any, ErrorInterface]: ...
+
+    @abstractmethod
+    def pull(self, key: str, default: Any = None) -> Result[Any, ErrorInterface]: ...
+
+    @abstractmethod
+    def put(self, key: str, value: Any, ttl: int | None = None) -> Result[bool, ErrorInterface]: ...
+
+    @abstractmethod
+    def add(self, key: str, value: Any, ttl: int | None = None) -> Result[bool, ErrorInterface]: ...
+
+    @abstractmethod
+    def forever(self, key: str, value: Any) -> Result[bool, ErrorInterface]: ...
+
+    @abstractmethod
+    def forget(self, key: str) -> Result[bool, ErrorInterface]: ...
+
+    @abstractmethod
+    def flush(self) -> Result[bool, ErrorInterface]: ...
+
+    @abstractmethod
+    def increment(self, key: str, value: int = 1) -> Result[int, ErrorInterface]: ...
+
+    @abstractmethod
+    def decrement(self, key: str, value: int = 1) -> Result[int, ErrorInterface]: ...
+
+    @abstractmethod
+    def remember(self, key: str, ttl: int, callback: Callable[[], Any]) -> Result[Any, ErrorInterface]: ...
+
+    @abstractmethod
+    def remember_forever(self, key: str, callback: Callable[[], Any]) -> Result[Any, ErrorInterface]: ...
+
+    @abstractmethod
+    def many(self, keys: list[str]) -> Result[dict[str, Any], ErrorInterface]: ...
+
+    @abstractmethod
+    def put_many(self, items: dict[str, Any], ttl: int | None = None) -> Result[bool, ErrorInterface]: ...
+
+    @abstractmethod
+    def store(self, name: str | None = None) -> 'CacheProtocol': ...
+
+    @abstractmethod
+    def get_prefix(self) -> str: ...
+
+    @abstractmethod
+    def get_default_cache_time(self) -> int: ...
+
+    @abstractmethod
+    def set_default_cache_time(self, seconds: int) -> None: ...
+
+    @abstractmethod
+    async def has_async(self, key: str) -> Result[bool, ErrorInterface]: ...
+
+    @abstractmethod
+    async def missing_async(self, key: str) -> Result[bool, ErrorInterface]: ...
+
+    @abstractmethod
+    async def get_async(self, key: str, default: Any = None) -> Result[Any, ErrorInterface]: ...
+
+    @abstractmethod
+    async def pull_async(self, key: str, default: Any = None) -> Result[Any, ErrorInterface]: ...
+
+    @abstractmethod
+    async def put_async(self, key: str, value: Any, ttl: int | None = None) -> Result[bool, ErrorInterface]: ...
+
+    @abstractmethod
+    async def add_async(self, key: str, value: Any, ttl: int | None = None) -> Result[bool, ErrorInterface]: ...
+
+    @abstractmethod
+    async def forever_async(self, key: str, value: Any) -> Result[bool, ErrorInterface]: ...
+
+    @abstractmethod
+    async def forget_async(self, key: str) -> Result[bool, ErrorInterface]: ...
+
+    @abstractmethod
+    async def flush_async(self) -> Result[bool, ErrorInterface]: ...
+
+    @abstractmethod
+    async def increment_async(self, key: str, value: int = 1) -> Result[int, ErrorInterface]: ...
+
+    @abstractmethod
+    async def decrement_async(self, key: str, value: int = 1) -> Result[int, ErrorInterface]: ...
+
+    @abstractmethod
+    async def remember_async(self, key: str, ttl: int, callback: Callable[[], Any]) -> Result[Any, ErrorInterface]: ...
+
+    @abstractmethod
+    async def remember_forever_async(self, key: str, callback: Callable[[], Any]) -> Result[Any, ErrorInterface]: ...
+
+    @abstractmethod
+    async def many_async(self, keys: list[str]) -> Result[dict[str, Any], ErrorInterface]: ...
+
+    @abstractmethod
+    async def put_many_async(self, items: dict[str, Any], ttl: int | None = None) -> Result[bool, ErrorInterface]: ...

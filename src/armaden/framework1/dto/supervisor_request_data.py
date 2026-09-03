@@ -1,0 +1,15 @@
+from dataclasses import dataclass, field
+from typing import TypedDict
+
+from armaden.framework.enums.supervisor_request_kind import SupervisorRequestKind
+
+
+@dataclass(frozen=True)
+class SupervisorRequestData:
+    kind: SupervisorRequestKind
+    task_id: int
+    args: SupervisorRequestArgs | None = field(default=None, compare=False)
+
+
+class SupervisorRequestArgs(TypedDict):
+    task_id: int
