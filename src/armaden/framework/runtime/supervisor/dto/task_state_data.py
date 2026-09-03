@@ -1,8 +1,8 @@
 from armaden.framework.runtime.supervisor.dto.process_info_data import ProcessInfoData
 from armaden.framework.runtime.supervisor.dto.thread_info_data import ThreadInfoData
-from armaden.framework.runtime.supervisor.task.protocols.task_protocol import TaskProtocol
+from armaden.framework.protocols.task_protocol import TaskProtocol
 from armaden.framework.types.result import Result
-from asyncio import Future
+from concurrent.futures import Future
 from dataclasses import dataclass
 from threading import Thread
 import asyncio
