@@ -15,6 +15,11 @@ armaden-scaffold = "armaden.framework.installer.scaffold:main"
 rcon_client = "armaden.network.client:main"
 rcon_server = "armaden.network.server:main"
 
+[tool.basedpyright]
+reportAny = "none"
+reportExplicitAny = "none"
+reportUnknownMemberType = "none"
+
 [tool.poetry]
 packages = [
     { include = "armaden", from = "src" },

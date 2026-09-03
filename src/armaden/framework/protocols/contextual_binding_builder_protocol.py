@@ -1,0 +1,13 @@
+from __future__ import annotations
+
+from typing import Protocol, Self
+
+
+class ContextualBindingBuilderProtocol(Protocol):
+    def give(self, implementation: object) -> Self: ...
+
+    def give_config(self, key: str) -> Self: ...
+
+    def give_tagged(self, tag: str) -> Self: ...
+
+    def needs(self, abstract: object) -> Self: ...
