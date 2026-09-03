@@ -378,5 +378,22 @@
   "376": "__init__.py",
   "377": "__main__.py",
   "378": "__init__.py",
-  "379": "SelfBuildingTag"
+  "379": "SelfBuildingTag",
+  "380": "ConcurrencyFacade",
+  "381": "ProcessFacade",
+  "382": "ScheduleFacade",
+  "383": "__init__.py",
+  "384": "__init__.py",
+  "385": "Self",
+  "386": "Any",
+  "387": "AsyncStreamCallback",
+  "388": "Path",
+  "389": "Result",
+  "390": "task.py",
+  "391": "Self",
+  "392": "Any",
+  "393": "TaskGraph",
+  "394": "TaskInjector",
+  "395": "TaskInterface",
+  "396": "TaskRecord"
 }
