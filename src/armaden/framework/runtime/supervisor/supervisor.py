@@ -32,7 +32,7 @@ from armaden.framework.runtime.supervisor.enums.supervisor_request_kind import (
 from armaden.framework.runtime.supervisor.task.dto.task_record_data import TaskRecordData
 from armaden.framework.runtime.supervisor.task.enums.task_graph_state import TaskGraphState
 from armaden.framework.runtime.supervisor.task.dto.task_graph_data import TaskGraph
-from armaden.framework.runtime.supervisor.task.graph import TaskGraphCompiler
+from armaden.framework.runtime.supervisor.task.task_graph_compiler import TaskGraphCompiler
 from armaden.framework.runtime.supervisor.task.graph_task_runtime import GraphTaskRuntime
 from armaden.framework.runtime.supervisor.task.task_injector import TaskInjector
 from armaden.framework.runtime.supervisor.task.policy_engine import PolicyEngine
