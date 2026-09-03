@@ -9,7 +9,7 @@ import threading
 from asyncio.queues import Queue
 from collections.abc import Awaitable, Callable, Generator
 from concurrent.futures import Future
-from enum import StrEnum
+from enum import Enum, StrEnum
 from threading import Thread
 from typing import Self, cast
 
@@ -39,7 +39,7 @@ from armaden.framework.runtime.supervisor.task.policy_engine import PolicyEngine
 from armaden.framework.facades.concurrency import ConcurrencyFacade
 from armaden.framework.facades.process import ProcessFacade
 from armaden.framework.facades.schedule import ScheduleFacade
-from armaden.framework.enums.task_threading_policy import TaskThreadingPolicy
+from armaden.framework.runtime.supervisor.task.enums.task_threading_policy import TaskThreadingPolicy
 from armaden.framework.protocols.scheduler_protocol import SchedulerProtocol
 from armaden.framework.protocols.task_protocol import TaskProtocol
 from armaden.framework.protocols.task_runtime_protocol import (
@@ -97,7 +97,7 @@ class Supervisor:
 
     async def _await_long_running_ready(
         self,
-        task: TaskProtocol,
+        task: TaskProtocol[Enum],
         coro: asyncio.Task[object],
         runtime: GraphTaskRuntime,
         graph: TaskGraph,
@@ -130,7 +130,7 @@ class Supervisor:
 
     async def _dispatch_to_worker(
         self,
-        task: TaskProtocol,
+        task: TaskProtocol[Enum],
         runtime: GraphTaskRuntime,
         graph: TaskGraph,
         injector: TaskInjector,
@@ -371,7 +371,7 @@ class Supervisor:
             task_id += 1
 
 
-    def _new_task_state(self, task_id: int, thread_info: ThreadInfoData, task: TaskProtocol, event_loop: asyncio.AbstractEventLoop) -> TaskStateData:
+    def _new_task_state(self, task_id: int, thread_info: ThreadInfoData, task: TaskProtocol[Enum], event_loop: asyncio.AbstractEventLoop) -> TaskStateData:
         return TaskStateData(
             task_id=task_id,
             thread_info=thread_info,
@@ -470,7 +470,7 @@ class Supervisor:
 
     async def _run_one_task(
         self,
-        task: TaskProtocol,
+        task: TaskProtocol[Enum],
         runtime: GraphTaskRuntime,
         graph: TaskGraph,
         injector: TaskInjector,
@@ -499,7 +499,7 @@ class Supervisor:
 
     async def _run_shutdown(
         self,
-        task: TaskProtocol,
+        task: TaskProtocol[Enum],
         injector: TaskInjector,
         graph: TaskGraph,
         runtime: TaskRuntimeProtocol,
@@ -523,7 +523,7 @@ class Supervisor:
 
     async def _run_wrapped_task(
         self,
-        task: TaskProtocol,
+        task: TaskProtocol[Enum],
         runtime: GraphTaskRuntime,
         graph: TaskGraph,
         injector: TaskInjector,
@@ -645,7 +645,7 @@ class Supervisor:
             )
 
 
-    def add_task(self, task: TaskProtocol) -> Self:
+    def add_task(self, task: TaskProtocol[Enum]) -> Self:
         task_id = self._generate_task_id()
         thread_info = self._generate_thread_info()
         self._task_states[task_id] = self._new_task_state(task_id, thread_info, task, asyncio.new_event_loop())
@@ -658,7 +658,7 @@ class Supervisor:
         return self
 
 
-    def add_tasks(self, tasks: list[TaskProtocol]) -> Self:
+    def add_tasks(self, tasks: list[TaskProtocol[Enum]]) -> Self:
         for task in tasks:
             _ = self.add_task(task)
         return self
@@ -893,7 +893,7 @@ class Supervisor:
         return Success(None)
 
 
-    def submit(self, tasks: list[TaskProtocol]) -> TaskGraph:
+    def submit(self, tasks: list[TaskProtocol[Enum]]) -> TaskGraph:
         graph = self._compiler.compile(list(tasks))
         graph.state = TaskGraphState.PENDING
         self._graphs.append(graph)

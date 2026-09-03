@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from enum import Enum
 from uuid import uuid4
 
 from armaden.framework.error.error import Error
@@ -20,7 +21,7 @@ class TaskGraph:
     outputs: dict[str, Result[object]] = field(default_factory=dict)
     reverse_adjacency: dict[str, set[str]] = field(default_factory=dict)
     state: TaskGraphState = TaskGraphState.PENDING
-    tasks: dict[str, TaskProtocol] = field(default_factory=dict)
+    tasks: dict[str, TaskProtocol[Enum]] = field(default_factory=dict)
 
     @property
     def shutdown_order(self) -> list[str]:

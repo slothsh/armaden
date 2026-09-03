@@ -1,20 +1,11 @@
-from armaden.framework.enums.task_threading_policy import TaskThreadingPolicy
+from enum import Enum
+from typing import Protocol
+
+from armaden.framework.protocols.task_policy_protocol import TaskPolicyProtocol
 from armaden.framework.types.task import TaskCallback, TaskStatusCallback
-from typing import Protocol, Self
 
 
-class TaskPolicyProtocol(Protocol):
-    @property
-    def continue_on_failure(self) -> bool: ...
-
-    @property
-    def priority(self) -> int: ...
-
-    @property
-    def ready_timeout(self) -> float | None: ...
-
-
-class TaskProtocol(Protocol):
+class TaskProtocol[E: Enum](Protocol):
     @property
     def auto_restart(self) -> bool: ...
 
@@ -49,30 +40,8 @@ class TaskProtocol(Protocol):
     def status(self) -> TaskStatusCallback | None: ...
 
     @property
-    def threading_policy(self) -> TaskThreadingPolicy: ...
+    def threading_policy(self) -> E: ...
 
     _graph_ref: object | None
     _injector_ref: object | None
     _runtime_ref: object | None
-
-
-class TaskBuilderProtocol(Protocol):
-    def build(self) -> TaskProtocol: ...
-
-    def description(self, value: str | None) -> Self: ...
-
-    def exclusive_thread(self) -> Self: ...
-
-    def name(self, value: str | None) -> Self: ...
-
-    def on_initialize(self, callback: TaskCallback) -> Self: ...
-
-    def on_run(self, callback: TaskCallback) -> Self: ...
-
-    def on_shutdown(self, callback: TaskCallback) -> Self: ...
-
-    def on_status(self, callback: TaskStatusCallback) -> Self: ...
-
-    def shared_thread(self) -> Self: ...
-
-    def with_auto_restart(self) -> Self: ...

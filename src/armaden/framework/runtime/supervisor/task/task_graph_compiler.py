@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from enum import Enum
 from typing import override
 
 from armaden.framework.protocols.task_graph_compiler_protocol import (
@@ -11,7 +12,7 @@ from armaden.framework.runtime.supervisor.task.dto.task_graph_data import TaskGr
 
 class TaskGraphCompiler(TaskGraphCompilerProtocol[TaskGraph]):
     @override
-    def compile(self, tasks: list[TaskProtocol]) -> TaskGraph:
+    def compile(self, tasks: list[TaskProtocol[Enum]]) -> TaskGraph:
         graph = TaskGraph()
         self._resolve_names(tasks, graph)
         self._collect_dependencies(graph)
@@ -59,7 +60,7 @@ class TaskGraphCompiler(TaskGraphCompilerProtocol[TaskGraph]):
             raise RuntimeError(f"Unable to resolve dependency for task '{task_name}'.")
         return matches[0]
 
-    def _resolve_names(self, tasks: list[TaskProtocol], graph: TaskGraph) -> None:
+    def _resolve_names(self, tasks: list[TaskProtocol[Enum]], graph: TaskGraph) -> None:
         for task in tasks:
             name = task.name or type(task).__name__
             if name in graph.tasks:

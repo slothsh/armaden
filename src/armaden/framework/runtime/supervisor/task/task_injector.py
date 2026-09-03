@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from enum import Enum
 import inspect
 from typing import override
 
@@ -21,7 +22,7 @@ class TaskInjector(TaskInjectorProtocol[TaskGraph]):
     @override
     async def resolve(
         self,
-        task: TaskProtocol,
+        task: TaskProtocol[Enum],
         method: object,
         graph: TaskGraph,
         runtime: TaskRuntimeProtocol,

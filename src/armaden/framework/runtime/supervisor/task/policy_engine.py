@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from enum import Enum
 from returns.result import Failure
 from typing import override
 
@@ -19,7 +20,7 @@ class PolicyEngine(PolicyEngineProtocol[TaskGraph]):
     @override
     async def execute(
         self,
-        task: TaskProtocol,
+        task: TaskProtocol[Enum],
         runtime: TaskRuntimeProtocol,
         injector: TaskInjectorProtocol[TaskGraph],
         graph: TaskGraph,

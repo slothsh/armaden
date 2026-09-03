@@ -1,3 +1,5 @@
+from enum import Enum
+
 from armaden.framework.runtime.supervisor.dto.process_info_data import ProcessInfoData
 from armaden.framework.runtime.supervisor.dto.thread_info_data import ThreadInfoData
 from armaden.framework.protocols.task_protocol import TaskProtocol
@@ -12,7 +14,7 @@ import asyncio
 class TaskStateData:
     task_id: int
     thread_info: ThreadInfoData
-    task: TaskProtocol
+    task: TaskProtocol[Enum]
     initialized: bool
     future: Future[Result[None]] | None
     event_loop: asyncio.AbstractEventLoop
