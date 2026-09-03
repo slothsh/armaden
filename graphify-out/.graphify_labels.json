@@ -399,12 +399,21 @@
   "397": "ModuleLoader",
   "398": "TaskRuntime",
   "399": "ServerMessageResponsePacket",
+  "400": "ErrorProtocol",
   "401": "ProgressChannel",
   "402": "SteamCmdExecutableFlag",
   "403": ".fire_after_resolving_callbacks",
   "404": ".resolve",
+  "405": "TaskProtocol",
   "406": "active_coroutine_data.py",
   "407": "AbstractEventLoop",
   "408": "TaskProtocol",
-  "409": "TaskRuntimeProtocol"
+  "409": "TaskRuntimeProtocol",
+  "410": "TaskGraph",
+  "411": "TaskProtocol",
+  "412": "TaskProtocol",
+  "413": "TaskInjector",
+  "414": "TaskInjectorProtocol",
+  "415": "TaskStateData",
+  "416": "TaskStatusCallback"
 }
