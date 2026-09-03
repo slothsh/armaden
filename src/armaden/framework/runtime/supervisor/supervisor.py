@@ -1,37 +1,17 @@
-import asyncio
-from asyncio.subprocess import Process
-from datetime import datetime
+from asyncio.queues import Queue
+from concurrent.futures import Future
 from enum import StrEnum
+from returns.pipeline import is_successful
+from returns.result import Failure, Success
+from threading import Thread
+from typing import Any, Self, cast
+import asyncio
 import logging
 import os
 import signal
 import threading
-from asyncio.queues import Queue
-from typing import Any, Dict, Generator, List, Self, Set, cast
-from threading import Thread
-from concurrent.futures import Future
 
-from dataclasses import dataclass, field
-from returns.pipeline import is_successful
-from returns.result import Failure, Success
-from pathlib import Path
-
-from armaden.framework.classes.instance_container import InstanceContainer
-from armaden.framework.enums.supervisor_request_kind import SupervisorRequestKind
-from armaden.framework.enums.task_threading_policy import TaskThreadingPolicy
-from armaden.framework.protocols.supervisor_request_interface import SupervisorRequestInterface
-
-from armaden.framework.dto.supervisor_request_data import SupervisorRequestData
-from armaden.framework.utils.string import String
-from armaden.framework.utils.types import Result, AsyncStreamArg, AsyncStreamCallback
-from armaden.framework.errors import Error
-from armaden.framework.protocols import TaskInterface, TaskRuntimeInterface
-from armaden.framework.runtime.errors import TaskError
-from armaden.framework.runtime.policy_engine import PolicyEngine
-from armaden.framework.runtime.task import Task as TaskABC
-from armaden.framework.runtime.task_graph import TaskGraph, TaskGraphCompiler, TaskGraphState
-from armaden.framework.runtime.task_injector import TaskInjector
-from armaden.framework.runtime.task_runtime import TaskRuntime as GraphTaskRuntime
+from armaden.framework.runtime.container.container import Container
 
 logger = logging.getLogger(__name__)
 
@@ -40,7 +20,7 @@ class Supervisor:
     def __init__(
         self,
         event_loop: asyncio.AbstractEventLoop,
-        container: InstanceContainer | None = None,
+        container: Container | None = None,
         pool_size: int | None = None,
         max_exclusive_threads: int = 8,
     ) -> None:
@@ -52,14 +32,13 @@ class Supervisor:
         self._shutdown_event = asyncio.Event()
         self._main_loop = event_loop
 
-        self._requests_unique: Set[RequestInfoData] = set()
-        self._requests_enqueued: Queue[RequestInfoData] = Queue()
+        self._requests_unique: set[RequestInfoData] = set()
+        self._requests_enqueued: [RequestInfoData] = Queue()
 
-        self._task_states: Dict[int, TaskStateData] = {}
-        self._task_records: Dict[int, TaskRecord] = {}
-        self._processes: List[ProcessInfoData] = []
-
-        self._graphs: List[TaskGraph] = []
+        self._task_states: dict[int, TaskStateData] = {}
+        self._task_records: dict[int, TaskRecord] = {}
+        self._processes: list[ProcessInfoData] = []
+        self._graphs: list[TaskGraph] = []
         self._compiler = TaskGraphCompiler()
         self._policy_engine = PolicyEngine()
         self._injector = TaskInjector(container)
@@ -850,198 +829,9 @@ async def _run_shutdown(task, injector, graph, runtime):
         task._graph_ref = None
 
 
-# -- Internal Types -----------------------------------------------------------
-
-class TaskRuntime:
-    def __init__(self, task_state: TaskStateData) -> None:
-        self._task_state = task_state
-
-    @property
-    def name(self) -> str | None:
-        return self._task_state.task.name
-
-    @property
-    def graph_id(self) -> str:
-        return f'legacy-{self._task_state.task_id}'
-
-    async def signal_ready(self) -> Result[None]:
-        logger.warning("signal_ready() called on legacy TaskRuntime for task '%s'; no-op", self.name)
-        return Success(None)
-
-    async def task_output(self, name: str) -> Result[Any]:
-        return Failure(Error(SupervisorError.REQUEST_NOT_FULFILLED, details={
-            'message': f'task_output not available on legacy TaskRuntime', 'name': name,
-        }))
-
-    async def dispatch_subprocess(
-        self,
-        argv: List[str],
-        cwd: Path | str | None = None,
-        handle_std_stream: AsyncStreamCallback | None = None,
-    ) -> Result[str]:
-        logger.info('Executing command in subprocess: %s', ' '.join(argv))
-
-        process = await asyncio.create_subprocess_exec(
-            argv[0], *argv[1:],
-            cwd=cwd,
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE
-        )
-
-        tasks: List[asyncio.Task[None]] = []
-        if handle_std_stream:
-            async def drain(stream: AsyncStreamArg, callback: AsyncStreamCallback) -> None:
-                if not stream:
-                    return
-
-                try:
-                    while True:
-                        line_bytes = await stream.readline()
-                        if not line_bytes:
-                            break
-                        if line := line_bytes.decode(errors='replace').strip():
-                            await callback(line)
-                except asyncio.CancelledError:
-                    raise
-
-            tasks.append(asyncio.create_task(
-                drain(process.stdout, handle_std_stream)
-            ))
-
-            tasks.append(asyncio.create_task(
-                drain(process.stderr, handle_std_stream)
-            ))
-
-        process_info = ProcessInfoData(name=self._task_state.thread_info.name, process=process)
-        self._task_state.processes.append(process_info)
-
-        return_code = await process.wait()
-        await asyncio.gather(*tasks)
-
-        if return_code == 0:
-            return Success("Subprocess executed successfully")
-        else:
-            return Failure(Error(SupervisorError.SUBPROCESS_ERROR, details={
-                'details': 'Subprocess failed. Check console for errors.'
-            }))
-
-
 class SupervisorError(StrEnum):
     INITIALIZATION_FAILED = "an error occurred while initializing the supervisor"
     SUBPROCESS_ERROR = "a non-zero exit code occurred when running a subprocess"
     REQUEST_IGNORED = "the provided request has been ignored"
     BAD_REQUEST_DATA = "the provided supervisor request data is invalid"
     REQUEST_NOT_FULFILLED = "the specified request could not be fulfilled"
-
-@dataclass
-class TaskStateData:
-    task_id: int
-    thread_info: ThreadInfoData
-    task: TaskInterface
-    initialized: bool
-    future: Future[Result[None]] | None
-    event_loop: asyncio.AbstractEventLoop
-    processes: List[ProcessInfoData]
-    thread: Thread
-    started: bool = False
-
-
-@dataclass(frozen=True)
-class TaskRecord:
-    task_id: int
-    name: str | None
-    description: str | None
-    status: str
-
-
-@dataclass(frozen=True)
-class ThreadInfoData:
-    id: int
-    name: str
-
-
-@dataclass(frozen=True)
-class ProcessInfoData:
-    name: str
-    process: Process
-
-
-@dataclass(frozen=True)
-class RequestInfoData:
-    data: SupervisorRequestData
-    time_received: datetime = field(default=datetime.now(), compare=False)
-
-
-# -- WorkerPool --------------------------------------------------------------
-
-class _WorkerBase:
-    def __init__(self, name: str) -> None:
-        self.name = name
-        self.loop: asyncio.AbstractEventLoop = asyncio.new_event_loop()
-        self.thread = Thread(target=self._run_loop, name=name, daemon=True)
-        self.busy = False
-        self.thread.start()
-
-    def _run_loop(self) -> None:
-        asyncio.set_event_loop(self.loop)
-        self.loop.run_forever()
-
-    def shutdown(self) -> None:
-        try:
-            self.loop.call_soon_threadsafe(self.loop.stop)
-        except RuntimeError:
-            pass
-        self.thread.join(timeout=5.0)
-
-
-class _SharedWorker(_WorkerBase):
-    pass
-
-
-class _ExclusiveWorker(_WorkerBase):
-    pass
-
-
-class WorkerPool:
-    def __init__(self, pool_size: int, max_exclusive_threads: int) -> None:
-        self._pool_size = pool_size
-        self._max_exclusive_threads = max_exclusive_threads
-        self._shared: list[_SharedWorker] = [
-            _SharedWorker(f'worker-shared-{i:02d}') for i in range(pool_size)
-        ]
-        self._free: asyncio.Queue[_SharedWorker] = asyncio.Queue()
-        for worker in self._shared:
-            self._free.put_nowait(worker)
-        self._exclusive: dict[str, _ExclusiveWorker] = {}
-        self._lock = asyncio.Lock()
-
-    async def acquire_shared(self) -> _SharedWorker:
-        return await self._free.get()
-
-    async def release_shared(self, worker: _SharedWorker) -> None:
-        worker.busy = False
-        await self._free.put(worker)
-
-    async def acquire_exclusive(self, task_name: str) -> _ExclusiveWorker:
-        async with self._lock:
-            if len(self._exclusive) >= self._max_exclusive_threads:
-                raise RuntimeError(
-                    f'Exclusive thread capacity reached ({self._max_exclusive_threads}); '
-                    f'cannot start task \"{task_name}\"'
-                )
-            worker = _ExclusiveWorker(f'worker-{String.toKebabCase(task_name)}')
-            self._exclusive[task_name] = worker
-            return worker
-
-    async def release_exclusive(self, task_name: str) -> None:
-        async with self._lock:
-            worker = self._exclusive.pop(task_name, None)
-        if worker is not None:
-            worker.shutdown()
-
-    def shutdown(self) -> None:
-        for worker in self._shared:
-            worker.shutdown()
-        for worker in list(self._exclusive.values()):
-            worker.shutdown()
-        self._exclusive.clear()
