@@ -395,5 +395,18 @@
   "393": "TaskGraph",
   "394": "TaskInjector",
   "395": "TaskInterface",
-  "396": "TaskRecord"
+  "396": "TaskRecord",
+  "397": "ModuleLoader",
+  "398": "TaskRuntime",
+  "399": "ServerMessageResponsePacket",
+  "400": "GenericError",
+  "401": "ProgressChannel",
+  "402": "SteamCmdExecutableFlag",
+  "403": ".fire_after_resolving_callbacks",
+  "404": ".resolve",
+  "405": "SelfBuildingTag",
+  "406": "active_coroutine_data.py",
+  "407": "AbstractEventLoop",
+  "408": "TaskProtocol",
+  "409": "TaskRuntimeProtocol"
 }
