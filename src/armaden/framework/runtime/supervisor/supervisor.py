@@ -34,7 +34,7 @@ from armaden.framework.runtime.supervisor.task.enums.task_graph_state import Tas
 from armaden.framework.runtime.supervisor.task.dto.task_graph_data import TaskGraph
 from armaden.framework.runtime.supervisor.task.graph import TaskGraphCompiler
 from armaden.framework.runtime.supervisor.task.graph_task_runtime import GraphTaskRuntime
-from armaden.framework.runtime.supervisor.task.injector import TaskInjector
+from armaden.framework.runtime.supervisor.task.task_injector import TaskInjector
 from armaden.framework.runtime.supervisor.task.policy_engine import PolicyEngine
 from armaden.framework.facades.concurrency import ConcurrencyFacade
 from armaden.framework.facades.process import ProcessFacade
