@@ -445,5 +445,11 @@
   "443": "TaskInjector",
   "444": "TaskProtocol",
   "445": "TaskStateData",
-  "446": "TaskStateData"
+  "446": "TaskStateData",
+  "447": ".language",
+  "448": ".nds",
+  "449": ".no_backend",
+  "450": ".vm_error_mode",
+  "451": "__init__.py",
+  "452": "__init__.py"
 }
