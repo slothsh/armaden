@@ -15,10 +15,12 @@ class TaskProtocol[E: Enum](Protocol):
     description: str | None
     long_running: bool
     name: str
+
     @property
     def policy(self) -> TaskPolicyProtocol: ...
 
-    threading_policy: E
+    @property
+    def threading_policy(self) -> E: ...
 
     async def initialize(
         self,

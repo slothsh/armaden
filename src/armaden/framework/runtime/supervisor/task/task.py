@@ -24,8 +24,9 @@ class Task(TaskProtocol[TaskThreadingPolicy], ABC):
     description: str | None = None
     long_running: bool = False
     name: str = ''
-    threading_policy: TaskThreadingPolicy = TaskThreadingPolicy.SHARED
     _policy: TaskPolicy = TaskPolicy()
+    _threading_policy: TaskThreadingPolicy = TaskThreadingPolicy.SHARED
+
     def __init__(
         self,
         name: str | None = None,
@@ -54,10 +55,10 @@ class Task(TaskProtocol[TaskThreadingPolicy], ABC):
         )
         self.name = name if name is not None else (task_class.name or task_class.__name__)
         self._policy = copy(task_class._policy) if policy is None else policy
-        self.threading_policy = (
+        self._threading_policy = (
             threading_policy
             if threading_policy is not None
-            else task_class.threading_policy
+            else task_class._threading_policy
         )
 
 
@@ -131,3 +132,9 @@ class Task(TaskProtocol[TaskThreadingPolicy], ABC):
         _ = kwargs
         _ = runtime
         return Success({})
+
+
+    @property
+    @override
+    def threading_policy(self) -> TaskThreadingPolicy:
+        return self._threading_policy

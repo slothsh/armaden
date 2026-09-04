@@ -1,15 +1,14 @@
-from collections.abc import Callable, Coroutine
+from collections.abc import Awaitable, Callable
 
-from armaden.framework.protocols.task_runtime_protocol import TaskRuntimeProtocol
 from armaden.framework.types.result import Result
 
 
 type TaskCallback = Callable[
-    [TaskRuntimeProtocol],
-    Coroutine[object, object, Result[None]],
+    ...,
+    Result[object] | Awaitable[Result[object]],
 ]
 
 type TaskStatusCallback = Callable[
-    [TaskRuntimeProtocol],
-    Coroutine[object, object, Result[dict[str, object]]],
+    ...,
+    Result[dict[str, object]] | Awaitable[Result[dict[str, object]]],
 ]
