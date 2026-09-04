@@ -4,7 +4,9 @@ import asyncio
 from collections.abc import Callable
 from typing import Protocol
 
+from armaden.framework.protocols.configuration_protocol import ConfigurationProtocol
 from armaden.framework.protocols.container_protocol import ContainerProtocol
+from armaden.framework.protocols.environment_protocol import EnvironmentProtocol
 from armaden.framework.protocols.service_provider_protocol import ServiceProviderProtocol
 from armaden.framework.protocols.supervisor_protocol import SupervisorProtocol
 from armaden.framework.types.result import Result
@@ -24,8 +26,16 @@ class CoreApplicationProtocol[G](Protocol):
 
     def booting(self, callback: Callable[..., object]) -> None: ...
 
+    def bootstrap(self) -> Result[None]: ...
+
+    @property
+    def configuration(self) -> ConfigurationProtocol: ...
+
     @property
     def container(self) -> ContainerProtocol: ...
+
+    @property
+    def environment(self) -> EnvironmentProtocol: ...
 
     @property
     def event_loop(self) -> asyncio.AbstractEventLoop: ...

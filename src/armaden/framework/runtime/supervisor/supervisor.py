@@ -679,6 +679,7 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
         return Success(None)
 
 
+    @override
     async def initialize(self) -> Result[None]:
         if self._worker_pool is None:
             self._worker_pool = WorkerPool(self._pool_size, self._max_exclusive_threads)
@@ -717,6 +718,7 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
                 pass
 
 
+    @override
     async def run(self) -> Result[None]:
         self._running = True
         self._start_ready_tasks()
