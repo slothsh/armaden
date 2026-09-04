@@ -11,7 +11,7 @@ from collections.abc import Awaitable, Callable, Generator
 from concurrent.futures import Future
 from enum import Enum, StrEnum
 from threading import Thread
-from typing import Self, cast
+from typing import Self, cast, override
 
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
@@ -41,6 +41,7 @@ from armaden.framework.facades.process import ProcessFacade
 from armaden.framework.facades.schedule import ScheduleFacade
 from armaden.framework.runtime.supervisor.task.enums.task_threading_policy import TaskThreadingPolicy
 from armaden.framework.protocols.scheduler_protocol import SchedulerProtocol
+from armaden.framework.protocols.supervisor_protocol import SupervisorProtocol
 from armaden.framework.protocols.task_protocol import TaskProtocol
 from armaden.framework.protocols.task_runtime_protocol import (
     TaskRuntimeProtocol,
@@ -53,7 +54,7 @@ from armaden.framework.types.result import Result
 logger = logging.getLogger(__name__)
 
 
-class Supervisor:
+class Supervisor(SupervisorProtocol[TaskGraphData]):
     def __init__(
         self,
         event_loop: asyncio.AbstractEventLoop,
@@ -240,7 +241,8 @@ class Supervisor:
         return Success(None)
 
 
-    def _ensure_scheduler(self) -> SchedulerProtocol:
+    @override
+    def ensure_scheduler(self) -> SchedulerProtocol:
         if self._scheduler is not None:
             return self._scheduler
         try:
@@ -893,6 +895,7 @@ class Supervisor:
         return Success(None)
 
 
+    @override
     def submit(self, tasks: list[TaskProtocol[Enum]]) -> TaskGraphData:
         graph = self._compiler.compile(list(tasks))
         graph.state = TaskGraphState.PENDING
