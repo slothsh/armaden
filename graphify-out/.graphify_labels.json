@@ -464,5 +464,13 @@
   "462": "Self",
   "463": "Task",
   "464": "TaskRuntimeProtocol",
-  "465": "Supervisor"
+  "465": "Supervisor",
+  "466": ".check_instance",
+  "467": ".jobsys_long_worker_count",
+  "468": ".log_time",
+  "469": ".no_splash",
+  "470": ".player_limits",
+  "471": ".script_authorize_all",
+  "472": ".server_id",
+  "473": ".silent_crash_report"
 }

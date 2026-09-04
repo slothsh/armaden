@@ -440,8 +440,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/container_methods_protocol.py": {
-    "mtime": 1788454544.8196974,
-    "ast_hash": "0fe9b7223fe7c58def42388abd53b0ca",
+    "mtime": 1788549287.3069613,
+    "ast_hash": "081a5b0500da512dd55086f90f8991dd",
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/container_protocol.py": {
@@ -460,13 +460,13 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/container/bound_method.py": {
-    "mtime": 1788455771.8953543,
+    "mtime": 1788549031.381564,
     "ast_hash": "be7f395511addecd4d629747eb018877",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/container/container.py": {
-    "mtime": 1788455778.8567467,
-    "ast_hash": "e2f3438c63618b36ebe8b3ffa35febbc",
+    "mtime": 1788549366.0337615,
+    "ast_hash": "19c3332869855e0c20f8bf08df0cb8a6",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/container/contextual_attribute.py": {
@@ -475,7 +475,7 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/container/contextual_binding_builder.py": {
-    "mtime": 1788455849.4042199,
+    "mtime": 1788549034.9705558,
     "ast_hash": "4f5a926bad197c5ca8063aaecfb7991b",
     "semantic_hash": ""
   },
@@ -1697,6 +1697,21 @@
   "src/armaden/framework/runtime/kernel/kernel.py": {
     "mtime": 1788547099.4607224,
     "ast_hash": "e2622abeca7500faa6f4a22f43f7efc4",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/runtime/container/config_contextual_attribute.py": {
+    "mtime": 1788549506.4204104,
+    "ast_hash": "44910a343f0b7672b056ca8bac2007c1",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/runtime/container/give_contextual_attribute.py": {
+    "mtime": 1788549511.2563984,
+    "ast_hash": "c972a78de638384fd9e771009142641c",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/runtime/container/tag_contextual_attribute.py": {
+    "mtime": 1788549515.6843874,
+    "ast_hash": "2d194c35125fe837bf290c219ebc194e",
     "semantic_hash": ""
   }
 }
