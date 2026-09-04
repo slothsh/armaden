@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
-from enum import Enum
+from enum import Enum, StrEnum
 from typing import override
 
 from returns.pipeline import is_successful
@@ -15,10 +15,14 @@ from armaden.framework.protocols.task_protocol import TaskProtocol
 from armaden.framework.protocols.task_runtime_protocol import TaskRuntimeProtocol
 from armaden.framework.runtime.supervisor.task.dto.task_graph_data import TaskGraphData
 from armaden.framework.runtime.supervisor.task.enums.task_restart_policy import TaskRestartPolicy
-from armaden.framework.runtime.supervisor.task.task_runtime import TaskError
 from armaden.framework.types.result import Result
 
 logger = logging.getLogger(__name__)
+
+
+class PolicyEngineError(StrEnum):
+    MAX_RETRIES_EXCEEDED = 'maximum task retries exceeded'
+    TIMEOUT = 'task execution timed out'
 
 
 class PolicyEngine(PolicyEngineProtocol[TaskGraphData]):
@@ -58,7 +62,7 @@ class PolicyEngine(PolicyEngineProtocol[TaskGraphData]):
         delay = max(task.policy.retry_delay, 0.0)
         backoff = max(task.policy.retry_backoff, 0.0)
         last_result: Result[object] = Failure(
-            Error(TaskError.MAX_RETRIES_EXCEEDED, details={'task': task.name})
+            Error(PolicyEngineError.MAX_RETRIES_EXCEEDED, details={'task': task.name})
         )
 
         for attempt in range(attempts):
@@ -69,7 +73,7 @@ class PolicyEngine(PolicyEngineProtocol[TaskGraphData]):
                 else:
                     result = await asyncio.wait_for(invocation, task.policy.timeout)
             except asyncio.TimeoutError:
-                last_result = Failure(Error(TaskError.TIMEOUT, details={'task': task.name}))
+                last_result = Failure(Error(PolicyEngineError.TIMEOUT, details={'task': task.name}))
                 if attempt >= attempts - 1:
                     return last_result
                 await self._wait_before_retry(
@@ -83,7 +87,7 @@ class PolicyEngine(PolicyEngineProtocol[TaskGraphData]):
                 continue
             except Exception as exception:
                 last_result = Failure(Error(
-                    TaskError.MAX_RETRIES_EXCEEDED,
+                    PolicyEngineError.MAX_RETRIES_EXCEEDED,
                     details={'task': task.name, 'error': str(exception)},
                 ))
                 if attempt >= attempts - 1:

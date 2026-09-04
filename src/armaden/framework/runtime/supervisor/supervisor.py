@@ -44,7 +44,7 @@ from armaden.framework.protocols.task_protocol import TaskProtocol
 from armaden.framework.protocols.task_runtime_protocol import (
     TaskRuntimeProtocol,
 )
-from armaden.framework.runtime.supervisor.task.task_runtime import TaskError, TaskRuntime
+from armaden.framework.runtime.supervisor.task.task_runtime import TaskRuntime
 from armaden.framework.runtime.supervisor.worker.worker_pool import WorkerPool
 from armaden.framework.types.result import Result
 
@@ -127,7 +127,7 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
                 task.name, ready_timeout,
             )
             graph.lifecycle_signals[task.name] = Failure(
-                Error(TaskError.READY_TIMEOUT, details={'task': task.name})
+                Error(SupervisorError.READY_TIMEOUT, details={'task': task.name})
             )
 
 
@@ -181,7 +181,7 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
                     _ = semaphore.release()
         except RuntimeError as exception:
             logger.error('Worker dispatch failed for task %s: %s', task.name, exception)
-            return Failure(Error(TaskError.SUBPROCESS_ERROR, details={
+            return Failure(Error(SupervisorError.SUBPROCESS_ERROR, details={
                 'task': task.name, 'error': str(exception),
             }))
 
@@ -473,7 +473,7 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
         failure = result.failure()
         if isinstance(failure, Error):
             return failure
-        return Error(TaskError.SUBPROCESS_ERROR, details={'error': str(failure)})
+        return Error(SupervisorError.SUBPROCESS_ERROR, details={'error': str(failure)})
 
 
     async def _run_one_task(
@@ -498,7 +498,7 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
             return result
         except Exception as exception:
             logger.exception('Task %s failed: %s', task.name, exception)
-            return Failure(Error(TaskError.SUBPROCESS_ERROR, details={'task': task.name, 'error': str(exception)}))
+            return Failure(Error(SupervisorError.SUBPROCESS_ERROR, details={'task': task.name, 'error': str(exception)}))
         finally:
             setattr(task, '_runtime_ref', None)
             setattr(task, '_injector_ref', None)
@@ -902,6 +902,7 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
 class SupervisorError(StrEnum):
     INITIALIZATION_FAILED = "an error occurred while initializing the supervisor"
     SUBPROCESS_ERROR = "a non-zero exit code occurred when running a subprocess"
+    READY_TIMEOUT = "task did not signal readiness before the timeout"
     REQUEST_IGNORED = "the provided request has been ignored"
     BAD_REQUEST_DATA = "the provided supervisor request data is invalid"
     REQUEST_NOT_FULFILLED = "the specified request could not be fulfilled"

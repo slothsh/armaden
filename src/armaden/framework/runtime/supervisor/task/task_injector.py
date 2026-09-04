@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import inspect
-from enum import Enum
+from enum import Enum, StrEnum
 from typing import ClassVar, get_args, get_origin, get_type_hints, override
 
 from armaden.framework.error.error import Error
@@ -17,7 +17,10 @@ from armaden.framework.runtime.supervisor.task.tags import (
     PipelineTag,
     UnresolvedSentinelTag,
 )
-from armaden.framework.runtime.supervisor.task.task_runtime import TaskError
+
+
+class TaskInjectorError(StrEnum):
+    REQUEST_NOT_FULFILLED = 'the task injector request could not be fulfilled'
 
 
 class TaskInjector(TaskInjectorProtocol[TaskGraphData]):
@@ -57,7 +60,7 @@ class TaskInjector(TaskInjectorProtocol[TaskGraphData]):
         )
         if source_name not in graph.lifecycle_signals:
             return Failure(Error(
-                TaskError.REQUEST_NOT_FULFILLED,
+                TaskInjectorError.REQUEST_NOT_FULFILLED,
                 details={
                     'message': f"Lifecycle signal for '{source_name}' not available",
                 },

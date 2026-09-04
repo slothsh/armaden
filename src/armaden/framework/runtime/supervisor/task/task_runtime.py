@@ -82,7 +82,7 @@ class TaskRuntime(TaskRuntimeProtocol):
 
         if return_code == 0:
             return Success('Subprocess executed successfully')
-        return Failure(Error(TaskError.SUBPROCESS_ERROR, details={
+        return Failure(Error(TaskRuntimeError.SUBPROCESS_ERROR, details={
             'details': 'Subprocess failed. Check console for errors.',
         }))
 
@@ -107,13 +107,13 @@ class TaskRuntime(TaskRuntimeProtocol):
 
     @override
     async def task_output(self, name: str) -> Result[object]:
-        return Failure(Error(TaskError.REQUEST_NOT_FULFILLED, details={
+        return Failure(Error(TaskRuntimeError.REQUEST_NOT_FULFILLED, details={
             'message': 'task_output not available on legacy TaskRuntime',
             'name': name,
         }))
 
 
-class TaskError(StrEnum):
+class TaskRuntimeError(StrEnum):
     MAX_RETRIES_EXCEEDED = 'maximum task retries exceeded'
     READY_TIMEOUT = 'task did not signal readiness before the timeout'
     REQUEST_NOT_FULFILLED = 'the specified request could not be fulfilled'

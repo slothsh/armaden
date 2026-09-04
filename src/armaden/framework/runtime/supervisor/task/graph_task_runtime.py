@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+from enum import StrEnum
 from pathlib import Path
 from typing import override
 
@@ -10,11 +11,15 @@ from returns.result import Failure, Success
 from armaden.framework.error.error import Error
 from armaden.framework.protocols.task_runtime_protocol import TaskRuntimeProtocol
 from armaden.framework.runtime.supervisor.task.dto.task_graph_data import TaskGraphData
-from armaden.framework.runtime.supervisor.task.task_runtime import TaskError
 from armaden.framework.types.coroutine import AsyncStreamArg, AsyncStreamCallback
 from armaden.framework.types.result import Result
 
 logger = logging.getLogger(__name__)
+
+
+class GraphTaskRuntimeError(StrEnum):
+    REQUEST_NOT_FULFILLED = 'the specified graph task runtime request could not be fulfilled'
+    SUBPROCESS_ERROR = 'a graph task runtime subprocess failed'
 
 
 class GraphTaskRuntime(TaskRuntimeProtocol):
@@ -83,7 +88,7 @@ class GraphTaskRuntime(TaskRuntimeProtocol):
 
         if return_code == 0:
             return Success('Subprocess executed successfully')
-        return Failure(Error(TaskError.SUBPROCESS_ERROR, details={
+        return Failure(Error(GraphTaskRuntimeError.SUBPROCESS_ERROR, details={
             'task': self._task_name,
             'message': 'Subprocess failed. Check console for errors.',
         }))
@@ -122,7 +127,7 @@ class GraphTaskRuntime(TaskRuntimeProtocol):
     @override
     async def task_output(self, name: str) -> Result[object]:
         if name not in self._graph.outputs:
-            return Failure(Error(TaskError.REQUEST_NOT_FULFILLED, details={
+            return Failure(Error(GraphTaskRuntimeError.REQUEST_NOT_FULFILLED, details={
                 'task': self._task_name,
                 'name': name,
             }))
