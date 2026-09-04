@@ -1615,13 +1615,28 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/application/__init__.py": {
-    "mtime": 1788545026.7740023,
-    "ast_hash": "a8af2e169c6de8232c2ba4ea2ab11313",
+    "mtime": 1788545509.3696837,
+    "ast_hash": "964f4e8d29a2e48cdb07d46beb33e3af",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/application/core_application.py": {
-    "mtime": 1788545288.9213,
-    "ast_hash": "d74b5e983616b2e1f4dfd5c19c11dd71",
+    "mtime": 1788545499.9487092,
+    "ast_hash": "c9253dbdfef5ae9e5c9994c57a762998",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/protocols/application_protocol.py": {
+    "mtime": 1788545528.6466315,
+    "ast_hash": "af1323828e586eb6f973e08707c08f5b",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/runtime/application/application.py": {
+    "mtime": 1788545535.4616132,
+    "ast_hash": "6bf34b2e4b06df745b790761205c9df1",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/runtime/application/default_application.py": {
+    "mtime": 1788545489.9027367,
+    "ast_hash": "5fff2152dac5e89142dd0f8614828b4f",
     "semantic_hash": ""
   }
 }
