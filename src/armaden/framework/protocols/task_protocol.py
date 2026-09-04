@@ -2,46 +2,44 @@ from enum import Enum
 from typing import Protocol
 
 from armaden.framework.protocols.task_policy_protocol import TaskPolicyProtocol
-from armaden.framework.types.task import TaskCallback, TaskStatusCallback
+from armaden.framework.protocols.task_runtime_protocol import TaskRuntimeProtocol
+from armaden.framework.types.result import Result
 
 
 class TaskProtocol[E: Enum](Protocol):
     @property
     def auto_restart(self) -> bool: ...
 
-    @property
-    def awaits(self) -> list[str | type[object]] | None: ...
-
-    @property
-    def depends_on(self) -> list[str | type[object]] | None: ...
-
-    @property
-    def description(self) -> str | None: ...
-
-    @property
-    def initialize(self) -> TaskCallback | None: ...
-
-    @property
-    def long_running(self) -> bool: ...
-
-    @property
-    def name(self) -> str: ...
-
+    awaits: list[str | type[object]] | None
+    depends_on: list[str | type[object]] | None
+    description: str | None
+    long_running: bool
+    name: str
     @property
     def policy(self) -> TaskPolicyProtocol: ...
 
-    @property
-    def run(self) -> TaskCallback: ...
+    threading_policy: E
 
-    @property
-    def shutdown(self) -> TaskCallback | None: ...
+    async def initialize(
+        self,
+        runtime: TaskRuntimeProtocol,
+        **kwargs: object,
+    ) -> Result[None]: ...
 
-    @property
-    def status(self) -> TaskStatusCallback | None: ...
+    async def run(
+        self,
+        runtime: TaskRuntimeProtocol,
+        **kwargs: object,
+    ) -> Result[object]: ...
 
-    @property
-    def threading_policy(self) -> E: ...
+    async def shutdown(
+        self,
+        runtime: TaskRuntimeProtocol,
+        **kwargs: object,
+    ) -> Result[None]: ...
 
-    _graph_ref: object | None
-    _injector_ref: object | None
-    _runtime_ref: object | None
+    async def status(
+        self,
+        runtime: TaskRuntimeProtocol,
+        **kwargs: object,
+    ) -> Result[dict[str, object]]: ...

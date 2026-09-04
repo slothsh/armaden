@@ -16,7 +16,7 @@ class TaskStateData:
     thread_info: ThreadInfoData
     task: TaskProtocol[Enum]
     initialized: bool
-    future: Future[Result[None]] | None
+    future: Future[Result[object]] | None
     event_loop: asyncio.AbstractEventLoop
     processes: list[ProcessInfoData]
     thread: Thread

@@ -1,20 +1,7 @@
-from .utils.types import Result
-from .utils.dictionary import Dictionary
-from .errors import Error, GenericError
-from armaden.framework.runtime.container.tags import MultiImplementationTag
-from .classes.task import _LegacyTask, TaskBuilder as _LegacyTaskBuilder
-from .runtime.task import Task
-from .runtime.task_builder import TaskBuilder
-from .classes.executable import Executable
+from armaden.framework.runtime.supervisor.task.dto.task_policy_data import TaskPolicy
+from armaden.framework.runtime.supervisor.task.task import Task
 
 __all__ = [
-    'Result',
-    'Dictionary',
-    'Error',
-    'GenericError',
-    'MultiImplementationTag',
     'Task',
-    'TaskBuilder',
-    '_LegacyTask',
-    'Executable',
+    'TaskPolicy',
 ]

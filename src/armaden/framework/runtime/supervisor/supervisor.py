@@ -624,7 +624,7 @@ class Supervisor:
     def _task_run(self, task_state: TaskStateData) -> Result[None]:
         runtime = TaskRuntime(task_state)
 
-        async def run(runtime: TaskRuntimeProtocol) -> Result[None]:
+        async def run(runtime: TaskRuntimeProtocol) -> Result[object]:
             return await task_state.task.run(runtime)
 
         task_state.future = asyncio.run_coroutine_threadsafe(
