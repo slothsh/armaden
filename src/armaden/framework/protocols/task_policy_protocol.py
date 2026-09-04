@@ -2,8 +2,7 @@ from typing import Protocol
 
 
 class TaskPolicyProtocol(Protocol):
-    @property
-    def continue_on_failure(self) -> bool: ...
+    continue_on_failure: bool
 
     @property
     def priority(self) -> int: ...
