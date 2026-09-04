@@ -263,7 +263,8 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
         return self._scheduler
 
 
-    async def _execute_graph(self, graph: TaskGraphData) -> None:
+    @override
+    async def execute_graph(self, graph: TaskGraphData) -> None:
         graph.state = TaskGraphState.RUNNING
         injector = self._injector
 
@@ -280,7 +281,7 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
         pending = [g for g in self._graphs if g.state in (TaskGraphState.PENDING, TaskGraphState.RUNNING)]
         for graph in pending:
             try:
-                await self._execute_graph(graph)
+                await self.execute_graph(graph)
             except Exception as exception:
                 logger.exception('Graph %s execution failed: %s', graph.graph_id, exception)
                 graph.state = TaskGraphState.FAILED
