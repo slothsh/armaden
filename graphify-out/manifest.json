@@ -525,8 +525,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/supervisor/supervisor.py": {
-    "mtime": 1788533482.4347353,
-    "ast_hash": "f07a73d8313cd4294601ebbef40a7e13",
+    "mtime": 1788536790.1494865,
+    "ast_hash": "653fcbd567c2d07f6ad342130b79e42a",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/supervisor/task/__init__.py": {
@@ -1507,6 +1507,11 @@
   "src/armaden/framework/facades/facade.py": {
     "mtime": 1788536680.3547306,
     "ast_hash": "43811fc7cfe87e69d170f586c0ec0a68",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/protocols/supervisor_protocol.py": {
+    "mtime": 1788536771.4265282,
+    "ast_hash": "a43e6c5dfcd6c4e62316c0dc4b30b5ac",
     "semantic_hash": ""
   }
 }
