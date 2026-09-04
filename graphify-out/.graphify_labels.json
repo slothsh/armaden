@@ -422,5 +422,12 @@
   "420": "TaskCallback",
   "421": "TaskStatusCallback",
   "422": "Self",
-  "423": "Task"
+  "423": "Task",
+  "424": "ArmaReforgerExecutableFlag",
+  "425": "TaskGraphCompilerProtocol",
+  "426": "TaskRestartPolicy",
+  "427": "RconPacketInterface",
+  "428": "Self",
+  "429": "TaskGraph",
+  "430": "TaskThreadingPolicy"
 }
