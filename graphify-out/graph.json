@@ -4,6 +4,16 @@
   "graph": {},
   "nodes": [
     {
+      "label": "facade.py",
+      "file_type": "code",
+      "source_file": "src/armaden/framework/types/facade.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_armaden_framework_types_facade",
+      "community": 383,
+      "norm_label": "facade.py"
+    },
+    {
       "label": "__init__.py",
       "file_type": "code",
       "source_file": "src/armaden/framework/__init__.py",
@@ -96760,5 +96770,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "a3f25baf5a521ad15e8036961111e43cefcc6169"
+  "built_at_commit": "86ea70be9515d2e063a1ee9bff03ad0a56303654"
 }

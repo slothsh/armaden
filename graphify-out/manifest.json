@@ -1483,5 +1483,10 @@
     "mtime": 1788534276.573878,
     "ast_hash": "0010a1f7f90d8bc0b2b93bb32dc832f7",
     "semantic_hash": ""
+  },
+  "src/armaden/framework/types/facade.py": {
+    "mtime": 1788536175.5428464,
+    "ast_hash": "cfb190e65595654fc7e847ddf430e2b1",
+    "semantic_hash": ""
   }
 }
