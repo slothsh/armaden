@@ -6,6 +6,7 @@ import types
 from collections.abc import Callable
 from typing import ClassVar, cast, override
 
+from armaden.framework.protocols.configuration_protocol import ConfigurationProtocol
 from armaden.framework.protocols.container_instance_protocol import (
     ContainerInstanceProtocol,
 )
@@ -168,6 +169,14 @@ class Container(ContainerProtocol, ContainerInstanceProtocol):
 
 
     def _resolve_config_value(self, key: str) -> object:
+        try:
+            configuration = self.make(ConfigurationProtocol)
+        except BindingResolutionException:
+            configuration = None
+        if configuration is not None:
+            getter = getattr(configuration, 'get', None)
+            if callable(getter):
+                return getter(key)
         if self.resolved('config'):
             config = self.make('config')
             getter = getattr(config, 'get', None)
@@ -565,7 +574,7 @@ class Container(ContainerProtocol, ContainerInstanceProtocol):
                 parameters = {}
             if abstract == concrete:
                 return container.build(concrete)
-            return container.resolve(concrete, parameters, raiseEvents=False)
+            return container.resolve(concrete, parameters, raise_events=False)
         return factory
 
 
@@ -746,10 +755,10 @@ class Container(ContainerProtocol, ContainerInstanceProtocol):
 
 
     @override
-    def resolve(self, abstract: object, parameters: dict[object, object] | None = None, raiseEvents: bool = True) -> object:
+    def resolve(self, abstract: object, parameters: dict[object, object] | None = None, raise_events: bool = True) -> object:
         abstract = self.get_alias(abstract)
 
-        if raiseEvents:
+        if raise_events:
             self.fire_before_resolving_callbacks(abstract, parameters)
 
         concrete = self.get_contextual_concrete(abstract)
@@ -758,7 +767,7 @@ class Container(ContainerProtocol, ContainerInstanceProtocol):
         if abstract in self._instances and not needs_contextual_build:
             return self._instances[abstract]
 
-        if raiseEvents and abstract not in self._bindings and abstract not in self._instances:
+        if raise_events and abstract not in self._bindings and abstract not in self._instances:
             self._try_resolve_deferred(abstract)
 
         self._with.append(parameters or {})
@@ -779,7 +788,7 @@ class Container(ContainerProtocol, ContainerInstanceProtocol):
         if self.is_shared(abstract) and not needs_contextual_build:
             self._instances[abstract] = obj
 
-        if raiseEvents:
+        if raise_events:
             self.fire_resolving_callbacks(abstract, obj)
             self.fire_after_resolving_callbacks(abstract, obj)
 

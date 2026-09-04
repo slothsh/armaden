@@ -173,7 +173,7 @@ class ContainerMethodsProtocol(Protocol):
         self,
         abstract: object,
         parameters: Parameters | None = None,
-        raiseEvents: bool = True,
+        raise_events: bool = True,
     ) -> object: ...
 
     def resolve_builtin_default(self, parameter: inspect.Parameter) -> object: ...
