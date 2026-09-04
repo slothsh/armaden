@@ -429,5 +429,10 @@
   "427": "RconPacketInterface",
   "428": "Self",
   "429": "TaskGraph",
-  "430": "TaskThreadingPolicy"
+  "430": "TaskThreadingPolicy",
+  "431": "TaskStatusCallback",
+  "432": "TaskThreadingPolicy",
+  "433": "TaskGraph",
+  "434": "TaskInjector",
+  "435": "TaskInjectorProtocol"
 }
