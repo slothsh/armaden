@@ -1,3 +1,22 @@
-class ProcessFacade:
-    def __init__(self, supervisor: object) -> None:
-        self._supervisor: object = supervisor
+from enum import Enum
+from typing import cast, override
+
+from armaden.framework.facades.facade import Facade
+from armaden.framework.protocols.supervisor_protocol import SupervisorProtocol
+from armaden.framework.protocols.task_protocol import TaskProtocol
+
+
+class ProcessFacade[G](Facade):
+    @override
+    @classmethod
+    def get_facade_accessor(cls) -> object:
+        return SupervisorProtocol
+
+
+    @classmethod
+    def submit(
+        cls,
+        tasks: list[TaskProtocol[Enum]],
+    ) -> G:
+        root = cast(SupervisorProtocol[G], cls.get_facade_root())
+        return root.submit(tasks)
