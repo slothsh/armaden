@@ -17,6 +17,7 @@ from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
 from armaden.framework.error.error import Error
+from armaden.framework.facades.facade import Facade
 from armaden.framework.runtime.container.container import Container
 from armaden.framework.runtime.supervisor.dto.active_coroutine_data import ActiveCoroutineData
 from armaden.framework.runtime.supervisor.dto.process_info_data import ProcessInfoData
@@ -36,9 +37,6 @@ from armaden.framework.runtime.supervisor.task.task_graph_compiler import TaskGr
 from armaden.framework.runtime.supervisor.task.graph_task_runtime import GraphTaskRuntime
 from armaden.framework.runtime.supervisor.task.task_injector import TaskInjector
 from armaden.framework.runtime.supervisor.task.policy_engine import PolicyEngine
-from armaden.framework.facades.concurrency import ConcurrencyFacade
-from armaden.framework.facades.process import ProcessFacade
-from armaden.framework.facades.schedule import ScheduleFacade
 from armaden.framework.runtime.supervisor.task.enums.task_threading_policy import TaskThreadingPolicy
 from armaden.framework.protocols.scheduler_protocol import SchedulerProtocol
 from armaden.framework.protocols.supervisor_protocol import SupervisorProtocol
@@ -94,6 +92,10 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
         self._task_states: dict[int, TaskStateData] = {}
         self._thread_info_generator: Generator[ThreadInfoData, None, None] = self._new_thread_info_generator()
         self._worker_pool: WorkerPool | None = None
+
+        if container is not None:
+            Facade.set_facade_application(container)
+            _ = container.instance(SupervisorProtocol, self)
 
 
     async def _await_long_running_ready(
@@ -252,8 +254,12 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
             raise RuntimeError(
                 'APScheduler is required for scheduled tasks. Install with: pip install apscheduler'
             ) from exception
-        self._scheduler = scheduler_type()
-        _ = self._scheduler.start()
+        scheduler = scheduler_type()
+        _ = scheduler.start()
+        self._scheduler = scheduler
+        container = self._container
+        if container is not None:
+            _ = container.instance(SchedulerProtocol, scheduler)
         return self._scheduler
 
 
@@ -666,10 +672,6 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
         return self
 
 
-    def concurrency(self) -> ConcurrencyFacade:
-        return ConcurrencyFacade(self)
-
-
     async def enqueue_request(self, request: SupervisorRequestData) -> Result[None]:
         _ = asyncio.run_coroutine_threadsafe(self._enqueue_request(request), self._main_loop)
 
@@ -706,10 +708,6 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
         return Success(list(self._task_records.values()))
 
 
-    def process(self) -> ProcessFacade:
-        return ProcessFacade(self)
-
-
     def remove_schedule(self, name: str) -> None:
         if self._scheduler is not None:
             try:
@@ -744,14 +742,12 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
         return await self.shutdown()
 
 
-    def schedule(self) -> ScheduleFacade:
-        return ScheduleFacade(self)
-
-
     async def shutdown(self) -> Result[None]:
         if getattr(self, '_shutdown_completed', False):
             return Success(None)
         self._shutdown_completed = True
+
+        Facade.clear_resolved_instances()
 
         self._shutdown_event.set()
 
