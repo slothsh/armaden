@@ -1,16 +1,16 @@
 # Graph Report - armaden  (2026-09-04)
 
 ## Corpus Check
-- 297 files · ~58,708 words
+- 296 files · ~58,728 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 3063 nodes · 6285 edges · 436 communities (132 shown, 304 thin omitted)
+- 3062 nodes · 6285 edges · 435 communities (131 shown, 304 thin omitted)
 - Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 834 edges (avg confidence: 0.55)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `57fc68d3`
+- Built from commit: `a3f25baf`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -441,7 +441,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (436 total, 304 thin omitted)
+## Communities (435 total, 304 thin omitted)
 
 ### Community 0 - "ArmaReforgerServerExecutable"
 Cohesion: 0.07
@@ -828,7 +828,7 @@ Nodes (5): Enum, TaskStateData, SupervisorError, TaskRestartPolicy, TaskError
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `ArmaReforgerServerExecutable` connect `ArmaReforgerServerExecutable` to `.language`, `TaskThreadingPolicy`, `.log_rdb_checksum`, `.nwk_resolution`, `.rpl_encode_as_long_jobs`, `.scenario`, `.server_id`, `.streams_delta`, `.world`, `ABC`, `UrlGenerator`, `Error`, `SteamCmdExecutableFlag`, `.log_voting`, `.minidump`, `FilesystemServiceProvider`, `.nds`, `.profile`, `.no_backend`, `.keep_num_of_logs`, `DatabaseServiceProvider`, `.no_throw`, `.nwk_resolution`, `.region`, `.rpl_encode_as_long_jobs`, `.scenario`, `.single_threaded_update`, `.streaming_budget`, `.streams_delta`, `.vm_error_mode`, `.a2s`, `.addons_repair`, `.addons_verify`, `.backend_fresh_session`, `.custom`, `.debugger_port`, `.disable_ai`, `.disable_crash_reporter`, `.kind`, `.disable_shaders_build`, `.force_session_load`, `.freeze_check`, `.freeze_check_mode`, `.keep_num_of_logs`, `.limit_fps`, `.log_scr_checksum`, `.log_stats`, `.no_sound`, `.rcon`, `.rpl_timeout_ms`, `.staggering_budget`, `.force_session_load`, `.jobsys_short_worker_count`, `.keep_session_save`, `.log_rdb_checksum`?**
-  _High betweenness centrality (0.089) - this node is a cross-community bridge._
+  _High betweenness centrality (0.090) - this node is a cross-community bridge._
 - **Why does `ArmaReforgerExecutableError` connect `.kind` to `ArmaReforgerExecutableFlag`?**
   _High betweenness centrality (0.073) - this node is a cross-community bridge._
 - **Why does `Filesystem` connect `ErrorInterface` to `instance_container.py`, `arma_reforger_server_executable.py`, `__init__.py`, `SupervisorRequestKind`, `Packet`, `.make`, `S3Filesystem`, `Storage`?**

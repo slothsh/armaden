@@ -1334,11 +1334,6 @@
     "ast_hash": "e37965b6a407394e6eda415399c06e60",
     "semantic_hash": ""
   },
-  "src/armaden/framework/enums/__init__.py": {
-    "mtime": 1788464071.9454887,
-    "ast_hash": "c97aa54295d19167d67e3df890422b63",
-    "semantic_hash": ""
-  },
   "src/armaden/framework/facades/__init__.py": {
     "mtime": 1788460229.2703235,
     "ast_hash": "83888439df43bc87c025da5e2e873f0e",
