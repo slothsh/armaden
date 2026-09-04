@@ -525,8 +525,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/supervisor/supervisor.py": {
-    "mtime": 1788541581.1059203,
-    "ast_hash": "3b4ea43cb1493767daa0f5eb9aea95b7",
+    "mtime": 1788542334.9461534,
+    "ast_hash": "d08b0334b0499358a5ac6a334b553b16",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/supervisor/task/__init__.py": {
@@ -1360,8 +1360,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/scheduler_protocol.py": {
-    "mtime": 1788461889.7711365,
-    "ast_hash": "d637540592caf4b5725a946b56caa03c",
+    "mtime": 1788542325.3011756,
+    "ast_hash": "3c099d2f43a174d3f10bcfc73c7550ef",
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/task_graph_compiler_protocol.py": {
@@ -1505,8 +1505,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/supervisor_protocol.py": {
-    "mtime": 1788536771.4265282,
-    "ast_hash": "a43e6c5dfcd6c4e62316c0dc4b30b5ac",
+    "mtime": 1788542472.320839,
+    "ast_hash": "1c86e40284aa208b4eae29b02d4a52f3",
     "semantic_hash": ""
   },
   "src/armaden/framework/facades/facade_meta_class.py": {
@@ -1557,6 +1557,21 @@
   "src/armaden/framework/runtime/supervisor/task/enums/concurrency_mode.py": {
     "mtime": 1788542007.0329106,
     "ast_hash": "947aa5d3626a2d2a712c9fc7d841b6e5",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/protocols/schedule_builder_protocol.py": {
+    "mtime": 1788542351.8951144,
+    "ast_hash": "9d6bc3c6ba9827f900092bad77e282a8",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/runtime/supervisor/task/schedule_builder.py": {
+    "mtime": 1788542380.6550486,
+    "ast_hash": "420b599d525f355c54c1670cd2e2d652",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/runtime/supervisor/task/scheduled_task.py": {
+    "mtime": 1788542496.325784,
+    "ast_hash": "b1386d9e14261fd456077d6b4f2d5085",
     "semantic_hash": ""
   }
 }
