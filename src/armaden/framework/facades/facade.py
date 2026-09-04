@@ -4,12 +4,12 @@ from armaden.framework.facades.exceptions import (
     MissingFacadeAccessorException,
     UnresolvedFacadeRootException,
 )
-from armaden.framework.facades.facade_meta import FacadeMeta
+from armaden.framework.facades.facade_meta_class import FacadeMetaClass
 from armaden.framework.protocols.facade_protocol import FacadeProtocol
 from armaden.framework.types.facade import FacadeAccessor, FacadeApplication
 
 
-class Facade(metaclass=FacadeMeta):
+class Facade(metaclass=FacadeMetaClass):
     _cached: ClassVar[bool] = True
     _facade_application: ClassVar[FacadeApplication | None] = None
     _resolved_instances: ClassVar[dict[FacadeAccessor, object]] = {}
