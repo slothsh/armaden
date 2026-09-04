@@ -1608,5 +1608,20 @@
     "mtime": 1788542810.9380682,
     "ast_hash": "e1096e1e8ab724a811328ffbbca38002",
     "semantic_hash": ""
+  },
+  "src/armaden/framework/protocols/core_application_protocol.py": {
+    "mtime": 1788545223.191492,
+    "ast_hash": "390f66fb166fa8b0e8f1a69f95a48a00",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/runtime/application/__init__.py": {
+    "mtime": 1788545026.7740023,
+    "ast_hash": "a8af2e169c6de8232c2ba4ea2ab11313",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/runtime/application/core_application.py": {
+    "mtime": 1788545288.9213,
+    "ast_hash": "d74b5e983616b2e1f4dfd5c19c11dd71",
+    "semantic_hash": ""
   }
 }
