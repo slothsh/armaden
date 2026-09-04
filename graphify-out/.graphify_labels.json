@@ -415,5 +415,12 @@
   "413": "TaskInjector",
   "414": "TaskInjectorProtocol",
   "415": "TaskStateData",
-  "416": "TaskStatusCallback"
+  "416": "TaskStatusCallback",
+  "417": ".dispatch_subprocess",
+  "418": "SelfBuildingTag",
+  "419": "E",
+  "420": "TaskCallback",
+  "421": "TaskStatusCallback",
+  "422": "Self",
+  "423": "Task"
 }

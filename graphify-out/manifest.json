@@ -5,8 +5,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/__init__.py": {
-    "mtime": 1788453895.9513788,
-    "ast_hash": "91152268f633631194d43fb8269cc2e8",
+    "mtime": 1788531601.1541452,
+    "ast_hash": "d1b63f5be3b841cd9d0eaf3bd31112ce",
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/__init__.py": {
@@ -505,8 +505,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/supervisor/dto/task_state_data.py": {
-    "mtime": 1788464224.2053618,
-    "ast_hash": "0d5a02390974b10bc8f4bf0ef38e26cb",
+    "mtime": 1788531538.6962914,
+    "ast_hash": "21f54460b262477649c8461dc5d44ad8",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/supervisor/dto/thread_info_data.py": {
@@ -525,8 +525,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/supervisor/supervisor.py": {
-    "mtime": 1788464240.2263281,
-    "ast_hash": "4c6e8041c383d71c4ffa2e9dd30b0593",
+    "mtime": 1788531543.0802813,
+    "ast_hash": "d1c2c5ac546f57515daa3720f085b6dd",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/supervisor/task/__init__.py": {
@@ -1380,8 +1380,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/task_protocol.py": {
-    "mtime": 1788464177.3544645,
-    "ast_hash": "4663718bcee187b7add366f621a36e20",
+    "mtime": 1788531556.39625,
+    "ast_hash": "1215bff4dfc62c661fdd35e0e8e4af5e",
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/task_runtime_protocol.py": {
@@ -1445,13 +1445,28 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/task_policy_protocol.py": {
-    "mtime": 1788463975.1769102,
-    "ast_hash": "2adeeea11bce54e351fc6636f4a11b1c",
+    "mtime": 1788531575.8102045,
+    "ast_hash": "6dbaeb7b8d0662fb747055651b6e0e29",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/supervisor/task/enums/task_threading_policy.py": {
     "mtime": 1788378711.5811076,
     "ast_hash": "7d2a90f29e87c664581b235dc7eaed30",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/runtime/supervisor/task/dto/task_policy_data.py": {
+    "mtime": 1788531649.7930317,
+    "ast_hash": "f9f1a4dce2d4768c26443a34d8c8dced",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/runtime/supervisor/task/enums/task_restart_policy.py": {
+    "mtime": 1788531658.9230103,
+    "ast_hash": "26261b8cba334c6ffaab540fb244b45c",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/runtime/supervisor/task/task.py": {
+    "mtime": 1788531654.8280199,
+    "ast_hash": "c1f9baddb074dfbb9357f2ef4c92d183",
     "semantic_hash": ""
   }
 }
