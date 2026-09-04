@@ -2,8 +2,9 @@ from __future__ import annotations
 
 import asyncio
 import logging
+from collections.abc import Awaitable, Callable
 from enum import Enum, StrEnum
-from typing import override
+from typing import cast, override
 
 from returns.pipeline import is_successful
 from returns.result import Failure
@@ -56,7 +57,6 @@ class PolicyEngine(PolicyEngineProtocol[TaskGraphData]):
         graph: TaskGraphData,
     ) -> Result[object]:
         resolved = await injector.resolve(task, task.run, graph, runtime)
-        _ = resolved.pop('runtime', None)
 
         attempts = max(task.policy.retries, 0) + 1
         delay = max(task.policy.retry_delay, 0.0)
@@ -65,9 +65,13 @@ class PolicyEngine(PolicyEngineProtocol[TaskGraphData]):
             Error(PolicyEngineError.MAX_RETRIES_EXCEEDED, details={'task': task.name})
         )
 
+        run_callback = cast(
+            Callable[..., Awaitable[Result[object]]],
+            task.run,
+        )
         for attempt in range(attempts):
             try:
-                invocation = task.run(runtime, **resolved)
+                invocation = run_callback(**resolved)
                 if task.policy.timeout is None:
                     result = await invocation
                 else:

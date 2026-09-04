@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import sys
 from collections.abc import Callable
+from importlib import metadata
 from typing import cast, override
 
 from returns.pipeline import is_successful
@@ -107,8 +109,18 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
 
 
     def _fire_callbacks(self, callbacks: list[Callable[..., object]]) -> None:
-        for callback in callbacks:
-            _ = callback(self)
+        index = 0
+        while index < len(callbacks):
+            _ = callbacks[index](self)
+            index += 1
+
+
+    def _initialize_logging(self) -> None:
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s [%(levelname)s][%(name)s][%(threadName)s]: %(message)s',
+            stream=sys.stdout,
+        )
 
 
     def _register_deferred_provider(self, provider: ServiceProviderProtocol) -> None:
@@ -210,6 +222,7 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
     def bootstrap(self) -> Result[None]:
         if self._bootstrapped:
             return Success(None)
+        self._initialize_logging()
         environment_result = self._environment.initialize()
         if isinstance(environment_result, Failure):
             logger.warning('Environment initialization failed: %s', environment_result.failure())
@@ -219,7 +232,13 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
         self._register_user_application()
         self._register_user_providers()
         self._bootstrapped = True
+        logger.info('Application successfully bootstrapped')
         return Success(None)
+
+
+    @override
+    def config(self, key: str, default: object | None = None) -> object | None:
+        return self._configuration.get(key, default)
 
 
     @property
@@ -249,6 +268,16 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
     @override
     def instance(self, abstract: object, instance: object) -> object:
         return self._container.instance(abstract, instance)
+
+
+    @override
+    def is_local(self) -> bool:
+        return self._environment.environment == 'local'
+
+
+    @override
+    def is_production(self) -> bool:
+        return self._environment.environment == 'production'
 
 
     @override
@@ -296,3 +325,11 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
     @override
     def terminating(self, callback: Callable[..., object]) -> None:
         self._terminating_callbacks.append(callback)
+
+
+    @override
+    def version(self) -> str:
+        try:
+            return metadata.version('armaden')
+        except metadata.PackageNotFoundError:
+            return '0.0.0'

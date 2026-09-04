@@ -74,6 +74,7 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
         self._generate_task_id: Callable[[], int] = generate_task_id
         self._generate_thread_info: Callable[[], ThreadInfoData] = generate_thread_info
         self._graphs: list[TaskGraphData] = []
+        self._initialized: bool = False
         self._injector: TaskInjector = TaskInjector(container)
         self._main_loop: asyncio.AbstractEventLoop = event_loop
         self._max_exclusive_threads: int = max_exclusive_threads
@@ -491,8 +492,11 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
             init_callback = task.initialize
             if init_callback is not None:
                 init_kwargs = await injector.resolve(task, init_callback, graph, runtime)
-                _ = init_kwargs.pop('runtime', None)
-                init_result: object = init_callback(runtime, **init_kwargs)
+                initialize_callback = cast(
+                    Callable[..., Awaitable[Result[None]]],
+                    init_callback,
+                )
+                init_result: object = initialize_callback(**init_kwargs)
                 if inspect.isawaitable(init_result):
                     _ = await cast(Awaitable[object], init_result)
             result = await self._policy_engine.execute(task, runtime, injector, graph)
@@ -520,10 +524,20 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
         setattr(task, '_injector_ref', injector)
         setattr(task, '_graph_ref', graph)
         try:
-            result = shutdown_callback(runtime)
+            shutdown_kwargs = await injector.resolve(
+                task,
+                shutdown_callback,
+                graph,
+                runtime,
+            )
+            shutdown_function = cast(
+                Callable[..., Awaitable[Result[object]]],
+                shutdown_callback,
+            )
+            result = shutdown_function(**shutdown_kwargs)
             if inspect.isawaitable(result):
-                return cast(Result[object], await result)
-            return cast(Result[object], result)
+                return await result
+            return result
         finally:
             setattr(task, '_runtime_ref', None)
             setattr(task, '_injector_ref', None)
@@ -681,11 +695,14 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
 
     @override
     async def initialize(self) -> Result[None]:
+        if self._initialized:
+            return Success(None)
         if self._worker_pool is None:
             self._worker_pool = WorkerPool(self._pool_size, self._max_exclusive_threads)
 
         for task_state in self._task_states.values():
             _ = self._task_initialize(task_state)
+        self._initialized = True
 
         return Success(None)
 
@@ -772,19 +789,7 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
                     if worker_loop is not None:
                         try:
                             if worker_loop is asyncio.get_running_loop():
-                                setattr(task, '_runtime_ref', runtime)
-                                setattr(task, '_injector_ref', injector)
-                                setattr(task, '_graph_ref', graph)
-                                try:
-                                    shutdown_callback = task.shutdown
-                                    if shutdown_callback is not None:
-                                        shutdown_result = shutdown_callback(runtime)
-                                        if inspect.isawaitable(shutdown_result):
-                                            await shutdown_result
-                                finally:
-                                    setattr(task, '_runtime_ref', None)
-                                    setattr(task, '_injector_ref', None)
-                                    setattr(task, '_graph_ref', None)
+                                _ = await self._run_shutdown(task, injector, graph, runtime)
                             else:
                                 fut = asyncio.run_coroutine_threadsafe(
                                     self._run_shutdown(task, injector, graph, runtime),
@@ -811,14 +816,7 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
                         graph=graph,
                         main_loop=self._main_loop,
                     )
-                    setattr(task, '_runtime_ref', runtime)
-                    setattr(task, '_injector_ref', injector)
-                    setattr(task, '_graph_ref', graph)
-                    shutdown_callback = task.shutdown
-                    if shutdown_callback is not None:
-                        shutdown_result = shutdown_callback(runtime)
-                        if inspect.isawaitable(shutdown_result):
-                            await shutdown_result
+                    _ = await self._run_shutdown(task, injector, graph, runtime)
                 except Exception as exception:
                     logger.error('Task %s shutdown failed: %s', task_name, exception)
                 finally:
