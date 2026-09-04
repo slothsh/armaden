@@ -4,7 +4,7 @@ from armaden.framework.runtime.supervisor.task.enums.task_restart_policy import 
 
 
 @dataclass
-class TaskPolicy:
+class TaskPolicyData:
     continue_on_failure: bool = False
     priority: int = 0
     ready_timeout: float | None = None

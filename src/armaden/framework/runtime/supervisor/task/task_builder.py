@@ -1,25 +1,19 @@
 from __future__ import annotations
 
-import inspect
-from dataclasses import dataclass
-from typing import cast, override
-from collections.abc import Awaitable
-
-from returns.result import Success
+from typing import override
 
 from armaden.framework.protocols.task_builder_protocol import TaskBuilderProtocol
-from armaden.framework.protocols.task_runtime_protocol import TaskRuntimeProtocol
-from armaden.framework.runtime.supervisor.task.dto.task_policy_data import TaskPolicy
+from armaden.framework.runtime.supervisor.task.built_task import BuiltTask
+from armaden.framework.runtime.supervisor.task.dto.built_task_callbacks_data import (
+    BuiltTaskCallbacksData,
+)
+from armaden.framework.runtime.supervisor.task.dto.task_policy_data import TaskPolicyData
 from armaden.framework.runtime.supervisor.task.enums.task_restart_policy import TaskRestartPolicy
 from armaden.framework.runtime.supervisor.task.enums.task_threading_policy import (
     TaskThreadingPolicy,
 )
 from armaden.framework.runtime.supervisor.task.task import Task
-from armaden.framework.types.result import Result
 from armaden.framework.types.task import TaskCallback, TaskStatusCallback
-
-
-type BuiltTaskCallback = TaskCallback | TaskStatusCallback
 
 
 class TaskBuilder(TaskBuilderProtocol[TaskThreadingPolicy]):
@@ -45,11 +39,11 @@ class TaskBuilder(TaskBuilderProtocol[TaskThreadingPolicy]):
         self._timeout: float | None = None
 
 
-    def _build_policy(self) -> TaskPolicy:
+    def _build_policy(self) -> TaskPolicyData:
         restart = self._restart
         if self._auto_restart and restart == TaskRestartPolicy.NEVER:
             restart = TaskRestartPolicy.ALWAYS
-        return TaskPolicy(
+        return TaskPolicyData(
             continue_on_failure=self._continue_on_failure,
             priority=self._priority,
             ready_timeout=self._ready_timeout,
@@ -72,13 +66,13 @@ class TaskBuilder(TaskBuilderProtocol[TaskThreadingPolicy]):
         if self._run is None:
             raise ValueError('Task run callback must be set before building')
 
-        callbacks = _BuiltCallbacks(
+        callbacks = BuiltTaskCallbacksData(
             initialize=self._initialize,
             run=self._run,
             shutdown=self._shutdown,
             status=self._status,
         )
-        return _BuiltTask(
+        return BuiltTask(
             awaits=list(self._awaits),
             callbacks=callbacks,
             depends_on=list(self._depends_on),
@@ -197,114 +191,3 @@ class TaskBuilder(TaskBuilderProtocol[TaskThreadingPolicy]):
     def with_auto_restart(self) -> TaskBuilder:
         self._auto_restart = True
         return self
-
-
-@dataclass
-class _BuiltCallbacks:
-    initialize: TaskCallback | None = None
-    run: TaskCallback | None = None
-    shutdown: TaskCallback | None = None
-    status: TaskStatusCallback | None = None
-
-
-class _BuiltTask(Task):
-    def __init__(
-        self,
-        awaits: list[str | type[object]],
-        callbacks: _BuiltCallbacks,
-        depends_on: list[str | type[object]],
-        description: str | None,
-        long_running: bool,
-        name: str | None,
-        policy: TaskPolicy,
-        threading_policy: TaskThreadingPolicy,
-    ) -> None:
-        super().__init__(
-            awaits=awaits,
-            depends_on=depends_on,
-            description=description,
-            long_running=long_running,
-            name=name,
-            policy=policy,
-            threading_policy=threading_policy,
-        )
-        self._callbacks: _BuiltCallbacks = callbacks
-
-
-    async def _invoke_callback(
-        self,
-        callback: BuiltTaskCallback,
-        runtime: TaskRuntimeProtocol,
-    ) -> Result[object]:
-        kwargs = await self._resolve_kwargs(callback, runtime)
-        result = callback(**kwargs)
-        if inspect.isawaitable(result):
-            return await cast(Awaitable[Result[object]], result)
-        return result
-
-
-    async def _resolve_kwargs(
-        self,
-        callback: BuiltTaskCallback,
-        runtime: TaskRuntimeProtocol,
-    ) -> dict[str, object]:
-        graph = self.graph
-        injector = self.injector
-        if graph is None or injector is None:
-            return {}
-        return await injector.resolve(self, callback, graph, runtime)
-
-
-    @override
-    async def initialize(
-        self,
-        runtime: TaskRuntimeProtocol,
-        **kwargs: object,
-    ) -> Result[None]:
-        _ = kwargs
-        callback = self._callbacks.initialize
-        if callback is None:
-            return Success(None)
-        result = await self._invoke_callback(callback, runtime)
-        return cast(Result[None], result)
-
-
-    @override
-    async def run(
-        self,
-        runtime: TaskRuntimeProtocol,
-        **kwargs: object,
-    ) -> Result[object]:
-        _ = kwargs
-        callback = self._callbacks.run
-        if callback is None:
-            raise RuntimeError('Task run callback must be set before building')
-        return await self._invoke_callback(callback, runtime)
-
-
-    @override
-    async def shutdown(
-        self,
-        runtime: TaskRuntimeProtocol,
-        **kwargs: object,
-    ) -> Result[None]:
-        _ = kwargs
-        callback = self._callbacks.shutdown
-        if callback is None:
-            return Success(None)
-        result = await self._invoke_callback(callback, runtime)
-        return cast(Result[None], result)
-
-
-    @override
-    async def status(
-        self,
-        runtime: TaskRuntimeProtocol,
-        **kwargs: object,
-    ) -> Result[dict[str, object]]:
-        _ = kwargs
-        callback = self._callbacks.status
-        if callback is None:
-            return Success({})
-        result = await self._invoke_callback(callback, runtime)
-        return cast(Result[dict[str, object]], result)

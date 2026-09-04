@@ -9,8 +9,8 @@ from returns.result import Success
 from armaden.framework.protocols.task_injector_protocol import TaskInjectorProtocol
 from armaden.framework.protocols.task_protocol import TaskProtocol
 from armaden.framework.protocols.task_runtime_protocol import TaskRuntimeProtocol
-from armaden.framework.runtime.supervisor.task.dto.task_graph_data import TaskGraph
-from armaden.framework.runtime.supervisor.task.dto.task_policy_data import TaskPolicy
+from armaden.framework.runtime.supervisor.task.dto.task_graph_data import TaskGraphData
+from armaden.framework.runtime.supervisor.task.dto.task_policy_data import TaskPolicyData
 from armaden.framework.runtime.supervisor.task.enums.task_restart_policy import TaskRestartPolicy
 from armaden.framework.runtime.supervisor.task.enums.task_threading_policy import (
     TaskThreadingPolicy,
@@ -24,22 +24,22 @@ class Task(TaskProtocol[TaskThreadingPolicy], ABC):
     description: str | None = None
     long_running: bool = False
     name: str = ''
-    _policy: TaskPolicy = TaskPolicy()
+    _policy: TaskPolicyData = TaskPolicyData()
     _threading_policy: TaskThreadingPolicy = TaskThreadingPolicy.SHARED
 
     def __init__(
         self,
         name: str | None = None,
         description: str | None = None,
-        policy: TaskPolicy | None = None,
+        policy: TaskPolicyData | None = None,
         threading_policy: TaskThreadingPolicy | None = None,
         depends_on: list[str | type[object]] | None = None,
         awaits: list[str | type[object]] | None = None,
         long_running: bool | None = None,
     ) -> None:
         task_class = type(self)
-        self._graph_ref: TaskGraph | None = None
-        self._injector_ref: TaskInjectorProtocol[TaskGraph] | None = None
+        self._graph_ref: TaskGraphData | None = None
+        self._injector_ref: TaskInjectorProtocol[TaskGraphData] | None = None
         self._runtime_ref: TaskRuntimeProtocol | None = None
         self.awaits = list(awaits) if awaits is not None else list(task_class.awaits or [])
         self.depends_on = (
@@ -69,7 +69,7 @@ class Task(TaskProtocol[TaskThreadingPolicy], ABC):
 
 
     @property
-    def graph(self) -> TaskGraph | None:
+    def graph(self) -> TaskGraphData | None:
         return self._graph_ref
 
 
@@ -85,13 +85,13 @@ class Task(TaskProtocol[TaskThreadingPolicy], ABC):
 
 
     @property
-    def injector(self) -> TaskInjectorProtocol[TaskGraph] | None:
+    def injector(self) -> TaskInjectorProtocol[TaskGraphData] | None:
         return self._injector_ref
 
 
     @property
     @override
-    def policy(self) -> TaskPolicy:
+    def policy(self) -> TaskPolicyData:
         return self._policy
 
 

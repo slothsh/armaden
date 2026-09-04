@@ -12,3 +12,5 @@ type TaskStatusCallback = Callable[
     ...,
     Result[dict[str, object]] | Awaitable[Result[dict[str, object]]],
 ]
+
+type BuiltTaskCallback = TaskCallback | TaskStatusCallback

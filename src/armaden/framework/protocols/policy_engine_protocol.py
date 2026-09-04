@@ -17,3 +17,9 @@ class PolicyEngineProtocol[G](Protocol):
         injector: TaskInjectorProtocol[G],
         graph: G,
     ) -> Result[object]: ...
+
+    def should_restart(
+        self,
+        task: TaskProtocol[Enum],
+        result: Result[object],
+    ) -> bool: ...

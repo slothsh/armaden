@@ -64,8 +64,21 @@ class TaskRuntime(TaskRuntimeProtocol):
         )
         self._task_state.processes.append(process_info)
 
-        return_code = await process.wait()
-        _ = await asyncio.gather(*tasks)
+        try:
+            return_code = await process.wait()
+            _ = await asyncio.gather(*tasks)
+        except asyncio.CancelledError:
+            for task in tasks:
+                _ = task.cancel()
+            if tasks:
+                _ = await asyncio.gather(*tasks, return_exceptions=True)
+            raise
+        finally:
+            for task in tasks:
+                if not task.done():
+                    _ = task.cancel()
+            if tasks:
+                _ = await asyncio.gather(*tasks, return_exceptions=True)
 
         if return_code == 0:
             return Success('Subprocess executed successfully')

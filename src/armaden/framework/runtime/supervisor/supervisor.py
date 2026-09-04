@@ -31,7 +31,7 @@ from armaden.framework.runtime.supervisor.enums.supervisor_request_kind import (
 )
 from armaden.framework.runtime.supervisor.task.dto.task_record_data import TaskRecordData
 from armaden.framework.runtime.supervisor.task.enums.task_graph_state import TaskGraphState
-from armaden.framework.runtime.supervisor.task.dto.task_graph_data import TaskGraph
+from armaden.framework.runtime.supervisor.task.dto.task_graph_data import TaskGraphData
 from armaden.framework.runtime.supervisor.task.task_graph_compiler import TaskGraphCompiler
 from armaden.framework.runtime.supervisor.task.graph_task_runtime import GraphTaskRuntime
 from armaden.framework.runtime.supervisor.task.task_injector import TaskInjector
@@ -74,7 +74,7 @@ class Supervisor:
         self._container: Container | None = container
         self._generate_task_id: Callable[[], int] = generate_task_id
         self._generate_thread_info: Callable[[], ThreadInfoData] = generate_thread_info
-        self._graphs: list[TaskGraph] = []
+        self._graphs: list[TaskGraphData] = []
         self._injector: TaskInjector = TaskInjector(container)
         self._main_loop: asyncio.AbstractEventLoop = event_loop
         self._max_exclusive_threads: int = max_exclusive_threads
@@ -100,7 +100,7 @@ class Supervisor:
         task: TaskProtocol[Enum],
         coro: asyncio.Task[object],
         runtime: GraphTaskRuntime,
-        graph: TaskGraph,
+        graph: TaskGraphData,
         ready_timeout: float | None,
     ) -> None:
         ready_wait = asyncio.create_task(runtime.ready_event.wait())
@@ -132,7 +132,7 @@ class Supervisor:
         self,
         task: TaskProtocol[Enum],
         runtime: GraphTaskRuntime,
-        graph: TaskGraph,
+        graph: TaskGraphData,
         injector: TaskInjector,
         semaphore: asyncio.Semaphore | None = None,
     ) -> Result[object]:
@@ -255,7 +255,7 @@ class Supervisor:
         return self._scheduler
 
 
-    async def _execute_graph(self, graph: TaskGraph) -> None:
+    async def _execute_graph(self, graph: TaskGraphData) -> None:
         graph.state = TaskGraphState.RUNNING
         injector = self._injector
 
@@ -278,7 +278,7 @@ class Supervisor:
                 graph.state = TaskGraphState.FAILED
 
 
-    async def _execute_layer(self, graph: TaskGraph, layer: list[str], injector: TaskInjector) -> None:
+    async def _execute_layer(self, graph: TaskGraphData, layer: list[str], injector: TaskInjector) -> None:
         tasks = [graph.tasks[name] for name in layer]
 
         semaphore = None
@@ -472,7 +472,7 @@ class Supervisor:
         self,
         task: TaskProtocol[Enum],
         runtime: GraphTaskRuntime,
-        graph: TaskGraph,
+        graph: TaskGraphData,
         injector: TaskInjector,
     ) -> Result[object]:
         setattr(task, '_runtime_ref', runtime)
@@ -501,7 +501,7 @@ class Supervisor:
         self,
         task: TaskProtocol[Enum],
         injector: TaskInjector,
-        graph: TaskGraph,
+        graph: TaskGraphData,
         runtime: TaskRuntimeProtocol,
     ) -> Result[object] | None:
         shutdown_callback = task.shutdown
@@ -525,7 +525,7 @@ class Supervisor:
         self,
         task: TaskProtocol[Enum],
         runtime: GraphTaskRuntime,
-        graph: TaskGraph,
+        graph: TaskGraphData,
         injector: TaskInjector,
         task_ref: dict[str, asyncio.Task[object]],
     ) -> Result[object]:
@@ -893,7 +893,7 @@ class Supervisor:
         return Success(None)
 
 
-    def submit(self, tasks: list[TaskProtocol[Enum]]) -> TaskGraph:
+    def submit(self, tasks: list[TaskProtocol[Enum]]) -> TaskGraphData:
         graph = self._compiler.compile(list(tasks))
         graph.state = TaskGraphState.PENDING
         self._graphs.append(graph)
