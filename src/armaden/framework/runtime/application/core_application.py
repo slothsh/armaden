@@ -8,6 +8,7 @@ from returns.pipeline import is_successful
 from returns.result import Success
 
 from armaden.framework.facades.facade import Facade
+from armaden.framework.protocols.application_protocol import ApplicationProtocol
 from armaden.framework.protocols.container_protocol import ContainerProtocol
 from armaden.framework.protocols.core_application_protocol import (
     CoreApplicationProtocol,
@@ -17,6 +18,7 @@ from armaden.framework.protocols.deferrable_provider_protocol import (
 )
 from armaden.framework.protocols.service_provider_protocol import ServiceProviderProtocol
 from armaden.framework.protocols.supervisor_protocol import SupervisorProtocol
+from armaden.framework.runtime.application.default_application import DefaultApplication
 from armaden.framework.runtime.container.container import Container
 from armaden.framework.runtime.supervisor.task.dto.task_graph_data import TaskGraphData
 from armaden.framework.runtime.supervisor.supervisor import Supervisor
@@ -42,6 +44,16 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
         self._terminating_callbacks: list[Callable[..., object]] = []
         self._register_base_bindings()
         Facade.set_facade_application(self._container)
+
+
+    def _create_default_application(
+        self,
+        container: ContainerProtocol,
+        parameters: dict[object, object],
+    ) -> DefaultApplication:
+        _ = container
+        _ = parameters
+        return DefaultApplication(self._container)
 
 
     def _create_supervisor(
@@ -78,6 +90,7 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
         _ = self._container.instance(asyncio.AbstractEventLoop, self._event_loop)
         _ = self._container.instance('app', self)
         _ = self._container.instance('event_loop', self._event_loop)
+        self._container.singleton(ApplicationProtocol, self._create_default_application)
         self._container.singleton(SupervisorProtocol, self._create_supervisor)
 
 
