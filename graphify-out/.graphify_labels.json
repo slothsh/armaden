@@ -597,5 +597,16 @@
   "595": "__init__.py",
   "596": "__init__.py",
   "597": "__init__.py",
-  "598": "queue.py"
+  "598": "queue.py",
+  "599": ".keep_num_of_logs",
+  "600": ".keep_session_save",
+  "601": ".log_level",
+  "602": ".minidump",
+  "603": ".no_sound",
+  "604": ".rcon",
+  "605": ".rpl_timeout_ms",
+  "606": ".server_id",
+  "607": ".streaming_budget",
+  "608": ".vm_error_mode",
+  "609": "ContainerProtocol"
 }

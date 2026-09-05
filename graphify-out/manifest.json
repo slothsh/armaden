@@ -2510,8 +2510,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/api/queue.py": {
-    "mtime": 1788619554.0220304,
-    "ast_hash": "ce0a16087430a27121c41de7e0ff204e",
+    "mtime": 1788621102.035666,
+    "ast_hash": "9778af0e5153af00fb567d6a251c428c",
     "semantic_hash": ""
   },
   "src/armaden/framework/facades/queue_facade.py": {
@@ -2530,18 +2530,18 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/config/queue.py": {
-    "mtime": 1788618742.62572,
-    "ast_hash": "1f8265316e753b7476e8feb718dee708",
+    "mtime": 1788620168.2286797,
+    "ast_hash": "2d25374881d9620f42c3f9816c1eae0e",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/queue/__init__.py": {
-    "mtime": 1788619033.7990994,
-    "ast_hash": "5e431aea759d1ab107e3aa1eeae98f2c",
+    "mtime": 1788620236.6435242,
+    "ast_hash": "6a9b2c12da3ab3a9a4d13d58bb0c5bce",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/queue/cache_queue_driver.py": {
-    "mtime": 1788618989.6611922,
-    "ast_hash": "52056b141807594549f1baf6df723b9e",
+    "mtime": 1788620313.6423516,
+    "ast_hash": "910fbd19f864c44071fdcfa6305fcf26",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/queue/dto/__init__.py": {
@@ -2580,13 +2580,23 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/service_provider/queue_service_provider.py": {
-    "mtime": 1788619027.363113,
-    "ast_hash": "c7998ebc0ffe26104e91e91843cf2123",
+    "mtime": 1788620158.893701,
+    "ast_hash": "169fff0b42bf79a50ab4b33e3caf902c",
     "semantic_hash": ""
   },
   "src/armaden/framework/types/queue.py": {
     "mtime": 1788618685.4858449,
     "ast_hash": "4a98be0203ae1ecd3d126b1db94e9204",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/protocols/queue_worker_protocol.py": {
+    "mtime": 1788620521.4698954,
+    "ast_hash": "eed704ca2cd01f75a9e6a13f2572017a",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/runtime/queue/queue_worker.py": {
+    "mtime": 1788620538.273859,
+    "ast_hash": "2a517238b28f04ab98d4628578d40f10",
     "semantic_hash": ""
   }
 }
