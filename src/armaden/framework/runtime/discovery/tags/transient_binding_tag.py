@@ -1,0 +1,2 @@
+class TransientBindingTag:
+    pass

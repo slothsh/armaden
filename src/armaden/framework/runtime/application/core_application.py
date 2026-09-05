@@ -139,6 +139,7 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
     def _register_framework_providers(self) -> None:
         from armaden.framework.runtime.service_provider.cache_service_provider import CacheServiceProvider
         from armaden.framework.runtime.service_provider.database_service_provider import DatabaseServiceProvider
+        from armaden.framework.runtime.service_provider.discovery_service_provider import DiscoveryServiceProvider
         from armaden.framework.runtime.service_provider.filesystem_service_provider import FilesystemServiceProvider
         from armaden.framework.runtime.service_provider.queue_service_provider import QueueServiceProvider
         from armaden.framework.runtime.service_provider.http_service_provider import HttpServiceProvider
@@ -162,6 +163,10 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
         http_result = self.register(HttpServiceProvider(self._container))
         if isinstance(http_result, Failure):
             logger.warning('Framework HTTP provider registration failed: %s', http_result.failure())
+
+        discovery_result = self.register(DiscoveryServiceProvider(self._container))
+        if isinstance(discovery_result, Failure):
+            logger.warning('Framework discovery provider registration failed: %s', discovery_result.failure())
 
 
     def _register_user_application(self) -> None:

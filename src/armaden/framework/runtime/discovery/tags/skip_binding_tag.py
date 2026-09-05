@@ -1,0 +1,2 @@
+class SkipBindingTag:
+    pass
