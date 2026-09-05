@@ -90,12 +90,12 @@ class BattleEyeRconClient:
 
 
     async def on_server_message(self, message: ServerMessage) -> None:
-        _ = message
+        logger.info(f'sequence={message.sequence}, message={message.message}')
         pass
 
 
     async def on_command_response(self, response: CommandResponse) -> None:
-        _ = response
+        logger.info(f'sequence={response.sequence} response={response.response}' or '<no response>')
         pass
 
 
