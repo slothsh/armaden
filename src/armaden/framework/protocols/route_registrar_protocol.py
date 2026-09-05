@@ -3,6 +3,9 @@ from __future__ import annotations
 from collections.abc import Callable, Sequence
 from typing import Protocol
 
+from armaden.framework.protocols.route_group_protocol import RouteGroupProtocol
+
+
 class RouteRegistrarProtocol(Protocol):
     def any(
         self,
@@ -37,9 +40,9 @@ class RouteRegistrarProtocol(Protocol):
         **options: object,
     ) -> RouteRegistrarProtocol: ...
 
-    def middleware(self, *middleware: str) -> object: ...
+    def middleware(self, *middleware: str) -> RouteGroupProtocol: ...
 
-    def namespace(self, namespace: str) -> object: ...
+    def namespace(self, namespace: str) -> RouteGroupProtocol: ...
 
     def options(
         self,
@@ -62,7 +65,7 @@ class RouteRegistrarProtocol(Protocol):
         **options: object,
     ) -> RouteRegistrarProtocol: ...
 
-    def prefix(self, prefix: str) -> object: ...
+    def prefix(self, prefix: str) -> RouteGroupProtocol: ...
 
     def put(
         self,

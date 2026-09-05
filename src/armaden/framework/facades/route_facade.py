@@ -4,6 +4,7 @@ from collections.abc import Callable, Sequence
 from typing import cast, override
 
 from armaden.framework.facades.facade import Facade
+from armaden.framework.protocols.route_group_protocol import RouteGroupProtocol
 from armaden.framework.protocols.route_registrar_protocol import RouteRegistrarProtocol
 
 
@@ -76,12 +77,12 @@ class RouteFacade(Facade):
 
 
     @classmethod
-    def middleware(cls, *middleware: str) -> object:
+    def middleware(cls, *middleware: str) -> RouteGroupProtocol:
         return cls._registrar().middleware(*middleware)
 
 
     @classmethod
-    def namespace(cls, namespace: str) -> object:
+    def namespace(cls, namespace: str) -> RouteGroupProtocol:
         return cls._registrar().namespace(namespace)
 
 
@@ -116,7 +117,7 @@ class RouteFacade(Facade):
 
 
     @classmethod
-    def prefix(cls, prefix: str) -> object:
+    def prefix(cls, prefix: str) -> RouteGroupProtocol:
         return cls._registrar().prefix(prefix)
 
 
