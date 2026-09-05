@@ -1,5 +1,6 @@
 import logging
-from typing import final
+from collections.abc import Callable
+from typing import cast, final, override
 
 from armaden.framework.api.rcon import (
     RegisteredRconClient,
@@ -59,5 +60,17 @@ class ArmaReforgerRconClient(RegisteredRconClient, BattleEyeRconClient):
         builtin_command_overrides: list[type[RconCommand]] | None = None,
         **kwargs: object,
     ) -> None:
-        super().__init__(*args, **kwargs)
+        initialize_network = cast(Callable[..., object], BattleEyeRconClient.__init__)
+        _ = initialize_network(self, *args, **kwargs)
         self._initialize_registered_rcon(repository, builtin_command_overrides)
+        _ = super().__init__(*args, **kwargs)
+
+
+    @override
+    async def connect(self) -> None:
+        await BattleEyeRconClient.connect(self)
+
+
+    @override
+    async def shutdown(self) -> None:
+        await BattleEyeRconClient.shutdown(self)
