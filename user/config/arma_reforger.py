@@ -26,6 +26,7 @@ def config() -> ArmaReforgerServerConfig:
         'server': {
             'rcon': {
                 'permission': _string('ARMA_REFORGER_RCON_PERMISSION'),
+                'password': 'foobarbaz',
             },
             'game': {
                 'gameProperties': {
