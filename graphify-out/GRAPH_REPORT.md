@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7219e399`
+- Built from commit: `750b7b63`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -1057,11 +1057,11 @@ Nodes (9): RconCommand, BanCreateCommand, Any, BanListCommand, Any, BanRemoveCom
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `InstanceContainer` connect `.instance` to `instance_container.py`, `.resolve_dependencies`, `ArmaReforgerRconClient`, `arma_reforger_server_executable.py`, `Bind`, `QueueDriver`, `ServerMessageResponsePacket`, `ABC`, `SupervisorInterface`, `Supervisor`, `UrlGenerator`, `AppServiceProvider`, `ContextualAttribute`, `get_application`?**
-  _High betweenness centrality (0.074) - this node is a cross-community bridge._
+  _High betweenness centrality (0.072) - this node is a cross-community bridge._
 - **Why does `Task` connect `Self` to `TaskProtocol`, `_BuiltTask`?**
-  _High betweenness centrality (0.068) - this node is a cross-community bridge._
+  _High betweenness centrality (0.070) - this node is a cross-community bridge._
 - **Why does `ContainerMethodsProtocol` connect `InstanceContainer` to `RouteFacade`, `HealthStatus`, `BattleEyeRconClient`, `.single_threaded_update`, `URL`?**
-  _High betweenness centrality (0.058) - this node is a cross-community bridge._
+  _High betweenness centrality (0.059) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `ErrorInterface` (e.g. with `CoreApplicationInterface` and `KernelInterface`) actually correct?**
   _`ErrorInterface` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 30 inferred relationships involving `InstanceContainer` (e.g. with `Application` and `Config`) actually correct?**
