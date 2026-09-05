@@ -320,8 +320,8 @@
     "semantic_hash": ""
   },
   "user/routes/api.py": {
-    "mtime": 1788638786.375163,
-    "ast_hash": "33fff670ebc6cd0c4ff69b043cfaaf39",
+    "mtime": 1788639143.5519137,
+    "ast_hash": "a8b230acbbac6e8b1b6427f7755aa57e",
     "semantic_hash": ""
   },
   ".github/workflows/build.yml": {
@@ -1685,8 +1685,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/route_group_protocol.py": {
-    "mtime": 1788638786.3481631,
-    "ast_hash": "47f65cf24b03c0911ca69c3aec783280",
+    "mtime": 1788639099.4405239,
+    "ast_hash": "2574b348eac69aa833a50a204db87df6",
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/route_group_stack_protocol.py": {
@@ -1700,8 +1700,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/route_registrar_protocol.py": {
-    "mtime": 1788638786.3481631,
-    "ast_hash": "d83d6f242e1815b6ebefdec9d5a0d7bc",
+    "mtime": 1788639076.0625725,
+    "ast_hash": "928f437675013e5e233916e7f34bed14",
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/url_generator_protocol.py": {
@@ -1940,8 +1940,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/facades/route_facade.py": {
-    "mtime": 1788638786.345163,
-    "ast_hash": "2d345d06861b0882054413cf60e14a93",
+    "mtime": 1788639069.6165857,
+    "ast_hash": "cd9705355eab1496401b79d34286ba3c",
     "semantic_hash": ""
   },
   "src/armaden/framework/facades/schedule_facade.py": {

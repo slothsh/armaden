@@ -1,16 +1,16 @@
 # Graph Report - armaden  (2026-09-05)
 
 ## Corpus Check
-- 427 files · ~55,932 words
+- 427 files · ~55,952 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 3494 nodes · 5335 edges · 719 communities (207 shown, 512 thin omitted)
-- Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 573 edges (avg confidence: 0.56)
+- 3496 nodes · 5347 edges · 719 communities (207 shown, 512 thin omitted)
+- Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 577 edges (avg confidence: 0.56)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `250d3bd1`
+- Built from commit: `d3fe09a1`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -665,7 +665,7 @@
 
 ### Community 0 - "ArmaReforgerServerExecutable"
 Cohesion: 0.05
-Nodes (21): ArmaReforgerServerExecutable, Configure BattlEye / RCON remote console.          Keyword Args:             add, Cap the server frame rate., Load a server-side addon (mod) by ID.          May be called multiple times to l, ID of the scenario to host., Unique server identifier., Server region tag (used by the server browser)., Disable storage loads and saves (online and local). (+13 more)
+Nodes (20): ArmaReforgerServerExecutable, Cap the server frame rate., Load a server-side addon (mod) by ID.          May be called multiple times to l, Auto-restart the server when it crashes (default: ``True``)., Disable storage loads and saves (online and local)., Suppress all error-message dialogs., Print scenario .conf file paths to the log on startup., Log performance statistics every *interval_ms* (default 1000 ms). (+12 more)
 
 ### Community 2 - "AuthManager"
 Cohesion: 0.08
@@ -692,24 +692,20 @@ Cohesion: 0.05
 Nodes (15): CoreApplicationProtocol, AbstractEventLoop, ConfigurationProtocol, ContainerProtocol, EnvironmentProtocol, Result, ServiceProviderProtocol, KernelProtocol (+7 more)
 
 ### Community 17 - ".generate"
-Cohesion: 0.12
+Cohesion: 0.13
 Nodes (9): RconCommandArgumentData, RconCommand, IdCommand, LoginCommand, LogoutCommand, PlayersCommand, RestartCommand, RolesCommand (+1 more)
 
 ### Community 22 - "BoundMethod"
-Cohesion: 0.12
-Nodes (3): KeepAlivePacket, BattleEyeInvalidPacketException, ServerMessageRequestPacket
+Cohesion: 0.13
+Nodes (3): KeepAlivePacket, BattleEyeInvalidPacketException, ServerMessageResponsePacket
 
 ### Community 23 - "TaskGraph"
-Cohesion: 0.09
+Cohesion: 0.07
 Nodes (20): CacheProtocol, DatabaseResolverProtocol, DatabaseSchemaBuilderProtocol, FilesystemProtocol, HttpRequestProtocol, HttpResponse, HttpResponseFactory, cache() (+12 more)
-
-### Community 24 - "AsyncDatagramTransport"
-Cohesion: 0.08
-Nodes (12): Facade, RouteRegistrarProtocol, ConcurrencyFacade, Enum, G, TaskProtocol, ProcessFacade, Enum (+4 more)
 
 ### Community 25 - "UrlGenerator"
 Cohesion: 0.04
-Nodes (34): Enum, SteamCMD CLI command flags (prefixed with ``+``)., SteamCmdExecutableFlag, ApiStatus, DatabaseError, SchemaError, EnvironmentError, CacheDriverFactoryError (+26 more)
+Nodes (34): Enum, SteamCMD CLI command flags (prefixed with ``+``)., SteamCmdExecutableFlag, ApiStatus, DatabaseError, SchemaError, CacheDriverFactoryError, FileCacheDriverError (+26 more)
 
 ### Community 28 - "HttpServiceProvider"
 Cohesion: 0.19
@@ -728,8 +724,8 @@ Cohesion: 0.13
 Nodes (7): Executable, PushValue, Config, Path, Result, SteamCmdExecutable, SteamCmdExecutableError
 
 ### Community 37 - "ScheduleBuilder"
-Cohesion: 0.10
-Nodes (9): DispatchCallback, Failure, EventSubscriberProtocol, QueueResolverProtocol, DeferredEventStateData, EventDispatcher, ContainerProtocol, Result (+1 more)
+Cohesion: 0.13
+Nodes (6): DispatchCallback, Failure, DeferredEventStateData, EventDispatcher, Result, ShouldQueueEventListenerTag
 
 ### Community 45 - "_BuiltTask"
 Cohesion: 0.16
@@ -748,20 +744,20 @@ Cohesion: 0.25
 Nodes (5): BoundMethodProtocol, Signature, BoundMethod, ContainerProtocol, Parameter
 
 ### Community 53 - "TaskInterface"
-Cohesion: 0.27
-Nodes (3): Enum, TaskProtocol, TaskGraphCompiler
+Cohesion: 0.25
+Nodes (4): DatabaseBindings, DatabaseFacade, Result, DatabaseQueryBuilderProtocol
 
 ### Community 59 - "URL"
-Cohesion: 0.09
-Nodes (11): RconPacketInterface, Protocol, BoundMethodProtocol, ConfigurableProtocol, ContainerInstanceProtocol, ContainerProtocol, ContextualAttributeProtocol, Parameter (+3 more)
+Cohesion: 0.11
+Nodes (7): RconPacketInterface, Protocol, ConfigurableProtocol, DeferrableServiceProviderProtocol, ErrorProtocol, HttpControllerProtocol, RouteParameterProtocol
 
 ### Community 62 - "ArmaDen"
 Cohesion: 0.22
 Nodes (8): ArmaDen, Build Locally, CLI Entrypoints, Install, Manual Application Setup, Packages, Run with Docker, Scaffold an Application
 
 ### Community 63 - ".instance"
-Cohesion: 0.26
-Nodes (5): QueueDriverProtocol, Exception, QueueJobProtocol, Result, SyncQueueDriver
+Cohesion: 0.19
+Nodes (7): QueueDriverProtocol, ContainerAwareQueueJobProtocol, ContainerProtocol, Exception, QueueJobProtocol, Result, SyncQueueDriver
 
 ### Community 64 - ".fire_after_resolving_callbacks"
 Cohesion: 0.19
@@ -776,8 +772,8 @@ Cohesion: 0.40
 Nodes (3): PlayerResponseData, Parse a single data row from ``players`` output.          Returns ``None``  if t, A connected player returned by the ``players`` command.
 
 ### Community 75 - ".addon"
-Cohesion: 0.13
-Nodes (9): BattleEyeRconServer, Client, ClientState, RequestMessage, ResponseMessage, LoginStatus, LoginRequestPacket, UnknownPacket (+1 more)
+Cohesion: 0.12
+Nodes (9): BattleEyeRconServer, Client, ClientState, RequestMessage, ResponseMessage, LoginStatus, LoginResponsePacket, UnknownPacket (+1 more)
 
 ### Community 82 - "types.py"
 Cohesion: 0.12
@@ -788,8 +784,8 @@ Cohesion: 0.19
 Nodes (8): ClientStatus, CommandResponse, Message, _PendingCommand, ServerMessage, CommandHeader, CommandResponsePacket, TransportNotConnectedException
 
 ### Community 90 - "RouteFacade"
-Cohesion: 0.09
-Nodes (5): FacadeAccessor, FacadeApplication, Facade, UrlFacade, FacadeProtocol
+Cohesion: 0.26
+Nodes (5): Exception, QueueDriverProtocol, QueueJobProtocol, Result, QueueFacade
 
 ### Community 91 - "TaskInjector"
 Cohesion: 0.15
@@ -807,25 +803,25 @@ Nodes (7): QueueWorkerProtocol, ContainerProtocol, QueueDriverProtocol, QueueJob
 Cohesion: 0.10
 Nodes (7): RconCommandArgumentError, LocalFilesystemPathException, LocalFilesystem, ErrorProtocol, Exception, Result, ValueError
 
+### Community 97 - ".jobsys_short_worker_count"
+Cohesion: 0.22
+Nodes (3): EventListenerRegistryProtocol, Result, ContainerProtocol
+
 ### Community 99 - ".keep_session_save"
 Cohesion: 0.17
 Nodes (7): QueueDriverDependenciesData, QueueConfiguration, ContainerProtocol, QueueConfiguration, QueueDriverProtocol, Result, QueueServiceProvider
 
 ### Community 125 - "AbstractEventLoop"
-Cohesion: 0.31
-Nodes (7): PolicyEngine, PolicyEngineError, Enum, Result, TaskProtocol, TaskRuntimeProtocol, TaskInjectorProtocol
-
-### Community 159 - "UrlGenerator"
-Cohesion: 0.04
-Nodes (4): HttpMiddlewarePipelineProtocol, HttpRequestProtocol, HttpMiddlewarePipeline, ContainerProtocol
+Cohesion: 0.14
+Nodes (6): Facade, ProcessFacade, Enum, G, TaskProtocol, ScheduleFacade
 
 ### Community 161 - "DefaultApplication"
-Cohesion: 0.30
-Nodes (7): Path, ModuleLoader, ConfigFactory, ModuleDiscoveryContextFactory, ModuleType, Result, ServiceProviderProtocol
+Cohesion: 0.32
+Nodes (6): ModuleLoader, ConfigFactory, ModuleDiscoveryContextFactory, ModuleType, Result, ServiceProviderProtocol
 
 ### Community 162 - ".profile"
-Cohesion: 0.06
-Nodes (16): DatabaseBindings, MasoniteModel, DatabaseFacade, Result, Result, SchemaFacade, DatabaseQueryBuilderProtocol, DatabaseResolverProtocol (+8 more)
+Cohesion: 0.10
+Nodes (8): MasoniteModel, DatabaseResolverProtocol, AbstractContextManager, Model, DatabaseServiceProvider, ContainerProtocol, DatabaseConfiguration, Result
 
 ### Community 179 - "AuthManager"
 Cohesion: 0.07
@@ -835,21 +831,21 @@ Nodes (8): CacheProtocol, Result, create_cache_driver(), CacheConfiguration, Cac
 Cohesion: 0.20
 Nodes (13): Config, Config, A2SConfig, GameConfig, GamePropertiesConfig, GamePropertiesPersistence, JoinQueueConfig, ModConfig (+5 more)
 
-### Community 264 - ".log_rdb_checksum"
-Cohesion: 0.06
-Nodes (5): RouteRegistrarProtocol, RouteGroupStateData, RouteGroup, RouteGroupStack, RouteRegistrar
-
 ### Community 265 - ".nwk_resolution"
 Cohesion: 0.09
 Nodes (8): AuthenticationGuardProtocol, AuthenticationManagerProtocol, AuthenticationManager, AuthenticationMiddleware, NextCallable, AuthenticationWithBasicMiddleware, AuthenticationWithHeaderMiddleware, AuthenticationWithTokenMiddleware
+
+### Community 268 - ".rpl_encode_as_long_jobs"
+Cohesion: 0.06
+Nodes (15): ApplicationProtocol, DefaultApplication, ServiceProviderProtocol, CoreApplication, ContainerProtocol, Result, bootstrap_console(), bootstrap_http() (+7 more)
 
 ### Community 269 - ".scenario"
 Cohesion: 0.11
 Nodes (6): ConfigUserProvider, ApiUserData, AuthenticationGuard, BasicAuthenticationGuard, CustomHeaderGuard, TokenGuard
 
 ### Community 271 - ".server_id"
-Cohesion: 0.20
-Nodes (3): TaskCallback, TaskGraphData, ScheduleBuilder
+Cohesion: 0.12
+Nodes (7): TaskCallback, TaskGraphData, ScheduleBuilder, Result, TaskCallback, TaskRuntimeProtocol, ScheduledTask
 
 ### Community 272 - ".streams_delta"
 Cohesion: 0.20
@@ -860,48 +856,48 @@ Cohesion: 0.17
 Nodes (12): ArmaReforgerServerConfig, BattleEyeRconClient, RconCommandRepository, RegisteredRconClient, ArmaReforgerRconClient, High-level RCON client for Arma Reforger.      Command registration, dispatch, a, ArmaReforgerServerError, ArmaReforgerServerException (+4 more)
 
 ### Community 277 - "TaskInjector"
-Cohesion: 0.49
-Nodes (4): GraphTaskRuntime, Semaphore, TaskGraphData, TaskInjector
+Cohesion: 0.40
+Nodes (5): GraphTaskRuntime, Semaphore, TaskGraphData, TaskInjector, TaskProtocol
 
 ### Community 278 - "UrlGenerator"
 Cohesion: 0.39
 Nodes (4): DefaultApiProtocol, ConfigurationProtocol, Result, TaskRuntimeProtocol
 
 ### Community 283 - "WorkerPool"
-Cohesion: 0.24
-Nodes (4): EnvironmentProtocol, Environment, Path, Result
+Cohesion: 0.21
+Nodes (5): EnvironmentProtocol, Environment, EnvironmentError, Path, Result
 
 ### Community 284 - "SteamCmdExecutableFlag"
-Cohesion: 0.14
-Nodes (3): FilesystemProtocol, Result, StorageFacade
+Cohesion: 0.06
+Nodes (8): FacadeAccessor, FacadeApplication, Facade, FilesystemProtocol, Result, StorageFacade, UrlFacade, FacadeProtocol
 
 ### Community 287 - ".minidump"
-Cohesion: 0.18
+Cohesion: 0.17
 Nodes (3): RconSendCommandProtocol, RegisteredRconClientProtocol, RegistersRconCommandProtocol
 
 ### Community 289 - ".nds"
-Cohesion: 0.13
-Nodes (5): ProcessBuilder, Path, ProcessStreamCallback, TaskGraphData, SupervisorProtocol
+Cohesion: 0.12
+Nodes (6): ProcessBuilder, Path, ProcessStreamCallback, TaskGraphData, SupervisorProtocol, TaskPolicyData
 
 ### Community 290 - ".no_backend"
 Cohesion: 0.11
 Nodes (10): ContextualAttribute, ConfigContextualAttribute, ContainerProtocol, Parameter, GiveContextualAttribute, ContainerProtocol, Parameter, ContainerProtocol (+2 more)
 
 ### Community 293 - ".no_throw"
-Cohesion: 0.25
-Nodes (7): TaskGraphData, ContainerProtocol, Enum, TaskProtocol, TaskRuntimeProtocol, TaskInjector, TaskInjectorError
+Cohesion: 0.10
+Nodes (16): TaskGraphData, PolicyEngine, PolicyEngineError, Enum, Result, TaskProtocol, TaskRuntimeProtocol, Enum (+8 more)
 
 ### Community 302 - ".nwk_resolution"
 Cohesion: 0.83
 Nodes (3): config(), _integer(), _string()
 
 ### Community 305 - ".rpl_encode_as_long_jobs"
-Cohesion: 0.17
-Nodes (5): Exception, Result, QueueDriverProtocol, Exception, QueueJobProtocol
+Cohesion: 0.21
+Nodes (5): BoundMethodProtocol, ContainerInstanceProtocol, ContainerProtocol, ContextualAttributeProtocol, Parameter
 
 ### Community 308 - ".scenario"
-Cohesion: 0.15
-Nodes (3): RouteNotFoundException, HttpRequestContext, UrlGenerator
+Cohesion: 0.13
+Nodes (4): RouteNotFoundException, RouteParameterMissingException, HttpRequestContext, UrlGenerator
 
 ### Community 310 - ".single_threaded_update"
 Cohesion: 0.20
@@ -912,20 +908,20 @@ Cohesion: 0.18
 Nodes (6): RegisteredRconClientProtocol, RconCommand, RconCommandProtocol, RconCommandRepositoryProtocol, RconSendCommandProtocol, RegisteredRconClient
 
 ### Community 321 - ".a2s"
-Cohesion: 0.21
+Cohesion: 0.22
 Nodes (4): Event, GraphTaskRuntime, GraphTaskRuntimeError, Result
 
 ### Community 323 - ".addons_verify"
-Cohesion: 0.22
-Nodes (3): HttpMiddleware, HttpMiddlewareKernel, NextCallable
+Cohesion: 0.14
+Nodes (5): HttpMiddleware, HttpMiddlewareKernel, HttpMiddlewarePipeline, ContainerProtocol, NextCallable
 
 ### Community 324 - ".backend_fresh_session"
 Cohesion: 0.19
 Nodes (4): M, HttpMiddlewareKernelProtocol, HttpMiddlewareProtocol, NextCallable
 
 ### Community 325 - ".custom"
-Cohesion: 0.20
-Nodes (5): AsyncStreamCallback, Path, Result, TaskStateData, TaskRuntime
+Cohesion: 0.18
+Nodes (6): AsyncStreamCallback, Path, Result, TaskStateData, TaskRuntime, TaskRuntimeError
 
 ### Community 326 - ".debugger_port"
 Cohesion: 0.19
@@ -938,14 +934,6 @@ Nodes (3): ContextualBindingBuilderProtocol, ContextualBindingBuilder, Container
 ### Community 334 - ".keep_num_of_logs"
 Cohesion: 0.25
 Nodes (3): ConcurrencyBuilder, TaskProtocol, ConcurrencyMode
-
-### Community 339 - ".rcon"
-Cohesion: 0.14
-Nodes (3): UrlGeneratorProtocol, ContainerProtocol, FastAPI
-
-### Community 340 - ".rpl_timeout_ms"
-Cohesion: 0.27
-Nodes (5): Result, TaskCallback, TaskRuntimeProtocol, ScheduledTask, TaskPolicyData
 
 ### Community 345 - ".__init__"
 Cohesion: 0.23
@@ -972,12 +960,12 @@ Cohesion: 0.29
 Nodes (3): G, SupervisorProtocol, SupervisorProtocol
 
 ### Community 361 - ".execute"
-Cohesion: 0.07
-Nodes (9): DatagramProtocol, DatagramTransport, entry(), main(), entry(), main(), AsyncDatagramTransport, DatagramTransportInterface (+1 more)
+Cohesion: 0.09
+Nodes (8): DatagramProtocol, DatagramTransport, entry(), main(), entry(), main(), AsyncDatagramTransport, WrapperTransportInterface
 
 ### Community 364 - "__init__.py"
-Cohesion: 0.08
-Nodes (18): ProcessStreamCallback, ErrorKindProtocol, Error, Any, ProcessTask, ProcessTaskError, Path, Result (+10 more)
+Cohesion: 0.15
+Nodes (10): ProcessStreamCallback, ProcessTask, ProcessTaskError, Path, Result, TaskRuntimeProtocol, Path, Result (+2 more)
 
 ### Community 371 - "__init__.py"
 Cohesion: 0.40
@@ -986,6 +974,18 @@ Nodes (4): Enum, G, TaskRuntimeProtocol, TaskInjectorProtocol
 ### Community 372 - "__init__.py"
 Cohesion: 0.47
 Nodes (4): SupervisorRequestArgs, SupervisorRequestData, SupervisorRequestInfoData, SupervisorRequestKind
+
+### Community 373 - "__init__.py"
+Cohesion: 0.36
+Nodes (3): Result, RuntimeEvent, Event
+
+### Community 374 - "__init__.py"
+Cohesion: 0.25
+Nodes (4): QueueDriverProtocol, QueueResolverProtocol, QueueDriverProtocol, QueueResolver
+
+### Community 377 - "__main__.py"
+Cohesion: 0.20
+Nodes (4): ErrorKindProtocol, Error, Any, SubprocessHandleError
 
 ### Community 380 - "ConcurrencyFacade"
 Cohesion: 0.20
@@ -1000,20 +1000,28 @@ Cohesion: 0.08
 Nodes (8): datetime, FsspecFilesystemProtocol, S3FilesystemPathException, create_fsspec_filesystem(), ErrorProtocol, Exception, Result, S3Filesystem
 
 ### Community 398 - "TaskRuntime"
-Cohesion: 0.15
-Nodes (6): APIRouter, HttpController, RouteDefinitionData, StarletteRequest, RouteCompiler, RouteParameter
+Cohesion: 0.12
+Nodes (8): APIRouter, HttpController, RouteDefinitionData, ContainerProtocol, FastAPI, StarletteRequest, RouteCompiler, RouteParameter
 
 ### Community 400 - ".player_limits"
-Cohesion: 0.10
-Nodes (8): Exception, MissingFacadeAccessorException, UnresolvedFacadeRootException, BindingResolutionException, CircularDependencyException, EntryNotFoundException, LogicException, RouteParameterMissingException
+Cohesion: 0.11
+Nodes (7): Exception, MissingFacadeAccessorException, UnresolvedFacadeRootException, BindingResolutionException, CircularDependencyException, EntryNotFoundException, LogicException
 
 ### Community 401 - "ScheduleBuilderProtocol"
 Cohesion: 0.18
 Nodes (5): E, TaskProtocol, EventListenerProtocol, TaskProtocol, TaskProtocol
 
+### Community 407 - ".addons_repair"
+Cohesion: 0.39
+Nodes (4): ConcurrencyFacade, Enum, G, TaskProtocol
+
 ### Community 417 - "Result"
-Cohesion: 0.10
-Nodes (11): AbstractEventLoop, Container, Future, Result, RuntimeEvent, SchedulerProtocol, Event, Supervisor (+3 more)
+Cohesion: 0.12
+Nodes (8): AbstractEventLoop, Container, Future, SchedulerProtocol, Supervisor, TaskRecordData, TaskStateData, ThreadInfoData
+
+### Community 423 - "Task"
+Cohesion: 0.33
+Nodes (4): ArmaReforgerExecutableFlag, ArmaReforgerExecutableFlagError, Result, Arma Reforger CLI startup flags.
 
 ### Community 424 - "ArmaReforgerExecutableFlag"
 Cohesion: 0.19
@@ -1028,11 +1036,11 @@ Cohesion: 0.15
 Nodes (5): R, Configurable, RouteCompilerProtocol, Dictionary, T
 
 ### Community 456 - "GenericError"
-Cohesion: 0.24
-Nodes (3): EventDispatcherProtocol, Result, EventProtocol
+Cohesion: 0.19
+Nodes (4): EventDispatcherProtocol, Result, EventProtocol, EventSubscriberProtocol
 
 ### Community 458 - ".__init__"
-Cohesion: 0.13
+Cohesion: 0.14
 Nodes (4): run_coroutine_sync(), ContainerProtocol, Exception, QueuedEventListenerJob
 
 ### Community 470 - ".backend_disable_storage"
@@ -1052,20 +1060,12 @@ Cohesion: 0.26
 Nodes (6): DefaultApiProtocol, FastAPI, DefaultApi, DefaultApiError, Result, TaskRuntimeProtocol
 
 ### Community 500 - "ConfigurationProtocol"
-Cohesion: 0.28
-Nodes (3): AsyncStreamCallback, Result, TaskRuntimeProtocol
-
-### Community 510 - ".log_append"
-Cohesion: 0.29
-Nodes (4): ApplicationProtocol, DefaultApplication, ContainerProtocol, Supervisor
+Cohesion: 0.24
+Nodes (4): AsyncStreamCallback, Path, Result, TaskRuntimeProtocol
 
 ### Community 514 - ".minidump"
 Cohesion: 0.40
 Nodes (3): FacadeProtocol, FacadeMetaClass, type
-
-### Community 541 - "HttpKernel"
-Cohesion: 0.23
-Nodes (6): bootstrap_console(), bootstrap_http(), Result, RuntimeEntry, HttpKernel, Result
 
 ### Community 542 - "Application"
 Cohesion: 0.40
@@ -1095,12 +1095,12 @@ Nodes (4): create_queue_driver(), QueueConfiguration, QueueDriverDependenciesDat
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `ArmaReforgerServerExecutable` connect `ArmaReforgerServerExecutable` to `TaskThreadingPolicy`, `Config`, `.world`, `.addons_repair`, `HttpServiceProvider`, `.addons`, `env`, `.addons_repair`, `.a2s`, `.autoshutdown`, `.disable_crash_reporter`, `.enable_night_grain`, `.disable_ai`, `.keep_num_of_logs`, `.log_time`, `.log_append`, `.nds`, `.rcon`, `.minidump`, `.silent_crash_report`, `.no_sound`, `ConfigurationProtocol`, `.log_stats`, `AppServiceProvider`, `AbstractEventLoop`, `CacheServiceProvider`, `SupervisorProtocol`, `Result`, `ApplicationProtocol`, `.keep_session_save`, `.log_level`, `KickCommand`, `.force_session_load`, `.addons_repair`, `.freeze_check`, `.vm_error_mode`, `.generate_shaders`, `.__init__`, `.keep_num_of_logs`, `.log_scr_checksum`, `.keep_num_of_logs`, `.keep_session_save`, `.nds`, `.no_backend`, `.no_splash`, `.no_throw`, `.rpl_timeout_ms`, `.vm_error_mode`, `.silent_crash_report`, `.staggering_budget`, `.bind`?**
-  _High betweenness centrality (0.088) - this node is a cross-community bridge._
+- **Why does `ArmaReforgerServerExecutable` connect `ArmaReforgerServerExecutable` to `TaskThreadingPolicy`, `Config`, `.world`, `UrlGenerator`, `HttpServiceProvider`, `HttpKernel`, `.addons`, `env`, `.addons_repair`, `.a2s`, `.autoshutdown`, `.disable_crash_reporter`, `.enable_night_grain`, `.disable_ai`, `.keep_num_of_logs`, `.log_time`, `.log_append`, `.nds`, `.rcon`, `.minidump`, `.silent_crash_report`, `.no_sound`, `ConfigurationProtocol`, `.log_stats`, `AppServiceProvider`, `AbstractEventLoop`, `CacheServiceProvider`, `SupervisorProtocol`, `Result`, `.autoshutdown`, `.keep_session_save`, `.log_level`, `KickCommand`, `.force_session_load`, `.addons_repair`, `.freeze_check`, `.vm_error_mode`, `.generate_shaders`, `.__init__`, `.keep_num_of_logs`, `.log_scr_checksum`, `.keep_num_of_logs`, `.keep_session_save`, `.nds`, `.no_backend`, `.no_splash`, `.no_throw`, `.rpl_timeout_ms`, `.vm_error_mode`, `.staggering_budget`, `.log_append`, `.bind`?**
+  _High betweenness centrality (0.067) - this node is a cross-community bridge._
 - **Why does `CacheProtocol` connect `AuthManager` to `ABC`, `URL`, `.nds`?**
-  _High betweenness centrality (0.064) - this node is a cross-community bridge._
-- **Why does `FilesystemProtocol` connect `Config` to `Schema`, `URL`, `CacheQueueDriver`?**
-  _High betweenness centrality (0.057) - this node is a cross-community bridge._
+  _High betweenness centrality (0.065) - this node is a cross-community bridge._
+- **Why does `ContainerMethodsProtocol` connect `InstanceContainer` to `QueueDriver`, `RouteFacade`, `HealthStatus`, `BattleEyeRconClient`, `.rpl_encode_as_long_jobs`, `URL`?**
+  _High betweenness centrality (0.051) - this node is a cross-community bridge._
 - **Are the 7 inferred relationships involving `ArmaReforgerServerExecutable` (e.g. with `ArmaReforgerServer` and `.__init__()`) actually correct?**
   _`ArmaReforgerServerExecutable` has 7 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 15 inferred relationships involving `HttpRequestProtocol` (e.g. with `AuthenticationGuardProtocol` and `AuthenticationManagerProtocol`) actually correct?**
@@ -1108,4 +1108,4 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `High-level RCON client for Arma Reforger.      Command registration, dispatch, a`, `Arma Reforger dedicated server wrapper.  Provides a typed, fluent interface for`, `Path to a server configuration JSON file.` to the rest of the system?**
   _107 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `ArmaReforgerServerExecutable` be split into smaller, more focused modules?**
-  _Cohesion score 0.04878048780487805 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05128205128205128 - nodes in this community are weakly interconnected._
