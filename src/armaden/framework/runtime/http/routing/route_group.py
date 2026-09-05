@@ -18,7 +18,9 @@ class RouteGroup(RouteGroupProtocol):
         self._prefix: str = prefix
 
 
+    @override
     def __enter__(self) -> RouteGroup:
+        _ = super().__enter__()
         RouteGroupStack.get_instance().push(
             prefix=self._prefix,
             middleware=self._middleware,
@@ -27,6 +29,7 @@ class RouteGroup(RouteGroupProtocol):
         return self
 
 
+    @override
     def __exit__(self, *args: object) -> None:
         _ = args
         RouteGroupStack.get_instance().pop()

@@ -1,12 +1,10 @@
 from __future__ import annotations
 
+from contextlib import AbstractContextManager
 from typing import Protocol
 
 
-class RouteGroupProtocol(Protocol):
-    def __enter__(self) -> RouteGroupProtocol: ...
-
-    def __exit__(self, *args: object) -> None: ...
+class RouteGroupProtocol(AbstractContextManager[object], Protocol):
 
     def middleware(self, *middleware: str) -> RouteGroupProtocol: ...
 

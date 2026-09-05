@@ -1,10 +1,12 @@
 from collections.abc import Mapping
 
+from armaden.framework.api.application import AppFacade
 from armaden.framework.api.http import (
     HttpRequestContext,
     HttpResponse,
     HttpResponseFactory,
 )
+from armaden.framework.api.supervisor import TaskGraphData
 from armaden.framework.facades.cache_facade import CacheFacade
 from armaden.framework.facades.database_facade import DatabaseFacade
 from armaden.framework.facades.queue_facade import QueueFacade
@@ -14,10 +16,16 @@ from armaden.framework.protocols.cache_protocol import CacheProtocol
 from armaden.framework.protocols.database_resolver_protocol import DatabaseResolverProtocol
 from armaden.framework.protocols.database_schema_builder_protocol import DatabaseSchemaBuilderProtocol
 from armaden.framework.protocols.filesystem_protocol import FilesystemProtocol
+from armaden.framework.protocols.core_application_protocol import CoreApplicationProtocol
 from armaden.framework.protocols.http_request_protocol import HttpRequestProtocol
 from armaden.framework.protocols.queue_driver_protocol import QueueDriverProtocol
 
+
 _response_factory = HttpResponseFactory()
+
+
+def app() -> CoreApplicationProtocol[TaskGraphData]:
+    return AppFacade.application()
 
 
 def auth() -> object | None:
@@ -72,6 +80,7 @@ def url(
 
 
 __all__ = [
+    'app',
     'auth',
     'cache',
     'database',

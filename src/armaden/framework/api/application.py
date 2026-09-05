@@ -1,3 +1,4 @@
+from armaden.framework.facades.app_facade import AppFacade
 from armaden.framework.runtime.application import (
     Application,
     Configuration,
@@ -8,6 +9,7 @@ from armaden.framework.runtime.application import (
 )
 
 __all__ = [
+    'AppFacade',
     'Application',
     'Configuration',
     'CoreApplication',
