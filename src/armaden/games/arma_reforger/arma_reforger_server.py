@@ -29,7 +29,7 @@ from armaden.games.arma_reforger.arma_reforger_rcon_client import ArmaReforgerRc
 from armaden.games.arma_reforger.arma_reforger_server_config import DEFAULT_CONFIG, Config as ArmaReforgerServerConfig
 from armaden.games.arma_reforger.enums.arma_reforger_executable_flag import ArmaReforgerExecutableFlag
 
-logger = logging.getLogger('games.arma_reforger.server')
+logger = logging.getLogger(__name__)
 
 
 @final
