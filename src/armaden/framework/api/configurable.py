@@ -23,9 +23,15 @@ class Configurable[T](ConfigurableProtocol[T], ABC):
         )
 
 
-    def __new__(cls, *args: object, **kwargs: object) -> Self:
+    def __new__(
+        cls,
+        *args: object,
+        config: T | None = None,
+        **kwargs: object,
+    ) -> Self:
         _ = args
-        raw_config: object = kwargs.pop('config', {})
+        _ = kwargs
+        raw_config: object = config if config is not None else {}
         instance = super().__new__(cls)
 
         typed_dict_cls = cls._resolve_config_type()
