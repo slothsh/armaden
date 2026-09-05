@@ -1560,13 +1560,13 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/module_loader_protocol.py": {
-    "mtime": 1788612080.1614747,
-    "ast_hash": "be9887f4efba8b13130649d0a23a4b1b",
+    "mtime": 1788623919.599815,
+    "ast_hash": "e96ac24b404aaa7f4fb8e2a7d5b7b1cf",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/application/module_loader.py": {
-    "mtime": 1788612088.0014474,
-    "ast_hash": "ef92fdd055ef35eba4f46f20896155e3",
+    "mtime": 1788623930.8987937,
+    "ast_hash": "0cd54c723407ca1a04178599bb4be969",
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/configuration_protocol.py": {
@@ -1910,8 +1910,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/service_provider/http_service_provider.py": {
-    "mtime": 1788597529.3151152,
-    "ast_hash": "cdc46f42aeb93a682704f558f745fc78",
+    "mtime": 1788623943.8857696,
+    "ast_hash": "934b5bdb19e2c7a886f897a0a3e0594c",
     "semantic_hash": ""
   },
   "src/armaden/framework/facades/concurrency_facade.py": {
@@ -2602,6 +2602,11 @@
   "src/armaden/framework/runtime/queue/database_queue_driver.py": {
     "mtime": 1788621648.2835362,
     "ast_hash": "5fdda7814c7b6fd50fe5093007738ba3",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/runtime/http/routing/route_module_context.py": {
+    "mtime": 1788623994.1496813,
+    "ast_hash": "fc13e967b6066f1b43d125829853aad7",
     "semantic_hash": ""
   }
 }
