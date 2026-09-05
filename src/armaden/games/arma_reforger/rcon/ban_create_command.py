@@ -1,27 +1,27 @@
 from typing import Any
 
-from armaden.framework.classes.rcon_command_arg_spec import RconCommandArgSpec
-from armaden.framework.protocols.rcon_command import RconCommandInterface
+from armaden.framework.api.rcon.dto.rcon_command_argument_data import RconCommandArgumentData
+from armaden.framework.api.rcon import RconCommand
 
 
-class BanCreateCommand(RconCommandInterface):
+class BanCreateCommand(RconCommand):
     command_name: str = '#ban'
     description: str = 'Create a ban'
     category: str = 'ban'
-    args: list = [
-        RconCommandArgSpec(
+    args: list[RconCommandArgumentData] = [
+        RconCommandArgumentData(
             name='identifier',
             type=str,
             required=True,
             description='Player identifier',
         ),
-        RconCommandArgSpec(
+        RconCommandArgumentData(
             name='duration_seconds',
             type=int,
             required=True,
             description='Ban duration in seconds',
         ),
-        RconCommandArgSpec(
+        RconCommandArgumentData(
             name='reason',
             type=str,
             required=False,

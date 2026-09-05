@@ -1,7 +1,6 @@
 import logging
 
-from armaden.framework.classes.registered_rcon_client import RegisteredRconClient
-from armaden.framework.protocols.registers_rcon_command import RegistersRconCommand
+from armaden.framework.api.rcon import RegisteredRconClient, RconCommand
 from armaden.games.arma_reforger.rcon import (
     BanCreateCommand,
     BanListCommand,
@@ -20,7 +19,7 @@ from armaden.network.rcon.battle_eye.battle_eye_rcon_client import BattleEyeRcon
 logger = logging.getLogger(__name__)
 
 
-class ArmaReforgerRconClient(RegisteredRconClient, BattleEyeRconClient, RegistersRconCommand):
+class ArmaReforgerRconClient(RegisteredRconClient, BattleEyeRconClient):
     """High-level RCON client for Arma Reforger.
 
     Command registration, dispatch, argument validation, and built-in
@@ -33,7 +32,7 @@ class ArmaReforgerRconClient(RegisteredRconClient, BattleEyeRconClient, Register
     override individuals via ``builtin_command_overrides={'#players': ...}``.
     """
 
-    BUILTIN_COMMAND_CLASSES: list = [
+    BUILTIN_COMMAND_CLASSES: list[type[RconCommand]] = [
         LoginCommand,
         LogoutCommand,
         RolesCommand,

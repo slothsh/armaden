@@ -1,15 +1,15 @@
 from typing import Any
 
-from armaden.framework.classes.rcon_command_arg_spec import RconCommandArgSpec
-from armaden.framework.protocols.rcon_command import RconCommandInterface
+from armaden.framework.api.rcon.dto.rcon_command_argument_data import RconCommandArgumentData
+from armaden.framework.api.rcon import RconCommand
 
 
-class KickCommand(RconCommandInterface):
+class KickCommand(RconCommand):
     command_name: str = '#kick'
     description: str = 'Kick a player by ID'
     category: str = 'player'
-    args: list = [
-        RconCommandArgSpec(
+    args: list[RconCommandArgumentData] = [
+        RconCommandArgumentData(
             name='player_id',
             type=int,
             required=True,

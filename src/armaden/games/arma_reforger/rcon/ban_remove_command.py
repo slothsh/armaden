@@ -1,15 +1,15 @@
 from typing import Any
 
-from armaden.framework.classes.rcon_command_arg_spec import RconCommandArgSpec
-from armaden.framework.protocols.rcon_command import RconCommandInterface
+from armaden.framework.api.rcon.dto.rcon_command_argument_data import RconCommandArgumentData
+from armaden.framework.api.rcon import RconCommand
 
 
-class BanRemoveCommand(RconCommandInterface):
+class BanRemoveCommand(RconCommand):
     command_name: str = '#ban'
     description: str = 'Remove a ban'
     category: str = 'ban'
-    args: list = [
-        RconCommandArgSpec(
+    args: list[RconCommandArgumentData] = [
+        RconCommandArgumentData(
             name='identity_id',
             type=str,
             required=True,
