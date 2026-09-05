@@ -42,7 +42,7 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
         config: ArmaReforgerServerConfig | None = None,
         rcon_client_cls: type[ArmaReforgerRconClient] | None = ArmaReforgerRconClient,
         rcon_command_overrides: list[type[RconCommand]] | None = None,
-        log_handler: Callable[[str], Coroutine[object, object, Result[None]]] | None = None,
+        log_handler: Callable[[str], Coroutine[object, object, Result[bool]]] | None = None,
         rcon_repository: RconCommandRepository | None = None,
     ) -> Self:
         _ = rcon_client_cls
@@ -58,7 +58,7 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
         config: ArmaReforgerServerConfig | None = None,
         rcon_client_cls: type[ArmaReforgerRconClient] | None = ArmaReforgerRconClient,
         rcon_command_overrides: list[type[RconCommand]] | None = None,
-        log_handler: Callable[[str], Coroutine[object, object, Result[None]]] | None = None,
+        log_handler: Callable[[str], Coroutine[object, object, Result[bool]]] | None = None,
         rcon_repository: RconCommandRepository | None = None,
     ):
         _ = config
@@ -67,7 +67,7 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
         self._rcon_client_cls: type[ArmaReforgerRconClient] | None = rcon_client_cls
         self._rcon_command_overrides: list[type[RconCommand]] | None = rcon_command_overrides
         self._rcon_client: ArmaReforgerRconClient | None = None
-        self._log_handler: Callable[[str], Coroutine[object, object, Result[None]]] | None = log_handler
+        self._log_handler: Callable[[str], Coroutine[object, object, Result[bool]]] | None = log_handler
 
         self._executable: ExecutableContainer = ExecutableContainer(
             steamcmd=SteamCmdExecutable(config={'executable': self.config.get('steamExecutable'), 'installDirectory': self.config.get('steamInstallDirectory')}),
@@ -128,10 +128,21 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
 
         _ = await runtime.signal_ready()
 
+        async def handle_std_stream(line: str) -> Result[None]:
+            if not self._log_handler:
+                _ = await self._log_subprocess(line)
+                return Success(None)
+
+            if should_log := is_successful(await self._log_handler(line)):
+                if should_log:
+                    _ = await self._log_subprocess(line)
+
+            return Success(None)
+
         _ = await runtime.dispatch_subprocess(
             argv.unwrap(),
             cwd=self._paths.install,
-            handle_std_stream=self._log_handler or ArmaReforgerServer._log_subprocess
+            handle_std_stream=handle_std_stream
         )
 
         return await self.shutdown()
