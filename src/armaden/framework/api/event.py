@@ -103,7 +103,7 @@ class Event(RuntimeEvent):
         return cls.dispatch_sync(*args, **kwargs)
 
 
-class EventListener(EventListenerProtocol, ABC):
+class EventListener[E: EventProtocol](EventListenerProtocol[E], ABC):
     def __init__(self) -> None:
         pass
 
