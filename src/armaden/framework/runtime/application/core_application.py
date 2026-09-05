@@ -57,6 +57,7 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
         self._terminating_callbacks: list[Callable[..., object]] = []
         self._bootstrapped: bool = False
         self._register_base_bindings()
+        self._register_framework_providers()
         Facade.set_facade_application(self._container)
 
 
@@ -133,6 +134,14 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
             for abstract in deferred_provider.provides()
         }
         self._container.add_deferred_services(services)
+
+
+    def _register_framework_providers(self) -> None:
+        from armaden.framework.runtime.service_provider.http_service_provider import HttpServiceProvider
+
+        result = self.register(HttpServiceProvider(self._container))
+        if isinstance(result, Failure):
+            logger.warning('Framework HTTP provider registration failed: %s', result.failure())
 
 
     def _register_user_application(self) -> None:
