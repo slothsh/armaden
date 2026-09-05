@@ -7,3 +7,6 @@ dist/
 .env.*
 server/
 storage/
+
+# TODO: remove when refactor is done
+framework1/
