@@ -283,6 +283,14 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
         for graph in pending:
             try:
                 await self.execute_graph(graph)
+                if graph.state == TaskGraphState.FAILED:
+                    logger.error(
+                        'Task graph %s failed with %d error(s)',
+                        graph.graph_id,
+                        len(graph.errors),
+                    )
+                    for error in graph.errors:
+                        logger.error('Task graph %s failure: %s', graph.graph_id, error)
             except Exception as exception:
                 logger.exception('Graph %s execution failed: %s', graph.graph_id, exception)
                 graph.state = TaskGraphState.FAILED
@@ -498,7 +506,10 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
                 )
                 init_result: object = initialize_callback(**init_kwargs)
                 if inspect.isawaitable(init_result):
-                    _ = await cast(Awaitable[object], init_result)
+                    init_result = await cast(Awaitable[object], init_result)
+                typed_init_result = cast(Result[None], init_result)
+                if not is_successful(typed_init_result):
+                    return typed_init_result
             result = await self._policy_engine.execute(task, runtime, injector, graph)
             return result
         except Exception as exception:
