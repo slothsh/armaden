@@ -4,7 +4,7 @@ import asyncio
 import logging
 from enum import StrEnum
 from pathlib import Path
-from typing import override
+from typing import cast, override
 
 from returns.result import Failure, Success
 
@@ -126,9 +126,11 @@ class GraphTaskRuntime(TaskRuntimeProtocol):
 
     @override
     async def task_output(self, name: str) -> Result[object]:
-        if name not in self._graph.outputs:
-            return Failure(Error(GraphTaskRuntimeError.REQUEST_NOT_FULFILLED, details={
-                'task': self._task_name,
-                'name': name,
-            }))
-        return self._graph.outputs[name]
+        if name in self._graph.outputs:
+            return self._graph.outputs[name]
+        if name in self._graph.lifecycle_signals:
+            return cast(Result[object], self._graph.lifecycle_signals[name])
+        return Failure(Error(GraphTaskRuntimeError.REQUEST_NOT_FULFILLED, details={
+            'task': self._task_name,
+            'name': name,
+        }))

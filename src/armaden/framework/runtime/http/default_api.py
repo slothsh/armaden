@@ -19,6 +19,7 @@ from armaden.framework.types.result import Result
 class DefaultApi(DefaultApiProtocol):
     def __init__(self) -> None:
         self._app: FastAPI = FastAPI(title='Public HTTP API')
+        self._serve_task: asyncio.Task[None] | None = None
         self._uvicorn_server: uvicorn.Server | None = None
 
 
@@ -57,8 +58,9 @@ class DefaultApi(DefaultApiProtocol):
             return Failure(Error(DefaultApiError.RUN_FAILED, details={
                 'message': 'uvicorn server must be initialized before running the api server',
             }))
+        serve_task = asyncio.create_task(self._uvicorn_server.serve())
+        self._serve_task = serve_task
         try:
-            serve_task = asyncio.create_task(self._uvicorn_server.serve())
             while not self._uvicorn_server.started:
                 await asyncio.sleep(0.1)
             _ = await runtime.signal_ready()
@@ -68,6 +70,11 @@ class DefaultApi(DefaultApiProtocol):
             return Failure(Error(DefaultApiError.RUN_FAILED, details={
                 'exception': exception,
             }))
+        finally:
+            if not serve_task.done():
+                _ = serve_task.cancel()
+                _ = await asyncio.gather(serve_task, return_exceptions=True)
+            self._serve_task = None
 
 
     @override
@@ -75,6 +82,13 @@ class DefaultApi(DefaultApiProtocol):
         _ = runtime
         if self._uvicorn_server is not None and self._uvicorn_server.started:
             self._uvicorn_server.should_exit = True
+        if self._serve_task is not None and not self._serve_task.done():
+            try:
+                await self._serve_task
+            except Exception as exception:
+                return Failure(Error(DefaultApiError.SHUTDOWN_FAILED, details={
+                    'exception': exception,
+                }))
         return Success(None)
 
 
@@ -90,3 +104,4 @@ class DefaultApi(DefaultApiProtocol):
 class DefaultApiError(StrEnum):
     INITIALIZATION_FAILED = 'an error occurred while initializing the api server'
     RUN_FAILED = 'an error occurred while trying to run the api server'
+    SHUTDOWN_FAILED = 'an error occurred while shutting down the api server'
