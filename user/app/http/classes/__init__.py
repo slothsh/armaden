@@ -1,3 +1,3 @@
-from .api import Api
+from app.http.classes.api import Api
 
 __all__ = ['Api']
