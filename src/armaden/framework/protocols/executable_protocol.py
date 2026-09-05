@@ -1,0 +1,23 @@
+from __future__ import annotations
+
+from pathlib import Path
+from typing import Protocol, Self
+
+
+type PushValue = str | bool | int | float | Path | list[PushValue]
+
+
+class ExecutableProtocol(Protocol):
+    def build_argv(self) -> list[str]: ...
+
+    def clear_params(self) -> Self: ...
+
+    def consume_argv(self) -> list[str]: ...
+
+    def push(self, flag: str, *values: PushValue) -> None: ...
+
+    def reset_params(self) -> None: ...
+
+    def restore_params(self) -> None: ...
+
+    def save_params(self) -> Self: ...
