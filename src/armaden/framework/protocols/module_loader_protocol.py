@@ -1,4 +1,6 @@
 from collections.abc import Callable, Mapping
+from contextlib import AbstractContextManager
+from pathlib import Path
 from types import ModuleType
 from typing import Protocol
 
@@ -7,11 +9,16 @@ from armaden.framework.types.result import Result
 
 
 type ConfigFactory = Callable[[], Mapping[str, object]]
+type ModuleDiscoveryContextFactory = Callable[[Path], AbstractContextManager[None]]
 
 
 class ModuleLoaderProtocol(Protocol):
     @classmethod
-    def try_discover_user_modules(cls, subdir: str) -> Result[list[ModuleType]]: ...
+    def try_discover_user_modules(
+        cls,
+        subdir: str,
+        context_factory: ModuleDiscoveryContextFactory | None = None,
+    ) -> Result[list[ModuleType]]: ...
 
     @classmethod
     def try_import_module(

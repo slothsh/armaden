@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Mapping
+from contextlib import AbstractContextManager
+from pathlib import Path
 from typing import cast, override
 
 from fastapi import APIRouter, FastAPI
@@ -24,6 +26,7 @@ from armaden.framework.runtime.http.authentication.middleware import (
 from armaden.framework.runtime.http.middleware.http_middleware_kernel import HttpMiddlewareKernel
 from armaden.framework.runtime.http.default_api import DefaultApi
 from armaden.framework.runtime.http.routing.route_compiler import RouteCompiler
+from armaden.framework.runtime.http.routing.route_module_context import route_module_context
 from armaden.framework.runtime.http.url_generator import UrlGenerator
 from armaden.framework.runtime.http.routing.route_registrar import RouteRegistrar
 from armaden.framework.runtime.service_provider.service_provider import ServiceProvider
@@ -121,7 +124,15 @@ class HttpServiceProvider(ServiceProvider):
         _ = self.app.instance('http_kernel', middleware_kernel)
         _ = self.app.instance('router', api_app.router)
 
-        routes_result = ModuleLoader.try_discover_user_modules('routes')
+        route_groups = application.route_groups()
+
+        def route_context(file: Path) -> AbstractContextManager[None]:
+            return route_module_context(route_groups.get(file.stem))
+
+        routes_result = ModuleLoader.try_discover_user_modules(
+            'routes',
+            route_context,
+        )
         if not is_successful(routes_result):
             logger.warning('Failed to load user route modules: %s', routes_result.failure())
         routes = route_registrar.get_routes()

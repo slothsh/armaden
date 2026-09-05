@@ -3,6 +3,7 @@ from __future__ import annotations
 import os
 import sys
 from collections.abc import Callable
+from contextlib import nullcontext
 from enum import StrEnum
 from importlib import import_module
 from importlib.util import module_from_spec, spec_from_file_location
@@ -15,6 +16,7 @@ from returns.result import Failure, Success
 from armaden.framework.runtime.error.error import Error
 from armaden.framework.protocols.module_loader_protocol import (
     ConfigFactory,
+    ModuleDiscoveryContextFactory,
     ModuleLoaderProtocol,
 )
 from armaden.framework.protocols.service_provider_protocol import ServiceProviderProtocol
@@ -42,7 +44,11 @@ class ModuleLoader(ModuleLoaderProtocol):
 
     @override
     @classmethod
-    def try_discover_user_modules(cls, subdir: str) -> Result[list[ModuleType]]:
+    def try_discover_user_modules(
+        cls,
+        subdir: str,
+        context_factory: ModuleDiscoveryContextFactory | None = None,
+    ) -> Result[list[ModuleType]]:
         try:
             module_directory = cls._application_directory()
             if module_directory is None:
@@ -72,7 +78,13 @@ class ModuleLoader(ModuleLoaderProtocol):
                     relative = file.relative_to(module_directory).with_suffix('')
                     dotted_name = '.'.join(relative.parts)
                     try:
-                        modules.append(import_module(dotted_name))
+                        context = (
+                            context_factory(file)
+                            if context_factory is not None
+                            else nullcontext()
+                        )
+                        with context:
+                            modules.append(import_module(dotted_name))
                     except Exception as exception:
                         return Failure(Error(
                             ModuleLoaderError.USER_DISCOVERY_LOAD_EXCEPTION,
