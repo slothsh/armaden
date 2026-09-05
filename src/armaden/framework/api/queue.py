@@ -43,11 +43,13 @@ class QueueJob(QueueJobProtocol, ABC):
     def dispatch(cls, *args: object, **kwargs: object) -> Result[str | None]:
         instance = cls(*args, **kwargs)
         if isinstance(instance, ShouldQueueTag):
+            connection_name = instance._connection_override()
             delay = instance._delay_override()
             queue_name = instance._queue_override()
+            driver = QueueFacade.connection(connection_name)
             if delay is not None and delay > 0:
-                return QueueFacade.later(delay, instance, queue_name)
-            return QueueFacade.push(instance, queue_name)
+                return driver.later(delay, instance, queue_name)
+            return driver.push(instance, queue_name)
         return cls._dispatch_instance(instance)
 
 
@@ -117,6 +119,11 @@ class QueueJob(QueueJobProtocol, ABC):
     def on_queue(self, queue_name: str) -> Self:
         object.__setattr__(self, '_queue_value', queue_name)
         return self
+
+
+    def _connection_override(self) -> str | None:
+        value = getattr(self, '_connection_value', None)
+        return value if isinstance(value, str) else type(self).connection
 
 
     def _delay_override(self) -> int | None:
