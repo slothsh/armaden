@@ -608,5 +608,10 @@
   "606": ".server_id",
   "607": ".streaming_budget",
   "608": ".vm_error_mode",
-  "609": "ContainerProtocol"
+  "609": "ContainerProtocol",
+  "610": ".keep_crash_files",
+  "611": ".log_fs",
+  "612": ".no_splash",
+  "613": ".nwk_resolution",
+  "614": ".silent_crash_report"
 }
