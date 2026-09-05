@@ -140,6 +140,7 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
         from armaden.framework.runtime.service_provider.cache_service_provider import CacheServiceProvider
         from armaden.framework.runtime.service_provider.database_service_provider import DatabaseServiceProvider
         from armaden.framework.runtime.service_provider.filesystem_service_provider import FilesystemServiceProvider
+        from armaden.framework.runtime.service_provider.queue_service_provider import QueueServiceProvider
         from armaden.framework.runtime.service_provider.http_service_provider import HttpServiceProvider
 
         filesystem_result = self.register(FilesystemServiceProvider(self._container))
@@ -153,6 +154,10 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
         database_result = self.register(DatabaseServiceProvider(self._container))
         if isinstance(database_result, Failure):
             logger.warning('Framework database provider registration failed: %s', database_result.failure())
+
+        queue_result = self.register(QueueServiceProvider(self._container))
+        if isinstance(queue_result, Failure):
+            logger.warning('Framework queue provider registration failed: %s', queue_result.failure())
 
         http_result = self.register(HttpServiceProvider(self._container))
         if isinstance(http_result, Failure):

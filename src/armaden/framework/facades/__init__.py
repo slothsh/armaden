@@ -2,6 +2,7 @@ from armaden.framework.facades.cache_facade import CacheFacade
 from armaden.framework.facades.concurrency_facade import ConcurrencyFacade
 from armaden.framework.facades.database_facade import DatabaseFacade
 from armaden.framework.facades.process_facade import ProcessFacade
+from armaden.framework.facades.queue_facade import QueueFacade
 from armaden.framework.facades.route_facade import RouteFacade
 from armaden.framework.facades.schedule_facade import ScheduleFacade
 from armaden.framework.facades.schema_facade import SchemaFacade
@@ -13,7 +14,7 @@ __all__ = [
     'ConcurrencyFacade',
     'DatabaseFacade',
     'ProcessFacade',
-    'RouteFacade',
+    'QueueFacade',    'RouteFacade',
     'ScheduleFacade',
     'SchemaFacade',
     'StorageFacade',

@@ -2,6 +2,7 @@ from armaden.framework.runtime.service_provider import (
     CacheServiceProvider,
     DatabaseServiceProvider,
     DeferrableServiceProvider,
+    QueueServiceProvider,
     FilesystemServiceProvider,
     ServiceProvider,
 )
@@ -16,6 +17,7 @@ __all__ = [
     'DeferrableServiceProvider',
     'FilesystemServiceProvider',
     'HttpServiceProvider',
+    'QueueServiceProvider',
     'ServiceProvider',
     'ServiceProviderHealth',
 ]

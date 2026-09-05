@@ -1,11 +1,13 @@
 from collections.abc import Mapping
 
-from armaden.framework.api.http import (    HttpRequestContext,
+from armaden.framework.api.http import (
+    HttpRequestContext,
     HttpResponse,
     HttpResponseFactory,
 )
 from armaden.framework.facades.cache_facade import CacheFacade
 from armaden.framework.facades.database_facade import DatabaseFacade
+from armaden.framework.facades.queue_facade import QueueFacade
 from armaden.framework.facades.storage_facade import StorageFacade
 from armaden.framework.facades.url_facade import UrlFacade
 from armaden.framework.protocols.cache_protocol import CacheProtocol
@@ -13,7 +15,7 @@ from armaden.framework.protocols.database_resolver_protocol import DatabaseResol
 from armaden.framework.protocols.database_schema_builder_protocol import DatabaseSchemaBuilderProtocol
 from armaden.framework.protocols.filesystem_protocol import FilesystemProtocol
 from armaden.framework.protocols.http_request_protocol import HttpRequestProtocol
-
+from armaden.framework.protocols.queue_driver_protocol import QueueDriverProtocol
 
 _response_factory = HttpResponseFactory()
 
@@ -32,6 +34,10 @@ def database() -> DatabaseResolverProtocol:
 
 def json_response(data: object, status: int = 200) -> HttpResponse:
     return _response_factory.json(data, status)
+
+
+def queue() -> QueueDriverProtocol:
+    return QueueFacade.connection()
 
 
 def request() -> HttpRequestProtocol:
@@ -70,6 +76,7 @@ __all__ = [
     'cache',
     'database',
     'json_response',
+    'queue',
     'request',
     'response',
     'route',
