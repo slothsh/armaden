@@ -1,6 +1,9 @@
 from armaden.framework.runtime.service_provider.cache_service_provider import (
     CacheServiceProvider,
 )
+from armaden.framework.runtime.service_provider.database_service_provider import (
+    DatabaseServiceProvider,
+)
 from armaden.framework.runtime.service_provider.deferrable_service_provider import (
     DeferrableServiceProvider,
 )
@@ -11,6 +14,7 @@ from armaden.framework.runtime.service_provider.service_provider import ServiceP
 
 __all__ = [
     'CacheServiceProvider',
+    'DatabaseServiceProvider',
     'DeferrableServiceProvider',
     'FilesystemServiceProvider',
     'ServiceProvider',

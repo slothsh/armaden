@@ -138,6 +138,7 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
 
     def _register_framework_providers(self) -> None:
         from armaden.framework.runtime.service_provider.cache_service_provider import CacheServiceProvider
+        from armaden.framework.runtime.service_provider.database_service_provider import DatabaseServiceProvider
         from armaden.framework.runtime.service_provider.filesystem_service_provider import FilesystemServiceProvider
         from armaden.framework.runtime.service_provider.http_service_provider import HttpServiceProvider
 
@@ -148,6 +149,10 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
         cache_result = self.register(CacheServiceProvider(self._container))
         if isinstance(cache_result, Failure):
             logger.warning('Framework cache provider registration failed: %s', cache_result.failure())
+
+        database_result = self.register(DatabaseServiceProvider(self._container))
+        if isinstance(database_result, Failure):
+            logger.warning('Framework database provider registration failed: %s', database_result.failure())
 
         http_result = self.register(HttpServiceProvider(self._container))
         if isinstance(http_result, Failure):

@@ -5,9 +5,12 @@ from armaden.framework.api.http import (    HttpRequestContext,
     HttpResponseFactory,
 )
 from armaden.framework.facades.cache_facade import CacheFacade
+from armaden.framework.facades.database_facade import DatabaseFacade
 from armaden.framework.facades.storage_facade import StorageFacade
 from armaden.framework.facades.url_facade import UrlFacade
 from armaden.framework.protocols.cache_protocol import CacheProtocol
+from armaden.framework.protocols.database_resolver_protocol import DatabaseResolverProtocol
+from armaden.framework.protocols.database_schema_builder_protocol import DatabaseSchemaBuilderProtocol
 from armaden.framework.protocols.filesystem_protocol import FilesystemProtocol
 from armaden.framework.protocols.http_request_protocol import HttpRequestProtocol
 
@@ -21,6 +24,10 @@ def auth() -> object | None:
 
 def cache() -> CacheProtocol:
     return CacheFacade.store()
+
+
+def database() -> DatabaseResolverProtocol:
+    return DatabaseFacade.connection()
 
 
 def json_response(data: object, status: int = 200) -> HttpResponse:
@@ -43,6 +50,10 @@ def route(
     return UrlFacade.route(name, parameters, absolute)
 
 
+def schema(connection: str | None = None) -> DatabaseSchemaBuilderProtocol:
+    return DatabaseFacade.schema(connection)
+
+
 def storage() -> FilesystemProtocol:
     return StorageFacade.disk()
 
@@ -57,10 +68,12 @@ def url(
 __all__ = [
     'auth',
     'cache',
+    'database',
     'json_response',
     'request',
     'response',
     'route',
+    'schema',
     'storage',
     'url',
 ]
