@@ -1,9 +1,7 @@
-from typing import Dict
 from pydantic.dataclasses import dataclass
 
-from armaden.framework.enums.health_status import HealthStatus
+from app.http.enums.api_health_status import ApiHealthStatus
 
-# -- Request Data -------------------------------------------------------------
 
 @dataclass
 class RestartRequestData:
@@ -15,12 +13,10 @@ class ShutdownRequestData:
     id: int
 
 
-# -- Response Data ------------------------------------------------------------
-
 @dataclass(config={'extra': 'allow'})
 class HealthResponseData:
-    status: HealthStatus
-    services: Dict[str, Dict[str, ServiceHealthData]]
+    status: ApiHealthStatus
+    services: dict[str, dict[str, object]]
 
 
 @dataclass(config={'extra': 'allow'})
@@ -33,8 +29,6 @@ class ShutdownResponseData:
     success: bool
 
 
-# -- Internal Data ------------------------------------------------------------
-
 @dataclass(config={'extra': 'allow'})
 class ServiceHealthData:
-    status: HealthStatus
+    status: ApiHealthStatus

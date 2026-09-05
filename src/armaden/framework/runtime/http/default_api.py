@@ -8,8 +8,8 @@ import uvicorn
 from fastapi import FastAPI
 from returns.result import Failure, Success
 
-from armaden.framework.enums.health_status import HealthStatus
-from armaden.framework.error.error import Error
+from armaden.framework.runtime.http.enums.http_health_status import HttpHealthStatus
+from armaden.framework.runtime.error.error import Error
 from armaden.framework.protocols.configuration_protocol import ConfigurationProtocol
 from armaden.framework.protocols.default_api_protocol import DefaultApiProtocol
 from armaden.framework.protocols.task_runtime_protocol import TaskRuntimeProtocol
@@ -84,7 +84,7 @@ class DefaultApi(DefaultApiProtocol):
         runtime: TaskRuntimeProtocol,
     ) -> Result[dict[str, object]]:
         _ = runtime
-        return Success({'status': HealthStatus.OK})
+        return Success({'status': HttpHealthStatus.OK})
 
 
 class DefaultApiError(StrEnum):

@@ -9,7 +9,7 @@ from typing import override
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
-from armaden.framework.error.error import Error
+from armaden.framework.runtime.error.error import Error
 from armaden.framework.runtime.supervisor.task.dto.task_policy_data import TaskPolicyData
 from armaden.framework.runtime.supervisor.task.task import Task
 from armaden.framework.runtime.supervisor.task.subprocess_handle import SubprocessHandle

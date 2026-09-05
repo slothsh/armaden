@@ -10,14 +10,16 @@ from returns.pipeline import is_successful
 from returns.result import Failure, Success
 from armaden.framework.classes.configurable import Configurable
 from armaden.framework.classes.rcon_command_repository import RconCommandRepository
-from armaden.framework.enums.health_status import HealthStatus
+from armaden.games.arma_reforger.enums.arma_reforger_health_status import (
+    ArmaReforgerHealthStatus,
+)
 from armaden.framework.facades import App
 from armaden.framework.protocols.rcon_command import RconCommandInterface, SendCommandProtocol
 from armaden.framework.protocols.registers_rcon_command import RegistersRconCommand
-from armaden.framework.protocols.task_runtime import TaskRuntimeInterface
-from armaden.framework.errors import Error
+from armaden.framework.protocols.task_runtime_protocol import TaskRuntimeProtocol
+from armaden.framework.api.error import Error
 from armaden.framework.utils.dictionary import Dictionary
-from armaden.framework.utils.types import Result
+from armaden.framework.types.result import Result
 from armaden.games.steamcmd import SteamCmdExecutable
 from .arma_reforger_server_executable import ArmaReforgerServerExecutable
 from .arma_reforger_rcon_client import ArmaReforgerRconClient
@@ -62,7 +64,7 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
 
     # -- Server Interface -----------------------------------------------------
 
-    async def initialize(self, runtime: TaskRuntimeInterface) -> Result[None]:
+    async def initialize(self, runtime: TaskRuntimeProtocol) -> Result[None]:
         try:
             if not is_successful(result := await self._executable.steamcmd.ensure_installed()):
                 return result.map(lambda _: None)
@@ -92,7 +94,7 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
             }))
 
 
-    async def run(self, runtime: TaskRuntimeInterface) -> Result[None]:
+    async def run(self, runtime: TaskRuntimeProtocol) -> Result[None]:
         argv = self.server_command()
         if not is_successful(argv):
             return argv.map(lambda _: None)
@@ -169,7 +171,7 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
             return None
 
 
-    async def run_rcon_client(self, runtime: TaskRuntimeInterface) -> Result[None]:
+    async def run_rcon_client(self, runtime: TaskRuntimeProtocol) -> Result[None]:
         if not self._rcon_client:
             return Success(None)
 
@@ -189,10 +191,10 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
         return Success(None)
 
 
-    async def status(self, runtime: TaskRuntimeInterface) -> Result[Dict[str, Any]]:
+    async def status(self, runtime: TaskRuntimeProtocol) -> Result[Dict[str, Any]]:
         _ = runtime
         return Success({
-            'status': HealthStatus.OK,
+            'status': ArmaReforgerHealthStatus.OK,
         })
 
 

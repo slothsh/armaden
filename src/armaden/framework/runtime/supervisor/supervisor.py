@@ -16,7 +16,7 @@ from typing import Self, cast, override
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
-from armaden.framework.error.error import Error
+from armaden.framework.runtime.error.error import Error
 from armaden.framework.facades.facade import Facade
 from armaden.framework.runtime.container.container import Container
 from armaden.framework.runtime.supervisor.dto.active_coroutine_data import ActiveCoroutineData

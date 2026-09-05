@@ -1,7 +1,7 @@
 from enum import StrEnum
 
 
-class HealthStatus(StrEnum):
+class HttpHealthStatus(StrEnum):
     DEGRADED = 'DEGRADED'
     OK = 'OK'
     UNKNOWN = 'UNKNOWN'

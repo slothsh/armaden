@@ -10,9 +10,9 @@ from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
 from armaden.framework.classes.executable import Executable, PushValue
-from armaden.framework.utils.types import Result
+from armaden.framework.types.result import Result
 from armaden.framework.utils.dictionary import Dictionary
-from armaden.framework.errors import Error
+from armaden.framework.api.error import Error
 from .enums import SteamCmdExecutableFlag
 from .steamcmd_executable_config import Config, DEFAULT_CONFIG
 

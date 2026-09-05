@@ -6,7 +6,7 @@ from typing import cast, override
 
 from returns.result import Failure, Success
 
-from armaden.framework.error.error import Error
+from armaden.framework.runtime.error.error import Error
 from armaden.framework.protocols.configuration_protocol import ConfigurationProtocol
 from armaden.framework.runtime.application.module_loader import ModuleLoader
 from armaden.framework.types.result import Result

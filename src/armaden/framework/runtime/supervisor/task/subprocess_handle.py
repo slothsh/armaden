@@ -9,7 +9,7 @@ from pathlib import Path
 
 from returns.result import Failure, Success
 
-from armaden.framework.error.error import Error
+from armaden.framework.runtime.error.error import Error
 from armaden.framework.runtime.supervisor.task.enums.subprocess_handle_state import (
     SubprocessHandleState,
 )

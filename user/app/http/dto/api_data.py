@@ -1,7 +1,7 @@
 from typing import Any
 
 from pydantic.dataclasses import dataclass
-from ..enums.api_status import ApiStatus
+from app.http.enums.api_status import ApiStatus
 
 
 # -- Request Data -------------------------------------------------------------

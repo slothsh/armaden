@@ -8,7 +8,7 @@ from typing import override
 
 from returns.result import Failure, Success
 
-from armaden.framework.error.error import Error
+from armaden.framework.runtime.error.error import Error
 from armaden.framework.protocols.task_runtime_protocol import TaskRuntimeProtocol
 from armaden.framework.runtime.supervisor.task.dto.task_graph_data import TaskGraphData
 from armaden.framework.types.coroutine import AsyncStreamArg, AsyncStreamCallback

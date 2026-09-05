@@ -4,7 +4,9 @@ from typing import override
 
 from returns.result import Success
 
-from armaden.framework.enums.health_status import HealthStatus
+from armaden.framework.runtime.service_provider.enums.service_provider_health import (
+    ServiceProviderHealth,
+)
 from armaden.framework.protocols.container_protocol import ContainerProtocol
 from armaden.framework.protocols.service_provider_protocol import ServiceProviderProtocol
 from armaden.framework.runtime.service_provider.deferrable_service_provider import (
@@ -54,4 +56,4 @@ class ServiceProvider(ServiceProviderProtocol, ABC):
 
     @override
     async def status(self) -> Result[Mapping[str, object]]:
-        return Success({self.name: HealthStatus.OK})
+        return Success({self.name: ServiceProviderHealth.OK})

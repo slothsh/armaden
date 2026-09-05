@@ -1,9 +1,7 @@
-from typing import List
-
-from armaden.framework.classes.service_provider import ServiceProvider
+from armaden.framework.protocols.service_provider_protocol import ServiceProviderProtocol
 from app.providers.app_service_provider import AppServiceProvider
 from app.providers.telemetry_service_provider import TelemetryServiceProvider
 
 
-def providers() -> List[ServiceProvider]:
+def providers() -> list[type[ServiceProviderProtocol]]:
     return [AppServiceProvider, TelemetryServiceProvider]

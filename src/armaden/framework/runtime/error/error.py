@@ -1,5 +1,5 @@
-from armaden.framework.error.protocols.error_kind_protocol import ErrorKindProtocol
-from armaden.framework.error.protocols.error_protocol import ErrorProtocol
+from armaden.framework.protocols.error_kind_protocol import ErrorKindProtocol
+from armaden.framework.protocols.error_protocol import ErrorProtocol
 from typing import Any, override
 
 

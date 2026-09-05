@@ -8,7 +8,7 @@ from typing import Callable, cast, override
 
 from returns.result import Failure, Success
 
-from armaden.framework.error.error import Error
+from armaden.framework.runtime.error.error import Error
 from armaden.framework.protocols.environment_protocol import EnvironmentProtocol
 from armaden.framework.types.result import Result
 

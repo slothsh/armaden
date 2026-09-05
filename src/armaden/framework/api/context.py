@@ -1,7 +1,9 @@
+from armaden.framework.api.http import (
+    HttpRequestContext,
+    HttpResponse,
+    HttpResponseFactory,
+)
 from armaden.framework.protocols.http_request_protocol import HttpRequestProtocol
-from armaden.framework.runtime.http.http_request_context import HttpRequestContext
-from armaden.framework.runtime.http.http_response import HttpResponse
-from armaden.framework.runtime.http.http_response_factory import HttpResponseFactory
 
 
 _response_factory = HttpResponseFactory()

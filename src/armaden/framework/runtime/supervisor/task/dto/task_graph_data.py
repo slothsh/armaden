@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from uuid import uuid4
 
-from armaden.framework.error.error import Error
+from armaden.framework.runtime.error.error import Error
 from armaden.framework.protocols.task_protocol import TaskProtocol
 from armaden.framework.runtime.supervisor.task.enums.task_graph_state import TaskGraphState
 from armaden.framework.types.result import Result

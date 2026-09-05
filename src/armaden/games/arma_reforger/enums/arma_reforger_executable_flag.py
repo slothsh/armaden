@@ -1,7 +1,7 @@
 from enum import StrEnum
 from returns.result import Failure, Success
-from armaden.framework.utils.types import Result
-from armaden.framework.errors import Error
+from armaden.framework.types.result import Result
+from armaden.framework.api.error import Error
 
 
 class ArmaReforgerExecutableFlag(StrEnum):

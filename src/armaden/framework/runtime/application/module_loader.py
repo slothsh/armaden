@@ -12,7 +12,7 @@ from typing import cast, override
 
 from returns.result import Failure, Success
 
-from armaden.framework.error.error import Error
+from armaden.framework.runtime.error.error import Error
 from armaden.framework.protocols.module_loader_protocol import (
     ConfigFactory,
     ModuleLoaderProtocol,

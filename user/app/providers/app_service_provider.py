@@ -1,33 +1,54 @@
+from typing import cast, override
+
 from returns.result import Success
 
-from armaden.framework.classes.service_provider import ServiceProvider
-from armaden.framework.runtime.task_builder import TaskBuilder
-from armaden.framework.facades import App, config
-from armaden.framework.utils.types import Result
-from armaden.games.arma_reforger import ArmaReforgerServer
+from armaden.framework.protocols.configuration_protocol import ConfigurationProtocol
+from armaden.framework.protocols.container_protocol import ContainerProtocol
+from armaden.framework.protocols.supervisor_protocol import SupervisorProtocol
+from armaden.framework.api.service_provider import ServiceProvider
+from armaden.framework.api.supervisor import TaskGraphData
+from armaden.framework.api.task import TaskBuilder
+from armaden.framework.types.result import Result
+from armaden.framework.types.task import TaskCallback, TaskStatusCallback
+from armaden.games.arma_reforger import (
+    ArmaReforgerServer,
+    ArmaReforgerServerConfig,
+)
 
 
 class AppServiceProvider(ServiceProvider):
-    name = 'arma_reforger'
+    name: str = 'arma_reforger'
+    server: ArmaReforgerServer
 
-    def __init__(self):
-        self.server = ArmaReforgerServer(config=config('arma_reforger'))
+    def __init__(self, container: ContainerProtocol) -> None:
+        super().__init__(container)
 
 
+    @override
     def register(self) -> Result[None]:
-        App.instance(ArmaReforgerServer, self.server)
+        configuration = cast(
+            ConfigurationProtocol,
+            self.app.make(ConfigurationProtocol),
+        )
+        arma_config = cast(
+            ArmaReforgerServerConfig,
+            configuration.get('arma_reforger', {}),
+        )
+        self.server = ArmaReforgerServer(config=arma_config)
+        _ = self.app.instance(ArmaReforgerServer, cast(object, self.server))
         return Success(None)
 
 
+    @override
     def boot(self) -> Result[None]:
         server_task = (
             TaskBuilder()
             .name('arma_reforger_server')
             .description('Manages the Arma Reforger dedicated server lifecycle')
-            .on_initialize(self.server.initialize)
-            .on_run(self.server.run)
-            .on_shutdown(self.server.shutdown)
-            .on_status(self.server.status)
+            .on_initialize(cast(TaskCallback, self.server.initialize))
+            .on_run(cast(TaskCallback, self.server.run))
+            .on_shutdown(cast(TaskCallback, self.server.shutdown))
+            .on_status(cast(TaskStatusCallback, self.server.status))
             .exclusive_thread()
             .long_running()
             .ready_timeout(120.0)
@@ -38,9 +59,9 @@ class AppServiceProvider(ServiceProvider):
             TaskBuilder()
             .name('arma_reforger_rcon')
             .description('Arma Reforger dedicated server remote console')
-            .on_initialize(self.server.initialize_rcon_client)
-            .on_run(self.server.run_rcon_client)
-            .on_shutdown(self.server.shutdown_rcon_client)
+            .on_initialize(cast(TaskCallback, self.server.initialize_rcon_client))
+            .on_run(cast(TaskCallback, self.server.run_rcon_client))
+            .on_shutdown(cast(TaskCallback, self.server.shutdown_rcon_client))
             .awaits('arma_reforger_server')
             .exclusive_thread()
             .long_running()
@@ -48,6 +69,10 @@ class AppServiceProvider(ServiceProvider):
             .build()
         )
 
-        App.concurrency().batch(server_task, rcon_task).submit()
+        supervisor = cast(
+            SupervisorProtocol[TaskGraphData],
+            self.app.make(SupervisorProtocol),
+        )
+        _ = supervisor.submit([server_task, rcon_task])
 
         return Success(None)

@@ -1,26 +1,26 @@
 import logging
 
-from armaden.framework.runtime.http.controller import Controller
-from ..actions.get_app_status import GetAppStatus
-from ..actions.restart_app_service import RestartAppService
-from ..actions.shutdown_app_service import ShutdownAppService
-from ..classes.api import Api
-from ..dto.api_data import ApiResponseData
-from ..dto.lifecycle_data import RestartRequestData, ShutdownRequestData
+from armaden.framework.api.http import HttpController
+from app.http.actions.get_app_status import GetAppStatus
+from app.http.actions.restart_app_service import RestartAppService
+from app.http.actions.shutdown_app_service import ShutdownAppService
+from app.http.classes.api import Api
+from app.http.dto.api_data import ApiResponseData
+from app.http.dto.lifecycle_data import RestartRequestData, ShutdownRequestData
 
 logger = logging.getLogger(__name__)
 
 
-class LifecycleController(Controller):
+class LifecycleController(HttpController):
     def __init__(
         self,
-        get_app_status: GetAppStatus | None = None,
-        restart_app_service: RestartAppService | None = None,
-        shutdown_app_service: ShutdownAppService | None = None,
+        get_app_status: GetAppStatus,
+        restart_app_service: RestartAppService,
+        shutdown_app_service: ShutdownAppService,
     ) -> None:
-        self._get_app_status = get_app_status or GetAppStatus()
-        self._restart_app_service = restart_app_service or RestartAppService()
-        self._shutdown_app_service = shutdown_app_service or ShutdownAppService()
+        self._get_app_status: GetAppStatus = get_app_status
+        self._restart_app_service: RestartAppService = restart_app_service
+        self._shutdown_app_service: ShutdownAppService = shutdown_app_service
 
     async def health(self) -> ApiResponseData:
         return Api.success(data=await self._get_app_status())

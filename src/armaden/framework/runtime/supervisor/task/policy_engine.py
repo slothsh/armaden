@@ -9,7 +9,7 @@ from typing import cast, override
 from returns.pipeline import is_successful
 from returns.result import Failure
 
-from armaden.framework.error.error import Error
+from armaden.framework.runtime.error.error import Error
 from armaden.framework.protocols.policy_engine_protocol import PolicyEngineProtocol
 from armaden.framework.protocols.task_injector_protocol import TaskInjectorProtocol
 from armaden.framework.protocols.task_protocol import TaskProtocol

@@ -4,7 +4,7 @@ import inspect
 from enum import Enum, StrEnum
 from typing import ClassVar, get_args, get_origin, get_type_hints, override
 
-from armaden.framework.error.error import Error
+from armaden.framework.runtime.error.error import Error
 from armaden.framework.protocols.container_protocol import ContainerProtocol
 from armaden.framework.protocols.task_injector_protocol import TaskInjectorProtocol
 from armaden.framework.protocols.task_protocol import TaskProtocol

@@ -1,28 +1,37 @@
 import asyncio
 import logging
 import platform
+from typing import cast, override
 
 from returns.pipeline import is_successful
 from returns.result import Success
 
-from armaden.framework.enums.restart_policy import RestartPolicy
-from armaden.framework.enums.task_threading_policy import TaskThreadingPolicy
-from armaden.framework.protocols.task import Lifecycle, Pipeline
-from armaden.framework.protocols.task_runtime import TaskRuntimeInterface
-from armaden.framework.runtime.task import Task, TaskPolicy
-from armaden.framework.utils.types import Result
+from armaden.framework.api.task import (
+    Task,
+    TaskPolicyData,
+    TaskRestartPolicy,
+    TaskRuntimeProtocol,
+)
+from armaden.framework.types.result import Result
 
 logger = logging.getLogger('app.tasks.telemetry')
 
 
 class CollectServerTelemetryTask(Task):
-    name = 'collect_server_telemetry'
-    description = 'Collects runtime telemetry for the Arma Reforger server process'
-    policy = TaskPolicy(timeout=10.0, priority=10)
+    name: str = 'collect_server_telemetry'
+    description: str | None = 'Collects runtime telemetry for the Arma Reforger server process'
+    _policy: TaskPolicyData = TaskPolicyData(timeout=10.0, priority=10)
 
-    async def run(self) -> Result[dict]:
+    @override
+    async def run(
+        self,
+        runtime: TaskRuntimeProtocol,
+        **kwargs: object,
+    ) -> Result[dict[str, object]]:
+        _ = runtime
+        _ = kwargs
         await asyncio.sleep(0.05)
-        telemetry = {
+        telemetry: dict[str, object] = {
             'hostname': platform.node(),
             'cpu_percent': 12.4,
             'memory_mb': 4096,
@@ -34,14 +43,21 @@ class CollectServerTelemetryTask(Task):
 
 
 class FormatTelemetryReportTask(Task):
-    name = 'format_telemetry_report'
-    description = 'Formats raw telemetry into a human-readable report'
-    depends_on = [CollectServerTelemetryTask]
-    policy = TaskPolicy(timeout=5.0)
+    name: str = 'format_telemetry_report'
+    description: str | None = 'Formats raw telemetry into a human-readable report'
+    depends_on: list[str | type[object]] | None = ['collect_server_telemetry']
+    _policy: TaskPolicyData = TaskPolicyData(timeout=5.0)
 
-    async def run(self, telemetry: Pipeline[CollectServerTelemetryTask, dict]) -> Result[dict]:
-        raw = telemetry.unwrap() if hasattr(telemetry, 'unwrap') else telemetry
-        report = {
+    @override
+    async def run(
+        self,
+        runtime: TaskRuntimeProtocol,
+        **kwargs: object,
+    ) -> Result[dict[str, object]]:
+        _ = kwargs
+        raw_result = await runtime.task_output('collect_server_telemetry')
+        raw = cast(dict[str, object], raw_result.unwrap())
+        report: dict[str, object] = {
             'summary': f"{raw['hostname']} | cpu={raw['cpu_percent']}% | mem={raw['memory_mb']}MB",
             'players': raw['players'],
             'healthy': True,
@@ -51,28 +67,50 @@ class FormatTelemetryReportTask(Task):
 
 
 class TelemetryReadinessProbeTask(Task):
-    name = 'telemetry_readiness_probe'
-    description = 'Long-running probe that signals readiness once the telemetry channel is live'
-    long_running = True
-    policy = TaskPolicy(ready_timeout=15.0, restart=RestartPolicy.ON_FAILURE)
+    name: str = 'telemetry_readiness_probe'
+    description: str | None = 'Long-running probe that signals readiness once the telemetry channel is live'
+    long_running: bool = True
+    _policy: TaskPolicyData = TaskPolicyData(
+        ready_timeout=15.0,
+        restart=TaskRestartPolicy.ON_FAILURE,
+    )
 
-    async def run(self, runtime: TaskRuntimeInterface) -> Result[None]:
+    @override
+    async def run(
+        self,
+        runtime: TaskRuntimeProtocol,
+        **kwargs: object,
+    ) -> Result[None]:
+        _ = kwargs
         logger.info('Telemetry readiness probe starting; signalling ready')
-        await runtime.signal_ready()
+        _ = await runtime.signal_ready()
         await asyncio.sleep(0.05)
         return Success(None)
 
 
 class TelemetryAlertTask(Task):
-    name = 'telemetry_alert'
-    description = 'Consumes the readiness signal and emits an alert banner'
-    awaits = [TelemetryReadinessProbeTask]
-    policy = TaskPolicy(timeout=5.0)
+    name: str = 'telemetry_alert'
+    description: str | None = 'Consumes the readiness signal and emits an alert banner'
+    awaits: list[str | type[object]] | None = ['telemetry_readiness_probe']
+    _policy: TaskPolicyData = TaskPolicyData(timeout=5.0)
 
-    async def run(self, readiness: Lifecycle[TelemetryReadinessProbeTask]) -> Result[dict]:
+    @override
+    async def run(
+        self,
+        runtime: TaskRuntimeProtocol,
+        **kwargs: object,
+    ) -> Result[dict[str, object]]:
+        _ = kwargs
+        readiness = await runtime.task_output('telemetry_readiness_probe')
         if is_successful(readiness):
-            alert = {'level': 'info', 'message': 'Telemetry channel is live'}
+            alert: dict[str, object] = {
+                'level': 'info',
+                'message': 'Telemetry channel is live',
+            }
         else:
-            alert = {'level': 'warning', 'message': 'Telemetry channel failed readiness'}
+            alert = {
+                'level': 'warning',
+                'message': 'Telemetry channel failed readiness',
+            }
         logger.info('Telemetry alert: %s', alert['message'])
         return Success(alert)

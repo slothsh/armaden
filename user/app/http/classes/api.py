@@ -1,7 +1,7 @@
 from typing import Any
 
-from ..dto.api_data import ApiResponseData
-from ..enums.api_status import ApiStatus
+from app.http.dto.api_data import ApiResponseData
+from app.http.enums.api_status import ApiStatus
 
 
 class Api:

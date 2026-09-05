@@ -15,10 +15,10 @@ from pathlib import Path
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 from armaden.framework.classes.executable import Executable
-from armaden.framework.protocols.task_runtime import TaskRuntimeInterface
-from armaden.framework.utils.types import Result
+from armaden.framework.protocols.task_runtime_protocol import TaskRuntimeProtocol
+from armaden.framework.types.result import Result
 from armaden.framework.utils.dictionary import Dictionary
-from armaden.framework.errors import Error
+from armaden.framework.api.error import Error
 from armaden.games.steamcmd.steamcmd_executable import SteamCmdExecutable
 from .enums import ArmaReforgerExecutableFlag
 from .arma_reforger_server_executable_config import Config, DEFAULT_CONFIG
@@ -62,7 +62,7 @@ class ArmaReforgerServerExecutable(Executable):
         )
 
 
-    async def ensure_installed(self, runtime: TaskRuntimeInterface, steamcmd: SteamCmdExecutable) -> Result[Path]:
+    async def ensure_installed(self, runtime: TaskRuntimeProtocol, steamcmd: SteamCmdExecutable) -> Result[Path]:
         if self._executable is not None and self._executable.exists():
             return Success(self._executable)
         if not is_successful(result := await self.install(runtime, steamcmd)):
@@ -76,7 +76,7 @@ class ArmaReforgerServerExecutable(Executable):
         return result
 
 
-    async def install(self, runtime: TaskRuntimeInterface, steamcmd: SteamCmdExecutable) -> Result[None]:
+    async def install(self, runtime: TaskRuntimeProtocol, steamcmd: SteamCmdExecutable) -> Result[None]:
         install_dir = self._config['installDirectory'] or '/arma_reforger'
         argv = (
             steamcmd
