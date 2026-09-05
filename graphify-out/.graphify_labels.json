@@ -718,5 +718,15 @@
   "716": "Parameter",
   "717": "StarletteRequest",
   "718": "TypedResult",
-  "719": "TaskRuntimeProtocol"
+  "719": "TaskRuntimeProtocol",
+  "720": "LoginRequestPacket",
+  "721": "ServerMessageResponsePacket",
+  "722": "Message",
+  "723": "LoginResponsePacket",
+  "724": "ScheduledTask",
+  "725": "UserProviderProtocol",
+  "726": "HttpControllerProtocol",
+  "727": "BanCreateCommand",
+  "728": "BanRemoveCommand",
+  "729": "KickCommand"
 }
