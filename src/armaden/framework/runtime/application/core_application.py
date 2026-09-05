@@ -140,6 +140,7 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
         from armaden.framework.runtime.service_provider.cache_service_provider import CacheServiceProvider
         from armaden.framework.runtime.service_provider.database_service_provider import DatabaseServiceProvider
         from armaden.framework.runtime.service_provider.discovery_service_provider import DiscoveryServiceProvider
+        from armaden.framework.runtime.service_provider.event_service_provider import EventServiceProvider
         from armaden.framework.runtime.service_provider.filesystem_service_provider import FilesystemServiceProvider
         from armaden.framework.runtime.service_provider.queue_service_provider import QueueServiceProvider
         from armaden.framework.runtime.service_provider.http_service_provider import HttpServiceProvider
@@ -167,6 +168,10 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
         discovery_result = self.register(DiscoveryServiceProvider(self._container))
         if isinstance(discovery_result, Failure):
             logger.warning('Framework discovery provider registration failed: %s', discovery_result.failure())
+
+        events_result = self.register(EventServiceProvider(self._container))
+        if isinstance(events_result, Failure):
+            logger.warning('Framework events provider registration failed: %s', events_result.failure())
 
 
     def _register_user_application(self) -> None:

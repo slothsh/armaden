@@ -8,12 +8,17 @@ from typing import ClassVar, Self, override
 from returns.result import Failure, Success
 
 from armaden.framework.facades.queue_facade import QueueFacade
+from armaden.framework.protocols.container_aware_queue_job_protocol import (
+    ContainerAwareQueueJobProtocol,
+)
 from armaden.framework.protocols.queue_driver_protocol import QueueDriverProtocol
 from armaden.framework.protocols.queue_job_protocol import QueueJobProtocol
+from armaden.framework.protocols.queue_resolver_protocol import QueueResolverProtocol
 from armaden.framework.protocols.queue_worker_protocol import QueueWorkerProtocol
 from armaden.framework.protocols.task_runtime_protocol import TaskRuntimeProtocol
 from armaden.framework.runtime.error.error import Error
 from armaden.framework.runtime.queue.exceptions.queue_driver_error import QueueDriverError
+from armaden.framework.runtime.queue.queue_resolver import QueueResolver
 from armaden.framework.runtime.queue.queue_worker import QueueWorker
 from armaden.framework.types.result import Result
 
@@ -143,9 +148,12 @@ class QueueJob(QueueJobProtocol, ABC):
 
 
 __all__ = [
+    'ContainerAwareQueueJobProtocol',
     'QueueFacade',
     'QueueJob',
     'QueueDriverProtocol',
+    'QueueResolver',
+    'QueueResolverProtocol',
     'QueueWorker',
     'QueueWorkerProtocol',
     'ShouldQueueTag',

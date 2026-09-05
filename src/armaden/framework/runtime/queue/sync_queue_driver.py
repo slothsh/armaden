@@ -5,6 +5,10 @@ from typing import override
 
 from returns.result import Failure, Success
 
+from armaden.framework.protocols.container_aware_queue_job_protocol import (
+    ContainerAwareQueueJobProtocol,
+)
+from armaden.framework.protocols.container_protocol import ContainerProtocol
 from armaden.framework.protocols.queue_driver_protocol import QueueDriverProtocol
 from armaden.framework.protocols.queue_job_protocol import QueueJobProtocol
 from armaden.framework.runtime.error.error import Error
@@ -22,7 +26,11 @@ class SyncQueueDriver(QueueDriverProtocol):
         config: QueueConfiguration,
         dependencies: QueueDriverDependenciesData | None = None,
     ) -> None:
-        _ = dependencies
+        self._container: ContainerProtocol | None = (
+            dependencies.container
+            if dependencies is not None
+            else None
+        )
         self._config: QueueConfiguration = config
 
 
@@ -75,6 +83,7 @@ class SyncQueueDriver(QueueDriverProtocol):
         _ = queue
         job_id = uuid.uuid4().hex
         try:
+            self._prepare_job(job)
             job.before()
             job.handle()
             job.after()
@@ -97,6 +106,13 @@ class SyncQueueDriver(QueueDriverProtocol):
         _ = delay
         _ = queue
         return Success(None)
+
+
+    def _prepare_job(self, job: QueueJobProtocol) -> None:
+        if self._container is None:
+            return
+        if isinstance(job, ContainerAwareQueueJobProtocol):
+            job.bind_container(self._container)
 
 
     @override

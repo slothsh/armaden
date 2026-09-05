@@ -3,6 +3,7 @@ from typing import cast, override
 from armaden.framework.facades.facade import Facade
 from armaden.framework.protocols.queue_driver_protocol import QueueDriverProtocol
 from armaden.framework.protocols.queue_job_protocol import QueueJobProtocol
+from armaden.framework.protocols.queue_resolver_protocol import QueueResolverProtocol
 from armaden.framework.types.result import Result
 
 
@@ -61,12 +62,14 @@ class QueueFacade(Facade):
 
     @classmethod
     def connection(cls, name: str | None = None) -> QueueDriverProtocol:
-        if name is None:
-            return cls._default_driver()
         application = cls.get_facade_application()
         if application is None:
             return cls._default_driver()
-        return cast(QueueDriverProtocol, application.make(f'queue.connection.{name}'))
+        resolver = cast(
+            QueueResolverProtocol,
+            application.make(QueueResolverProtocol),
+        )
+        return resolver.connection(name)
 
 
     @classmethod

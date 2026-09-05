@@ -11,11 +11,13 @@ from armaden.framework.protocols.container_protocol import ContainerProtocol
 from armaden.framework.protocols.core_application_protocol import CoreApplicationProtocol
 from armaden.framework.protocols.database_resolver_protocol import DatabaseResolverProtocol
 from armaden.framework.protocols.queue_driver_protocol import QueueDriverProtocol
+from armaden.framework.protocols.queue_resolver_protocol import QueueResolverProtocol
 from armaden.framework.protocols.supervisor_protocol import SupervisorProtocol
 from armaden.framework.runtime.queue.dto.queue_driver_dependencies_data import (
     QueueDriverDependenciesData,
 )
 from armaden.framework.runtime.queue.queue_driver_factory import create_queue_driver
+from armaden.framework.runtime.queue.queue_resolver import QueueResolver
 from armaden.framework.runtime.queue.queue_worker import QueueWorker
 from armaden.framework.runtime.service_provider.service_provider import ServiceProvider
 from armaden.framework.runtime.supervisor.task.dto.task_graph_data import TaskGraphData
@@ -87,6 +89,7 @@ class QueueServiceProvider(ServiceProvider):
                     connection,
                     QueueDriverDependenciesData(
                         cache=cache,
+                        container=self._container,
                         database=database,
                     ),
                 )
@@ -102,6 +105,8 @@ class QueueServiceProvider(ServiceProvider):
         default_driver_name = configured_default
         if default_driver is None and drivers:
             default_driver_name, default_driver = next(iter(drivers.items()))
+        resolver = QueueResolver(drivers, default_driver_name)
+        _ = self._container.instance(QueueResolverProtocol, resolver)
         if default_driver is not None:
             _ = self._container.instance('queue.connection.default', default_driver)
             _ = self._container.instance('queue.default', default_driver_name)
@@ -120,7 +125,7 @@ class QueueServiceProvider(ServiceProvider):
             return
         if worker_configuration.get('enabled') is not True:
             return
-        worker = QueueWorker(driver, configuration)
+        worker = QueueWorker(driver, configuration, self._container)
         task = (
             TaskBuilder()
             .name('queue_worker')

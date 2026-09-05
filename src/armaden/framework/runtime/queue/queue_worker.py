@@ -8,6 +8,10 @@ from typing import cast, override
 from returns.pipeline import is_successful
 from returns.result import Success
 
+from armaden.framework.protocols.container_aware_queue_job_protocol import (
+    ContainerAwareQueueJobProtocol,
+)
+from armaden.framework.protocols.container_protocol import ContainerProtocol
 from armaden.framework.protocols.queue_driver_protocol import QueueDriverProtocol
 from armaden.framework.protocols.queue_job_protocol import QueueJobProtocol
 from armaden.framework.protocols.queue_worker_protocol import QueueWorkerProtocol
@@ -18,7 +22,12 @@ logger = logging.getLogger(__name__)
 
 
 class QueueWorker(QueueWorkerProtocol):
-    def __init__(self, driver: QueueDriverProtocol, config: Mapping[str, object]) -> None:
+    def __init__(
+        self,
+        driver: QueueDriverProtocol,
+        config: Mapping[str, object],
+        container: ContainerProtocol | None = None,
+    ) -> None:
         worker_config_object = config.get('worker', {})
         worker_config: Mapping[str, object] = (
             cast(Mapping[str, object], worker_config_object)
@@ -32,6 +41,7 @@ class QueueWorker(QueueWorkerProtocol):
         self._timeout: float = float(self._integer(worker_config.get('timeout'), 60))
         self._tries: int = self._integer(worker_config.get('tries'), 3)
         self._driver: QueueDriverProtocol = driver
+        self._container: ContainerProtocol | None = container
         self._inflight: set[asyncio.Task[None]] = set()
         self._worker_tasks: list[asyncio.Task[None]] = []
         queues_object = config.get('queues', {})
@@ -71,6 +81,13 @@ class QueueWorker(QueueWorkerProtocol):
         return Success(None)
 
 
+    def _prepare_job(self, job: QueueJobProtocol) -> None:
+        if self._container is None:
+            return
+        if isinstance(job, ContainerAwareQueueJobProtocol):
+            job.bind_container(self._container)
+
+
     async def _poll_loop(self) -> None:
         while self._running:
             found_job = False
@@ -98,6 +115,7 @@ class QueueWorker(QueueWorkerProtocol):
         job_id_object = getattr(job, '_queue_job_id', '')
         job_id = job_id_object if isinstance(job_id_object, str) else ''
         try:
+            self._prepare_job(job)
             job.before()
             await asyncio.wait_for(asyncio.to_thread(job.handle), self._timeout)
             job.after()

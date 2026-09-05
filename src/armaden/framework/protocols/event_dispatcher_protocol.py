@@ -1,0 +1,39 @@
+from collections.abc import Awaitable, Callable
+from typing import Protocol
+
+from armaden.framework.protocols.event_protocol import EventProtocol
+from armaden.framework.types.result import Result
+
+
+class EventDispatcherProtocol(Protocol):
+    async def defer(
+        self,
+        callback: Callable[[], object | Awaitable[object]],
+        events: list[type[EventProtocol]] | None = None,
+    ) -> Result[object]: ...
+
+    async def dispatch(self, event: EventProtocol) -> Result[list[object]]: ...
+
+    def dispatch_sync(self, event: EventProtocol) -> Result[list[object]]: ...
+
+    async def flush(self, event_type: type[EventProtocol]) -> Result[list[object]]: ...
+
+    def forget(self, event_type: type[EventProtocol]) -> None: ...
+
+    def forget_pushed(self) -> None: ...
+
+    def has_listeners(self, event_type: type[EventProtocol]) -> bool: ...
+
+    def listen(
+        self,
+        event_type_or_listener: type[EventProtocol] | Callable[..., object],
+        listener: object | None = None,
+    ) -> Result[None]: ...
+
+    def push(self, event: EventProtocol) -> None: ...
+
+    def subscribe(self, subscriber: type[object] | object) -> Result[None]: ...
+
+    async def until(self, event: EventProtocol) -> Result[object | None]: ...
+
+    def until_sync(self, event: EventProtocol) -> Result[object | None]: ...
