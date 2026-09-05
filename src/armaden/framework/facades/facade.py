@@ -5,7 +5,6 @@ from armaden.framework.facades.exceptions import (
     UnresolvedFacadeRootException,
 )
 from armaden.framework.facades.facade_meta_class import FacadeMetaClass
-from armaden.framework.protocols.facade_protocol import FacadeProtocol
 from armaden.framework.types.facade import FacadeAccessor, FacadeApplication
 
 
@@ -71,6 +70,3 @@ class Facade(metaclass=FacadeMetaClass):
         application = cls._facade_application
         if application is not None:
             _ = application.instance(accessor, instance)
-
-
-_facade_contract: type[FacadeProtocol] = Facade

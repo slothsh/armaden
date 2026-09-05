@@ -137,12 +137,17 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
 
 
     def _register_framework_providers(self) -> None:
+        from armaden.framework.runtime.service_provider.cache_service_provider import CacheServiceProvider
         from armaden.framework.runtime.service_provider.filesystem_service_provider import FilesystemServiceProvider
         from armaden.framework.runtime.service_provider.http_service_provider import HttpServiceProvider
 
         filesystem_result = self.register(FilesystemServiceProvider(self._container))
         if isinstance(filesystem_result, Failure):
             logger.warning('Framework filesystem provider registration failed: %s', filesystem_result.failure())
+
+        cache_result = self.register(CacheServiceProvider(self._container))
+        if isinstance(cache_result, Failure):
+            logger.warning('Framework cache provider registration failed: %s', cache_result.failure())
 
         http_result = self.register(HttpServiceProvider(self._container))
         if isinstance(http_result, Failure):

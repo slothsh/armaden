@@ -173,7 +173,3 @@ class StorageFacade(Facade):
     @classmethod
     def _default_disk(cls) -> FilesystemProtocol:
         return cast(FilesystemProtocol, cls.get_facade_root())
-
-
-def storage() -> FilesystemProtocol:
-    return StorageFacade.disk()

@@ -60,18 +60,3 @@ class UrlFacade(Facade):
             parameters,
             absolute,
         )
-
-
-def route(
-    name: str,
-    parameters: Mapping[str, object] | None = None,
-    absolute: bool = True,
-) -> str:
-    return UrlFacade.route(name, parameters, absolute)
-
-
-def url(
-    path: str = '/',
-    parameters: Mapping[str, object] | None = None,
-) -> str:
-    return UrlFacade.to(path, parameters)
