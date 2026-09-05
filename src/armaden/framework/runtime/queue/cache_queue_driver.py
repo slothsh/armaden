@@ -88,8 +88,9 @@ class CacheQueueDriver(QueueDriverProtocol):
                 if not is_successful(entry_result):
                     continue
                 entry = entry_result.unwrap()
-                if not isinstance(entry, Mapping):
+                if not isinstance(entry, dict):
                     continue
+                entry = cast(dict[str, object], entry)
                 available_at = entry.get('available_at')
                 if isinstance(available_at, (float, int)) and available_at > now:
                     continue
@@ -103,6 +104,11 @@ class CacheQueueDriver(QueueDriverProtocol):
                 if job_object is None:
                     return self._failure(TypeError('cached queue entry has no job'))
                 job = cast(QueueJobProtocol, job_object)
+                attempts_object = entry.get('attempts', 0)
+                attempts = attempts_object + 1 if isinstance(attempts_object, int) else 1
+                entry['attempts'] = attempts
+                object.__setattr__(job, '_queue_job_id', job_id)
+                object.__setattr__(job, '_queue_attempts', attempts)
                 _ = self._cache.forever(
                     self._reserved_key(target, job_id),
                     {'reserved_at': now},
@@ -184,6 +190,7 @@ class CacheQueueDriver(QueueDriverProtocol):
         with self._lock_for(target):
             result = self._cache.forever(self._job_key(target, job_id), {
                 'job': job,
+                'attempts': 0,
                 'available_at': time.time() + delay,
             })
             if not is_successful(result):

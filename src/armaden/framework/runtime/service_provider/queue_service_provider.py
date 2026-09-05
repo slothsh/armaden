@@ -10,14 +10,18 @@ from armaden.framework.protocols.cache_protocol import CacheProtocol
 from armaden.framework.protocols.container_protocol import ContainerProtocol
 from armaden.framework.protocols.core_application_protocol import CoreApplicationProtocol
 from armaden.framework.protocols.queue_driver_protocol import QueueDriverProtocol
+from armaden.framework.protocols.supervisor_protocol import SupervisorProtocol
 from armaden.framework.runtime.queue.dto.queue_driver_dependencies_data import (
     QueueDriverDependenciesData,
 )
 from armaden.framework.runtime.queue.queue_driver_factory import create_queue_driver
+from armaden.framework.runtime.queue.queue_worker import QueueWorker
 from armaden.framework.runtime.service_provider.service_provider import ServiceProvider
 from armaden.framework.runtime.supervisor.task.dto.task_graph_data import TaskGraphData
+from armaden.framework.runtime.supervisor.task.task_builder import TaskBuilder
 from armaden.framework.types.queue import QueueConfiguration
 from armaden.framework.types.result import Result
+from armaden.framework.types.task import TaskCallback
 
 logger = logging.getLogger(__name__)
 
@@ -92,4 +96,33 @@ class QueueServiceProvider(ServiceProvider):
             _ = self._container.instance('queue.connection.default', default_driver)
             _ = self._container.instance('queue.default', default_driver_name)
             _ = self._container.instance(QueueDriverProtocol, default_driver)
+            self._register_worker(default_driver, configuration)
         _ = self._container.instance('queue.connections', drivers)
+
+
+    def _register_worker(
+        self,
+        driver: QueueDriverProtocol,
+        configuration: QueueConfiguration,
+    ) -> None:
+        worker_configuration = configuration.get('worker')
+        if not isinstance(worker_configuration, Mapping):
+            return
+        if worker_configuration.get('enabled') is not True:
+            return
+        worker = QueueWorker(driver, configuration)
+        task = (
+            TaskBuilder()
+            .name('queue_worker')
+            .description('Processes jobs from the configured queue')
+            .on_run(cast(TaskCallback, worker.run))
+            .on_shutdown(cast(TaskCallback, worker.shutdown))
+            .long_running()
+            .ready_timeout(30.0)
+            .build()
+        )
+        supervisor = cast(
+            SupervisorProtocol[TaskGraphData],
+            self._container.make(SupervisorProtocol),
+        )
+        _ = supervisor.submit([task])
