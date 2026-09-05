@@ -9,6 +9,7 @@ from returns.result import Success
 from armaden.framework.protocols.cache_protocol import CacheProtocol
 from armaden.framework.protocols.container_protocol import ContainerProtocol
 from armaden.framework.protocols.core_application_protocol import CoreApplicationProtocol
+from armaden.framework.protocols.database_resolver_protocol import DatabaseResolverProtocol
 from armaden.framework.protocols.queue_driver_protocol import QueueDriverProtocol
 from armaden.framework.protocols.supervisor_protocol import SupervisorProtocol
 from armaden.framework.runtime.queue.dto.queue_driver_dependencies_data import (
@@ -71,6 +72,12 @@ class QueueServiceProvider(ServiceProvider):
             connection = cast(QueueConfiguration, raw_connection)
             cache_name = connection.get('store', 'file')
             cache: CacheProtocol | None = None
+            database: DatabaseResolverProtocol | None = None
+            if self._container.has('database.resolver'):
+                database = cast(
+                    DatabaseResolverProtocol,
+                    self._container.make('database.resolver'),
+                )
             if isinstance(cache_name, str):
                 cache_key = f'cache.store.{cache_name}'
                 if self._container.has(cache_key):
@@ -78,7 +85,10 @@ class QueueServiceProvider(ServiceProvider):
             try:
                 driver = create_queue_driver(
                     connection,
-                    QueueDriverDependenciesData(cache=cache),
+                    QueueDriverDependenciesData(
+                        cache=cache,
+                        database=database,
+                    ),
                 )
             except Exception as exception:
                 logger.warning("Failed to create queue connection '%s': %s", name, exception)

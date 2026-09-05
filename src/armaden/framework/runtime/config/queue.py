@@ -9,6 +9,16 @@ def config() -> QueueConfiguration:
             'sync': {
                 'driver': 'sync',
             },
+            'database': {
+                'driver': 'database',
+                'connection': Env.string('QUEUE_DATABASE_CONNECTION', 'sqlite'),
+                'table': Env.string('QUEUE_DATABASE_TABLE', 'jobs'),
+                'failed_table': Env.string(
+                    'QUEUE_FAILED_DATABASE_TABLE',
+                    'failed_jobs',
+                ),
+                'queue': Env.string('QUEUE_DATABASE_QUEUE', 'default'),
+            },
         },
         'worker': {
             'enabled': Env.bool('QUEUE_WORKER_ENABLED', False),

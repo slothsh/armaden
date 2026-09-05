@@ -1,5 +1,6 @@
 from armaden.framework.protocols.queue_driver_protocol import QueueDriverProtocol
 from armaden.framework.runtime.queue.cache_queue_driver import CacheQueueDriver
+from armaden.framework.runtime.queue.database_queue_driver import DatabaseQueueDriver
 from armaden.framework.runtime.queue.dto.queue_driver_dependencies_data import (
     QueueDriverDependenciesData,
 )
@@ -10,6 +11,7 @@ from armaden.framework.types.queue import QueueConfiguration, QueueDriverConstru
 
 DRIVER_MAP: dict[str, QueueDriverConstructor] = {
     'cache': CacheQueueDriver,
+    'database': DatabaseQueueDriver,
     'sync': SyncQueueDriver,
 }
 
