@@ -24,14 +24,11 @@ logger = logging.getLogger(__name__)
 class RegisteredRconClient(RegisteredRconClientProtocol):
     BUILTIN_COMMAND_CLASSES: list[type[RconCommand]] = []
 
-    def __init__(
+    def _initialize_registered_rcon(
         self,
-        *args: object,
         repository: RconCommandRepositoryProtocol | None = None,
         builtin_command_overrides: list[type[RconCommand]] | None = None,
-        **kwargs: object,
     ) -> None:
-        super().__init__(*args, **kwargs)
         self._loop: asyncio.AbstractEventLoop | None = None
         self._registered_commands: dict[str, RconCommand] = {}
         self._repository: RconCommandRepositoryProtocol | None = repository

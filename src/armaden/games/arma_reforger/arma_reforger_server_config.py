@@ -19,8 +19,8 @@ class RconConfig(TypedDict):
     password: str | None
     maxClients: int | None
     permission: str | None
-    blacklist: list | None
-    whitelist: list | None
+    blacklist: list[object] | None
+    whitelist: list[object] | None
 
 
 class ModConfig(TypedDict):
@@ -36,8 +36,8 @@ class GamePropertiesPersistence(TypedDict):
     loadSessionSave: bool | None
     keepSessionSave: bool | None
     hiveId: int | None
-    databases: dict | None
-    storages: dict | None
+    databases: dict[str, object] | None
+    storages: dict[str, object] | None
 
 
 class GamePropertiesConfig(TypedDict):
@@ -50,7 +50,7 @@ class GamePropertiesConfig(TypedDict):
     VONDisableUI: bool | None
     VONDisableDirectSpeechUI: bool | None
     VONCanTransmitCrossFaction: bool | None
-    missionHeader: dict | None
+    missionHeader: dict[str, object] | None
     persistence: GamePropertiesPersistence | None
 
 
@@ -58,12 +58,12 @@ class GameConfig(TypedDict):
     name: str | None
     password: str | None
     passwordAdmin: str | None
-    admins: list | None
+    admins: list[object] | None
     scenarioId: str | None
     maxPlayers: int | None
     visible: bool | None
     crossPlatform: bool | None
-    supportedPlatforms: list | None
+    supportedPlatforms: list[object] | None
     modsRequiredByDefault: bool | None
     mods: list[ModConfig] | None
     gameProperties: GamePropertiesConfig | None
@@ -76,7 +76,7 @@ class JoinQueueConfig(TypedDict):
 class OperatingConfig(TypedDict):
     lobbyPlayerSynchronise: bool | None
     disableCrashReporter: bool | None
-    disableNavmeshStreaming: list | None
+    disableNavmeshStreaming: list[object] | None
     disableServerShutdown: bool | None
     disableAI: bool | None
     playerSaveTime: int | None

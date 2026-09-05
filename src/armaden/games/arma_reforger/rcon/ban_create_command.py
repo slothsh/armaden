@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, override
 
 from armaden.framework.api.rcon.dto.rcon_command_argument_data import RconCommandArgumentData
 from armaden.framework.api.rcon import RconCommand
@@ -30,6 +30,7 @@ class BanCreateCommand(RconCommand):
         ),
     ]
 
+    @override
     async def execute(self, **kwargs: Any) -> Any:
         args = [
             'create',

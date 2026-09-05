@@ -1,53 +1,75 @@
 import json
 import logging
+from collections.abc import Callable, Coroutine
 from dataclasses import dataclass
 from enum import StrEnum
 from pathlib import Path
-from types import CoroutineType
-from typing import Any, Callable, Dict, List, Self, Union, cast
+from typing import Self, cast, final, override
 
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
-from armaden.framework.classes.configurable import Configurable
-from armaden.framework.classes.rcon_command_repository import RconCommandRepository
+from armaden.framework.api.configurable import Configurable
 from armaden.games.arma_reforger.enums.arma_reforger_health_status import (
     ArmaReforgerHealthStatus,
 )
-from armaden.framework.facades import App
-from armaden.framework.protocols.rcon_command import RconCommandInterface, SendCommandProtocol
-from armaden.framework.protocols.registers_rcon_command import RegistersRconCommand
+from armaden.framework.api.rcon import (
+    RconCommand,
+    RconCommandProtocol,
+    RconCommandRepository,
+    RegistersRconCommandProtocol,
+    RconSendCommandProtocol,
+)
 from armaden.framework.protocols.task_runtime_protocol import TaskRuntimeProtocol
 from armaden.framework.api.error import Error
-from armaden.framework.utils.dictionary import Dictionary
+from armaden.framework.api.support import Dictionary
 from armaden.framework.types.result import Result
 from armaden.games.steamcmd import SteamCmdExecutable
-from .arma_reforger_server_executable import ArmaReforgerServerExecutable
-from .arma_reforger_rcon_client import ArmaReforgerRconClient
-from .arma_reforger_server_config import DEFAULT_CONFIG, Config as ArmaReforgerServerConfig
-from .enums.arma_reforger_executable_flag import ArmaReforgerExecutableFlag
+from armaden.games.arma_reforger.arma_reforger_server_executable import ArmaReforgerServerExecutable
+from armaden.games.arma_reforger.arma_reforger_rcon_client import ArmaReforgerRconClient
+from armaden.games.arma_reforger.arma_reforger_server_config import DEFAULT_CONFIG, Config as ArmaReforgerServerConfig
+from armaden.games.arma_reforger.enums.arma_reforger_executable_flag import ArmaReforgerExecutableFlag
 
 logger = logging.getLogger('games.arma_reforger.server')
 
 
-class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCommand):
-    config = DEFAULT_CONFIG
+@final
+class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCommandProtocol):
+    config: ArmaReforgerServerConfig = DEFAULT_CONFIG
+
+    def __new__(
+        cls,
+        *,
+        config: ArmaReforgerServerConfig | None = None,
+        rcon_client_cls: type[ArmaReforgerRconClient] | None = ArmaReforgerRconClient,
+        rcon_command_overrides: list[type[RconCommand]] | None = None,
+        log_handler: Callable[[str], Coroutine[object, object, Result[None]]] | None = None,
+        rcon_repository: RconCommandRepository | None = None,
+    ) -> Self:
+        _ = rcon_client_cls
+        _ = rcon_command_overrides
+        _ = log_handler
+        _ = rcon_repository
+        return super().__new__(cls, config=config)
+
 
     def __init__(
         self,
         *,
         config: ArmaReforgerServerConfig | None = None,
         rcon_client_cls: type[ArmaReforgerRconClient] | None = ArmaReforgerRconClient,
-        rcon_command_overrides: list[type[RconCommandInterface]] | None = None,
-        log_handler: Callable[[str], CoroutineType[Any, Any, Result[None]]] | None = None
+        rcon_command_overrides: list[type[RconCommand]] | None = None,
+        log_handler: Callable[[str], Coroutine[object, object, Result[None]]] | None = None,
+        rcon_repository: RconCommandRepository | None = None,
     ):
         _ = config
+        self._rcon_repository: RconCommandRepository | None = rcon_repository
         self._paths: PathContainer | None = None
         self._rcon_client_cls: type[ArmaReforgerRconClient] | None = rcon_client_cls
-        self._rcon_command_overrides: list[type[RconCommandInterface]] | None = rcon_command_overrides
+        self._rcon_command_overrides: list[type[RconCommand]] | None = rcon_command_overrides
         self._rcon_client: ArmaReforgerRconClient | None = None
-        self._log_handler: Callable[[str], CoroutineType[Any, Any, Result[None]]] | None = log_handler
+        self._log_handler: Callable[[str], Coroutine[object, object, Result[None]]] | None = log_handler
 
-        self._executable = ExecutableContainer(
+        self._executable: ExecutableContainer = ExecutableContainer(
             steamcmd=SteamCmdExecutable(config={'executable': self.config.get('steamExecutable'), 'installDirectory': self.config.get('steamInstallDirectory')}),
             reforger=ArmaReforgerServerExecutable(config={ 'executable': self.config['executable'], 'installDirectory': self.config['installDirectory'] })
         )
@@ -104,9 +126,9 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
                 'paths': self._paths
             }))
 
-        await runtime.signal_ready()
+        _ = await runtime.signal_ready()
 
-        await runtime.dispatch_subprocess(
+        _ = await runtime.dispatch_subprocess(
             argv.unwrap(),
             cwd=self._paths.install,
             handle_std_stream=self._log_handler or ArmaReforgerServer._log_subprocess
@@ -134,30 +156,27 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
                         repository=repository,
                         builtin_command_overrides=self._rcon_command_overrides,
                     )
-                    if repository is not None:
-                        for command in repository.all():
-                            command._client = self._rcon_client
-
         return Success(None)
 
-    # -- RegistersRconCommand -------------------------------------------------
+    # -- RegistersRconCommandProtocol -------------------------------------------------
 
     @property
-    def client(self) -> SendCommandProtocol:
-        return cast(SendCommandProtocol, self._rcon_client)
+    @override
+    def client(self) -> RconSendCommandProtocol:
+        return cast(RconSendCommandProtocol, self._rcon_client)
 
     @property
     def rcon_client(self) -> ArmaReforgerRconClient | None:
         return self._rcon_client
 
-    def register_rcon_command(self, command: RconCommandInterface) -> None:
+    @override
+    def register_rcon_command(self, command: RconCommandProtocol) -> None:
         repository = self._resolve_repository()
         if repository is not None:
-            repository.register(command, registrar=type(self))
-            if self._rcon_client is not None:
-                command._client = self._rcon_client
+            concrete_command = cast(RconCommand, command)
+            repository.register(concrete_command, registrar=type(self))
         elif self._rcon_client is not None:
-            self._rcon_client.register_rcon_command(command)
+            self._rcon_client.register_rcon_command(cast(RconCommand, command))
         else:
             logger.warning(
                 "No RCON repository or client available; RCON command '%s' could not be registered",
@@ -165,17 +184,14 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
             )
 
     def _resolve_repository(self) -> RconCommandRepository | None:
-        try:
-            return App.make(RconCommandRepository)
-        except Exception:
-            return None
+        return self._rcon_repository
 
 
     async def run_rcon_client(self, runtime: TaskRuntimeProtocol) -> Result[None]:
         if not self._rcon_client:
             return Success(None)
 
-        await runtime.signal_ready()
+        _ = await runtime.signal_ready()
 
         await self._rcon_client.connect()
 
@@ -191,7 +207,7 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
         return Success(None)
 
 
-    async def status(self, runtime: TaskRuntimeProtocol) -> Result[Dict[str, Any]]:
+    async def status(self, runtime: TaskRuntimeProtocol) -> Result[dict[str, object]]:
         _ = runtime
         return Success({
             'status': ArmaReforgerHealthStatus.OK,
@@ -200,7 +216,7 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
 
     # -- Executable Helpers -------------------------------------------
 
-    def server_command(self) -> Result[List[str]]:
+    def server_command(self) -> Result[list[str]]:
         reforger = self._executable.reforger.save_params()
 
         startup_parameters = self.config.get('startup')
@@ -213,10 +229,10 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
                         continue
 
                     if isinstance(value, bool) and value or value is None:
-                        reforger.custom(flag.unwrap())
+                        _ = reforger.custom(flag.unwrap())
                         continue
 
-                    reforger.custom(flag.unwrap(), cast(str | int | bool, value))
+                    _ = reforger.custom(flag.unwrap(), cast(str | int | bool, value))
                 else:
                     logger.warning(flag.failure())
 
@@ -226,7 +242,7 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
                 'paths': self._paths
             }))
 
-        reforger.config(self._paths.config_file)
+        _ = reforger.config(self._paths.config_file)
 
         argv = reforger.consume_argv()
 
@@ -238,7 +254,10 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
     # -- steamcmd Helpers -------------------------------------------
 
     async def install_config(self) -> Result[None]:
-        config_data: Dict[str, Any] = Dictionary.without(self.config['server'], lambda _, value: value is None)
+        config_data = cast(
+            dict[str, object],
+            Dictionary.without(self.config['server'], lambda _, value: value is None),
+        )
 
         if not self._paths:
             return Failure(Error(ArmaReforgerServerError.MISSING_PATHS, details={
@@ -256,12 +275,6 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
         return Success(None)
 
 
-    # -- General Helpers -------------------------------------------
-
-    def _serialize_config(self) -> Result[None]:
-        return Success(None)
-
-
     @classmethod
     async def _log_subprocess(cls, line: str) -> Result[None]:
         logger.info(line)
@@ -270,7 +283,7 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
 
 # --- Internal Types ----------------------------------------------------------
 
-type ExecutableUnion = Union[SteamCmdExecutable, ArmaReforgerServerExecutable]
+type ExecutableUnion = SteamCmdExecutable | ArmaReforgerServerExecutable
 
 @dataclass
 class ExecutableContainer:

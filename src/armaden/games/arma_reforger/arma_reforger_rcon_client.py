@@ -1,6 +1,11 @@
 import logging
+from typing import final
 
-from armaden.framework.api.rcon import RegisteredRconClient, RconCommand
+from armaden.framework.api.rcon import (
+    RegisteredRconClient,
+    RconCommand,
+    RconCommandRepositoryProtocol,
+)
 from armaden.games.arma_reforger.rcon import (
     BanCreateCommand,
     BanListCommand,
@@ -19,6 +24,7 @@ from armaden.network.rcon.battle_eye.battle_eye_rcon_client import BattleEyeRcon
 logger = logging.getLogger(__name__)
 
 
+@final
 class ArmaReforgerRconClient(RegisteredRconClient, BattleEyeRconClient):
     """High-level RCON client for Arma Reforger.
 
@@ -45,3 +51,13 @@ class ArmaReforgerRconClient(RegisteredRconClient, BattleEyeRconClient):
         BanRemoveCommand,
         BanListCommand,
     ]
+
+    def __init__(
+        self,
+        *args: object,
+        repository: RconCommandRepositoryProtocol | None = None,
+        builtin_command_overrides: list[type[RconCommand]] | None = None,
+        **kwargs: object,
+    ) -> None:
+        super().__init__(*args, **kwargs)
+        self._initialize_registered_rcon(repository, builtin_command_overrides)

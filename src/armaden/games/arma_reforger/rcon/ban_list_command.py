@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, override
 
 from armaden.framework.api.rcon.dto.rcon_command_argument_data import RconCommandArgumentData
 from armaden.framework.api.rcon import RconCommand
@@ -18,6 +18,7 @@ class BanListCommand(RconCommand):
         ),
     ]
 
+    @override
     async def execute(self, **kwargs: Any) -> Any:
         if kwargs.get('page') is not None:
             response = await self._client.send_command(

@@ -10,27 +10,30 @@ Reference:
 from enum import StrEnum
 
 import logging
+from typing import final
 from pathlib import Path
 
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
-from armaden.framework.classes.executable import Executable
+from armaden.framework.api.executable import Executable
 from armaden.framework.protocols.task_runtime_protocol import TaskRuntimeProtocol
 from armaden.framework.types.result import Result
-from armaden.framework.utils.dictionary import Dictionary
+from armaden.framework.api.support import Dictionary
 from armaden.framework.api.error import Error
 from armaden.games.steamcmd.steamcmd_executable import SteamCmdExecutable
-from .enums import ArmaReforgerExecutableFlag
-from .arma_reforger_server_executable_config import Config, DEFAULT_CONFIG
+from armaden.games.arma_reforger.enums import ArmaReforgerExecutableFlag
+from armaden.games.arma_reforger.arma_reforger_server_executable_config import Config, DEFAULT_CONFIG
 
 logger = logging.getLogger('games.arma_reforger.executable')
 
 
+@final
 class ArmaReforgerServerExecutable(Executable):
     STEAM_APP_ID: int = 1874900
     STEAM_APP_ID_CLIENT: int = 1874880
 
     def __init__(self, config: Config | None = None) -> None:
+        super().__init__()
         self._config: Config = Dictionary.merge(DEFAULT_CONFIG, config or {})
         self._params: list[str] = []
         self._scratch_params: list[str] = []

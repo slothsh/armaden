@@ -3,27 +3,29 @@ import logging
 import sys
 from pathlib import Path
 import tarfile
-from typing import List
+from typing import final
 import urllib.request
 
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
-from armaden.framework.classes.executable import Executable, PushValue
+from armaden.framework.api.executable import Executable, PushValue
 from armaden.framework.types.result import Result
-from armaden.framework.utils.dictionary import Dictionary
+from armaden.framework.api.support import Dictionary
 from armaden.framework.api.error import Error
-from .enums import SteamCmdExecutableFlag
-from .steamcmd_executable_config import Config, DEFAULT_CONFIG
+from armaden.games.steamcmd.enums.steamcmd_executable_flag import SteamCmdExecutableFlag
+from armaden.games.steamcmd.steamcmd_executable_config import Config, DEFAULT_CONFIG
 
 logger = logging.getLogger(__name__)
 
 
+@final
 class SteamCmdExecutable(Executable):
     def __init__(self, config: Config | None = None) -> None:
+        super().__init__()
         self._config: Config = Dictionary.merge(DEFAULT_CONFIG, config or {})
         self._executable: Path | None = None
-        self._params: List[str] = []
+        self._params: list[str] = []
 
 
     def resolve_executable(self) -> Result[Path]:
@@ -80,7 +82,7 @@ class SteamCmdExecutable(Executable):
 
         try:
             logger.info("Downloading steamcmd to %s", install_dir)
-            urllib.request.urlretrieve(url, tar_path)
+            _ = urllib.request.urlretrieve(url, tar_path)
 
             logger.info("Extracting steamcmd")
             with tarfile.open(tar_path, 'r:gz') as tf:
@@ -152,7 +154,7 @@ class SteamCmdExecutable(Executable):
 
 
     def script( self, script_path: str | Path) -> SteamCmdExecutable:
-        self._commands = []
+        self._params = []
         self.push(SteamCmdExecutableFlag.RUNSCRIPT, Path(script_path).resolve())
         return self
 
