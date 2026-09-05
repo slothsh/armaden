@@ -537,5 +537,6 @@
   "535": ".streaming_budget",
   "536": ".vm_error_mode",
   "537": "AsyncStreamCallback",
-  "538": "Path"
+  "538": "Path",
+  "539": "TaskStateData"
 }
