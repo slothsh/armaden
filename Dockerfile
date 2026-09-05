@@ -48,9 +48,9 @@ COPY .env /armaden
 COPY ./user /armaden/user
 RUN chown -R armaden:armaden /armaden && chmod 600 /armaden/.env
 
-# Install steamcmd directories
-RUN mkdir -p /opt/games/steamcmd /opt/games/arma                   \
-   && chown -R armaden:armaden /opt/games/steamcmd /opt/games/arma
+# Install game directories
+RUN mkdir -p /opt/games/steamcmd /opt/games/arma_reforger \
+   && chown -R armaden:armaden /opt/games
 
 USER armaden
 

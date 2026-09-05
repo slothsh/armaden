@@ -59,14 +59,16 @@ class SteamCmdExecutable(Executable):
     async def ensure_installed(self) -> Result[Path]:
         if self._executable is not None and self._executable.exists():
             return Success(self._executable)
-        if not is_successful(result := await self.install()):
-            return Failure(Error(SteamCmdExecutableError.INSTALL_FAILED, details={
-                'error': result.failure()
-            }))
         if not is_successful(result := self.resolve_executable()):
-            return Failure(Error(SteamCmdExecutableError.INSTALL_FAILED, details={
-                'error': result.failure()
-            }))
+            install_result = await self.install()
+            if not is_successful(install_result):
+                return Failure(Error(SteamCmdExecutableError.INSTALL_FAILED, details={
+                    'error': install_result.failure()
+                }))
+            if not is_successful(result := self.resolve_executable()):
+                return Failure(Error(SteamCmdExecutableError.INSTALL_FAILED, details={
+                    'error': result.failure()
+                }))
         return result
 
 

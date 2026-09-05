@@ -66,17 +66,27 @@ class ArmaReforgerServerExecutable(Executable):
 
 
     async def ensure_installed(self, runtime: TaskRuntimeProtocol, steamcmd: SteamCmdExecutable) -> Result[Path]:
-        if self._executable is not None and self._executable.exists():
-            return Success(self._executable)
-        if not is_successful(result := await self.install(runtime, steamcmd)):
+        if self._executable is None or not self._executable.exists():
+            result = self.resolve_executable()
+            if not is_successful(result):
+                install_result = await self.install(runtime, steamcmd)
+                if not is_successful(install_result):
+                    return Failure(Error(ArmaReforgerExecutableError.INSTALL_FAILED, details={
+                        'error': install_result.failure()
+                    }))
+                result = self.resolve_executable()
+                if not is_successful(result):
+                    return Failure(Error(ArmaReforgerExecutableError.INSTALL_FAILED, details={
+                        'error': result.failure()
+                    }))
+                return result
+
+        update_result = await self.install(runtime, steamcmd)
+        if not is_successful(update_result):
             return Failure(Error(ArmaReforgerExecutableError.INSTALL_FAILED, details={
-                'error': result.failure()
+                'error': update_result.failure()
             }))
-        if not is_successful(result := self.resolve_executable()):
-            return Failure(Error(ArmaReforgerExecutableError.INSTALL_FAILED, details={
-                'error': result.failure()
-            }))
-        return result
+        return self.resolve_executable()
 
 
     async def install(self, runtime: TaskRuntimeProtocol, steamcmd: SteamCmdExecutable) -> Result[None]:
@@ -97,6 +107,7 @@ class ArmaReforgerServerExecutable(Executable):
             logger.info(line)
             return Success(None)
 
+        logger.info('Checking for Arma Reforger server updates in %s', install_dir)
         result = await runtime.dispatch_subprocess(
             argv, cwd=install_dir,
             handle_std_stream=log_subprocess

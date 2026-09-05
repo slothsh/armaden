@@ -18,6 +18,7 @@ def config() -> ArmaReforgerServerConfig:
         'executable': _string('ARMA_REFORGER_EXECUTABLE'),
         'steamExecutable': _string('STEAMCMD_EXECUTABLE'),
         'installDirectory': _string('ARMA_REFORGER_INSTALL_DIR'),
+        'steamInstallDirectory': _string('STEAMCMD_INSTALL_DIR'),
         'startup': {
             'profileDirectory': _string('ARMA_REFORGER_PROFILE_DIR'),
             'logsDirectory': _string('ARMA_REFORGER_LOGS_DIR'),
