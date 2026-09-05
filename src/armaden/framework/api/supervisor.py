@@ -1,4 +1,8 @@
-from armaden.framework.runtime.supervisor.dto.request_info_data import SupervisorRequestData
+from armaden.framework.runtime.supervisor.dto.request_info_data import (
+    SupervisorRequestArgs,
+    SupervisorRequestData,
+    SupervisorRequestInfoData,
+)
 from armaden.framework.runtime.supervisor.dto.task_state_data import TaskStateData
 from armaden.framework.runtime.supervisor.enums.supervisor_request_kind import (
     SupervisorRequestKind,
@@ -13,7 +17,9 @@ from armaden.framework.runtime.supervisor.worker.worker_pool import WorkerPool
 __all__ = [
     'GraphTaskRuntime',
     'Supervisor',
+    'SupervisorRequestArgs',
     'SupervisorRequestData',
+    'SupervisorRequestInfoData',
     'SupervisorRequestKind',
     'TaskGraphData',
     'TaskRuntime',

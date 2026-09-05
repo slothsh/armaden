@@ -698,6 +698,7 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
         return self
 
 
+    @override
     async def enqueue_request(self, request: SupervisorRequestData) -> Result[None]:
         _ = asyncio.run_coroutine_threadsafe(self._enqueue_request(request), self._main_loop)
 
