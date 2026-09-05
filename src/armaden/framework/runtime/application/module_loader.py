@@ -112,6 +112,32 @@ class ModuleLoader(ModuleLoaderProtocol):
 
     @override
     @classmethod
+    def try_load_runtime_config(
+        cls,
+    ) -> Result[list[tuple[str, ConfigFactory]]]:
+        try:
+            config_directory = Path(__file__).absolute().parent.parent / 'config'
+            configs: list[tuple[str, ConfigFactory]] = []
+            for file in sorted(config_directory.glob('*.py'), key=str):
+                if not file.is_file() or file.name.startswith(('.', '_')):
+                    continue
+                module = cls._load_file_module('RuntimeConfig', file)
+                config = getattr(module, 'config', None)
+                if not callable(config):
+                    return Failure(Error(
+                        ModuleLoaderError.RUNTIME_CONFIG_INVALID_PATH,
+                        details={'file': file, 'directory': config_directory},
+                    ))
+                configs.append((file.stem, cast(ConfigFactory, config)))
+            return Success(configs)
+        except Exception as exception:
+            return Failure(Error(ModuleLoaderError.RUNTIME_CONFIG_LOAD_EXCEPTION, details={
+                'exception': exception,
+            }))
+
+
+    @override
+    @classmethod
     def try_load_user_app_provider(
         cls,
     ) -> Result[list[type[ServiceProviderProtocol]] | None]:
@@ -213,6 +239,8 @@ class ModuleLoader(ModuleLoaderProtocol):
 class ModuleLoaderError(StrEnum):
     LOAD_INVALID_PATH = 'the provided path to the is invalid'
     LOAD_MODULE_FAILED = 'failed to load module from specified path'
+    RUNTIME_CONFIG_INVALID_PATH = 'the provided path to the runtime configuration is invalid'
+    RUNTIME_CONFIG_LOAD_EXCEPTION = 'an exception occurred while loading runtime configuration'
     USER_APP_LOAD_EXCEPTION = 'an exception occurred while trying to load the user app from the host system'
     USER_APP_INVALID_PATH = 'the provided path to the user application is invalid'
     USER_APP_NOT_DEFINED = 'the user app environment variable is not defined'

@@ -8,6 +8,7 @@ from returns.result import Failure, Success
 
 from armaden.framework.runtime.error.error import Error
 from armaden.framework.protocols.configuration_protocol import ConfigurationProtocol
+from armaden.framework.support.dictionary import Dictionary
 from armaden.framework.runtime.application.module_loader import ModuleLoader
 from armaden.framework.types.result import Result
 
@@ -38,15 +39,26 @@ class Configuration(ConfigurationProtocol):
 
     @override
     def load(self) -> Result[None]:
-        result = ModuleLoader.try_load_user_config()
-        if isinstance(result, Failure):
-            return result
-        factories = result.unwrap()
-        if factories is None:
-            return Success(None)
+        runtime_result = ModuleLoader.try_load_runtime_config()
+        if isinstance(runtime_result, Failure):
+            return runtime_result
+        user_result = ModuleLoader.try_load_user_config()
+        if isinstance(user_result, Failure):
+            return user_result
+        user_factories = user_result.unwrap() or []
         try:
-            for name, factory in factories:
+            for name, factory in runtime_result.unwrap():
                 self._values[name] = dict(factory())
+            for name, factory in user_factories:
+                user_configuration = factory()
+                existing = self._values.get(name)
+                if isinstance(existing, Mapping):
+                    self._values[name] = Dictionary.merge(
+                        cast(Mapping[str, object], existing),
+                        user_configuration,
+                    )
+                else:
+                    self._values[name] = dict(user_configuration)
         except Exception as exception:
             return Failure(Error(ConfigurationError.FACTORY_FAILED, details={
                 'exception': exception,

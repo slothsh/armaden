@@ -21,6 +21,11 @@ class ModuleLoaderProtocol(Protocol):
     ) -> Result[ModuleType]: ...
 
     @classmethod
+    def try_load_runtime_config(
+        cls,
+    ) -> Result[list[tuple[str, ConfigFactory]]]: ...
+
+    @classmethod
     def try_load_user_app_provider(
         cls,
     ) -> Result[list[type[ServiceProviderProtocol]] | None]: ...
