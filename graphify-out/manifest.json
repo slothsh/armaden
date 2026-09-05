@@ -280,8 +280,8 @@
     "semantic_hash": ""
   },
   "user/app/providers/app_service_provider.py": {
-    "mtime": 1788638068.7736955,
-    "ast_hash": "7b1121c5c9b5dbfb0adc0dc34c9ac3de",
+    "mtime": 1788638657.9724166,
+    "ast_hash": "a7ebd630cccee0b63e96fa2fa711169f",
     "semantic_hash": ""
   },
   "user/app/providers/telemetry_service_provider.py": {
@@ -2867,21 +2867,6 @@
   "src/armaden/framework/types/events.py": {
     "mtime": 1788636665.4145067,
     "ast_hash": "b2b3100ba722610a972cc5ad3f671566",
-    "semantic_hash": ""
-  },
-  "user/app/events/arma_reforger_log_event.py": {
-    "mtime": 1788637438.288955,
-    "ast_hash": "816c69b3a8a5e9e2bd63939c6c93d855",
-    "semantic_hash": ""
-  },
-  "user/app/listeners/arma_reforger_log_listener.py": {
-    "mtime": 1788637955.72454,
-    "ast_hash": "40af6cdc112e9501b1786fcef627e725",
-    "semantic_hash": ""
-  },
-  "user/config/events.py": {
-    "mtime": 1788638003.9827278,
-    "ast_hash": "e92bdee87bac5dda9efee481de425b2f",
     "semantic_hash": ""
   }
 }
