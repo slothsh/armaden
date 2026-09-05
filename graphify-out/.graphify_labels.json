@@ -510,6 +510,7 @@
   "508": ".keep_num_of_logs",
   "509": ".keep_session_save",
   "510": ".log_append",
+  "511": ".bind",
   "512": ".log_stats",
   "513": ".log_time",
   "514": ".minidump",
@@ -556,6 +557,7 @@
   "555": ".disable_shaders_build",
   "556": ".enable_night_grain",
   "557": ".freeze_check_mode",
+  "558": ".disable_ai",
   "559": ".keep_num_of_logs",
   "560": ".log_fs",
   "561": ".log_time",
@@ -578,6 +580,7 @@
   "578": "TaskRuntimeProtocol",
   "579": "ArmaReforgerServerConfig",
   "580": "cache.py",
+  "581": ".log_stats",
   "582": "AppServiceProvider",
   "583": "AbstractEventLoop",
   "584": "CacheServiceProvider",
@@ -609,6 +612,5 @@
   "610": ".keep_crash_files",
   "611": ".log_fs",
   "612": ".no_splash",
-  "613": ".nwk_resolution",
-  "614": ".silent_crash_report"
+  "613": ".nwk_resolution"
 }
