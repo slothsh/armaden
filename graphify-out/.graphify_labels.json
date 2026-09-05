@@ -628,5 +628,7 @@
   "626": "__init__.py",
   "627": "__init__.py",
   "628": "TaskRuntimeProtocol",
-  "629": "events.py"
+  "629": "events.py",
+  "630": ".vm_error_mode",
+  "631": "Result"
 }
