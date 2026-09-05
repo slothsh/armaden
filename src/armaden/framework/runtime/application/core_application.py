@@ -17,8 +17,8 @@ from armaden.framework.protocols.container_protocol import ContainerProtocol
 from armaden.framework.protocols.core_application_protocol import (
     CoreApplicationProtocol,
 )
-from armaden.framework.protocols.deferrable_provider_protocol import (
-    DeferrableProviderProtocol,
+from armaden.framework.protocols.deferrable_service_provider_protocol import (
+    DeferrableServiceProviderProtocol,
 )
 from armaden.framework.protocols.environment_protocol import EnvironmentProtocol
 from armaden.framework.protocols.service_provider_protocol import ServiceProviderProtocol
@@ -126,7 +126,7 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
 
     def _register_deferred_provider(self, provider: ServiceProviderProtocol) -> None:
         deferred_provider = cast(
-            DeferrableProviderProtocol,
+            DeferrableServiceProviderProtocol,
             cast(object, provider),
         )
         services = {

@@ -7,7 +7,7 @@ from armaden.framework.facades.facade import Facade
 from armaden.framework.protocols.url_generator_protocol import UrlGeneratorProtocol
 
 
-class Url(Facade):
+class UrlFacade(Facade):
     @override
     @classmethod
     def get_facade_accessor(cls) -> object:
@@ -67,11 +67,11 @@ def route(
     parameters: Mapping[str, object] | None = None,
     absolute: bool = True,
 ) -> str:
-    return Url.route(name, parameters, absolute)
+    return UrlFacade.route(name, parameters, absolute)
 
 
 def url(
     path: str = '/',
     parameters: Mapping[str, object] | None = None,
 ) -> str:
-    return Url.to(path, parameters)
+    return UrlFacade.to(path, parameters)

@@ -1,0 +1,2 @@
+class SelfBuildingTag:
+    pass

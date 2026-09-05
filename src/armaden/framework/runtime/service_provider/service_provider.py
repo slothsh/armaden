@@ -7,8 +7,8 @@ from returns.result import Success
 from armaden.framework.enums.health_status import HealthStatus
 from armaden.framework.protocols.container_protocol import ContainerProtocol
 from armaden.framework.protocols.service_provider_protocol import ServiceProviderProtocol
-from armaden.framework.runtime.service_provider.deferrable_provider import (
-    DeferrableProvider,
+from armaden.framework.runtime.service_provider.deferrable_service_provider import (
+    DeferrableServiceProvider,
 )
 from armaden.framework.types.result import Result
 
@@ -35,7 +35,7 @@ class ServiceProvider(ServiceProviderProtocol, ABC):
 
     @override
     def is_deferred(self) -> bool:
-        return isinstance(self, DeferrableProvider)
+        return isinstance(self, DeferrableServiceProvider)
 
 
     @override

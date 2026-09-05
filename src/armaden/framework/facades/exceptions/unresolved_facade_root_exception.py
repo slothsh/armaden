@@ -1,0 +1,2 @@
+class UnresolvedFacadeRootException(Exception):
+    pass

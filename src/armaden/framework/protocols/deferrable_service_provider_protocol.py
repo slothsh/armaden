@@ -1,5 +1,5 @@
 from typing import Protocol
 
 
-class DeferrableProviderProtocol(Protocol):
+class DeferrableServiceProviderProtocol(Protocol):
     def provides(self) -> list[object]: ...

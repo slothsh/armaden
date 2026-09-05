@@ -1,0 +1,2 @@
+class MissingFacadeAccessorException(Exception):
+    pass
