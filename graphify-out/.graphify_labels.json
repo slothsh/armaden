@@ -629,7 +629,6 @@
   "627": "__init__.py",
   "628": "TaskRuntimeProtocol",
   "629": "events.py",
-  "630": "Result",
   "631": "Result",
   "632": ".silent_crash_report",
   "633": ".staggering_budget",
@@ -720,13 +719,7 @@
   "718": "TypedResult",
   "719": "TaskRuntimeProtocol",
   "720": "LoginRequestPacket",
-  "721": "ServerMessageResponsePacket",
-  "722": "Message",
   "723": "LoginResponsePacket",
-  "724": "ScheduledTask",
   "725": "UserProviderProtocol",
-  "726": "HttpControllerProtocol",
-  "727": "BanCreateCommand",
-  "728": "BanRemoveCommand",
-  "729": "KickCommand"
+  "726": "HttpControllerProtocol"
 }
