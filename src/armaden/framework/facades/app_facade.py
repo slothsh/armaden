@@ -4,7 +4,6 @@ import asyncio
 from collections.abc import Callable, Mapping
 from typing import cast, overload, override
 
-from armaden.framework.api.supervisor import TaskGraphData
 from armaden.framework.facades.facade import Facade
 from armaden.framework.protocols.application_protocol import ApplicationProtocol
 from armaden.framework.protocols.configuration_protocol import ConfigurationProtocol
@@ -16,6 +15,7 @@ from armaden.framework.protocols.core_application_protocol import CoreApplicatio
 from armaden.framework.protocols.environment_protocol import EnvironmentProtocol
 from armaden.framework.protocols.service_provider_protocol import ServiceProviderProtocol
 from armaden.framework.protocols.supervisor_protocol import SupervisorProtocol
+from armaden.framework.runtime.supervisor.task.dto.task_graph_data import TaskGraphData
 from armaden.framework.types.result import Result
 
 

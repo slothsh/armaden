@@ -17,6 +17,7 @@ from armaden.framework.protocols.queue_job_protocol import QueueJobProtocol
 from armaden.framework.protocols.queue_worker_protocol import QueueWorkerProtocol
 from armaden.framework.protocols.task_runtime_protocol import TaskRuntimeProtocol
 from armaden.framework.types.result import Result
+from armaden.framework.runtime.queue.job_invoker import invoke_job_handle
 
 logger = logging.getLogger(__name__)
 
@@ -117,7 +118,7 @@ class QueueWorker(QueueWorkerProtocol):
         try:
             self._prepare_job(job)
             job.before()
-            await asyncio.wait_for(asyncio.to_thread(job.handle), self._timeout)
+            _ = await invoke_job_handle(job, self._timeout)
             job.after()
             if job_id:
                 _ = await asyncio.to_thread(self._driver.delete, job_id, queue)

@@ -16,6 +16,7 @@ from armaden.framework.runtime.queue.dto.queue_driver_dependencies_data import (
     QueueDriverDependenciesData,
 )
 from armaden.framework.runtime.queue.exceptions.queue_driver_error import QueueDriverError
+from armaden.framework.runtime.queue.job_invoker import invoke_job_handle_sync
 from armaden.framework.types.queue import QueueConfiguration
 from armaden.framework.types.result import Result
 
@@ -85,7 +86,7 @@ class SyncQueueDriver(QueueDriverProtocol):
         try:
             self._prepare_job(job)
             job.before()
-            job.handle()
+            _ = invoke_job_handle_sync(job)
             job.after()
         except Exception as exception:
             try:

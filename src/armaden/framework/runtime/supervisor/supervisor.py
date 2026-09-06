@@ -16,8 +16,11 @@ from typing import Self, cast, override
 from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
-from armaden.framework.runtime.error.error import Error
+from armaden.framework.runtime.schedule.dto.schedule_execution_options_data import (
+    ScheduleExecutionOptionsData,
+)
 from armaden.framework.facades.facade import Facade
+from armaden.framework.runtime.error.error import Error
 from armaden.framework.runtime.container.container import Container
 from armaden.framework.runtime.supervisor.dto.active_coroutine_data import ActiveCoroutineData
 from armaden.framework.runtime.supervisor.dto.process_info_data import ProcessInfoData
@@ -45,8 +48,10 @@ from armaden.framework.protocols.task_runtime_protocol import (
     TaskRuntimeProtocol,
 )
 from armaden.framework.runtime.supervisor.task.task_runtime import TaskRuntime
+from armaden.framework.runtime.schedule.scheduled_invocation_task import ScheduledInvocationTask
 from armaden.framework.runtime.supervisor.worker.worker_pool import WorkerPool
 from armaden.framework.types.result import Result
+from armaden.framework.types.schedule import ScheduleCallback
 
 
 logger = logging.getLogger(__name__)
@@ -255,7 +260,8 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
             raise RuntimeError(
                 'APScheduler is required for scheduled tasks. Install with: pip install apscheduler'
             ) from exception
-        scheduler = scheduler_type()
+        scheduler_factory = cast(Callable[..., SchedulerProtocol], scheduler_type)
+        scheduler = scheduler_factory(event_loop=self._main_loop)
         _ = scheduler.start()
         self._scheduler = scheduler
         container = self._container
@@ -297,7 +303,10 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
 
 
     async def _execute_layer(self, graph: TaskGraphData, layer: list[str], injector: TaskInjector) -> None:
-        tasks = [graph.tasks[name] for name in layer]
+        tasks = sorted(
+            (graph.tasks[name] for name in layer),
+            key=lambda task: -task.policy.priority,
+        )
 
         semaphore = None
         if graph.max_concurrency is not None and graph.max_concurrency > 0:
@@ -699,8 +708,35 @@ class Supervisor(SupervisorProtocol[TaskGraphData]):
 
 
     @override
-    async def enqueue_request(self, request: SupervisorRequestData) -> Result[None]:
-        _ = asyncio.run_coroutine_threadsafe(self._enqueue_request(request), self._main_loop)
+    async def dispatch_scheduled(
+        self,
+        name: str,
+        callback: ScheduleCallback,
+        options: object,
+    ) -> Result[object]:
+        schedule_options = cast(ScheduleExecutionOptionsData, options)
+        task = ScheduledInvocationTask(name, callback, schedule_options)
+        return await self.dispatch_task(task, schedule_options.run_in_background)
+
+
+    @override
+    async def dispatch_task(
+        self,
+        task: TaskProtocol[Enum],
+        run_in_background: bool = False,
+    ) -> Result[object]:
+        graph = self.submit([task])
+        if run_in_background:
+            _ = asyncio.create_task(self.execute_graph(graph))
+            return Success(graph)
+        await self.execute_graph(graph)
+        return Success(graph)
+
+
+    @override
+    async def enqueue_request(self, request: object) -> Result[None]:
+        request_data = cast(SupervisorRequestData, request)
+        _ = asyncio.run_coroutine_threadsafe(self._enqueue_request(request_data), self._main_loop)
 
         return Success(None)
 

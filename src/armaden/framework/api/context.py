@@ -8,6 +8,7 @@ from armaden.framework.api.http import (
 )
 from armaden.framework.api.supervisor import TaskGraphData
 from armaden.framework.facades.cache_facade import CacheFacade
+from armaden.framework.facades.schedule_facade import ScheduleFacade
 from armaden.framework.facades.database_facade import DatabaseFacade
 from armaden.framework.facades.queue_facade import QueueFacade
 from armaden.framework.facades.storage_facade import StorageFacade
@@ -46,6 +47,10 @@ def json_response(data: object, status: int = 200) -> HttpResponse:
 
 def queue() -> QueueDriverProtocol:
     return QueueFacade.connection()
+
+
+def schedule() -> type[ScheduleFacade]:
+    return ScheduleFacade
 
 
 def request() -> HttpRequestProtocol:
@@ -89,6 +94,7 @@ __all__ = [
     'request',
     'response',
     'route',
+    'schedule',
     'schema',
     'storage',
     'url',

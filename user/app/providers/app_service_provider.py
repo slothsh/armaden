@@ -11,6 +11,7 @@ from armaden.framework.api.task import TaskBuilder
 from armaden.framework.types.result import Result
 from armaden.framework.types.task import TaskCallback, TaskStatusCallback
 from armaden.games.arma_reforger import (
+    ArmaReforgerRconClient,
     ArmaReforgerServer,
     ArmaReforgerServerConfig,
 )
@@ -34,8 +35,12 @@ class AppServiceProvider(ServiceProvider):
             ArmaReforgerServerConfig,
             configuration.get('arma_reforger', {}),
         )
+
         self.server = ArmaReforgerServer(config=arma_config)
+
         _ = self.app.instance(ArmaReforgerServer, cast(object, self.server))
+        _ = self.app.instance(ArmaReforgerRconClient, cast(object, self.server.rcon_client))
+
         return Success(None)
 
 

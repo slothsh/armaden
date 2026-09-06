@@ -144,6 +144,7 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
         from armaden.framework.runtime.service_provider.filesystem_service_provider import FilesystemServiceProvider
         from armaden.framework.runtime.service_provider.queue_service_provider import QueueServiceProvider
         from armaden.framework.runtime.service_provider.http_service_provider import HttpServiceProvider
+        from armaden.framework.runtime.service_provider.schedule_service_provider import ScheduleServiceProvider
 
         filesystem_result = self.register(FilesystemServiceProvider(self._container))
         if isinstance(filesystem_result, Failure):
@@ -172,6 +173,10 @@ class CoreApplication(CoreApplicationProtocol[TaskGraphData]):
         events_result = self.register(EventServiceProvider(self._container))
         if isinstance(events_result, Failure):
             logger.warning('Framework events provider registration failed: %s', events_result.failure())
+
+        schedule_result = self.register(ScheduleServiceProvider(self._container))
+        if isinstance(schedule_result, Failure):
+            logger.warning('Framework schedule provider registration failed: %s', schedule_result.failure())
 
 
     def _register_user_application(self) -> None:

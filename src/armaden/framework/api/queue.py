@@ -21,6 +21,7 @@ from armaden.framework.runtime.queue.exceptions.queue_driver_error import QueueD
 from armaden.framework.runtime.queue.queue_resolver import QueueResolver
 from armaden.framework.runtime.queue.queue_worker import QueueWorker
 from armaden.framework.types.result import Result
+from armaden.framework.runtime.queue.job_invoker import invoke_job_handle_sync
 
 logger = logging.getLogger(__name__)
 
@@ -135,7 +136,7 @@ class QueueJob(QueueJobProtocol, ABC):
     def _dispatch_instance(cls, instance: QueueJob) -> Result[str | None]:
         try:
             instance.before()
-            instance.handle()
+            _ = invoke_job_handle_sync(instance)
             instance.after()
         except Exception as exception:
             instance.failed(exception)
