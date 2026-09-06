@@ -52,6 +52,10 @@ RUN chown -R armaden:armaden /armaden && chmod 600 /armaden/.env
 RUN mkdir -p /opt/games/steamcmd /opt/games/arma_reforger \
    && chown -R armaden:armaden /opt/games
 
+# Create writable application storage directories
+RUN mkdir -p /armaden/storage/framework \
+   && chown -R armaden:armaden /armaden/storage
+
 USER armaden
 
 # Install the Python project as armaden
