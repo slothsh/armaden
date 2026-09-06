@@ -174,6 +174,7 @@ class ArmaReforgerServer(
                         password=password or '',
                         repository=repository,
                         builtin_command_overrides=self._rcon_command_overrides,
+                        server_message_handler_overrides=self._rcon_server_message_handler_overrides,
                     )
         return Success(None)
 
