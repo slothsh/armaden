@@ -85,5 +85,6 @@ class ArmaReforgerRconClient(RegisteredRconClient, BattleEyeRconClient):
     
     @override
     async def on_server_message(self, message: ServerMessage) -> None:
+        await super().on_server_message(message)
         for handler in self._registered_server_messager_handlers.values():
             _ = await handler.handle(message.message)
