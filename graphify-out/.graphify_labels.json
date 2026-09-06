@@ -758,5 +758,17 @@
   "756": "__init__.py",
   "757": "SupervisorRequestData",
   "758": "schedule.py",
-  "759": "Supervisor"
+  "759": "Supervisor",
+  "760": "ScheduledEventKind",
+  "761": "ScheduleCondition",
+  "762": "arma_reforger_server_executable.py",
+  "763": "config",
+  "764": "ScheduleCallback",
+  "765": "D",
+  "766": "I",
+  "767": "QueueJobProtocol",
+  "768": "ContainerProtocol",
+  "769": "ScheduleCondition",
+  "770": "ScheduleHook",
+  "771": "SchedulerProtocol"
 }
