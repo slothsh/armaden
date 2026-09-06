@@ -629,6 +629,7 @@
   "627": "__init__.py",
   "628": "TaskRuntimeProtocol",
   "629": "events.py",
+  "630": "Message",
   "631": "Result",
   "632": ".silent_crash_report",
   "633": ".staggering_budget",
@@ -719,7 +720,10 @@
   "718": "TypedResult",
   "719": "TaskRuntimeProtocol",
   "720": "LoginRequestPacket",
+  "721": "battle_eye_rcon_client.py",
+  "722": "ArmaReforgerRconServerMessageListener",
   "723": "LoginResponsePacket",
+  "724": "ErrorProtocol",
   "725": "UserProviderProtocol",
   "726": "HttpControllerProtocol"
 }
