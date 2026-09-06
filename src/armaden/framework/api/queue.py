@@ -34,6 +34,7 @@ class QueueJob(QueueJobProtocol, ABC):
     queue: ClassVar[str] = 'default'
     connection: ClassVar[str | None] = None
     delay: ClassVar[int | None] = None
+    priority: ClassVar[int] = 0
 
     def __init__(self, *args: object, **kwargs: object) -> None:
         _ = args
@@ -117,6 +118,11 @@ class QueueJob(QueueJobProtocol, ABC):
         return self
 
 
+    def on_priority(self, priority: int) -> Self:
+        object.__setattr__(self, '_priority_value', priority)
+        return self
+
+
     def on_queue(self, queue_name: str) -> Self:
         object.__setattr__(self, '_queue_value', queue_name)
         return self
@@ -148,6 +154,11 @@ class QueueJob(QueueJobProtocol, ABC):
 
     def _job_id(self) -> str:
         return uuid.uuid4().hex
+
+
+    def _priority_override(self) -> int:
+        value = getattr(self, '_priority_value', None)
+        return value if isinstance(value, int) else type(self).priority
 
 
     def _queue_override(self) -> str:

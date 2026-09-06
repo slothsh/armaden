@@ -17,6 +17,7 @@ from armaden.framework.protocols.scheduled_job_discovery_protocol import (
 from armaden.framework.protocols.scheduled_job_protocol import ScheduledJobProtocol
 from armaden.framework.runtime.schedule.enums import ScheduledEventKind, ScheduledWorkerMode
 from armaden.framework.runtime.schedule.exceptions import ScheduleDefinitionError, ScheduleError
+from armaden.framework.runtime.schedule.schedule_group import ScheduleGroup
 from armaden.framework.runtime.schedule.scheduled_event import ScheduledEvent
 from armaden.framework.runtime.schedule.scheduled_job import ScheduledJob
 from armaden.framework.runtime.schedule.scheduled_job_discovery import ScheduledJobDiscovery
@@ -40,6 +41,7 @@ __all__ = [
     'ScheduleError',
     'ScheduleExecutionOptionsData',
     'ScheduleFacade',
+    'ScheduleGroup',
     'ScheduledEventKind',
     'ScheduledWorkerMode',
     'ScheduleFrequencyData',

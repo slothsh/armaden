@@ -58,7 +58,7 @@ class ScheduleRegistry(
         self,
         tag: ScheduleTag | None = None,
     ) -> list[ScheduleInspectionData]:
-        values = list(self._definitions.values())
+        values = [self._refresh(value) for value in self._definitions.values()]
         if tag is None:
             return values
         return [value for value in values if tag in value.definition.tags]
@@ -67,17 +67,21 @@ class ScheduleRegistry(
     async def _dispatch(self, definition: ScheduledEventDefinitionData) -> Result[object]:
         name = definition.name or 'scheduled-event'
         if not await self._should_run(definition):
+            self._increment(name, 'skipped_count')
             self._update(name, last_status='skipped')
             return Success(None)
 
         options = definition.execution
         lock = self._locks.setdefault(name, asyncio.Lock())
         if options.without_overlapping_minutes is not None and lock.locked():
+            self._increment(name, 'skipped_count')
             self._update(name, last_status='skipped')
             return Success(None)
 
         started_at = datetime.now()
+        self._increment(name, 'run_count')
         self._update(name, last_started_at=started_at, last_status='running')
+
         if options.without_overlapping_minutes is not None:
             _ = await lock.acquire()
 
@@ -92,19 +96,23 @@ class ScheduleRegistry(
                 typed_result = Success(result)
             status = 'success' if is_successful(typed_result) else 'failure'
             error = None if is_successful(typed_result) else str(typed_result.failure())
+            finished_at = datetime.now()
             self._update(
                 name,
                 last_error=error,
-                last_finished_at=datetime.now(),
+                last_duration_seconds=(finished_at - started_at).total_seconds(),
+                last_finished_at=finished_at,
                 last_status=status,
             )
             await self._run_hooks(definition.hooks.on_success if is_successful(typed_result) else definition.hooks.on_failure, typed_result)
             return typed_result
         except Exception as exception:
+            finished_at = datetime.now()
             self._update(
                 name,
                 last_error=str(exception),
-                last_finished_at=datetime.now(),
+                last_duration_seconds=(finished_at - started_at).total_seconds(),
+                last_finished_at=finished_at,
                 last_status='failure',
             )
             await self._run_hooks(definition.hooks.on_failure, exception)
@@ -169,12 +177,50 @@ class ScheduleRegistry(
             return datetime.now()
 
 
+    def _job_callback(
+        self,
+        definition: ScheduledEventDefinitionData,
+    ) -> Callable[[], Awaitable[Result[object]]]:
+        job_name = definition.name or 'scheduled-event'
+
+        async def callback() -> Result[object]:
+            return await self._dispatch(definition)
+
+        callback.__name__ = job_name
+        callback.__qualname__ = job_name
+        return callback
+
+
     def _name(self, definition: ScheduledEventDefinitionData) -> str:
         if definition.name is not None:
             return definition.name
         name = f'schedule-{self._next_identifier}'
         self._next_identifier += 1
         return name
+
+
+    def _increment(self, name: str, field: str) -> None:
+        inspection = self._definitions.get(name)
+        if inspection is None:
+            return
+        value = getattr(inspection, field, 0)
+        self._update(name, **{field: value + 1 if isinstance(value, int) else 1})
+
+
+    def _refresh(self, inspection: ScheduleInspectionData) -> ScheduleInspectionData:
+        try:
+            jobs = self._scheduler.get_jobs()
+        except Exception:
+            return inspection
+        for job in jobs:
+            if getattr(job, 'id', None) == inspection.definition.name:
+                next_run_at = getattr(job, 'next_run_time', None)
+                return replace(
+                    inspection,
+                    next_run_at=next_run_at,
+                    paused=next_run_at is None and not inspection.paused,
+                )
+        return inspection
 
 
     def _update(self, name: str, **values: object) -> None:
@@ -210,9 +256,9 @@ class ScheduleRegistry(
         try:
             trigger = create_trigger(named_definition.frequency, self._timezone)
             _ = self._scheduler.add_job(
-                self._dispatch,
+                self._job_callback(named_definition),
                 trigger=trigger,
-                args=[named_definition],
+                args=[],
                 id=name,
                 replace_existing=False,
             )
@@ -228,6 +274,19 @@ class ScheduleRegistry(
 
 
     @override
+    def pause(self, name: str) -> Result[None]:
+        if name not in self._definitions:
+            return Failure(Error(ScheduleError.INVALID_DEFINITION, details={'name': name}))
+        try:
+            pause_job = getattr(self._scheduler, 'pause_job')
+            _ = pause_job(name)
+        except Exception as exception:
+            return Failure(Error(ScheduleError.REGISTRATION_FAILED, details={'name': name, 'error': str(exception)}))
+        self._update(name, paused=True)
+        return Success(None)
+
+
+    @override
     def remove(self, name: str) -> Result[None]:
         if name not in self._definitions:
             return Failure(Error(ScheduleError.INVALID_DEFINITION, details={'name': name}))
@@ -240,6 +299,19 @@ class ScheduleRegistry(
             ))
         del self._definitions[name]
         _ = self._locks.pop(name, None)
+        return Success(None)
+
+
+    @override
+    def resume(self, name: str) -> Result[None]:
+        if name not in self._definitions:
+            return Failure(Error(ScheduleError.INVALID_DEFINITION, details={'name': name}))
+        try:
+            resume_job = getattr(self._scheduler, 'resume_job')
+            _ = resume_job(name)
+        except Exception as exception:
+            return Failure(Error(ScheduleError.REGISTRATION_FAILED, details={'name': name, 'error': str(exception)}))
+        self._update(name, paused=False)
         return Success(None)
 
 

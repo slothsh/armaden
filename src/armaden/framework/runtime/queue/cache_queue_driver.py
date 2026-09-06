@@ -83,7 +83,8 @@ class CacheQueueDriver(QueueDriverProtocol):
         target = queue or self._default_queue
         now = time.time()
         with self._lock_for(target):
-            for job_id in self._get_index(target):
+            candidates: list[tuple[int, int, str, dict[str, object]]] = []
+            for index, job_id in enumerate(self._get_index(target)):
                 entry_result = self._cache.get(self._job_key(target, job_id))
                 if not is_successful(entry_result):
                     continue
@@ -100,6 +101,11 @@ class CacheQueueDriver(QueueDriverProtocol):
                     reserved_at = reserved.get('reserved_at')
                     if isinstance(reserved_at, (float, int)) and now - reserved_at < self._retry_after:
                         continue
+                priority = entry.get('priority', 0)
+                candidates.append((priority if isinstance(priority, int) else 0, index, job_id, entry))
+
+            if candidates:
+                _, _, job_id, entry = max(candidates, key=lambda value: (value[0], -value[1]))
                 job_object = entry.get('job')
                 if job_object is None:
                     return self._failure(TypeError('cached queue entry has no job'))
@@ -192,6 +198,7 @@ class CacheQueueDriver(QueueDriverProtocol):
                 'job': job,
                 'attempts': 0,
                 'available_at': time.time() + delay,
+                'priority': self._priority(job),
             })
             if not is_successful(result):
                 return result.map(lambda _: job_id)
@@ -201,6 +208,12 @@ class CacheQueueDriver(QueueDriverProtocol):
             if not is_successful(index_result):
                 return index_result.map(lambda _: job_id)
         return Success(job_id)
+
+
+    @staticmethod
+    def _priority(job: QueueJobProtocol) -> int:
+        value = getattr(job, 'priority', 0)
+        return value if isinstance(value, int) else 0
 
 
     @staticmethod

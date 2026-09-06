@@ -94,7 +94,7 @@ class DatabaseQueueDriver(QueueDriverProtocol):
         target = queue or self._default_queue
         now = int(time.time())
         selected = self._execute(
-            f'SELECT id, payload, attempts FROM {self._table} WHERE queue = ? AND reserved_at IS NULL AND available_at <= ? ORDER BY available_at ASC, id ASC LIMIT 1',
+            f'SELECT id, payload, attempts FROM {self._table} WHERE queue = ? AND reserved_at IS NULL AND available_at <= ? ORDER BY priority DESC, available_at ASC, id ASC LIMIT 1',
             (target, now),
         )
         if not is_successful(selected):
@@ -172,7 +172,7 @@ class DatabaseQueueDriver(QueueDriverProtocol):
         if self._tables_ready:
             return Success(None)
         statements = (
-            f'CREATE TABLE IF NOT EXISTS {self._table} (id VARCHAR(36) PRIMARY KEY, queue VARCHAR(255), payload TEXT, attempts INTEGER DEFAULT 0, reserved_at INTEGER NULL, available_at INTEGER DEFAULT 0, created_at INTEGER)',
+            f'CREATE TABLE IF NOT EXISTS {self._table} (id VARCHAR(36) PRIMARY KEY, queue VARCHAR(255), payload TEXT, priority INTEGER DEFAULT 0, attempts INTEGER DEFAULT 0, reserved_at INTEGER NULL, available_at INTEGER DEFAULT 0, created_at INTEGER)',
             f'CREATE TABLE IF NOT EXISTS {self._failed_table} (id INTEGER PRIMARY KEY, connection VARCHAR(255), queue VARCHAR(255), payload TEXT, exception TEXT, failed_at INTEGER)',
         )
         for statement in statements:
@@ -205,8 +205,17 @@ class DatabaseQueueDriver(QueueDriverProtocol):
         if not is_successful(payload):
             return payload.map(lambda _: job_id)
         result = self._execute(
-            f'INSERT INTO {self._table} (id, queue, payload, attempts, reserved_at, available_at, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)',
-            (job_id, queue or self._default_queue, payload.unwrap(), 0, None, int(time.time()) + delay, int(time.time())),
+            f'INSERT INTO {self._table} (id, queue, payload, priority, attempts, reserved_at, available_at, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+            (
+                job_id,
+                queue or self._default_queue,
+                payload.unwrap(),
+                self._priority(job),
+                0,
+                None,
+                int(time.time()) + delay,
+                int(time.time()),
+            ),
         )
         return result.map(lambda _: job_id)
 
@@ -216,6 +225,12 @@ class DatabaseQueueDriver(QueueDriverProtocol):
             return Success(self._serializer.serialize(job))
         except Exception as exception:
             return self._failure(exception)
+
+
+    @staticmethod
+    def _priority(job: QueueJobProtocol) -> int:
+        value = getattr(job, 'priority', 0)
+        return value if isinstance(value, int) else 0
 
 
     @staticmethod

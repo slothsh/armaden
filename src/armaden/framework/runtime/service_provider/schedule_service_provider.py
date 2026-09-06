@@ -15,6 +15,7 @@ from armaden.framework.protocols.schedule_registry_protocol import ScheduleRegis
 from armaden.framework.protocols.supervisor_protocol import SupervisorProtocol
 from armaden.framework.runtime.error.error import Error
 from armaden.framework.runtime.schedule.exceptions.schedule_error import ScheduleError
+from armaden.framework.facades.schedule_facade import ScheduleFacade
 from armaden.framework.runtime.schedule.schedule_dispatcher import ScheduleDispatcher
 from armaden.framework.runtime.schedule.schedule_registry import ScheduleRegistry
 from armaden.framework.runtime.schedule.scheduled_event import ScheduledEvent
@@ -100,7 +101,15 @@ class ScheduleServiceProvider(ServiceProvider):
             self._container.make(QueueResolverProtocol),
         )
         scheduler = supervisor.ensure_scheduler()
-        dispatcher = ScheduleDispatcher(self._container, queue_resolver, supervisor)
+        application = cast(CoreApplicationProtocol[TaskGraphData], self._container.make('app'))
+        raw_defaults = application.config('schedule.defaults', {})
+        defaults: Mapping[str, object] = (
+            cast(Mapping[str, object], raw_defaults)
+            if isinstance(raw_defaults, Mapping)
+            else cast(Mapping[str, object], {})
+        )
+        ScheduleFacade.configure_defaults(defaults)
+        dispatcher = ScheduleDispatcher(queue_resolver, supervisor)
         registry = ScheduleRegistry(
             scheduler,
             dispatcher.dispatch,
@@ -155,15 +164,19 @@ class ScheduleServiceProvider(ServiceProvider):
             if not callable(method):
                 return Failure(Error(ScheduleError.INVALID_FREQUENCY, details={'frequency': frequency}))
             _ = method()
-        queue = schedule.get('queue')
+        queue = schedule.get('queue', getattr(job_type, 'queue', None))
         if isinstance(queue, str):
             _ = event.on_queue(queue)
-        connection = schedule.get('connection')
+        connection = schedule.get('connection', getattr(job_type, 'connection', None))
         if isinstance(connection, str):
             _ = event.on_connection(connection)
-        priority = schedule.get('priority')
+        priority = schedule.get('priority', getattr(job_type, 'priority', None))
         if isinstance(priority, int):
             _ = event.priority(priority)
+        tags = getattr(job_type, 'tags', ())
+        if isinstance(tags, (list, tuple)):
+            values = cast(list[object] | tuple[object, ...], tags)
+            _ = event.tag(*[tag for tag in values if isinstance(tag, (str, type))])
         result = event.submit()
         _ = result
         return Success(None)

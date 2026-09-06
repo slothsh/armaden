@@ -1,3 +1,4 @@
+from collections.abc import Awaitable
 from typing import Protocol
 
 
@@ -8,4 +9,4 @@ class QueueJobProtocol(Protocol):
 
     def failed(self, exception: Exception) -> None: ...
 
-    def handle(self) -> None: ...
+    def handle(self) -> object | Awaitable[object]: ...

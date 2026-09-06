@@ -12,5 +12,9 @@ class ScheduleInspectionData:
     last_error: str | None = None
     last_finished_at: datetime | None = None
     last_started_at: datetime | None = None
+    last_duration_seconds: float | None = None
     last_status: str | None = None
     next_run_at: datetime | None = None
+    paused: bool = False
+    run_count: int = 0
+    skipped_count: int = 0

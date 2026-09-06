@@ -73,6 +73,16 @@ class BattleEyeRconClient:
         return self._port
 
 
+    @property
+    def connected(self) -> bool:
+        return self._connected
+
+
+    @property
+    def authenticated(self) -> bool:
+        return self._client_status.authenticated
+
+
     def send_command(self, command: str, *args: str) -> asyncio.Future[CommandResponse]:
         argv = [command] + list(args)
         sequence = self._generate_sequence()

@@ -14,8 +14,10 @@ from armaden.framework.runtime.schedule.exceptions import (
 )
 from armaden.framework.runtime.schedule.frequency import create_trigger
 from armaden.framework.runtime.schedule.schedule_dispatcher import ScheduleDispatcher
+from armaden.framework.runtime.schedule.schedule_group import ScheduleGroup
 from armaden.framework.runtime.schedule.schedule_registry import ScheduleRegistry
 from armaden.framework.runtime.schedule.scheduled_invocation_task import ScheduledInvocationTask
+from armaden.framework.runtime.schedule.scheduled_queue_job import ScheduledQueueJob
 from armaden.framework.runtime.schedule.scheduled_event import ScheduledEvent
 from armaden.framework.runtime.schedule.scheduled_job import ScheduledJob
 from armaden.framework.runtime.schedule.scheduled_job_discovery import ScheduledJobDiscovery
@@ -43,12 +45,13 @@ __all__ = [
     'ScheduleHookData',
     'ScheduleInspectionData',
     'ScheduleDispatcher',
-    'ScheduleQueueData',
-    'ScheduleRegistry',
+    'ScheduleGroup',
+    'ScheduleQueueData',    'ScheduleRegistry',
     'ScheduledEvent',
     'ScheduledInvocationTask',
     'ScheduledJob',
     'ScheduledJobDiscovery',
+    'ScheduledQueueJob',
     'ScheduledEventDefinitionData',
     'ScheduledJobTag',
     'WithoutOverlappingTag',
