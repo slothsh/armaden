@@ -16,6 +16,7 @@ from armaden.framework.api.rcon import (
     RconCommand,
     RconCommandProtocol,
     RconCommandRepository,
+    RconServerMessageHandler,
     RegistersRconCommandProtocol,
     RconSendCommandProtocol,
 )
@@ -33,21 +34,26 @@ logger = logging.getLogger(__name__)
 
 
 @final
-class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCommandProtocol):
+class ArmaReforgerServer(
+    Configurable[ArmaReforgerServerConfig],
+    RegistersRconCommandProtocol
+):
     config: ArmaReforgerServerConfig = DEFAULT_CONFIG
 
     def __new__(
         cls,
         *,
         config: ArmaReforgerServerConfig | None = None,
+        log_handler: Callable[[str], Coroutine[object, object, Result[bool]]] | None = None,
         rcon_client_cls: type[ArmaReforgerRconClient] | None = ArmaReforgerRconClient,
         rcon_command_overrides: list[type[RconCommand]] | None = None,
-        log_handler: Callable[[str], Coroutine[object, object, Result[bool]]] | None = None,
+        rcon_server_message_handler_overrides: list[type[RconServerMessageHandler]] | None = None,
         rcon_repository: RconCommandRepository | None = None,
     ) -> Self:
+        _ = log_handler
         _ = rcon_client_cls
         _ = rcon_command_overrides
-        _ = log_handler
+        _ = rcon_server_message_handler_overrides
         _ = rcon_repository
         return super().__new__(cls, config=config)
 
@@ -56,18 +62,20 @@ class ArmaReforgerServer(Configurable[ArmaReforgerServerConfig], RegistersRconCo
         self,
         *,
         config: ArmaReforgerServerConfig | None = None,
+        log_handler: Callable[[str], Coroutine[object, object, Result[bool]]] | None = None,
         rcon_client_cls: type[ArmaReforgerRconClient] | None = ArmaReforgerRconClient,
         rcon_command_overrides: list[type[RconCommand]] | None = None,
-        log_handler: Callable[[str], Coroutine[object, object, Result[bool]]] | None = None,
+        rcon_server_message_handler_overrides: list[type[RconServerMessageHandler]] | None = None,
         rcon_repository: RconCommandRepository | None = None,
     ):
         _ = config
-        self._rcon_repository: RconCommandRepository | None = rcon_repository
         self._paths: PathContainer | None = None
+        self._log_handler: Callable[[str], Coroutine[object, object, Result[bool]]] | None = log_handler
+        self._rcon_repository: RconCommandRepository | None = rcon_repository
         self._rcon_client_cls: type[ArmaReforgerRconClient] | None = rcon_client_cls
         self._rcon_command_overrides: list[type[RconCommand]] | None = rcon_command_overrides
+        self._rcon_server_message_handler_overrides: list[type[RconServerMessageHandler]] | None = rcon_server_message_handler_overrides
         self._rcon_client: ArmaReforgerRconClient | None = None
-        self._log_handler: Callable[[str], Coroutine[object, object, Result[bool]]] | None = log_handler
 
         self._executable: ExecutableContainer = ExecutableContainer(
             steamcmd=SteamCmdExecutable(config={'executable': self.config.get('steamExecutable'), 'installDirectory': self.config.get('steamInstallDirectory')}),

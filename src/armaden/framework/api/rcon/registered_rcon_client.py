@@ -9,6 +9,8 @@ from armaden.framework.api.rcon.exceptions.rcon_command_argument_error import (
     RconCommandArgumentError,
 )
 from armaden.framework.api.rcon.rcon_command import RconCommand
+from armaden.framework.api.rcon.rcon_server_message_handler import RconServerMessageHandler
+from armaden.framework.protocols.rcon_server_message_handler_protocol import RconServerMessageHandlerProtocol
 from armaden.framework.protocols.registered_rcon_client_protocol import (
     RegisteredRconClientProtocol,
 )
@@ -23,16 +25,20 @@ logger = logging.getLogger(__name__)
 
 class RegisteredRconClient(RegisteredRconClientProtocol):
     BUILTIN_COMMAND_CLASSES: list[type[RconCommand]] = []
+    SERVER_MESSAGE_HANDLERS_CLASSES: list[type[RconServerMessageHandler]] = []
 
     def _initialize_registered_rcon(
         self,
         repository: RconCommandRepositoryProtocol | None = None,
         builtin_command_overrides: list[type[RconCommand]] | None = None,
+        server_message_handler_overrides: list[type[RconServerMessageHandler]] | None = None,
     ) -> None:
         self._loop: asyncio.AbstractEventLoop | None = None
         self._registered_commands: dict[str, RconCommand] = {}
+        self._registered_server_messager_handlers: dict[str, RconServerMessageHandler] = {}
         self._repository: RconCommandRepositoryProtocol | None = repository
         self._register_builtin_commands(builtin_command_overrides or [])
+        self._register_server_message_handlers(server_message_handler_overrides or [])
 
 
     def _register_builtin_commands(self, overrides: list[type[RconCommand]]) -> None:
@@ -50,6 +56,25 @@ class RegisteredRconClient(RegisteredRconClientProtocol):
         for name in set(overrides_by_name) - builtin_names:
             logger.warning(
                 "Unrecognized builtin_command_overrides entry '%s'",
+                name,
+            )
+
+
+    def _register_server_message_handlers(self, overrides: list[type[RconServerMessageHandler]]) -> None:
+        overrides_by_name = {handler.name: handler for handler in overrides}
+        builtin_names = {
+            handler.name for handler in self.SERVER_MESSAGE_HANDLERS_CLASSES
+        }
+        for handler_type in self.SERVER_MESSAGE_HANDLERS_CLASSES:
+            selected_type = overrides_by_name.get(
+                handler_type.name,
+                handler_type,
+            )
+            handler = selected_type()
+            self.register_rcon_server_message_handler(handler)
+        for name in set(overrides_by_name) - builtin_names:
+            logger.warning(
+                "Unrecognized server_message_handler_overrides entry '%s'",
                 name,
             )
 
@@ -112,6 +137,17 @@ class RegisteredRconClient(RegisteredRconClientProtocol):
             "Registered RCON command '%s' (category: %s)",
             command.command_name,
             command.category,
+        )
+
+
+    @override
+    def register_rcon_server_message_handler(self, handler: RconServerMessageHandlerProtocol) -> None:
+        concrete_handler = cast(RconServerMessageHandler, handler)
+        self._registered_server_messager_handlers[handler.name] = concrete_handler
+        logger.info(
+            "Registered RCON server message handler '%s' (category: %s)",
+            handler.name,
+            handler.category
         )
 
 

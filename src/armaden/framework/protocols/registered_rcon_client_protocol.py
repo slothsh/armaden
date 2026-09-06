@@ -3,12 +3,15 @@ from __future__ import annotations
 from collections.abc import Coroutine
 from typing import Protocol
 
-from armaden.framework.protocols.registers_rcon_command_protocol import (
+from armaden.framework.protocols.registers_rcon_command_protocol import RegistersRconCommandProtocol
+from armaden.framework.protocols.registers_rcon_server_message_handler_protocol import RegistersRconServerMessageHandlerProtocol
+
+
+class RegisteredRconClientProtocol(
     RegistersRconCommandProtocol,
-)
-
-
-class RegisteredRconClientProtocol(RegistersRconCommandProtocol, Protocol):
+    RegistersRconServerMessageHandlerProtocol,
+    Protocol
+):
     async def connect(self) -> None: ...
 
     async def dispatch_command(

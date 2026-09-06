@@ -7,6 +7,7 @@ from armaden.framework.api.rcon import (
     RconCommand,
     RconCommandRepositoryProtocol,
 )
+from armaden.framework.api.rcon.rcon_server_message_handler import RconServerMessageHandler
 from armaden.games.arma_reforger.rcon import (
     BanCreateCommand,
     BanListCommand,
@@ -20,7 +21,8 @@ from armaden.games.arma_reforger.rcon import (
     RolesCommand,
     ShutdownCommand,
 )
-from armaden.network.rcon.battle_eye.battle_eye_rcon_client import BattleEyeRconClient
+from armaden.games.arma_reforger.rcon.dispatch_event_server_message_handler import DispatchEventServerMessageHandler
+from armaden.network.rcon.battle_eye.battle_eye_rcon_client import BattleEyeRconClient, ServerMessage
 
 logger = logging.getLogger(__name__)
 
@@ -53,16 +55,21 @@ class ArmaReforgerRconClient(RegisteredRconClient, BattleEyeRconClient):
         BanListCommand,
     ]
 
+    SERVER_MESSAGE_HANDLERS_CLASSES: list[type[RconServerMessageHandler]] = [
+        DispatchEventServerMessageHandler
+    ]
+
     def __init__(
         self,
         *args: object,
         repository: RconCommandRepositoryProtocol | None = None,
         builtin_command_overrides: list[type[RconCommand]] | None = None,
+        server_message_handler_overrides: list[type[RconServerMessageHandler]] | None = None,
         **kwargs: object,
     ) -> None:
         initialize_network = cast(Callable[..., object], BattleEyeRconClient.__init__)
         _ = initialize_network(self, *args, **kwargs)
-        self._initialize_registered_rcon(repository, builtin_command_overrides)
+        self._initialize_registered_rcon(repository, builtin_command_overrides, server_message_handler_overrides)
         _ = super().__init__(*args, **kwargs)
 
 
@@ -74,3 +81,9 @@ class ArmaReforgerRconClient(RegisteredRconClient, BattleEyeRconClient):
     @override
     async def shutdown(self) -> None:
         await BattleEyeRconClient.shutdown(self)
+
+    
+    @override
+    async def on_server_message(self, message: ServerMessage) -> None:
+        for handler in self._registered_server_messager_handlers.values():
+            _ = await handler.handle(message.message)

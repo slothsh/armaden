@@ -6,7 +6,8 @@ from datetime import datetime
 from dataclasses import dataclass, field
 from asyncio import AbstractEventLoop
 import signal
-from typing import Any, Generator
+from typing import Any
+from collections.abc import Generator
 
 from armaden.network.rcon.battle_eye.packets.command_request_packet import CommandRequestPacket
 from armaden.network.rcon.battle_eye.packets.command_response_packet import CommandHeader, CommandResponsePacket
@@ -91,12 +92,10 @@ class BattleEyeRconClient:
 
     async def on_server_message(self, message: ServerMessage) -> None:
         logger.info(f'sequence={message.sequence}, message={message.message}')
-        pass
 
 
     async def on_command_response(self, response: CommandResponse) -> None:
         logger.info(f'sequence={response.sequence} response={response.response}' or '<no response>')
-        pass
 
 
     async def on_connected(self) -> None:
