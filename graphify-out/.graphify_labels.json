@@ -725,5 +725,11 @@
   "723": "LoginResponsePacket",
   "724": "ErrorProtocol",
   "725": "UserProviderProtocol",
-  "726": "HttpControllerProtocol"
+  "726": "HttpControllerProtocol",
+  "727": "config",
+  "728": "EnvironmentProtocol",
+  "729": "RconCommand",
+  "730": "RconCommandProtocol",
+  "731": "RconSendCommandProtocol",
+  "732": "Result"
 }
