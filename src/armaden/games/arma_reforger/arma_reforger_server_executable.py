@@ -65,7 +65,7 @@ class ArmaReforgerServerExecutable(Executable):
         )
 
 
-    async def ensure_installed(self, runtime: TaskRuntimeProtocol, steamcmd: SteamCmdExecutable) -> Result[Path]:
+    async def ensure_installed(self, runtime: TaskRuntimeProtocol, steamcmd: SteamCmdExecutable, skip_update: bool = False) -> Result[Path]:
         if self._executable is None or not self._executable.exists():
             result = self.resolve_executable()
             if not is_successful(result):
@@ -81,11 +81,13 @@ class ArmaReforgerServerExecutable(Executable):
                     }))
                 return result
 
-        update_result = await self.install(runtime, steamcmd)
-        if not is_successful(update_result):
-            return Failure(Error(ArmaReforgerExecutableError.INSTALL_FAILED, details={
-                'error': update_result.failure()
-            }))
+        if not skip_update:
+            update_result = await self.install(runtime, steamcmd)
+            if not is_successful(update_result):
+                return Failure(Error(ArmaReforgerExecutableError.INSTALL_FAILED, details={
+                    'error': update_result.failure()
+                }))
+
         return self.resolve_executable()
 
 

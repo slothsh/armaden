@@ -99,7 +99,7 @@ class ArmaReforgerServer(
             if not is_successful(result := await self._executable.steamcmd.ensure_installed()):
                 return result.map(lambda _: None)
 
-            if not is_successful(result := await self._executable.reforger.ensure_installed(runtime, self._executable.steamcmd)):
+            if not is_successful(result := await self._executable.reforger.ensure_installed(runtime, self._executable.steamcmd, self.config.get('skipUpdate') or False)):
                 return result.map(lambda _: None)
 
             if not is_successful(result := self._executable.reforger.install_directory()):

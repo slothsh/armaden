@@ -101,6 +101,7 @@ class Config(TypedDict):
     installDirectory: str | None
     steamExecutable: str | None
     steamInstallDirectory: str | None
+    skipUpdate: bool | None
     startup: StartupConfig | None
     server: ServerConfig | None
 
@@ -111,6 +112,7 @@ DEFAULT_CONFIG: Config = {
     'installDirectory': None,
     'steamExecutable': None,
     'steamInstallDirectory': None,
+    'skipUpdate': None,
     'startup': {
         'profileDirectory': None,
         'logsDirectory': None,
