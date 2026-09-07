@@ -405,7 +405,7 @@ class BattleEyeRconClient:
         i = 0
         while True:
             yield i
-            i = (i + 1) % 255
+            i = (i + 1) % 256
 
 
 # -- Public Types -------------------------------------------------------------
