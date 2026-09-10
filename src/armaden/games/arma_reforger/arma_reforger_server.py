@@ -1,6 +1,5 @@
 import json
 import logging
-from collections.abc import Callable, Coroutine
 from dataclasses import dataclass
 from enum import StrEnum
 from pathlib import Path
@@ -24,6 +23,7 @@ from armaden.framework.protocols.task_runtime_protocol import TaskRuntimeProtoco
 from armaden.framework.api.error import Error
 from armaden.framework.api.support import Dictionary
 from armaden.framework.types.result import Result
+from armaden.games.arma_reforger.events.log_event import LogEvent
 from armaden.games.steamcmd import SteamCmdExecutable
 from armaden.games.arma_reforger.arma_reforger_server_executable import ArmaReforgerServerExecutable
 from armaden.games.arma_reforger.arma_reforger_rcon_client import ArmaReforgerRconClient
@@ -44,13 +44,11 @@ class ArmaReforgerServer(
         cls,
         *,
         config: ArmaReforgerServerConfig | None = None,
-        log_handler: Callable[[str], Coroutine[object, object, Result[bool]]] | None = None,
         rcon_client_cls: type[ArmaReforgerRconClient] | None = ArmaReforgerRconClient,
         rcon_command_overrides: list[type[RconCommand]] | None = None,
         rcon_server_message_handler_overrides: list[type[RconServerMessageHandler]] | None = None,
         rcon_repository: RconCommandRepository | None = None,
     ) -> Self:
-        _ = log_handler
         _ = rcon_client_cls
         _ = rcon_command_overrides
         _ = rcon_server_message_handler_overrides
@@ -62,7 +60,6 @@ class ArmaReforgerServer(
         self,
         *,
         config: ArmaReforgerServerConfig | None = None,
-        log_handler: Callable[[str], Coroutine[object, object, Result[bool]]] | None = None,
         rcon_client_cls: type[ArmaReforgerRconClient] | None = ArmaReforgerRconClient,
         rcon_command_overrides: list[type[RconCommand]] | None = None,
         rcon_server_message_handler_overrides: list[type[RconServerMessageHandler]] | None = None,
@@ -70,7 +67,6 @@ class ArmaReforgerServer(
     ):
         _ = config
         self._paths: PathContainer | None = None
-        self._log_handler: Callable[[str], Coroutine[object, object, Result[bool]]] | None = log_handler
         self._rcon_repository: RconCommandRepository | None = rcon_repository
         self._rcon_client_cls: type[ArmaReforgerRconClient] | None = rcon_client_cls
         self._rcon_command_overrides: list[type[RconCommand]] | None = rcon_command_overrides
@@ -136,21 +132,10 @@ class ArmaReforgerServer(
 
         _ = await runtime.signal_ready()
 
-        async def handle_std_stream(line: str) -> Result[None]:
-            if not self._log_handler:
-                _ = await self._log_subprocess(line)
-                return Success(None)
-
-            if should_log := is_successful(await self._log_handler(line)):
-                if should_log:
-                    _ = await self._log_subprocess(line)
-
-            return Success(None)
-
         _ = await runtime.dispatch_subprocess(
             argv.unwrap(),
             cwd=self._paths.install,
-            handle_std_stream=handle_std_stream
+            handle_std_stream=self._log_subprocess
         )
 
         return await self.shutdown()
@@ -298,6 +283,10 @@ class ArmaReforgerServer(
     @classmethod
     async def _log_subprocess(cls, line: str) -> Result[None]:
         logger.info(line)
+
+        if not is_successful(result := await LogEvent.dispatch(line)):
+            logger.error(result.failure())
+
         return Success(None)
 
 
