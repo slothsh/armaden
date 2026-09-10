@@ -8,7 +8,12 @@ RUN apt-get update                                                     \
        python3 python3-pip python3-venv
 
 # Install Poetry globally for all users
-RUN pip3 install --break-system-packages poetry
+ENV POETRY_HOME=/opt/poetry
+RUN python3 -m venv "$POETRY_HOME"                                  \
+    && "$POETRY_HOME/bin/pip" install --no-cache-dir --upgrade pip \
+    && "$POETRY_HOME/bin/pip" install --no-cache-dir poetry
+
+ENV PATH="${POETRY_HOME}/bin:${PATH}"
 
 # Copy library source and build
 RUN mkdir -p /build
@@ -39,13 +44,17 @@ RUN apt-get update                                                     \
 RUN dpkg --add-architecture i386 && add-apt-repository multiverse && apt-get update
 
 # Install Poetry globally for all users
-RUN pip3 install --break-system-packages poetry
+ENV POETRY_HOME=/opt/poetry
+RUN python3 -m venv "$POETRY_HOME"                                  \
+    && "$POETRY_HOME/bin/pip" install --no-cache-dir --upgrade pip \
+    && "$POETRY_HOME/bin/pip" install --no-cache-dir poetry
+
+ENV PATH="${POETRY_HOME}/bin:${PATH}"
 
 # Copy build artifacts and give ownership to armaden
 RUN mkdir -p /armaden /armaden/dist
 COPY --from=build /build/dist /armaden/dist
 COPY .env /armaden
-COPY ./user /armaden/user
 RUN chown -R armaden:armaden /armaden && chmod 600 /armaden/.env
 
 # Install game directories
@@ -64,3 +73,4 @@ RUN tar -xzf ./dist/*.tar.gz --strip-components=1 && poetry install
 
 # Run server
 CMD ["poetry", "run", "armaden-serve"]
+
