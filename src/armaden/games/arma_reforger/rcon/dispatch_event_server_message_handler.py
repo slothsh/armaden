@@ -1,10 +1,15 @@
 from typing import override
 
+from returns.pipeline import is_successful
 from returns.result import Success
 
 from armaden.framework.api.rcon import RconServerMessageHandler
 from armaden.framework.types.result import Result
 from armaden.games.arma_reforger.events.rcon_server_message_event import RconServerMessageEvent
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class DispatchEventServerMessageHandler(RconServerMessageHandler):
@@ -15,5 +20,6 @@ class DispatchEventServerMessageHandler(RconServerMessageHandler):
 
     @override
     async def handle(self, server_message: str) -> Result[None]:
-        _ = await RconServerMessageEvent.dispatch(message=server_message)
+        if not is_successful(result := await RconServerMessageEvent.dispatch(message=server_message)):
+            logger.error(result.failure())
         return Success(None)
