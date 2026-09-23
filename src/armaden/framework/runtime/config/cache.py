@@ -11,7 +11,7 @@ def config() -> CacheConfiguration:
                 'disk': Env.string('CACHE_FILE_DISK', 'local'),
                 'path': Env.string(
                     'CACHE_FILE_PATH',
-                    'storage/framework/cache/data',
+                    'cache/data',
                 ),
             },
         },

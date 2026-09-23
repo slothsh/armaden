@@ -45,8 +45,8 @@ class FileCacheDriver(CacheProtocol):
             raise ValueError(FileCacheDriverError.MISSING_STORE_RESOLVER.value)
         self._filesystem: FilesystemProtocol = filesystem
         self._store_resolver: Callable[[str], CacheProtocol] = store_resolver
-        cache_dir = config.get('path', 'storage/framework/cache/data')
-        self._cache_dir: str = cache_dir if isinstance(cache_dir, str) else 'storage/framework/cache/data'
+        cache_dir = config.get('path', 'cache/data')
+        self._cache_dir: str = cache_dir if isinstance(cache_dir, str) else 'cache/data'
         prefix = application_config.get('prefix', 'armaden_cache')
         self._prefix: str = prefix if isinstance(prefix, str) else 'armaden_cache'
         hash_keys = application_config.get('hash_keys', True)
