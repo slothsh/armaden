@@ -44,6 +44,7 @@ class DefaultApi(DefaultApiProtocol):
                 port=port if isinstance(port, int) else 8888,
                 loop='none',
                 log_config=None,
+                http='h11',
             ))
             return Success(None)
         except Exception as exception:
