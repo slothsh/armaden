@@ -120,7 +120,7 @@
     "semantic_hash": ""
   },
   "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py": {
-    "mtime": 1788802055.2048738,
+    "mtime": 1791667986.0150309,
     "ast_hash": "e1712c6bc66112223bd6db176d927897",
     "semantic_hash": ""
   },
@@ -1795,8 +1795,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/http/default_api.py": {
-    "mtime": 1788638786.356163,
-    "ast_hash": "5cb75f31a2dd0743799248c1f54bce90",
+    "mtime": 1791668031.303936,
+    "ast_hash": "41a60d73f5e15aaa633326a0c44edfb9",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/http/exceptions/__init__.py": {
@@ -3142,11 +3142,6 @@
   "src/armaden/games/arma_reforger/events/log_event.py": {
     "mtime": 1789057426.501444,
     "ast_hash": "b7b68f2632ade545ba8b8dab199df773",
-    "semantic_hash": ""
-  },
-  "payload.json": {
-    "mtime": 1789838567.4331005,
-    "ast_hash": "3d80c3d49ec80e415b449691444684d2",
     "semantic_hash": ""
   }
 }
