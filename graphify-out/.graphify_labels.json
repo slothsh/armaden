@@ -775,9 +775,20 @@
   "773": ".log_voting",
   "774": ".nds",
   "775": ".no_splash",
+  "776": ".from_mapping",
+  "777": "RequestsHttpTransport",
+  "778": ".resolve",
   "779": ".rpl_timeout_ms",
   "780": ".silent_crash_report",
+  "781": "JavaCompatibilityProtocol",
   "782": ".vm_error_mode",
   "783": "__init__.py",
-  "784": "__init__.py"
+  "784": "__init__.py",
+  "785": "arma_reforger_server_executable.py",
+  "786": "__init__.py",
+  "787": "__init__.py",
+  "788": "__init__.py",
+  "789": "__init__.py",
+  "790": "__init__.py",
+  "791": "__init__.py"
 }
