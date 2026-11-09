@@ -1,16 +1,16 @@
 # Graph Report - armaden  (2026-11-09)
 
 ## Corpus Check
-- 563 files · ~83,753 words
+- 564 files · ~84,510 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 4640 nodes · 7407 edges · 813 communities (281 shown, 532 thin omitted)
-- Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 702 edges (avg confidence: 0.59)
+- 4668 nodes · 7460 edges · 804 communities (274 shown, 530 thin omitted)
+- Extraction: 90% EXTRACTED · 10% INFERRED · 0% AMBIGUOUS · INFERRED: 713 edges (avg confidence: 0.59)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7d31bdf6`
+- Built from commit: `d794a16e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -682,7 +682,6 @@
 - .silent_crash_report
 - JavaCompatibilityProtocol
 - .vm_error_mode
-- arma_reforger_server_executable.py
 - __init__.py
 - __init__.py
 - .get
@@ -690,18 +689,10 @@
 - ApplicationProtocol
 - JavaRuntimeInstallerProtocol
 - Result
-- ScheduledEventKind
-- .create_db
-- .enable_night_grain
-- .list_scenarios
 - .log_rdb_checksum
 - .log_stats
-- .nds
 - .no_sound
 - .no_splash
-- .player_limits
-- .rcon
-- .region
 - .staggering_budget
 
 ## God Nodes (most connected - your core abstractions)
@@ -717,25 +708,25 @@
 10. `FileCacheDriver` - 44 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `test_paper_backend_exposes_backend_contract()` --calls--> `PaperBackend`  [INFERRED]
+  tests/games/minecraft/test_minecraft_server.py → src/armaden/games/minecraft/paper/paper_backend.py
 - `test_empty_system_property_value_is_rejected()` --calls--> `PaperJvmLaunchData`  [INFERRED]
   tests/games/minecraft/paper/test_paper_system_property.py → src/armaden/games/minecraft/paper/dto/paper_jvm_launch_data.py
 - `test_system_properties_serialize_as_dash_d_tokens()` --calls--> `PaperJvmLaunchData`  [INFERRED]
   tests/games/minecraft/paper/test_paper_system_property.py → src/armaden/games/minecraft/paper/dto/paper_jvm_launch_data.py
-- `test_absolute_paths_are_left_untouched()` --calls--> `PaperCliArgumentsData`  [INFERRED]
-  tests/games/minecraft/paper/test_paper_cli_arguments_data.py → src/armaden/games/minecraft/paper/dto/paper_cli_arguments_data.py
-- `test_boolean_flags_emit_one_token_only_when_enabled()` --calls--> `PaperCliArgumentsData`  [INFERRED]
-  tests/games/minecraft/paper/test_paper_cli_arguments_data.py → src/armaden/games/minecraft/paper/dto/paper_cli_arguments_data.py
-- `test_default_arguments_emit_no_tokens()` --calls--> `PaperCliArgumentsData`  [INFERRED]
-  tests/games/minecraft/paper/test_paper_cli_arguments_data.py → src/armaden/games/minecraft/paper/dto/paper_cli_arguments_data.py
+- `test_caller_nested_configuration_is_copied()` --calls--> `MinecraftServer`  [INFERRED]
+  tests/games/minecraft/test_minecraft_server_config.py → src/armaden/games/minecraft/minecraft_server.py
+- `test_partial_server_properties_remain_unset()` --calls--> `MinecraftServer`  [INFERRED]
+  tests/games/minecraft/test_minecraft_server_config.py → src/armaden/games/minecraft/minecraft_server.py
 
 ## Import Cycles
 - None detected.
 
-## Communities (813 total, 532 thin omitted)
+## Communities (804 total, 530 thin omitted)
 
 ### Community 0 - "ArmaReforgerServerExecutable"
 Cohesion: 0.03
-Nodes (35): ArmaReforgerServerExecutable, Bind the server to specific addresses / ports.          Keyword Args:, Configure A2S query endpoint.          Keyword Args:             address: IP add, Cap the server frame rate., Load a server-side addon (mod) by ID.          May be called multiple times to l, Load multiple addons at once.          Args:             mod_ids: Variable-lengt, Unique server identifier., Disable storage loads and saves (online and local). (+27 more)
+Nodes (32): ArmaReforgerServerExecutable, Bind the server to specific addresses / ports.          Keyword Args:, Configure BattlEye / RCON remote console.          Keyword Args:             add, Load a server-side addon (mod) by ID.          May be called multiple times to l, ID of the scenario to host., Server region tag (used by the server browser)., Skip the initial load request and start a brand-new session., Override the freeze-detection timeout in seconds (0..600). (+24 more)
 
 ### Community 2 - "AuthManager"
 Cohesion: 0.08
@@ -750,8 +741,8 @@ Cohesion: 0.09
 Nodes (11): ClassDiscoveryProtocol, EventListenerRegistrationData, EventSubscriberRegistrationData, Event, EventListenerDiscovery, Result, EventListenerRegistry, Result (+3 more)
 
 ### Community 8 - "TaskThreadingPolicy"
-Cohesion: 0.08
-Nodes (15): AsyncStreamCallback, Path, Result, TaskRuntimeProtocol, Path to a server configuration JSON file., Directory for profiles (saves, logs, settings).          The directory is create, Redirect log output to the given directory., Path to a session save to load on startup. (+7 more)
+Cohesion: 0.09
+Nodes (14): Path, Result, TaskRuntimeProtocol, Path to a server configuration JSON file., Directory for profiles (saves, logs, settings).          The directory is create, Redirect log output to the given directory., Path to a session save to load on startup., Additional directories to search for mods.          Multiple directories can be (+6 more)
 
 ### Community 10 - "Supervisor"
 Cohesion: 0.08
@@ -762,8 +753,8 @@ Cohesion: 0.14
 Nodes (9): E, Enum, G, TaskGraphCompilerProtocol, E, Result, TaskRuntimeProtocol, TaskProtocol (+1 more)
 
 ### Community 15 - "Packet"
-Cohesion: 0.08
-Nodes (7): CoreApplicationProtocol, AbstractEventLoop, ConfigurationProtocol, ContainerProtocol, EnvironmentProtocol, Result, ServiceProviderProtocol
+Cohesion: 0.05
+Nodes (16): CoreApplicationProtocol, AbstractEventLoop, ConfigurationProtocol, ContainerProtocol, EnvironmentProtocol, Result, ServiceProviderProtocol, SupervisorProtocol (+8 more)
 
 ### Community 17 - ".generate"
 Cohesion: 0.06
@@ -773,25 +764,29 @@ Nodes (14): RconCommandArgumentData, RconCommand, RconCommandRepository, RconCom
 Cohesion: 0.12
 Nodes (7): AbstractEventLoop, ConfigurationProtocol, CoreApplicationProtocol, EnvironmentProtocol, Result, ServiceProviderProtocol, TaskGraphData
 
+### Community 24 - "AsyncDatagramTransport"
+Cohesion: 0.06
+Nodes (12): Facade, ConcurrencyFacade, Enum, G, TaskProtocol, ProcessFacade, Enum, G (+4 more)
+
 ### Community 25 - "UrlGenerator"
 Cohesion: 0.03
-Nodes (45): Enum, SteamCMD CLI command flags (prefixed with ``+``)., SteamCmdExecutableFlag, ApiStatus, DatabaseError, SchemaError, ConfigurationError, ModuleLoaderError (+37 more)
+Nodes (43): Enum, SteamCMD CLI command flags (prefixed with ``+``)., SteamCmdExecutableFlag, ApiStatus, DatabaseError, SchemaError, ConfigurationError, ModuleLoaderError (+35 more)
 
 ### Community 27 - "CommandResponsePacket"
 Cohesion: 0.11
 Nodes (28): ServerPropertiesConfig, _parse_field(), Path, PropertiesFile, Result, _serialize(), ServerPropertiesData, ServerPropertiesError (+20 more)
 
 ### Community 28 - "HttpServiceProvider"
-Cohesion: 0.13
-Nodes (7): AbstractEventLoop, DatagramTransportFactory, Event, GraphTaskRuntime, Result, RconServerMessageEvent, ClientStatus
+Cohesion: 0.20
+Nodes (4): AbstractEventLoop, DatagramTransportFactory, Event, RconServerMessageEvent
 
 ### Community 29 - "TaskRuntime"
 Cohesion: 0.40
 Nodes (3): QueueJobProtocol, ContainerAwareQueueJobProtocol, ContainerProtocol
 
 ### Community 34 - ".get_alias"
-Cohesion: 0.13
-Nodes (14): SupervisorRequestData, GetAppStatus, ContainerProtocol, ContainerProtocol, RestartAppService, ContainerProtocol, ShutdownAppService, HealthResponseData (+6 more)
+Cohesion: 0.10
+Nodes (18): SupervisorRequestData, GetAppStatus, ContainerProtocol, ContainerProtocol, RestartAppService, ContainerProtocol, ShutdownAppService, Api (+10 more)
 
 ### Community 36 - "env"
 Cohesion: 0.15
@@ -837,10 +832,6 @@ Nodes (7): FilesystemProtocol, Result, create_filesystem(), FilesystemConfigurat
 Cohesion: 0.40
 Nodes (3): PlayerResponseData, Parse a single data row from ``players`` output.          Returns ``None``  if t, A connected player returned by the ``players`` command.
 
-### Community 75 - ".addon"
-Cohesion: 0.15
-Nodes (3): KeepAlivePacket, LoginResponsePacket, BattleEyeInvalidPacketException
-
 ### Community 82 - "types.py"
 Cohesion: 0.12
 Nodes (4): S, RouteGroupStackProtocol, WorkerPoolProtocol, WorkerProtocol
@@ -850,8 +841,8 @@ Cohesion: 0.14
 Nodes (8): ABC, ContextualAttributeProtocol, Configurable, EventListener, ContextualAttribute, ContainerProtocol, Parameter, DeferrableServiceProvider
 
 ### Community 91 - "TaskInjector"
-Cohesion: 0.14
-Nodes (12): MinecraftServer, MinecraftServerConfig, test_caller_nested_configuration_is_copied(), test_partial_server_properties_remain_unset(), test_server_filters_unknown_top_level_keys(), test_server_instances_do_not_share_nested_configuration(), test_server_merge_replaces_scalars_but_preserves_unspecified_groups(), test_server_merges_deep_partial_overrides() (+4 more)
+Cohesion: 0.12
+Nodes (13): MinecraftServer, MinecraftServerConfig, Result, test_caller_nested_configuration_is_copied(), test_partial_server_properties_remain_unset(), test_server_filters_unknown_top_level_keys(), test_server_instances_do_not_share_nested_configuration(), test_server_merge_replaces_scalars_but_preserves_unspecified_groups() (+5 more)
 
 ### Community 92 - "Executable"
 Cohesion: 0.17
@@ -882,40 +873,44 @@ Cohesion: 0.04
 Nodes (4): HttpMiddlewarePipelineProtocol, HttpRequestProtocol, HttpMiddlewarePipeline, ContainerProtocol
 
 ### Community 161 - "DefaultApplication"
-Cohesion: 0.19
-Nodes (9): ConfigurationProtocol, Configuration, Result, ModuleLoader, ConfigFactory, ModuleDiscoveryContextFactory, ModuleType, Result (+1 more)
+Cohesion: 0.20
+Nodes (8): Configuration, Result, ModuleLoader, ConfigFactory, ModuleDiscoveryContextFactory, ModuleType, Result, ServiceProviderProtocol
 
 ### Community 162 - ".profile"
-Cohesion: 0.31
-Nodes (3): DatabaseBindings, DatabaseFacade, Result
+Cohesion: 0.06
+Nodes (16): DatabaseBindings, MasoniteModel, DatabaseFacade, Result, Result, SchemaFacade, DatabaseQueryBuilderProtocol, DatabaseResolverProtocol (+8 more)
 
 ### Community 263 - ".language"
 Cohesion: 0.10
-Nodes (25): Config, Config, SupervisorRequestArgs, SupervisorRequestData, SupervisorRequestInfoData, SupervisorRequestKind, A2SConfig, Config (+17 more)
+Nodes (26): Config, Config, SupervisorRequestArgs, SupervisorRequestData, SupervisorRequestInfoData, SupervisorRequestKind, A2SConfig, Config (+18 more)
+
+### Community 264 - ".log_rdb_checksum"
+Cohesion: 0.09
+Nodes (4): RouteGroupStateData, RouteGroup, RouteGroupStack, RouteRegistrar
 
 ### Community 265 - ".nwk_resolution"
 Cohesion: 0.09
 Nodes (8): AuthenticationGuardProtocol, AuthenticationManagerProtocol, AuthenticationManager, AuthenticationMiddleware, NextCallable, AuthenticationWithBasicMiddleware, AuthenticationWithHeaderMiddleware, AuthenticationWithTokenMiddleware
 
 ### Community 268 - ".rpl_encode_as_long_jobs"
-Cohesion: 0.10
-Nodes (5): CoreApplication, ConfigurationProtocol, EnvironmentProtocol, Result, ServiceProviderProtocol
+Cohesion: 0.13
+Nodes (3): CoreApplication, ConfigurationProtocol, EnvironmentProtocol
 
 ### Community 269 - ".scenario"
 Cohesion: 0.11
 Nodes (6): ConfigUserProvider, ApiUserData, AuthenticationGuard, BasicAuthenticationGuard, CustomHeaderGuard, TokenGuard
 
 ### Community 272 - ".streams_delta"
-Cohesion: 0.19
-Nodes (8): Config, MinecraftServerError, PaperBackend, PaperBackendError, MinecraftServerConfig, Result, TaskRuntimeProtocol, test_paper_backend_exposes_backend_contract()
+Cohesion: 0.15
+Nodes (9): HttpTransportProtocol, PaperArtifactInstaller, PaperDownloadsProtocol, PaperLaunchCommand, PaperBackend, MinecraftServerConfig, Path, Result (+1 more)
 
 ### Community 273 - ".world"
-Cohesion: 0.14
-Nodes (8): G, SupervisorProtocol, Enum, Result, ScheduleCallback, SchedulerProtocol, TaskProtocol, SupervisorProtocol
+Cohesion: 0.16
+Nodes (7): G, Enum, Result, ScheduleCallback, SchedulerProtocol, TaskProtocol, SupervisorProtocol
 
 ### Community 274 - "ABC"
-Cohesion: 0.11
-Nodes (5): CacheProtocol, ErrorProtocol, Result, cache(), FileCacheDriver
+Cohesion: 0.12
+Nodes (3): ErrorProtocol, Result, FileCacheDriver
 
 ### Community 278 - "UrlGenerator"
 Cohesion: 0.39
@@ -923,19 +918,19 @@ Nodes (4): DefaultApiProtocol, ConfigurationProtocol, Result, TaskRuntimeProtoco
 
 ### Community 283 - "WorkerPool"
 Cohesion: 0.05
-Nodes (41): JavaRuntimeInstallerProtocol, JavaRuntimeManifestData, PaperArtifactInstallerProtocol, PaperArtifactManifestData, PaperBuildData, PaperDownloadsProtocol, PaperVersionMetadataData, AdoptiumTemurinCatalog (+33 more)
+Nodes (41): JavaRuntimeInstallerProtocol, JavaRuntimeManifestData, PaperArtifactInstallerProtocol, PaperArtifactManifestData, PaperBuildData, PaperVersionMetadataData, AdoptiumTemurinCatalog, _mapping() (+33 more)
 
 ### Community 284 - "SteamCmdExecutableFlag"
-Cohesion: 0.06
-Nodes (8): FacadeAccessor, FacadeApplication, Facade, FilesystemProtocol, Result, StorageFacade, UrlFacade, FacadeProtocol
+Cohesion: 0.14
+Nodes (3): FilesystemProtocol, Result, StorageFacade
 
 ### Community 287 - ".minidump"
 Cohesion: 0.09
 Nodes (18): DatabaseResolverProtocol, DatabaseSchemaBuilderProtocol, FilesystemProtocol, HttpRequestProtocol, HttpResponse, HttpResponseFactory, app(), database() (+10 more)
 
 ### Community 289 - ".nds"
-Cohesion: 0.19
-Nodes (21): MonkeyPatch, FakeBackend, FakeBackendError, FakeRuntime, patch_backend_registry(), run_lifecycle(), test_initialize_rejects_paper_build_without_version(), test_initialize_rejects_unknown_backend_with_structured_error() (+13 more)
+Cohesion: 0.18
+Nodes (22): MonkeyPatch, FakeBackend, FakeBackendError, FakeRuntime, patch_backend_registry(), run_lifecycle(), test_initialize_rejects_paper_build_without_version(), test_initialize_rejects_unknown_backend_with_structured_error() (+14 more)
 
 ### Community 290 - ".no_backend"
 Cohesion: 0.11
@@ -946,8 +941,8 @@ Cohesion: 0.12
 Nodes (22): MinecraftServerConfig, PaperJvmLaunchData, PaperLaunchConfigData, PaperLaunchCommand, PaperLaunchCommandError, Path, Result, resolve_cli_precedence() (+14 more)
 
 ### Community 302 - ".nwk_resolution"
-Cohesion: 0.18
-Nodes (5): DefaultApiProtocol, FastAPI, DefaultApi, DefaultApiError, TaskRuntimeProtocol
+Cohesion: 0.17
+Nodes (6): ConfigurationProtocol, DefaultApiProtocol, FastAPI, DefaultApi, DefaultApiError, TaskRuntimeProtocol
 
 ### Community 305 - ".rpl_encode_as_long_jobs"
 Cohesion: 0.21
@@ -958,7 +953,7 @@ Cohesion: 0.15
 Nodes (3): RouteNotFoundException, HttpRequestContext, UrlGenerator
 
 ### Community 309 - "Result"
-Cohesion: 0.15
+Cohesion: 0.13
 Nodes (4): Any, LoginResponsePacket, BattleEyeRconClient, Message
 
 ### Community 310 - ".single_threaded_update"
@@ -978,7 +973,7 @@ Cohesion: 0.14
 Nodes (4): R, RouteCompilerProtocol, Dictionary, T
 
 ### Community 323 - ".addons_verify"
-Cohesion: 0.22
+Cohesion: 0.20
 Nodes (3): HttpMiddleware, HttpMiddlewareKernel, NextCallable
 
 ### Community 324 - ".backend_fresh_session"
@@ -986,8 +981,8 @@ Cohesion: 0.19
 Nodes (4): M, HttpMiddlewareKernelProtocol, HttpMiddlewareProtocol, NextCallable
 
 ### Community 325 - ".custom"
-Cohesion: 0.10
-Nodes (8): Exception, MissingFacadeAccessorException, UnresolvedFacadeRootException, BindingResolutionException, CircularDependencyException, EntryNotFoundException, LogicException, RouteParameterMissingException
+Cohesion: 0.09
+Nodes (5): FacadeAccessor, FacadeApplication, Facade, UrlFacade, FacadeProtocol
 
 ### Community 326 - ".debugger_port"
 Cohesion: 0.19
@@ -1014,8 +1009,8 @@ Cohesion: 0.23
 Nodes (3): Executable, PushValue, Self
 
 ### Community 346 - "RouteGroup"
-Cohesion: 0.17
-Nodes (4): FailingInstallBackend, MinecraftServerConfig, Result, TaskRuntimeProtocol
+Cohesion: 0.15
+Nodes (5): AsyncStreamCallback, FailingInstallBackend, MinecraftServerConfig, Result, TaskRuntimeProtocol
 
 ### Community 348 - "._dispatch_to_worker"
 Cohesion: 0.24
@@ -1030,24 +1025,28 @@ Cohesion: 0.25
 Nodes (7): MANDATORY: Code Comment Conventions, MANDATORY: General Development Guidelines, MANDATORY: Git Rules, MANDATORY: Local Code Search/Traversal, MANDATORY: Use kaneo for general, high-level Task Management, MANDATORY: Use td for Task Management, MANDATORY: Worktree Management
 
 ### Community 357 - "ConcurrencyBuilder"
-Cohesion: 0.25
-Nodes (7): TaskGraphData, ContainerProtocol, Enum, TaskProtocol, TaskRuntimeProtocol, TaskInjector, TaskInjectorError
+Cohesion: 0.14
+Nodes (10): TaskGraphData, Enum, TaskProtocol, TaskGraphCompiler, ContainerProtocol, Enum, TaskProtocol, TaskRuntimeProtocol (+2 more)
 
 ### Community 358 - "Bind"
 Cohesion: 0.15
 Nodes (20): PaperCliArgumentsData, test_absolute_paths_are_left_untouched(), test_aliases_parse_into_one_canonical_setting(), test_boolean_flags_emit_one_token_only_when_enabled(), test_default_arguments_emit_no_tokens(), test_duplicate_value_option_is_rejected_when_parsing(), test_help_and_version_prevent_server_start(), test_invalid_values_are_rejected_when_parsing() (+12 more)
 
 ### Community 361 - ".execute"
-Cohesion: 0.16
-Nodes (5): BattleEyeRconServer, Client, ResponseMessage, LoginStatus, IntEnum
+Cohesion: 0.18
+Nodes (7): Client, ClientState, RequestMessage, ResponseMessage, LoginStatus, UnknownPacket, IntEnum
 
 ### Community 364 - "__init__.py"
-Cohesion: 0.16
-Nodes (9): ProcessStreamCallback, ProcessTask, Path, Result, TaskRuntimeProtocol, Path, Result, SubprocessHandle (+1 more)
+Cohesion: 0.21
+Nodes (7): ProcessStreamCallback, ProcessTask, ProcessTaskError, Path, Result, TaskRuntimeProtocol, StreamReader
 
 ### Community 371 - "__init__.py"
 Cohesion: 0.08
 Nodes (17): CommandsConfiguration, YamlMapping, HelpConfiguration, YamlMapping, PermissionsConfiguration, YamlMapping, YamlMapping, SpigotConfiguration (+9 more)
+
+### Community 372 - "__init__.py"
+Cohesion: 0.17
+Nodes (5): E, TaskProtocol, EventListenerProtocol, TaskProtocol, TaskProtocol
 
 ### Community 374 - "__init__.py"
 Cohesion: 0.18
@@ -1074,20 +1073,24 @@ Cohesion: 0.20
 Nodes (3): TaskCallback, TaskGraphData, ScheduleBuilder
 
 ### Community 391 - "Self"
-Cohesion: 0.09
-Nodes (3): TaskBuilder, TaskCallback, TaskStatusCallback
+Cohesion: 0.06
+Nodes (15): BuiltTaskCallback, BuiltTask, Result, TaskRuntimeProtocol, TaskThreadingPolicy, BuiltTaskCallbacksData, TaskPolicyData, TaskBuilder (+7 more)
 
 ### Community 393 - "Schema"
 Cohesion: 0.08
 Nodes (13): RconCommandArgumentError, S3FilesystemPathException, ErrorProtocol, Exception, Result, S3Filesystem, invoke_job_handle(), invoke_job_handle_sync() (+5 more)
 
 ### Community 398 - "TaskRuntime"
+Cohesion: 0.12
+Nodes (8): APIRouter, HttpController, RouteDefinitionData, ContainerProtocol, FastAPI, StarletteRequest, RouteCompiler, RouteParameter
+
+### Community 399 - "ServerMessageResponsePacket"
 Cohesion: 0.15
-Nodes (6): APIRouter, HttpController, RouteDefinitionData, StarletteRequest, RouteCompiler, RouteParameter
+Nodes (3): LoginRequestPacket, BattleEyeInvalidPacketException, ServerMessageResponsePacket
 
 ### Community 400 - ".player_limits"
-Cohesion: 0.10
-Nodes (5): DatagramProtocol, DatagramTransport, AsyncDatagramTransport, TransportNotConnectedException, WrapperTransportInterface
+Cohesion: 0.06
+Nodes (13): DatagramProtocol, DatagramTransport, Exception, AsyncDatagramTransport, TransportNotConnectedException, WrapperTransportInterface, MissingFacadeAccessorException, UnresolvedFacadeRootException (+5 more)
 
 ### Community 401 - "ScheduleBuilderProtocol"
 Cohesion: 0.18
@@ -1102,12 +1105,12 @@ Cohesion: 0.11
 Nodes (3): CacheIndexProtocol, FileCacheIndex, FilesystemProtocol
 
 ### Community 415 - "TaskStateData"
-Cohesion: 0.16
-Nodes (6): TaskPolicyData, Result, TaskInjectorProtocol, TaskRuntimeProtocol, TaskThreadingPolicy, Task
+Cohesion: 0.25
+Nodes (4): G, Self, TaskCallback, ScheduleBuilderProtocol
 
 ### Community 417 - "Result"
-Cohesion: 0.17
-Nodes (6): Future, Result, SchedulerProtocol, Supervisor, TaskRecordData, TaskStateData
+Cohesion: 0.13
+Nodes (8): Future, AbstractEventLoop, Result, SchedulerProtocol, Supervisor, TaskRecordData, TaskStateData, ThreadInfoData
 
 ### Community 423 - "Task"
 Cohesion: 0.21
@@ -1117,17 +1120,17 @@ Nodes (5): BoundMethodProtocol, ContainerInstanceProtocol, ContainerProtocol, Co
 Cohesion: 0.11
 Nodes (14): CallbackReference, Parameter, Reflection, Path, _is_yaml_mapping(), _is_yaml_value(), _merge_into(), PaperYamlDocument (+6 more)
 
-### Community 442 - ".execute"
-Cohesion: 0.32
-Nodes (4): Api, Any, LifecycleController, ApiResponseData
+### Community 434 - ".force_session_load"
+Cohesion: 0.11
+Nodes (9): AsyncStreamCallback, Path, Result, SubprocessLaunchCallback, TaskRuntimeProtocol, PaperBackendError, MinecraftServerBackendProtocol, Path (+1 more)
 
 ### Community 453 - "RouteCompilerProtocol"
-Cohesion: 0.07
-Nodes (13): E, TaskProtocol, EventListenerProtocol, ProcessBuilderProtocol, Path, ProcessStreamCallback, Self, TaskProtocol (+5 more)
+Cohesion: 0.24
+Nodes (4): ProcessBuilderProtocol, Path, ProcessStreamCallback, Self
 
 ### Community 454 - ".a2s"
-Cohesion: 0.16
-Nodes (4): datetime, Packet, ServerMessageRequestPacket, ServerMessage
+Cohesion: 0.15
+Nodes (5): datetime, Packet, ServerMessageRequestPacket, ClientStatus, ServerMessage
 
 ### Community 456 - "GenericError"
 Cohesion: 0.19
@@ -1158,20 +1161,12 @@ Cohesion: 0.20
 Nodes (17): BukkitConfiguration, YamlMapping, at(), YamlMapping, YamlValue, Path, test_apply_only_touches_requested_paths(), test_defaults_match_the_reference_inventory() (+9 more)
 
 ### Community 475 - "KickCommand"
-Cohesion: 0.29
-Nodes (7): Error, _deep_merge(), _lookup(), PaperConfigurationFile, Result, YamlMapping, YamlValue
-
-### Community 480 - "AbstractEventLoop"
-Cohesion: 0.24
-Nodes (4): Kernel, A, R, Result
-
-### Community 481 - "EnvironmentProtocol"
-Cohesion: 0.29
-Nodes (6): BuiltTaskCallback, BuiltTask, Result, TaskRuntimeProtocol, TaskThreadingPolicy, BuiltTaskCallbacksData
+Cohesion: 0.27
+Nodes (8): Error, _deep_merge(), _lookup(), PaperConfigurationFile, PaperConfigurationFileError, Result, YamlMapping, YamlValue
 
 ### Community 511 - "ArmaReforgerExecutableFlag"
-Cohesion: 0.12
-Nodes (9): ErrorKindProtocol, Error, Any, ProcessTaskError, SubprocessHandleError, ArmaReforgerExecutableFlag, ArmaReforgerExecutableFlagError, Result (+1 more)
+Cohesion: 0.10
+Nodes (12): EnvironmentProtocol, ErrorKindProtocol, Environment, EnvironmentError, Path, Result, Error, Any (+4 more)
 
 ### Community 514 - ".minidump"
 Cohesion: 0.40
@@ -1205,6 +1200,10 @@ Nodes (9): TemurinBinaryData, TemurinPlatformData, TemurinReleaseData, TemurinIm
 Cohesion: 0.43
 Nodes (3): ScheduleTag, ScheduleInspectionData, ScheduleTag
 
+### Community 537 - "AsyncStreamCallback"
+Cohesion: 0.24
+Nodes (5): GraphTaskRuntime, AsyncStreamCallback, Path, Result, SubprocessLaunchCallback
+
 ### Community 541 - "HttpKernel"
 Cohesion: 0.24
 Nodes (4): ScheduleConstraintData, ScheduleHookData, ScheduledEventDefinitionData, Result
@@ -1225,33 +1224,17 @@ Nodes (3): Result, ScheduledEventDefinitionData, ScheduleDispatcher
 Cohesion: 0.50
 Nodes (6): PaperCliArgumentsError, _parse_value(), Path, Result, _resolve_path(), _serialize_value()
 
-### Community 550 - "DefaultApplication"
-Cohesion: 0.17
-Nodes (6): MasoniteModel, Model, DatabaseServiceProvider, ContainerProtocol, DatabaseConfiguration, Result
-
 ### Community 551 - ".auto_reload"
 Cohesion: 0.20
 Nodes (3): config(), FilesystemConfiguration, env()
-
-### Community 552 - "ShouldQueueEventListenerTag"
-Cohesion: 0.14
-Nodes (3): UrlGeneratorProtocol, ContainerProtocol, FastAPI
 
 ### Community 558 - ".disable_ai"
 Cohesion: 0.40
 Nodes (3): D, Result, ScheduleDispatcherProtocol
 
-### Community 561 - ".disable_crash_reporter"
-Cohesion: 0.27
-Nodes (3): Enum, TaskProtocol, TaskGraphCompiler
-
-### Community 563 - ".addons"
-Cohesion: 0.39
-Nodes (3): MinecraftServerBackendProtocol, Result, TaskRuntimeProtocol
-
 ### Community 564 - ".log_rdb_checksum"
-Cohesion: 0.07
-Nodes (11): RconPacketInterface, Protocol, CacheSerializerProtocol, ConfigurableProtocol, DeferrableServiceProviderProtocol, ErrorProtocol, Result, RconServerMessageHandlerProtocol (+3 more)
+Cohesion: 0.06
+Nodes (13): RconPacketInterface, Protocol, RegistersRconCommandProtocol, ConfigurableProtocol, DeferrableServiceProviderProtocol, ErrorProtocol, HttpControllerProtocol, Result (+5 more)
 
 ### Community 565 - ".no_splash"
 Cohesion: 0.47
@@ -1260,10 +1243,6 @@ Nodes (3): Result, TaskRuntimeProtocol, QueueWorkerProtocol
 ### Community 566 - ".addons_verify"
 Cohesion: 0.29
 Nodes (9): Task, _emit_banner(), ContainerProtocol, Result, TelemetryServiceProvider, CollectServerTelemetryTask, FormatTelemetryReportTask, TelemetryAlertTask (+1 more)
-
-### Community 567 - ".ai_partial_sim"
-Cohesion: 0.17
-Nodes (3): DatabaseQueryBuilderProtocol, DatabaseResolverProtocol, AbstractContextManager
 
 ### Community 568 - ".silent_crash_report"
 Cohesion: 0.24
@@ -1274,12 +1253,8 @@ Cohesion: 0.42
 Nodes (7): ScheduleFrequencyData, _calendar_fields(), create_trigger(), _cron_trigger(), _interval_trigger(), _time_fields(), _values()
 
 ### Community 578 - ".disable_navmesh_streaming"
-Cohesion: 0.18
-Nodes (6): AsyncStreamCallback, Path, Result, TaskStateData, TaskRuntime, TaskRuntimeError
-
-### Community 582 - ".silent_crash_report"
-Cohesion: 0.25
-Nodes (4): KernelProtocol, A, R, Result
+Cohesion: 0.08
+Nodes (15): Process, Result, SubprocessHandleProtocol, GraphTaskRuntimeError, Path, Result, SubprocessHandle, SubprocessHandleError (+7 more)
 
 ### Community 585 - "bootstrap_console"
 Cohesion: 0.40
@@ -1288,10 +1263,6 @@ Nodes (4): create_queue_driver(), QueueConfiguration, QueueDriverDependenciesDat
 ### Community 586 - "UserProviderProtocol"
 Cohesion: 0.40
 Nodes (3): EventsConfiguration, config(), config()
-
-### Community 603 - ".jobsys_long_worker_count"
-Cohesion: 0.24
-Nodes (5): EnvironmentProtocol, Environment, EnvironmentError, Path, Result
 
 ### Community 608 - ".language"
 Cohesion: 0.31
@@ -1310,7 +1281,7 @@ Cohesion: 0.29
 Nodes (3): ArmaReforgerServer, ScheduledJob, DispatchRconPlayersCommandJob
 
 ### Community 628 - ".log_stats"
-Cohesion: 0.29
+Cohesion: 0.22
 Nodes (4): ApplicationProtocol, DefaultApplication, ContainerProtocol, TaskGraphData
 
 ### Community 630 - "Message"
@@ -1321,25 +1292,17 @@ Nodes (8): BattleEyeRconClient, RegisteredRconClient, ServerMessage, ArmaReforge
 Cohesion: 0.60
 Nodes (4): bootstrap_console(), bootstrap_http(), Result, RuntimeEntry
 
-### Community 725 - ".staggering_budget"
-Cohesion: 0.29
-Nodes (5): Facade, ProcessFacade, Enum, G, TaskProtocol
-
 ### Community 726 - ".backend_fresh_session"
 Cohesion: 0.50
 Nodes (3): ServiceProvider, HttpServiceProvider, Result
-
-### Community 738 - ".nwk_resolution"
-Cohesion: 0.39
-Nodes (4): ConcurrencyFacade, Enum, G, TaskProtocol
 
 ### Community 739 - ".rcon"
 Cohesion: 0.27
 Nodes (5): Result, TaskCallback, TaskRuntimeProtocol, ScheduledTask, TaskPolicyData
 
 ### Community 744 - ".enable_night_grain"
-Cohesion: 0.15
-Nodes (6): ClientState, RequestMessage, ServerMessageResponsePacket, UnknownPacket, entry(), main()
+Cohesion: 0.20
+Nodes (3): BattleEyeRconServer, entry(), main()
 
 ### Community 776 - ".from_mapping"
 Cohesion: 0.18
@@ -1360,17 +1323,17 @@ Nodes (3): RconCommandRepositoryProtocol, RconServerMessageHandler, DispatchEven
 ## Knowledge Gaps
 - **25 isolated node(s):** `armaden`, `MANDATORY: Use kaneo for general, high-level Task Management`, `MANDATORY: Use td for Task Management`, `MANDATORY: Local Code Search/Traversal`, `MANDATORY: Worktree Management` (+20 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **532 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **530 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `HttpRequestProtocol` connect `UrlGenerator` to `__init__.py`, `.addons_verify`, `.backend_fresh_session`, `.nwk_resolution`, `.scenario`, `TaskRuntime`, `.log_rdb_checksum`, `.scenario`?**
-  _High betweenness centrality (0.072) - this node is a cross-community bridge._
-- **Why does `SupervisorProtocol` connect `.world` to `Result`, `.rpl_encode_as_long_jobs`, `ProcessFacade`, `.log_rdb_checksum`, `TaskInjector`, `TaskGraph`, `.backend_disable_storage`, `SyncQueueDriver`?**
-  _High betweenness centrality (0.063) - this node is a cross-community bridge._
-- **Why does `ScheduledEventProtocol` connect `TaskInterface` to `RouteCompilerProtocol`, `.keep_num_of_logs`, `.log_rdb_checksum`, `ErrorProtocol`, `UrlGenerator`, `URL`, `.definition`, `.submit`, `.group`?**
-  _High betweenness centrality (0.060) - this node is a cross-community bridge._
+- **Why does `SupervisorProtocol` connect `.world` to `Result`, `.rpl_encode_as_long_jobs`, `ProcessFacade`, `.log_stats`, `.log_rdb_checksum`, `TaskInjector`, `TaskGraph`, `SyncQueueDriver`?**
+  _High betweenness centrality (0.074) - this node is a cross-community bridge._
+- **Why does `ScheduledEventProtocol` connect `TaskInterface` to `.keep_num_of_logs`, `.log_rdb_checksum`, `__init__.py`, `ErrorProtocol`, `UrlGenerator`, `URL`, `.definition`, `.submit`, `.group`?**
+  _High betweenness centrality (0.046) - this node is a cross-community bridge._
+- **Why does `CacheProtocol` connect `AuthManager` to `.__init__`, `.log_rdb_checksum`, `.nds`?**
+  _High betweenness centrality (0.041) - this node is a cross-community bridge._
 - **Are the 10 inferred relationships involving `ScheduledEvent` (e.g. with `ScheduledEventProtocol` and `ScheduleConstraintData`) actually correct?**
   _`ScheduledEvent` has 10 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 15 inferred relationships involving `HttpRequestProtocol` (e.g. with `AuthenticationGuardProtocol` and `AuthenticationManagerProtocol`) actually correct?**
@@ -1378,4 +1341,4 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `armaden`, `MANDATORY: Use kaneo for general, high-level Task Management`, `MANDATORY: Use td for Task Management` to the rest of the system?**
   _108 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `ArmaReforgerServerExecutable` be split into smaller, more focused modules?**
-  _Cohesion score 0.028985507246376812 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.031746031746031744 - nodes in this community are weakly interconnected._

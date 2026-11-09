@@ -515,8 +515,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/supervisor/task/task_runtime.py": {
-    "mtime": 1788638786.363163,
-    "ast_hash": "35068d8c3410a8e5e2ac54830794245f",
+    "mtime": 1794231375.4794185,
+    "ast_hash": "1278374fae68c91311bac973d5ab9788",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/supervisor/worker/worker.py": {
@@ -600,8 +600,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/task_runtime_protocol.py": {
-    "mtime": 1788638786.349163,
-    "ast_hash": "4e298e0c5c48e6f539bc56b7333def32",
+    "mtime": 1794231375.4794185,
+    "ast_hash": "bb6b615aae6a6fd32537c404f98b7392",
     "semantic_hash": ""
   },
   "src/armaden/framework/protocols/worker_pool_protocol.py": {
@@ -630,8 +630,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/supervisor/task/graph_task_runtime.py": {
-    "mtime": 1788638786.362163,
-    "ast_hash": "4fb9a00d4fd01102a2547e2246f3d32a",
+    "mtime": 1794231375.4794185,
+    "ast_hash": "137257c45a7cbd3f36cc0b85db753a85",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/supervisor/task/policy_engine.py": {
@@ -745,8 +745,8 @@
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/supervisor/task/subprocess_handle.py": {
-    "mtime": 1788638786.362163,
-    "ast_hash": "78d67054923a55335133582b25864205",
+    "mtime": 1794231375.4794185,
+    "ast_hash": "c636e97ce5cf6a50b7c693c10aec0c1d",
     "semantic_hash": ""
   },
   "src/armaden/framework/types/process.py": {
@@ -2430,8 +2430,8 @@
     "semantic_hash": ""
   },
   "src/armaden/games/minecraft/minecraft_server.py": {
-    "mtime": 1794226074.9623,
-    "ast_hash": "847a7bf8a518bdadb48dfbfd5327b03a",
+    "mtime": 1794231406.0783577,
+    "ast_hash": "96303d9aa320cbb57f0498d870f651be",
     "semantic_hash": ""
   },
   "src/armaden/games/minecraft/minecraft_server_config.py": {
@@ -2445,8 +2445,8 @@
     "semantic_hash": ""
   },
   "src/armaden/games/minecraft/paper/paper_backend.py": {
-    "mtime": 1794225104.4092102,
-    "ast_hash": "f99d11d8369525b99c6ad2dd4c632f93",
+    "mtime": 1794231375.4794185,
+    "ast_hash": "f280321a6e9c1928b686c1f238cce9ca",
     "semantic_hash": ""
   },
   "src/armaden/games/minecraft/protocols/__init__.py": {
@@ -2455,8 +2455,8 @@
     "semantic_hash": ""
   },
   "src/armaden/games/minecraft/protocols/minecraft_server_backend_protocol.py": {
-    "mtime": 1794225088.8102643,
-    "ast_hash": "f9050c61be3ddf3de6ba76945a97076e",
+    "mtime": 1794231375.4794185,
+    "ast_hash": "86b330703cae84db5eef607992df6ba3",
     "semantic_hash": ""
   },
   "tests/games/minecraft/test_minecraft_server.py": {
@@ -2817,6 +2817,11 @@
   "src/armaden/network/http/requests_http_transport.py": {
     "mtime": 1794230237.6183093,
     "ast_hash": "cae4ef94df8568ad45c5c158e1965f58",
+    "semantic_hash": ""
+  },
+  "src/armaden/framework/protocols/subprocess_handle_protocol.py": {
+    "mtime": 1794231094.0259306,
+    "ast_hash": "7cf6343478a3cde9b0cbf8a915a7486a",
     "semantic_hash": ""
   }
 }
