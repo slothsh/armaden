@@ -120,7 +120,7 @@
     "semantic_hash": ""
   },
   "src/armaden/network/rcon/battle_eye/battle_eye_rcon_client.py": {
-    "mtime": 1791667986.0150309,
+    "mtime": 1794230220.9950793,
     "ast_hash": "e1712c6bc66112223bd6db176d927897",
     "semantic_hash": ""
   },
@@ -2659,26 +2659,6 @@
     "ast_hash": "69f720e69948c1f8349e0f740b74beaa",
     "semantic_hash": ""
   },
-  "src/armaden/games/minecraft/download/__init__.py": {
-    "mtime": 1794229348.5925536,
-    "ast_hash": "b9f8b92c2b7ba7b2331a20525c083d25",
-    "semantic_hash": ""
-  },
-  "src/armaden/games/minecraft/download/protocols/__init__.py": {
-    "mtime": 1794229348.594311,
-    "ast_hash": "1e3025375ae93e91123e023c15727db7",
-    "semantic_hash": ""
-  },
-  "src/armaden/games/minecraft/download/protocols/http_transport_protocol.py": {
-    "mtime": 1794229348.594311,
-    "ast_hash": "c8a7b504126b9b951cf28c391b63380b",
-    "semantic_hash": ""
-  },
-  "src/armaden/games/minecraft/download/requests_http_transport.py": {
-    "mtime": 1794229956.1787899,
-    "ast_hash": "bdf7bf54885dc5b2228b26fa733d4654",
-    "semantic_hash": ""
-  },
   "src/armaden/games/minecraft/java/__init__.py": {
     "mtime": 1794229607.31877,
     "ast_hash": "e0d7a06337756f236a3f5f97bff95648",
@@ -2755,8 +2735,8 @@
     "semantic_hash": ""
   },
   "src/armaden/games/minecraft/java/temurin_catalog.py": {
-    "mtime": 1794229963.863769,
-    "ast_hash": "6b920582d1059608c23d0ba221ee94b9",
+    "mtime": 1794230237.617532,
+    "ast_hash": "292c9aacce7c1f6200b2eb05a0a00d0d",
     "semantic_hash": ""
   },
   "src/armaden/games/minecraft/java/temurin_platform.py": {
@@ -2765,8 +2745,8 @@
     "semantic_hash": ""
   },
   "src/armaden/games/minecraft/java/temurin_runtime_installer.py": {
-    "mtime": 1794229916.3168988,
-    "ast_hash": "bc27679cbad429945d5a8898a0378442",
+    "mtime": 1794230237.6177404,
+    "ast_hash": "62272e9d91bced71354bedc1f9c35dc4",
     "semantic_hash": ""
   },
   "src/armaden/games/minecraft/paper/dto/paper_artifact_manifest_data.py": {
@@ -2790,13 +2770,13 @@
     "semantic_hash": ""
   },
   "src/armaden/games/minecraft/paper/paper_artifact_installer.py": {
-    "mtime": 1794229916.3168988,
-    "ast_hash": "e8e343311e4715614a3ac1abee347cc1",
+    "mtime": 1794230237.6173146,
+    "ast_hash": "603df2a026742c03a8191f5e56f738f2",
     "semantic_hash": ""
   },
   "src/armaden/games/minecraft/paper/paper_downloads_client.py": {
-    "mtime": 1794229916.3168988,
-    "ast_hash": "e8b52735ac70b13d3c28d25a4fc25980",
+    "mtime": 1794230237.6170328,
+    "ast_hash": "3a6ec0aaa088537c59a924e22696f095",
     "semantic_hash": ""
   },
   "src/armaden/games/minecraft/paper/paper_java_compatibility.py": {
@@ -2817,6 +2797,26 @@
   "src/armaden/games/minecraft/paper/protocols/paper_downloads_protocol.py": {
     "mtime": 1794229625.717305,
     "ast_hash": "cce87bd693fcfab06a7ba7365bdb29e6",
+    "semantic_hash": ""
+  },
+  "src/armaden/network/http/__init__.py": {
+    "mtime": 1794230237.618048,
+    "ast_hash": "1d6b550257f09272682f3f3b81c999b8",
+    "semantic_hash": ""
+  },
+  "src/armaden/network/http/protocols/__init__.py": {
+    "mtime": 1794230237.6181715,
+    "ast_hash": "05cd51657e27384b9b8241fc7d4ec77c",
+    "semantic_hash": ""
+  },
+  "src/armaden/network/http/protocols/http_transport_protocol.py": {
+    "mtime": 1794229348.594311,
+    "ast_hash": "c8a7b504126b9b951cf28c391b63380b",
+    "semantic_hash": ""
+  },
+  "src/armaden/network/http/requests_http_transport.py": {
+    "mtime": 1794230237.6183093,
+    "ast_hash": "cae4ef94df8568ad45c5c158e1965f58",
     "semantic_hash": ""
   }
 }
