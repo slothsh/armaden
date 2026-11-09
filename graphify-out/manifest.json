@@ -280,8 +280,8 @@
     "semantic_hash": ""
   },
   "user/app/providers/app_service_provider.py": {
-    "mtime": 1788710527.9563777,
-    "ast_hash": "18b81d56580e7873b1f4d60af3c689d1",
+    "mtime": 1794232487.4919367,
+    "ast_hash": "d54ab3291b9e916fe9a25148a4b181e1",
     "semantic_hash": ""
   },
   "user/app/providers/telemetry_service_provider.py": {
@@ -320,8 +320,8 @@
     "semantic_hash": ""
   },
   "user/routes/api.py": {
-    "mtime": 1788648962.6328263,
-    "ast_hash": "c7b3b4aa00f5dfb2b4344162e46ae47c",
+    "mtime": 1794234029.1523728,
+    "ast_hash": "c62daf44d7a672ee781dc5c929160f4a",
     "semantic_hash": ""
   },
   ".github/workflows/build.yml": {
@@ -2385,8 +2385,8 @@
     "semantic_hash": ""
   },
   "user/config/schedule.py": {
-    "mtime": 1788705701.0792644,
-    "ast_hash": "f1e2837706fee5120341e6e172f5425e",
+    "mtime": 1794234075.6402636,
+    "ast_hash": "a60bfbfc4a48b06f9435692731a4ac6b",
     "semantic_hash": ""
   },
   "src/armaden/framework/runtime/schedule/schedule_group.py": {
@@ -2730,8 +2730,8 @@
     "semantic_hash": ""
   },
   "src/armaden/games/minecraft/java/temurin_archive_extractor.py": {
-    "mtime": 1794229501.6710823,
-    "ast_hash": "3aebb23c2027520cc717a019d3ce3a49",
+    "mtime": 1794234263.054867,
+    "ast_hash": "768db9c2482c75c13707aa93b1b502b3",
     "semantic_hash": ""
   },
   "src/armaden/games/minecraft/java/temurin_catalog.py": {
@@ -2822,6 +2822,11 @@
   "src/armaden/framework/protocols/subprocess_handle_protocol.py": {
     "mtime": 1794231094.0259306,
     "ast_hash": "7cf6343478a3cde9b0cbf8a915a7486a",
+    "semantic_hash": ""
+  },
+  "user/config/minecraft.py": {
+    "mtime": 1794234697.4886863,
+    "ast_hash": "004ae7a129b15b96ccf22f0d136f9be6",
     "semantic_hash": ""
   }
 }
