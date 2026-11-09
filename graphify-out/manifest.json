@@ -1,7 +1,7 @@
 {
   "pyproject.toml": {
-    "mtime": 1788638786.342163,
-    "ast_hash": "b171ebcdeef224c6393ff017b6543a93",
+    "mtime": 1794227599.2859836,
+    "ast_hash": "ff2700ca46fd3b8dffbab125411615ca",
     "semantic_hash": ""
   },
   "src/armaden/framework/__init__.py": {
@@ -2515,8 +2515,8 @@
     "semantic_hash": ""
   },
   "tests/games/minecraft/paper/paper_reference.py": {
-    "mtime": 1794226543.889033,
-    "ast_hash": "096ed59835e709441e855d1299090672",
+    "mtime": 1794227836.8844903,
+    "ast_hash": "6d940ca6ea2365aa08e1de11e9ae31f0",
     "semantic_hash": ""
   },
   "tests/games/minecraft/paper/test_paper_cli_arguments_data.py": {
@@ -2542,6 +2542,121 @@
   "tests/games/minecraft/paper/test_paper_system_property.py": {
     "mtime": 1794226556.1010005,
     "ast_hash": "c5e80d736b02cbadd9da9bae9e850ecb",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/configuration/__init__.py": {
+    "mtime": 1794227694.8977888,
+    "ast_hash": "8a0c9d7ed2f91de5431218400d4a97b9",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/configuration/bukkit_configuration.py": {
+    "mtime": 1794228234.9951766,
+    "ast_hash": "0bdbdd852f40ab3912ccd8a66a22ae3d",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/configuration/commands_configuration.py": {
+    "mtime": 1794228234.9953437,
+    "ast_hash": "c011c95c6513364bea2724c36a7aefbf",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/configuration/eula.py": {
+    "mtime": 1794227816.8553162,
+    "ast_hash": "23872f5f0bc9ee0e06586a74558100d6",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/configuration/global_configuration.py": {
+    "mtime": 1794228234.9936132,
+    "ast_hash": "1e93dbf10c3cf361ab60764696bbef58",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/configuration/help_configuration.py": {
+    "mtime": 1794228234.9954786,
+    "ast_hash": "afe8947bc3702fc3f08756da7d0e1394",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/configuration/paper_configuration_file.py": {
+    "mtime": 1794227765.8406408,
+    "ast_hash": "9f5d0f32c17a6ca2da3def1c81665f5d",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/configuration/paper_world_configuration.py": {
+    "mtime": 1794227515.1511497,
+    "ast_hash": "f2f60fbb3ab2a3f00217021fc2ea628d",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/configuration/paper_world_defaults_configuration.py": {
+    "mtime": 1794228234.9960287,
+    "ast_hash": "33e038856142f2505400e46e36b4bf5d",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/configuration/paper_yaml_document.py": {
+    "mtime": 1794227823.1010382,
+    "ast_hash": "c6831b01816cf419b7700146f45206f2",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/configuration/permissions_configuration.py": {
+    "mtime": 1794228234.995599,
+    "ast_hash": "88c3d9f2741a4dd1bcc5c6edca4f4c62",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/configuration/server_owned_state.py": {
+    "mtime": 1794227689.4108,
+    "ast_hash": "b38541e2f67efd123eddb8882561b399",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/configuration/server_properties.py": {
+    "mtime": 1794228272.4555285,
+    "ast_hash": "9dc63fd7917fea22e9e22d421c51fca2",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/configuration/spigot_configuration.py": {
+    "mtime": 1794228234.9949684,
+    "ast_hash": "0cc63a4be633052607fd0e316a01bdfe",
+    "semantic_hash": ""
+  },
+  "tests/games/minecraft/paper/configuration/config_support.py": {
+    "mtime": 1794228383.1830943,
+    "ast_hash": "b674fee05db7a9016556935b7da963d4",
+    "semantic_hash": ""
+  },
+  "tests/games/minecraft/paper/configuration/test_configuration_cli_boundary.py": {
+    "mtime": 1794228376.9017503,
+    "ast_hash": "c059855997e037e83085f34fa211d3f1",
+    "semantic_hash": ""
+  },
+  "tests/games/minecraft/paper/configuration/test_eula_and_server_owned_state.py": {
+    "mtime": 1794228376.9020274,
+    "ast_hash": "12c7550ea51f0c40698b9744dae15475",
+    "semantic_hash": ""
+  },
+  "tests/games/minecraft/paper/configuration/test_global_configuration.py": {
+    "mtime": 1794228376.900617,
+    "ast_hash": "27b8a8bc0bcc079bcc39e064d155a5d8",
+    "semantic_hash": ""
+  },
+  "tests/games/minecraft/paper/configuration/test_paper_configuration_file.py": {
+    "mtime": 1794228409.8232162,
+    "ast_hash": "24230e064837b7d449ffd67c1ae660c6",
+    "semantic_hash": ""
+  },
+  "tests/games/minecraft/paper/configuration/test_paper_yaml_document.py": {
+    "mtime": 1794228397.1272452,
+    "ast_hash": "428c444590b5b6cd49fe59032d639298",
+    "semantic_hash": ""
+  },
+  "tests/games/minecraft/paper/configuration/test_server_properties.py": {
+    "mtime": 1794228389.876105,
+    "ast_hash": "7d70f236c33a2977bc6eab012ebb3494",
+    "semantic_hash": ""
+  },
+  "tests/games/minecraft/paper/configuration/test_spigot_and_small_configurations.py": {
+    "mtime": 1794228376.9012072,
+    "ast_hash": "b61fe17652e4b920eabb0a53dc33bc22",
+    "semantic_hash": ""
+  },
+  "tests/games/minecraft/paper/configuration/test_world_configuration.py": {
+    "mtime": 1794228376.9010143,
+    "ast_hash": "69f720e69948c1f8349e0f740b74beaa",
     "semantic_hash": ""
   }
 }

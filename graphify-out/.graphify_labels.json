@@ -775,12 +775,8 @@
   "773": ".log_voting",
   "774": ".nds",
   "775": ".no_splash",
-  "776": ".player_limits",
-  "777": ".region",
-  "778": ".rpl_encode_as_long_jobs",
   "779": ".rpl_timeout_ms",
   "780": ".silent_crash_report",
-  "781": ".streams_delta",
   "782": ".vm_error_mode",
   "783": "__init__.py",
   "784": "__init__.py"
