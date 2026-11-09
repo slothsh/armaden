@@ -9,7 +9,7 @@ RUN apt-get update                                                     \
 
 # Install Poetry globally for all users
 ENV POETRY_HOME=/opt/poetry
-RUN python3 -m venv "$POETRY_HOME"                                  \
+RUN python3 -m venv "$POETRY_HOME"                                 \
     && "$POETRY_HOME/bin/pip" install --no-cache-dir --upgrade pip \
     && "$POETRY_HOME/bin/pip" install --no-cache-dir poetry
 
@@ -45,7 +45,7 @@ RUN dpkg --add-architecture i386 && add-apt-repository multiverse && apt-get upd
 
 # Install Poetry globally for all users
 ENV POETRY_HOME=/opt/poetry
-RUN python3 -m venv "$POETRY_HOME"                                  \
+RUN python3 -m venv "$POETRY_HOME"                                 \
     && "$POETRY_HOME/bin/pip" install --no-cache-dir --upgrade pip \
     && "$POETRY_HOME/bin/pip" install --no-cache-dir poetry
 

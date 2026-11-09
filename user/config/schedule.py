@@ -2,6 +2,13 @@ from armaden.framework.support.env import Env
 from armaden.framework.types.schedule import ScheduleConfiguration
 
 
+def _job_discovery_paths() -> list[str]:
+    if Env.string('APP_GAME', 'arma_reforger') == 'minecraft':
+        return []
+
+    return ['app/jobs']
+
+
 def config() -> ScheduleConfiguration:
     return {
         'defaults': {
@@ -16,7 +23,7 @@ def config() -> ScheduleConfiguration:
                 'enabled': Env.bool('SCHEDULE_JOB_DISCOVERY_ENABLED', True),
                 'paths': Env.json(
                     'SCHEDULE_JOB_DISCOVERY_PATHS',
-                    ['app/jobs'],
+                    _job_discovery_paths(),
                 ),
             },
         },

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import shutil
 import stat
 import tarfile
@@ -43,10 +44,11 @@ class TemurinArchiveExtractor:
 
         try:
             extracted.mkdir(parents=True, exist_ok=True)
+            root: Path = Path(os.path.realpath(extracted))
 
             with tarfile.open(archive, 'r:*') as bundle:
                 for member in bundle:
-                    if member.issym() or member.islnk() or member.isdev():
+                    if member.isdev():
                         return self._unsafe_entry(member.name)
 
                     if not _is_contained_name(member.name):
@@ -54,8 +56,32 @@ class TemurinArchiveExtractor:
 
                     target: Path = extracted / member.name
 
+                    if not _is_contained_path(target, root):
+                        return self._unsafe_entry(member.name)
+
                     if member.isdir():
                         target.mkdir(parents=True, exist_ok=True)
+                        continue
+
+                    if member.issym():
+                        if not _is_contained_link(member.linkname, target, root):
+                            return self._unsafe_entry(member.name)
+
+                        target.parent.mkdir(parents=True, exist_ok=True)
+                        os.symlink(member.linkname, target)
+                        continue
+
+                    if member.islnk():
+                        if not _is_contained_name(member.linkname):
+                            return self._unsafe_entry(member.name)
+
+                        linked: Path = extracted / member.linkname
+
+                        if not _is_contained_path(linked, root):
+                            return self._unsafe_entry(member.name)
+
+                        target.parent.mkdir(parents=True, exist_ok=True)
+                        os.link(linked, target)
                         continue
 
                     if not member.isfile():
@@ -93,6 +119,7 @@ class TemurinArchiveExtractor:
 
         try:
             extracted.mkdir(parents=True, exist_ok=True)
+            root: Path = Path(os.path.realpath(extracted))
 
             with zipfile.ZipFile(archive) as bundle:
                 for entry in bundle.infolist():
@@ -105,6 +132,9 @@ class TemurinArchiveExtractor:
                         return self._unsafe_entry(entry.filename)
 
                     target: Path = extracted / entry.filename
+
+                    if not _is_contained_path(target, root):
+                        return self._unsafe_entry(entry.filename)
 
                     if entry.is_dir():
                         target.mkdir(parents=True, exist_ok=True)
@@ -159,3 +189,14 @@ def _is_contained_name(name: str) -> bool:
     parts = PurePosixPath(name).parts
 
     return '..' not in parts
+
+
+def _is_contained_path(path: Path, root: Path) -> bool:
+    return Path(os.path.realpath(path)).is_relative_to(root)
+
+
+def _is_contained_link(linkname: str, link: Path, root: Path) -> bool:
+    if linkname == '' or linkname.startswith('/') or '\0' in linkname:
+        return False
+
+    return _is_contained_path(link.parent / linkname, root)
