@@ -2,16 +2,22 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import os
 from enum import StrEnum
 from pathlib import Path
 from typing import override
 
+from returns.pipeline import is_successful
 from returns.result import Failure, Success
 
+from armaden.framework.protocols.task_runtime_protocol import (
+    SubprocessLaunchCallback,
+    TaskRuntimeProtocol,
+)
 from armaden.framework.runtime.error.error import Error
-from armaden.framework.protocols.task_runtime_protocol import TaskRuntimeProtocol
 from armaden.framework.runtime.supervisor.dto.process_info_data import ProcessInfoData
 from armaden.framework.runtime.supervisor.dto.task_state_data import TaskStateData
+from armaden.framework.runtime.supervisor.task.subprocess_handle import SubprocessHandle
 from armaden.framework.types.coroutine import AsyncStreamArg, AsyncStreamCallback
 from armaden.framework.types.result import Result
 
@@ -29,15 +35,31 @@ class TaskRuntime(TaskRuntimeProtocol):
         argv: list[str],
         cwd: Path | str | None = None,
         handle_std_stream: AsyncStreamCallback | None = None,
+        env: dict[str, str] | None = None,
+        on_launch: SubprocessLaunchCallback | None = None,
     ) -> Result[str]:
         logger.info('Executing command in subprocess: %s', ' '.join(argv))
+
+        full_env: dict[str, str] | None = None
+        if env is not None:
+            full_env = os.environ.copy()
+            full_env.update(env)
 
         process = await asyncio.create_subprocess_exec(
             argv[0], *argv[1:],
             cwd=cwd,
+            env=full_env,
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE,
         )
+        handle = SubprocessHandle(self._task_state.thread_info.name, process)
+
+        if on_launch is not None:
+            launched = await on_launch(handle)
+
+            if not is_successful(launched):
+                _ = await handle.stop()
+                return Failure(launched.failure())
 
         tasks: list[asyncio.Task[None]] = []
         if handle_std_stream:
@@ -72,6 +94,7 @@ class TaskRuntime(TaskRuntimeProtocol):
                 _ = task.cancel()
             if tasks:
                 _ = await asyncio.gather(*tasks, return_exceptions=True)
+            _ = await handle.stop()
             raise
         finally:
             for task in tasks:

@@ -6,9 +6,13 @@ import os
 import signal
 from enum import StrEnum
 from pathlib import Path
+from typing import override
 
 from returns.result import Failure, Success
 
+from armaden.framework.protocols.subprocess_handle_protocol import (
+    SubprocessHandleProtocol,
+)
 from armaden.framework.runtime.error.error import Error
 from armaden.framework.runtime.supervisor.task.enums.subprocess_handle_state import (
     SubprocessHandleState,
@@ -22,12 +26,14 @@ class SubprocessHandleError(StrEnum):
     SUBPROCESS_ERROR = 'a subprocess handle could not start the process'
 
 
-class SubprocessHandle:
-    def __init__(self, name: str) -> None:
+class SubprocessHandle(SubprocessHandleProtocol):
+    def __init__(self, name: str, process: asyncio.subprocess.Process | None = None) -> None:
         self.name: str = name
-        self.process: asyncio.subprocess.Process | None = None
-        self.pid: int | None = None
-        self.state: SubprocessHandleState = SubprocessHandleState.STARTING
+        self.process: asyncio.subprocess.Process | None = process
+        self.pid: int | None = process.pid if process is not None else None
+        self.state: SubprocessHandleState = (
+            SubprocessHandleState.RUNNING if process is not None else SubprocessHandleState.STARTING
+        )
 
 
     async def restart(self) -> Result[None]:
@@ -68,6 +74,7 @@ class SubprocessHandle:
             self.process.send_signal(sig)
 
 
+    @override
     async def stop(self, timeout: float = 30.0) -> Result[None]:
         process = self.process
         if process is None or self.state == SubprocessHandleState.STOPPED:

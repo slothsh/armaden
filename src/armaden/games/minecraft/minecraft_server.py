@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 import logging
 from collections.abc import Callable
 from copy import deepcopy
@@ -11,6 +12,9 @@ from returns.result import Failure, Success
 
 from armaden.framework.api.configurable import Configurable
 from armaden.framework.api.error import Error
+from armaden.framework.protocols.subprocess_handle_protocol import (
+    SubprocessHandleProtocol,
+)
 from armaden.framework.protocols.task_runtime_protocol import TaskRuntimeProtocol
 from armaden.framework.types.result import Result
 from armaden.games.minecraft.enums import MinecraftServerBackend
@@ -34,6 +38,7 @@ class MinecraftServer(Configurable[MinecraftServerConfig]):
 
     _backend: MinecraftServerBackendProtocol | None
     _initialized: bool
+    _process: SubprocessHandleProtocol | None
 
     def __new__(
         cls,
@@ -48,9 +53,13 @@ class MinecraftServer(Configurable[MinecraftServerConfig]):
         self.config = deepcopy(self.config)
         self._backend = None
         self._initialized = False
+        self._process = None
 
 
     async def initialize(self, runtime: TaskRuntimeProtocol) -> Result[None]:
+        if self._process is not None:
+            return Failure(Error(MinecraftServerError.ALREADY_RUNNING))
+
         self._backend = None
         self._initialized = False
 
@@ -82,34 +91,52 @@ class MinecraftServer(Configurable[MinecraftServerConfig]):
         if not is_successful(command := backend.launch_command()):
             return command.map(lambda _: None)
 
-        installation = self.config.get('installation')
-        directory = installation.get('directory') if installation else None
+        self._process = None
 
-        if not is_successful(readiness := await runtime.signal_ready()):
-            return readiness
+        async def own_subprocess(handle: SubprocessHandleProtocol) -> Result[None]:
+            self._process = handle
+            return await runtime.signal_ready()
 
-        if not is_successful(
-            execution := await runtime.dispatch_subprocess(
+        try:
+            execution = await runtime.dispatch_subprocess(
                 command.unwrap(),
-                cwd=directory,
+                cwd=backend.working_directory(),
+                env=backend.launch_environment(),
                 handle_std_stream=self._log_subprocess,
+                on_launch=own_subprocess,
             )
-        ):
+        except asyncio.CancelledError:
+            self._process = None
+            raise
+
+        if not is_successful(execution):
+            self._process = None
             return execution.map(lambda _: None)
 
         return await self.shutdown()
 
 
     async def shutdown(self) -> Result[None]:
+        process = self._process
+
+        if process is None:
+            return Success(None)
+
+        if not is_successful(stopped := await process.stop()):
+            return stopped
+
+        self._process = None
         return Success(None)
 
 
     async def status(self, runtime: TaskRuntimeProtocol) -> Result[dict[str, object]]:
         _ = runtime
+        process = self._process
         return Success(
             {
                 'backend': self.config.get('backend'),
                 'initialized': self._initialized,
+                'process': None if process is None else {'pid': process.pid},
             }
         )
 
@@ -176,6 +203,7 @@ class MinecraftServer(Configurable[MinecraftServerConfig]):
 # --- Internal Types ----------------------------------------------------------
 
 class MinecraftServerError(StrEnum):
+    ALREADY_RUNNING = 'the minecraft server subprocess is still running'
     INVALID_CONFIGURATION = 'the minecraft server configuration is invalid or mutually incompatible'
     NOT_INITIALIZED = 'the minecraft server backend has not been initialized'
     UNKNOWN_BACKEND = 'the requested minecraft server backend is not supported'
