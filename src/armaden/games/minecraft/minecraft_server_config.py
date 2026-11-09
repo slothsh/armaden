@@ -18,6 +18,7 @@ class InstallationConfig(TypedDict, total=False):
 
 class JavaConfig(TypedDict, total=False):
     executable: str | None
+    pin: bool | None
     version: int | None
 
 
@@ -72,6 +73,7 @@ DEFAULT_CONFIG: Config = {
     },
     'java': {
         'executable': None,
+        'pin': False,
         'version': 25,
     },
     'jvm': {
