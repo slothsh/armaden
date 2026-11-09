@@ -13,7 +13,7 @@ from returns.result import Failure, Success
 
 from armaden.framework.api.error import Error
 from armaden.framework.types.result import Result
-from armaden.games.minecraft.download.protocols.http_transport_protocol import (
+from armaden.network.http.protocols.http_transport_protocol import (
     HttpTransportProtocol,
 )
 from armaden.games.minecraft.paper.dto.paper_artifact_manifest_data import (

@@ -1,7 +1,7 @@
-from armaden.games.minecraft.download.protocols.http_transport_protocol import (
+from armaden.network.http.protocols.http_transport_protocol import (
     HttpTransportProtocol,
 )
-from armaden.games.minecraft.download.requests_http_transport import (
+from armaden.network.http.requests_http_transport import (
     RequestsHttpTransport,
     RequestsHttpTransportError,
 )

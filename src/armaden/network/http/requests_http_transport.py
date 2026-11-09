@@ -16,7 +16,7 @@ from urllib3.util.retry import Retry
 
 from armaden.framework.api.error import Error
 from armaden.framework.types.result import Result
-from armaden.games.minecraft.download.protocols.http_transport_protocol import (
+from armaden.network.http.protocols.http_transport_protocol import (
     HttpTransportProtocol,
 )
 
