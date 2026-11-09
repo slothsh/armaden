@@ -2468,5 +2468,80 @@
     "mtime": 1794225820.6520078,
     "ast_hash": "78adba796bde8a13a2b99cc1627fb48f",
     "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/dto/__init__.py": {
+    "mtime": 1794226409.2763934,
+    "ast_hash": "b5922fbe1010119b5f492d134ae43219",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/dto/paper_cli_arguments_data.py": {
+    "mtime": 1794226525.7328432,
+    "ast_hash": "dbf2153ad8f8ec9387c6437b8ccf80a4",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/dto/paper_jvm_launch_data.py": {
+    "mtime": 1794226406.4194012,
+    "ast_hash": "49d74fa42cad2d5625daacce20c560f6",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/dto/paper_launch_config_data.py": {
+    "mtime": 1794226407.7953975,
+    "ast_hash": "44da9b4d72fa5b62d8449a8592efa18c",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/enums/__init__.py": {
+    "mtime": 1794226385.1924582,
+    "ast_hash": "8d27687e6587ed874b514f52dc757ea7",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/enums/paper_cli_flag.py": {
+    "mtime": 1794226537.4959505,
+    "ast_hash": "21b9ef89e30ec3edaf870cfe25144ac5",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/enums/paper_environment_variable.py": {
+    "mtime": 1794226537.538974,
+    "ast_hash": "bc0d0577de11577a8d16324f064d486c",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/enums/paper_system_property.py": {
+    "mtime": 1794226537.517553,
+    "ast_hash": "67eca85eac262857080c2e9755b9ee1b",
+    "semantic_hash": ""
+  },
+  "src/armaden/games/minecraft/paper/paper_launch_command.py": {
+    "mtime": 1794226424.9213514,
+    "ast_hash": "2c0a6604c90f0176f4b9c5128e26085e",
+    "semantic_hash": ""
+  },
+  "tests/games/minecraft/paper/paper_reference.py": {
+    "mtime": 1794226543.889033,
+    "ast_hash": "096ed59835e709441e855d1299090672",
+    "semantic_hash": ""
+  },
+  "tests/games/minecraft/paper/test_paper_cli_arguments_data.py": {
+    "mtime": 1794226620.8996403,
+    "ast_hash": "108a72d2bc7a8480946e442e95420276",
+    "semantic_hash": ""
+  },
+  "tests/games/minecraft/paper/test_paper_cli_flag.py": {
+    "mtime": 1794226620.9000094,
+    "ast_hash": "5503c740ff7f33aff85c9e70ca99a57e",
+    "semantic_hash": ""
+  },
+  "tests/games/minecraft/paper/test_paper_environment_variable.py": {
+    "mtime": 1794226558.0379953,
+    "ast_hash": "1f75f7d1d00c488f42651426bf6dbc1c",
+    "semantic_hash": ""
+  },
+  "tests/games/minecraft/paper/test_paper_launch_command.py": {
+    "mtime": 1794226620.9001815,
+    "ast_hash": "75079b4edcb308635052fc01fc5ddc3a",
+    "semantic_hash": ""
+  },
+  "tests/games/minecraft/paper/test_paper_system_property.py": {
+    "mtime": 1794226556.1010005,
+    "ast_hash": "c5e80d736b02cbadd9da9bae9e850ecb",
+    "semantic_hash": ""
   }
 }
