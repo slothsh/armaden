@@ -1,0 +1,14 @@
+from typing import Protocol
+
+from armaden.framework.protocols.task_runtime_protocol import TaskRuntimeProtocol
+from armaden.framework.types.result import Result
+
+
+class MinecraftServerBackendProtocol(Protocol):
+    async def install(self, runtime: TaskRuntimeProtocol) -> Result[None]: ...
+
+    def launch_command(self) -> Result[list[str]]: ...
+
+    async def prepare(self) -> Result[None]: ...
+
+    async def update(self, runtime: TaskRuntimeProtocol) -> Result[None]: ...
