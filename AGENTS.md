@@ -1,6 +1,12 @@
-## MANDATORY: Local Code Search/Traversal
+## MANDATORY: Use kaneo for general, high-level Task Management
 
-Always use the `graphify` skill to query and search for any local code. Only revert to manual grepping as a last resort.
+The kaneo MCP server should be available to you. If not, use only `td`. Use your MCP skill.
+
+Only query/modify kaneo when the user instructs you to do so. It will be used to inform local tasks (`td`).
+
+This project's Kaneo prefix is `ARD`, and its workspace is called `Armaden`.
+
+Assume all requests from the user related to kaneo are for that workspace & project, unless specified otherwise.
 
 ## MANDATORY: Use td for Task Management
 
@@ -17,6 +23,12 @@ When the user asks you to create an epic in `td`, **always** add the epic and it
 - Use **VERY** elaborate descriptions for each task on the epic using the --description flag.
 - Add relevant labels to each task using the --label task. 2-5 is more than enough.
 - Keep the name of the epic concise and relevant to the overall theme of the tasks.
+
+`td` is used for local development tasks. It is a centralized location for cross-agent coordination.
+
+## MANDATORY: Local Code Search/Traversal
+
+Always use the `graphify` skill to query and search for any local code. Only revert to manual grepping as a last resort.
 
 ## MANDATORY: Worktree Management
 
